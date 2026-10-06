@@ -1,51 +1,250 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Administração da publicação — NQI</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin NQI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--blue:#005CA9;--deep:#003C71;--orange:#F7941D;--ink:#172A36;--paper:#F5F2EB;--white:#fff;--line:#D9E1E5}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--paper);color:var(--ink)}
-.wrap{max-width:980px;margin:auto;padding:48px 24px 80px}.head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:40px}
-.brand{font-weight:800;color:var(--blue);font-size:1.35rem}.tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);font-weight:800}
-h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;color:var(--deep);margin:10px 0 16px}
-.lead{color:#5f7079;max-width:720px}.card{background:var(--white);border-radius:28px;padding:30px;box-shadow:0 18px 60px rgba(0,44,78,.08);margin-top:20px}
-.step{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
-.n{width:38px;height:38px;border-radius:50%;background:#E7F1F8;color:var(--blue);display:grid;place-items:center;font-weight:800}
-h2{font-family:Georgia,serif;font-weight:400;color:var(--deep);font-size:1.5rem;margin:0 0 6px}.step p{margin:0;color:#61717A}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-block;border-radius:999px;padding:12px 16px;font-weight:800;text-decoration:none}
-.primary{background:var(--blue);color:white}.secondary{background:#FFF0DD;color:#945B0A}.ghost{border:1px solid var(--line);color:var(--ink);background:white}
-.notice{border-left:4px solid var(--orange);padding:14px 16px;background:#FFF6E9;border-radius:0 14px 14px 0;margin-top:24px;color:#6d5735}
-code{background:#EEF3F6;padding:3px 6px;border-radius:6px}
+:root{--deep:#003c71;--blue:#005ca9;--orange:#f7941d;--paper:#f4f1ea;--ink:#172a36;--muted:#667781;--line:#d9e1e5;--white:#fff;--green:#287657;--red:#a94639}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);font-family:"DM Sans",system-ui,sans-serif;color:var(--ink)} button,input,select,textarea{font:inherit} .hidden{display:none!important}
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,var(--deep),#075e9e)} .login-card{width:min(520px,100%);background:white;border-radius:28px;padding:32px;box-shadow:0 30px 90px rgba(0,0,0,.2)} .brand{font-family:"Libre Caslon Display";font-size:2.1rem;color:var(--deep)} .login h1{font-family:"Libre Caslon Display";font-weight:400;font-size:3.2rem;line-height:.95;margin:18px 0;color:var(--deep)} .small{font-size:.8rem;color:var(--muted);line-height:1.5}
+.field{margin:16px 0} label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700;color:#53656f;margin-bottom:6px} input,select,textarea{width:100%;border:1px solid #cad6db;background:white;border-radius:12px;padding:11px 12px;outline:none} textarea{min-height:90px;resize:vertical} input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,92,169,.08)}
+.btn{border:0;border-radius:999px;padding:11px 16px;font-weight:700;cursor:pointer} .primary{background:var(--blue);color:white} .orange{background:var(--orange);color:#4f3506} .ghost{background:white;border:1px solid var(--line);color:var(--ink)} .danger{background:#fbe9e5;color:var(--red)} .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.app{min-height:100vh} .top{background:var(--deep);color:white;padding:18px 24px;position:sticky;top:0;z-index:20} .topin{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px} .top .brand{color:white;font-size:1.5rem} .shell{max-width:1400px;margin:auto;display:grid;grid-template-columns:260px 1fr;gap:20px;padding:22px}
+.sidebar{background:white;border-radius:22px;padding:14px;height:max-content;position:sticky;top:86px} .navbtn{width:100%;border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer;color:#53656f;font-weight:600} .navbtn.active{background:#edf5fa;color:var(--blue)} .main{min-width:0} .panel{display:none} .panel.active{display:block}
+.hero{background:white;border-radius:24px;padding:26px;margin-bottom:18px} .eyebrow{font-size:.67rem;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:var(--orange)} h2{font-family:"Libre Caslon Display";font-size:2.7rem;font-weight:400;color:var(--deep);margin:6px 0 10px} h3{font-family:"Libre Caslon Display";font-size:1.5rem;font-weight:400;color:var(--deep);margin:0 0 10px}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap} .card{background:white;border-radius:20px;padding:20px;border:1px solid #e5eaec;margin-bottom:12px} .cardhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start} .tag{display:inline-block;border-radius:999px;background:#eef5f9;color:var(--blue);padding:4px 8px;font-size:.66rem;font-weight:700} .muted{color:var(--muted)} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.modal{position:fixed;inset:0;background:rgba(10,28,40,.55);z-index:100;display:grid;place-items:center;padding:20px} .modalbox{width:min(760px,100%);max-height:90vh;overflow:auto;background:white;border-radius:24px;padding:24px} .modalhead{display:flex;justify-content:space-between;gap:18px} .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px} .check{display:flex;gap:8px;align-items:flex-start;padding:9px;background:#f8fafb;border-radius:10px} .check input{width:auto;margin-top:2px}
+.notice{border-left:4px solid var(--orange);background:#fff7e9;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.8rem;color:#6c5836} .statusline{font-size:.8rem;color:var(--muted)} .success{color:var(--green)} .error{color:var(--red)}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="head">
-    <div>
-      <div class="tag">Administração da publicação</div>
-      <h1>Publicar nova edição.</h1>
-      <p class="lead">A versão oficial do relatório usa um único arquivo central: <code>dados/Relatorio_NQI.xlsx</code>. Substitua esse arquivo no GitHub e todos os visitantes verão a mesma edição após o deploy do Pages.</p>
-    </div>
-    <div class="brand">Senac · NQI</div>
+<section class="login" id="loginScreen">
+  <div class="login-card">
+    <div class="brand">Senac · NQI</div><div class="eyebrow" style="margin-top:14px">Área administrativa restrita</div>
+    <h1>Gestão do relatório.</h1>
+    <p class="small">Apenas <strong>pcmsilveira@gmail.com</strong> pode acessar os dados e publicar edições.</p>
+    <div class="field"><label>E-mail</label><input id="email" type="email" value="pcmsilveira@gmail.com" readonly></div>
+    <div class="field"><label>Senha</label><input id="password" type="password" placeholder="Sua senha"></div>
+    <div class="row"><button class="btn primary" id="loginBtn">Entrar</button><button class="btn ghost" id="signupBtn">Primeiro acesso</button></div>
+    <p class="small" id="loginMsg"></p>
+    <div class="notice" style="margin-top:18px">No primeiro acesso, use “Primeiro acesso” para criar sua senha. Dependendo da configuração do Supabase, você poderá receber um e-mail para confirmar o cadastro.</div>
   </div>
+</section>
 
-  <div class="card">
-    <div class="step"><div class="n">1</div><div><h2>Valide localmente</h2><p>No relatório público, use “Pré-visualizar Excel” para conferir a nova base antes da publicação.</p></div></div>
-    <div class="step"><div class="n">2</div><div><h2>Abra a pasta de dados no GitHub</h2><p>A publicação usa o login do GitHub como proteção administrativa. Apenas pessoas com permissão de escrita no repositório conseguem substituir o arquivo oficial.</p></div></div>
-    <div class="step"><div class="n">3</div><div><h2>Substitua o arquivo</h2><p>Apague ou sobrescreva <code>dados/Relatorio_NQI.xlsx</code> usando exatamente o mesmo nome. Não altere a estrutura das abas/colunas do modelo.</p></div></div>
-    <div class="step"><div class="n">4</div><div><h2>Confirme o commit</h2><p>Use uma mensagem como “Atualiza relatório NQI — 2026-10-06”. O GitHub Pages fará o deploy automaticamente.</p></div></div>
+<div class="app hidden" id="app">
+<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
+<div class="shell">
+  <aside class="sidebar">
+    <button class="navbtn active" data-panel="overview">Visão geral</button>
+    <button class="navbtn" data-panel="indicators">Indicadores</button>
+    <button class="navbtn" data-panel="programs">Programas</button>
+    <button class="navbtn" data-panel="quality">Projetos de Qualidade</button>
+    <button class="navbtn" data-panel="innovation">Projetos de Inovação</button>
+    <button class="navbtn" data-panel="awards">Prêmios e Reconhecimentos</button>
+    <button class="navbtn" data-panel="partners">Parcerias</button>
+    <button class="navbtn" data-panel="attention">Pontos de Atenção</button>
+  </aside>
+  <main class="main">
+    <section class="panel active" id="panel-overview">
+      <div class="hero"><div class="eyebrow">Edição em trabalho</div><h2 id="editionTitle">Relatório Executivo Anual</h2><div class="grid3">
+        <div class="field"><label>Ano</label><input id="editionYear" type="number" min="2000" max="2100"></div>
+        <div class="field"><label>Versão</label><input id="editionVersion" type="number" min="1"></div>
+        <div class="field"><label>Status</label><input id="editionStatus" readonly></div>
+      </div>
+      <div class="field"><label>Título</label><input id="editionName"></div>
+      <div class="field"><label>Subtítulo</label><input id="editionSubtitle"></div>
+      <div class="field"><label>Texto de abertura</label><textarea id="editionIntro"></textarea></div>
+      <div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn ghost" id="newEditionBtn">Criar nova versão</button><a class="btn ghost" href="./" target="_blank">Abrir relatório público ↗</a></div>
+      <p class="statusline" id="editionMsg"></p></div>
+      <div class="card"><h3>Como funciona</h3><p class="small">Você pode alterar os formulários à vontade enquanto a edição estiver como <strong>Rascunho</strong>. O público só verá a edição quando você clicar em <strong>Publicar edição</strong>. Publicar uma nova versão arquiva automaticamente a anterior.</p></div>
+    </section>
 
-    <div class="actions">
-      <a class="btn primary" href="https://github.com/priscillasilveira/relatorio-nqi/tree/main/dados" target="_blank" rel="noopener">Abrir pasta dados no GitHub ↗</a>
-      <a class="btn secondary" href="https://github.com/priscillasilveira/relatorio-nqi/upload/main/dados" target="_blank" rel="noopener">Enviar novo Excel ↗</a>
-      <a class="btn ghost" href="./">Voltar ao relatório</a>
-    </div>
-
-    <div class="notice"><strong>Segurança:</strong> esta página não armazena senha ou token. A autorização de publicação é controlada pelo próprio GitHub e pelas permissões do repositório.</div>
-  </div>
+    <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div id="indicatorsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-programs"><div class="hero"><div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2></div><button class="btn primary" data-add="program">+ Novo programa</button></div><div id="programsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-quality"><div class="hero"><div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2></div><button class="btn primary" data-add="quality">+ Novo projeto</button></div><div id="qualityList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-innovation"><div class="hero"><div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2></div><button class="btn primary" data-add="innovation">+ Novo projeto</button></div><div id="innovationList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-awards"><div class="hero"><div class="toolbar"><div><div class="eyebrow">05</div><h2>Prêmios e Reconhecimentos</h2></div><button class="btn primary" data-add="award">+ Novo registro</button></div><div id="awardsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-partners"><div class="hero"><div class="toolbar"><div><div class="eyebrow">06</div><h2>Parcerias</h2></div><button class="btn primary" data-add="partner">+ Nova parceria</button></div><div id="partnersList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2></div><button class="btn primary" data-add="attention">+ Novo ponto</button></div><div id="attentionList" class="sectionlist"></div></div></section>
+  </main>
 </div>
-</body>
-</html>
+</div>
+<div class="modal hidden" id="modal"><div class="modalbox"><div class="modalhead"><div><div class="eyebrow" id="modalEyebrow">Editar</div><h3 id="modalTitle">Registro</h3></div><button class="btn ghost mini" id="closeModal">Fechar</button></div><div id="modalBody"></div><div class="row" style="margin-top:18px"><button class="btn primary" id="saveModal">Salvar</button><button class="btn danger hidden" id="deleteModal">Excluir</button></div><p class="statusline" id="modalMsg"></p></div></div>
+
+<script>
+const SUPABASE_URL="https://sfotzodsufntqaqsgmtv.supabase.co";
+const SUPABASE_KEY="sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w";
+const ADMIN_EMAIL="pcmsilveira@gmail.com";
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
+let session=null, edition=null, data={indicators:[],programs:[],actions:[],quality:[],innovation:[],awards:[],partners:[],attention:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
+let modalState={type:null,id:null};
+
+function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kind}
+function empty(t){return `<div class="empty">${esc(t)}</div>`}
+function statusLabel(s){return ({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—")}
+
+async function authInit(){
+  const {data:{session:s}}=await sb.auth.getSession();
+  if(s && s.user?.email===ADMIN_EMAIL) return enter(s);
+  showLogin();
+}
+function showLogin(){$("#loginScreen").classList.remove("hidden");$("#app").classList.add("hidden")}
+async function enter(s){
+  if(s.user?.email!==ADMIN_EMAIL){await sb.auth.signOut();return showLogin()}
+  session=s;$("#sessionEmail").textContent=s.user.email;$("#loginScreen").classList.add("hidden");$("#app").classList.remove("hidden");await loadAll();
+}
+$("#loginBtn").onclick=async()=>{
+  msg($("#loginMsg"),"Entrando…");
+  const {data:d,error}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:$("#password").value});
+  if(error)return msg($("#loginMsg"),error.message,"error");
+  enter(d.session);
+};
+$("#signupBtn").onclick=async()=>{
+  const pw=$("#password").value;
+  if(pw.length<8)return msg($("#loginMsg"),"Use uma senha com pelo menos 8 caracteres.","error");
+  msg($("#loginMsg"),"Criando acesso…");
+  const {data:d,error}=await sb.auth.signUp({email:ADMIN_EMAIL,password:pw});
+  if(error)return msg($("#loginMsg"),error.message,"error");
+  if(d.session)return enter(d.session);
+  msg($("#loginMsg"),"Cadastro criado. Verifique seu e-mail para confirmar o acesso e depois volte para entrar.","success");
+};
+$("#logoutBtn").onclick=async()=>{await sb.auth.signOut();location.reload()};
+
+$$(".navbtn").forEach(b=>b.onclick=()=>{$$(".navbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");$$(".panel").forEach(x=>x.classList.remove("active"));$("#panel-"+b.dataset.panel).classList.add("active")});
+
+async function loadAll(){
+  const {data:eds,error}=await sb.from("editions").select("*").order("created_at",{ascending:false});
+  if(error)throw error;
+  edition=eds.find(x=>x.status==="draft")||eds[0];
+  if(!edition) return createEdition();
+  await loadEditionData();
+}
+async function loadEditionData(){
+  $("#editionYear").value=edition.year;$("#editionVersion").value=edition.version;$("#editionStatus").value=edition.status;$("#editionName").value=edition.title||"";$("#editionSubtitle").value=edition.subtitle||"";$("#editionIntro").value=edition.intro||"";$("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year}`;
+  const id=edition.id;
+  const [i,p,a,q,iv,aw,pa,at,pl,ql,il]=await Promise.all([
+    sb.from("indicators").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("programs").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("program_actions").select("*").order("sort_order"),
+    sb.from("quality_projects").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("innovation_projects").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("awards_recognitions").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("partners").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("attention_points").select("*").eq("edition_id",id).order("sort_order"),
+    sb.from("program_indicators").select("*"),
+    sb.from("quality_project_indicators").select("*"),
+    sb.from("innovation_project_indicators").select("*")
+  ]);
+  Object.assign(data,{indicators:i.data||[],programs:p.data||[],actions:a.data||[],quality:q.data||[],innovation:iv.data||[],awards:aw.data||[],partners:pa.data||[],attention:at.data||[],programLinks:pl.data||[],qualityLinks:ql.data||[],innovationLinks:il.data||[]});
+  renderAll();
+}
+function renderAll(){
+  $("#indicatorsList").innerHTML=data.indicators.length?data.indicators.map(x=>card("indicator",x.id,x.name,`${x.segment} · Atual ${x.latest_value??"—"} · Meta ${x.target_value??"—"}`)).join(""):empty("Nenhum indicador cadastrado.");
+  $("#programsList").innerHTML=data.programs.length?data.programs.map(x=>card("program",x.id,x.name,`${data.actions.filter(a=>a.program_id===x.id).length} ações`)).join(""):empty("Nenhum programa cadastrado.");
+  $("#qualityList").innerHTML=data.quality.length?data.quality.map(x=>card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)}`)).join(""):empty("Nenhum projeto cadastrado.");
+  $("#innovationList").innerHTML=data.innovation.length?data.innovation.map(x=>card("innovation",x.id,x.name,`${statusLabel(x.status)} · custo ${x.cost??"—"}`)).join(""):empty("Nenhum projeto cadastrado.");
+  $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category} · quantidade ${x.quantity}`)).join(""):empty("Nenhum registro cadastrado.");
+  $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
+  $("#attentionList").innerHTML=data.attention.length?data.attention.map(x=>card("attention",x.id,x.name,`Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
+  $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
+}
+function card(type,id,title,sub){return `<article class="card"><div class="cardhead"><div><h3>${esc(title)}</h3><div class="small">${esc(sub)}</div></div><button class="btn ghost mini" data-edit="${id}" data-type="${type}">Editar</button></div></article>`}
+$$("[data-add]").forEach(b=>b.onclick=()=>openModal(b.dataset.add,null));
+$("#closeModal").onclick=()=>$("#modal").classList.add("hidden");
+
+function indChecks(selectedIds=[]){return `<div class="field"><label>Indicadores relacionados</label><div class="checks">${data.indicators.map(i=>`<label class="check"><input type="checkbox" name="indicator_link" value="${i.id}" ${selectedIds.includes(i.id)?"checked":""}><span>${esc(i.name)}</span></label>`).join("")||'<span class="small">Cadastre indicadores primeiro.</span>'}</div></div>`}
+function field(name,label,value="",type="text",extra=""){return `<div class="field"><label>${label}</label><input id="f_${name}" type="${type}" value="${esc(value??"")}" ${extra}></div>`}
+function area(name,label,value=""){return `<div class="field"><label>${label}</label><textarea id="f_${name}">${esc(value??"")}</textarea></div>`}
+function select(name,label,value,opts){return `<div class="field"><label>${label}</label><select id="f_${name}">${opts.map(o=>`<option value="${o[0]}" ${o[0]===value?"selected":""}>${o[1]}</option>`).join("")}</select></div>`}
+
+function openModal(type,id){
+  modalState={type,id};
+  $("#modal").classList.remove("hidden");$("#modalMsg").textContent="";$("#deleteModal").classList.toggle("hidden",!id);
+  let x=null,body="",title="";
+  if(type==="indicator"){x=data.indicators.find(v=>v.id===id)||{};title=id?"Editar indicador":"Novo indicador";body=
+    select("segment","Segmento",x.segment||"PLP",[["PLP","PLP"],["CONTRATO DE GESTÃO","Contrato de Gestão"],["OKR","OKR"]])+
+    field("code","Código",x.code||"")+field("name","Nome",x.name||"")+
+    '<div class="grid2">'+field("latest_value","Último valor",x.latest_value??"","number",'step="any"')+field("target_value","Meta",x.target_value??"","number",'step="any"')+'</div>'+
+    '<div class="grid2">'+field("unit","Unidade",x.unit||"")+select("target_direction","Direção da meta",x.target_direction||"gte",[["gte","Maior ou igual"],["lte","Menor ou igual"],["exact","Exato"]])+'</div>'+
+    field("measurement_date","Data da medição",x.measurement_date||"","date")+area("notes","Observações",x.notes||"");}
+  if(type==="program"){x=data.programs.find(v=>v.id===id)||{};title=id?"Editar programa":"Novo programa";const links=data.programLinks.filter(l=>l.program_id===id).map(l=>l.indicator_id);const ac=data.actions.filter(a=>a.program_id===id);body=field("name","Nome",x.name||"")+area("summary","Resumo",x.summary||"")+field("link_url","Link",x.link_url||"","url")+indChecks(links)+(id?`<div class="field"><label>Ações do programa</label><div id="actionsEditor">${ac.map(a=>`<div class="grid3" data-action-id="${a.id}">${field("action_"+a.id,"Ação",a.action).replaceAll('id="f_','data-sub="').replaceAll('" type','" id="sub_action_'+a.id+'" type')}${field("start_"+a.id,"Início",a.start_date||"","date").replaceAll('id="f_','data-sub="').replaceAll('" type','" id="sub_start_'+a.id+'" type')}${field("end_"+a.id,"Fim",a.end_date||"","date").replaceAll('id="f_','data-sub="').replaceAll('" type','" id="sub_end_'+a.id+'" type')}</div>`).join("")}</div><button type="button" class="btn ghost mini" id="addActionBtn">+ Adicionar ação</button></div>`:'<p class="small">Salve o programa primeiro para adicionar ações.</p>');}
+  if(type==="quality"||type==="innovation"){const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?"Editar projeto":"Novo projeto";const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id);body=field("name","Nome",x.name||"")+'<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+(type==="innovation"?field("cost","Custo (R$)",x.cost??"","number",'step="0.01"'):"")+area("summary","Resumo",x.summary||"")+indChecks(links);}
+  if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title=id?"Editar registro":"Novo prêmio ou reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Colocação",x.placement||"")+field("quantity","Quantidade",x.quantity??1,"number",'min="0"')+area("notes","Observações",x.notes||"");}
+  if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title=id?"Editar parceria":"Nova parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Destacar no Top 5</label></div>`+area("notes","Observações",x.notes||"");}
+  if(type==="attention"){x=data.attention.find(v=>v.id===id)||{};title=id?"Editar ponto":"Novo ponto de atenção";body=field("name","Ponto de atenção",x.name||"")+area("mitigation_action","Ação de mitigação",x.mitigation_action||"")+field("deadline","Prazo",x.deadline||"","date")+area("notes","Observações",x.notes||"");}
+  $("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;
+  if(type==="program"&&id) setupActionsEditor();
+}
+function v(name){return $("#f_"+name)?.value??""}
+function num(name){const x=v(name);return x===""?null:Number(x)}
+function selectedIndicators(){return $$('input[name="indicator_link"]:checked').map(x=>x.value)}
+function setupActionsEditor(){
+  const btn=$("#addActionBtn"); if(!btn)return;
+  btn.onclick=()=>{const id="new_"+Date.now();$("#actionsEditor").insertAdjacentHTML("beforeend",`<div class="grid3" data-action-id="${id}">${field("tmp1","Ação","").replace('id="f_tmp1"','id="sub_action_'+id+'"')}${field("tmp2","Início","","date").replace('id="f_tmp2"','id="sub_start_'+id+'"')}${field("tmp3","Fim","","date").replace('id="f_tmp3"','id="sub_end_'+id+'"')}</div>`)};
+}
+
+async function syncLinks(table,key,id,ids){
+  await sb.from(table).delete().eq(key,id);
+  if(ids.length){const rows=ids.map(indicator_id=>({[key]:id,indicator_id}));const {error}=await sb.from(table).insert(rows);if(error)throw error}
+}
+async function syncActions(programId){
+  const blocks=$$("[data-action-id]");const keep=[];
+  for(const b of blocks){
+    const aid=b.dataset.actionId, action=$("#sub_action_"+aid)?.value.trim(), start=$("#sub_start_"+aid)?.value||null,end=$("#sub_end_"+aid)?.value||null;
+    if(!action) continue;
+    if(aid.startsWith("new_")){const {data:r,error}=await sb.from("program_actions").insert({program_id:programId,action,start_date:start,end_date:end}).select().single();if(error)throw error;keep.push(r.id)}
+    else{const {error}=await sb.from("program_actions").update({action,start_date:start,end_date:end}).eq("id",aid);if(error)throw error;keep.push(aid)}
+  }
+  const old=data.actions.filter(a=>a.program_id===programId).map(a=>a.id);
+  const del=old.filter(id=>!keep.includes(id));if(del.length) await sb.from("program_actions").delete().in("id",del);
+}
+$("#saveModal").onclick=async()=>{
+  const {type,id}=modalState;msg($("#modalMsg"),"Salvando…");
+  try{
+    let table,payload,retId=id;
+    if(type==="indicator"){table="indicators";payload={edition_id:edition.id,segment:v("segment"),code:v("code")||null,name:v("name"),latest_value:num("latest_value"),target_value:num("target_value"),unit:v("unit")||null,target_direction:v("target_direction"),measurement_date:v("measurement_date")||null,notes:v("notes")||null}}
+    if(type==="program"){table="programs";payload={edition_id:edition.id,name:v("name"),summary:v("summary")||null,link_url:v("link_url")||null}}
+    if(type==="quality"){table="quality_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
+    if(type==="innovation"){table="innovation_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),cost:num("cost"),summary:v("summary")||null}}
+    if(type==="award"){table="awards_recognitions";payload={edition_id:edition.id,category:v("category"),name:v("name")||null,placement:v("placement")||null,quantity:num("quantity")??1,notes:v("notes")||null}}
+    if(type==="partner"){table="partners";payload={edition_id:edition.id,name:v("name"),is_top5:$("#f_is_top5").checked,notes:v("notes")||null}}
+    if(type==="attention"){table="attention_points";payload={edition_id:edition.id,name:v("name"),mitigation_action:v("mitigation_action"),deadline:v("deadline")||null,notes:v("notes")||null}}
+    if(!payload.name && !["award"].includes(type)) throw new Error("Preencha o nome.");
+    let res;if(id)res=await sb.from(table).update(payload).eq("id",id).select().single();else res=await sb.from(table).insert(payload).select().single();
+    if(res.error)throw res.error;retId=res.data.id;
+    const inds=selectedIndicators();
+    if(type==="program"){await syncLinks("program_indicators","program_id",retId,inds);if(id)await syncActions(retId)}
+    if(type==="quality")await syncLinks("quality_project_indicators","project_id",retId,inds);
+    if(type==="innovation")await syncLinks("innovation_project_indicators","project_id",retId,inds);
+    msg($("#modalMsg"),"Salvo.","success");await loadEditionData();setTimeout(()=>$("#modal").classList.add("hidden"),350);
+  }catch(e){msg($("#modalMsg"),e.message,"error")}
+};
+$("#deleteModal").onclick=async()=>{
+  const {type,id}=modalState;if(!id||!confirm("Excluir este registro?"))return;
+  const tables={indicator:"indicators",program:"programs",quality:"quality_projects",innovation:"innovation_projects",award:"awards_recognitions",partner:"partners",attention:"attention_points"};
+  const {error}=await sb.from(tables[type]).delete().eq("id",id);if(error)return msg($("#modalMsg"),error.message,"error");await loadEditionData();$("#modal").classList.add("hidden");
+};
+$("#saveEditionBtn").onclick=async()=>{
+  const payload={year:Number($("#editionYear").value),version:Number($("#editionVersion").value),title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null};
+  const {data:r,error}=await sb.from("editions").update(payload).eq("id",edition.id).select().single();if(error)return msg($("#editionMsg"),error.message,"error");edition=r;msg($("#editionMsg"),"Edição salva.","success");await loadEditionData();
+};
+$("#publishBtn").onclick=async()=>{
+  if(!confirm("Publicar esta edição para o público? A edição publicada anteriormente será arquivada."))return;
+  msg($("#editionMsg"),"Publicando…");const {error}=await sb.rpc("publish_edition",{p_edition_id:edition.id,p_notes:"Publicação pela área administrativa"});if(error)return msg($("#editionMsg"),error.message,"error");msg($("#editionMsg"),"Edição publicada com sucesso.","success");await loadAll();
+};
+async function createEdition(){
+  const year=new Date().getFullYear();const {data:all}=await sb.from("editions").select("version").eq("year",year).order("version",{ascending:false}).limit(1);const version=(all?.[0]?.version||0)+1;
+  const {data:r,error}=await sb.from("editions").insert({year,version,title:"Relatório Executivo Anual",subtitle:"Núcleo de Qualidade e Inovação",status:"draft"}).select().single();if(error)throw error;edition=r;await loadEditionData();
+}
+$("#newEditionBtn").onclick=async()=>{if(confirm("Criar uma nova versão em rascunho?"))await createEdition()};
+authInit().catch(e=>msg($("#loginMsg"),e.message,"error"));
+</script>
+</body></html>
