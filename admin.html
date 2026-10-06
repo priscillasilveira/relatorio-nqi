@@ -60,9 +60,9 @@
       <div class="field"><label>Título</label><input id="editionName"></div>
       <div class="field"><label>Subtítulo</label><input id="editionSubtitle"></div>
       <div class="field"><label>Texto de abertura</label><textarea id="editionIntro"></textarea></div>
-      <div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn ghost" id="newEditionBtn">Criar nova versão</button><a class="btn ghost" href="./" target="_blank">Abrir relatório público ↗</a></div>
+      <div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn orange hidden" id="updateVersionBtn">Atualizar versão</button><button class="btn ghost" id="newEditionBtn">Criar nova versão</button><a class="btn ghost" href="./" target="_blank">Abrir relatório público ↗</a></div>
       <p class="statusline" id="editionMsg"></p></div>
-      <div class="card"><h3>Como funciona</h3><p class="small">Você pode alterar os formulários à vontade enquanto a edição estiver como <strong>Rascunho</strong>. O público só verá a edição quando você clicar em <strong>Publicar edição</strong>. Publicar uma nova versão arquiva automaticamente a anterior.</p></div>
+      <div class="card"><h3>Como funciona</h3><p class="small">Enquanto a edição estiver como <strong>Rascunho</strong>, você pode alterar os formulários sem afetar o relatório público. Ao clicar em <strong>Publicar edição</strong>, ela passa a ser a versão oficial. Depois de publicada, use <strong>Atualizar versão</strong> para manter o mesmo número de versão e apenas renovar sua data de publicação. A versão anterior só é arquivada quando uma <strong>nova versão</strong> é criada e publicada.</p></div>
     </section>
 
     <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div id="indicatorsList" class="sectionlist"></div></div></section>
@@ -91,6 +91,7 @@ let modalState={type:null,id:null};
 function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kind}
 function empty(t){return `<div class="empty">${esc(t)}</div>`}
 function statusLabel(s){return ({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—")}
+function editionStatusLabel(s){return ({draft:"Rascunho",published:"Publicada",archived:"Arquivada"}[s]||s||"—")}
 
 function authMessage(error){
   const m=String(error?.message||error||"").toLowerCase();
@@ -150,7 +151,11 @@ async function loadAll(){
   await loadEditionData();
 }
 async function loadEditionData(){
-  $("#editionYear").value=edition.year;$("#editionVersion").value=edition.version;$("#editionStatus").value=edition.status;$("#editionName").value=edition.title||"";$("#editionSubtitle").value=edition.subtitle||"";$("#editionIntro").value=edition.intro||"";$("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year}`;
+  $("#editionYear").value=edition.year;$("#editionVersion").value=edition.version;$("#editionStatus").value=editionStatusLabel(edition.status);$("#editionName").value=edition.title||"";$("#editionSubtitle").value=edition.subtitle||"";$("#editionIntro").value=edition.intro||"";$("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year} · v${edition.version}`;
+  $("#publishBtn").classList.toggle("hidden",edition.status!=="draft");
+  $("#updateVersionBtn").classList.toggle("hidden",edition.status!=="published");
+  $("#newEditionBtn").disabled=edition.status==="draft";
+  $("#newEditionBtn").title=edition.status==="draft"?"Publique o rascunho atual antes de criar uma nova versão.":"";
   const id=edition.id;
   const [i,p,a,q,iv,aw,pa,at,pl,ql,il]=await Promise.all([
     sb.from("indicators").select("*").eq("edition_id",id).order("sort_order"),
@@ -169,11 +174,11 @@ async function loadEditionData(){
   renderAll();
 }
 function renderAll(){
-  $("#indicatorsList").innerHTML=data.indicators.length?data.indicators.map(x=>card("indicator",x.id,x.name,`${x.segment} · Atual ${x.latest_value??"—"} · Meta ${x.target_value??"—"}`)).join(""):empty("Nenhum indicador cadastrado.");
+  $("#indicatorsList").innerHTML=data.indicators.length?data.indicators.map(x=>card("indicator",x.id,x.name,`${x.segment} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)).join(""):empty("Nenhum indicador cadastrado.");
   $("#programsList").innerHTML=data.programs.length?data.programs.map(x=>card("program",x.id,x.name,`${data.actions.filter(a=>a.program_id===x.id).length} ações`)).join(""):empty("Nenhum programa cadastrado.");
   $("#qualityList").innerHTML=data.quality.length?data.quality.map(x=>card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)}`)).join(""):empty("Nenhum projeto cadastrado.");
   $("#innovationList").innerHTML=data.innovation.length?data.innovation.map(x=>card("innovation",x.id,x.name,`${statusLabel(x.status)} · custo ${x.cost??"—"}`)).join(""):empty("Nenhum projeto cadastrado.");
-  $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category} · quantidade ${x.quantity}`)).join(""):empty("Nenhum registro cadastrado.");
+  $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category}${x.placement?" · "+x.placement:""}`)).join(""):empty("Nenhum registro cadastrado.");
   $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
   $("#attentionList").innerHTML=data.attention.length?data.attention.map(x=>card("attention",x.id,x.name,`Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
@@ -197,9 +202,27 @@ function openModal(type,id){
     '<div class="grid2">'+field("latest_value","Último valor",x.latest_value??"","number",'step="any"')+field("target_value","Meta",x.target_value??"","number",'step="any"')+'</div>'+
     '<div class="grid2">'+field("unit","Unidade",x.unit||"")+select("target_direction","Direção da meta",x.target_direction||"gte",[["gte","Maior ou igual"],["lte","Menor ou igual"],["exact","Exato"]])+'</div>'+
     field("measurement_date","Data da medição",x.measurement_date||"","date")+area("notes","Observações",x.notes||"");}
-  if(type==="program"){x=data.programs.find(v=>v.id===id)||{};title=id?"Editar programa":"Novo programa";const links=data.programLinks.filter(l=>l.program_id===id).map(l=>l.indicator_id);const ac=data.actions.filter(a=>a.program_id===id);body=field("name","Nome",x.name||"")+area("summary","Resumo",x.summary||"")+field("link_url","Link",x.link_url||"","url")+indChecks(links)+(id?`<div class="field"><label>Ações do programa</label><div id="actionsEditor">${ac.map(a=>`<div class="grid3" data-action-id="${a.id}">${field("action_"+a.id,"Ação",a.action).replaceAll('id="f_','data-sub="').replaceAll('" type','" id="sub_action_'+a.id+'" type')}${field("start_"+a.id,"Início",a.start_date||"","date").replaceAll('id="f_','data-sub="').replaceAll('" type','" id="sub_start_'+a.id+'" type')}${field("end_"+a.id,"Fim",a.end_date||"","date").replaceAll('id="f_','data-sub="').replaceAll('" type','" id="sub_end_'+a.id+'" type')}</div>`).join("")}</div><button type="button" class="btn ghost mini" id="addActionBtn">+ Adicionar ação</button></div>`:'<p class="small">Salve o programa primeiro para adicionar ações.</p>');}
+  if(type==="program"){x=data.programs.find(v=>v.id===id)||{};title=id?"Editar programa":"Novo programa";const links=data.programLinks.filter(l=>l.program_id===id).map(l=>l.indicator_id);const ac=data.actions.filter(a=>a.program_id===id);body=
+    field("name","Nome",x.name||"")+
+    area("summary","Resumo",x.summary||"")+
+    field("link_url","Link",x.link_url||"","url")+
+    indChecks(links)+
+    (id?`<div class="field"><label>Ações do programa</label><div id="actionsEditor">${ac.map(a=>`
+      <div class="card" data-action-id="${a.id}">
+        <div class="grid2">
+          ${field("action_"+a.id,"Ação",a.action).replace('id="f_action_'+a.id+'"','id="sub_action_'+a.id+'"')}
+          ${select("status_"+a.id,"Status",a.status||"aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_status_'+a.id+'"','id="sub_status_'+a.id+'"')}
+        </div>
+        <div class="grid2">
+          ${field("start_"+a.id,"Data de início",a.start_date||"","date").replace('id="f_start_'+a.id+'"','id="sub_start_'+a.id+'"')}
+          ${field("end_"+a.id,"Data final",a.end_date||"","date").replace('id="f_end_'+a.id+'"','id="sub_end_'+a.id+'"')}
+        </div>
+        <button type="button" class="btn danger mini remove-action" data-remove-action="${a.id}">Remover ação</button>
+      </div>`).join("")}</div>
+      <button type="button" class="btn ghost mini" id="addActionBtn">+ Cadastrar ação</button></div>`:
+      '<p class="small">Salve o programa primeiro. Depois abra-o novamente para cadastrar as ações.</p>');}
   if(type==="quality"||type==="innovation"){const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?"Editar projeto":"Novo projeto";const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id);body=field("name","Nome",x.name||"")+'<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+(type==="innovation"?field("cost","Custo (R$)",x.cost??"","number",'step="0.01"'):"")+area("summary","Resumo",x.summary||"")+indChecks(links);}
-  if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title=id?"Editar registro":"Novo prêmio ou reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Colocação",x.placement||"")+field("quantity","Quantidade",x.quantity??1,"number",'min="0"')+area("notes","Observações",x.notes||"");}
+  if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title=id?"Editar registro":"Novo prêmio ou reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Colocação",x.placement||"")+area("notes","Observações",x.notes||"");}
   if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title=id?"Editar parceria":"Nova parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Destacar no Top 5</label></div>`+area("notes","Observações",x.notes||"");}
   if(type==="attention"){x=data.attention.find(v=>v.id===id)||{};title=id?"Editar ponto":"Novo ponto de atenção";body=field("name","Ponto de atenção",x.name||"")+area("mitigation_action","Ação de mitigação",x.mitigation_action||"")+field("deadline","Prazo",x.deadline||"","date")+area("notes","Observações",x.notes||"");}
   $("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;
@@ -210,7 +233,23 @@ function num(name){const x=v(name);return x===""?null:Number(x)}
 function selectedIndicators(){return $$('input[name="indicator_link"]:checked').map(x=>x.value)}
 function setupActionsEditor(){
   const btn=$("#addActionBtn"); if(!btn)return;
-  btn.onclick=()=>{const id="new_"+Date.now();$("#actionsEditor").insertAdjacentHTML("beforeend",`<div class="grid3" data-action-id="${id}">${field("tmp1","Ação","").replace('id="f_tmp1"','id="sub_action_'+id+'"')}${field("tmp2","Início","","date").replace('id="f_tmp2"','id="sub_start_'+id+'"')}${field("tmp3","Fim","","date").replace('id="f_tmp3"','id="sub_end_'+id+'"')}</div>`)};
+  const bindRemove=()=>$$(".remove-action").forEach(r=>r.onclick=()=>{const block=r.closest("[data-action-id]");if(block)block.remove()});
+  btn.onclick=()=>{
+    const id="new_"+Date.now();
+    $("#actionsEditor").insertAdjacentHTML("beforeend",`<div class="card" data-action-id="${id}">
+      <div class="grid2">
+        ${field("tmp_action","Ação","").replace('id="f_tmp_action"','id="sub_action_'+id+'"')}
+        ${select("tmp_status","Status","aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_tmp_status"','id="sub_status_'+id+'"')}
+      </div>
+      <div class="grid2">
+        ${field("tmp_start","Data de início","","date").replace('id="f_tmp_start"','id="sub_start_'+id+'"')}
+        ${field("tmp_end","Data final","","date").replace('id="f_tmp_end"','id="sub_end_'+id+'"')}
+      </div>
+      <button type="button" class="btn danger mini remove-action" data-remove-action="${id}">Remover ação</button>
+    </div>`);
+    bindRemove();
+  };
+  bindRemove();
 }
 
 async function syncLinks(table,key,id,ids){
@@ -220,14 +259,24 @@ async function syncLinks(table,key,id,ids){
 async function syncActions(programId){
   const blocks=$$("[data-action-id]");const keep=[];
   for(const b of blocks){
-    const aid=b.dataset.actionId, action=$("#sub_action_"+aid)?.value.trim(), start=$("#sub_start_"+aid)?.value||null,end=$("#sub_end_"+aid)?.value||null;
+    const aid=b.dataset.actionId;
+    const action=$("#sub_action_"+aid)?.value.trim();
+    const status=$("#sub_status_"+aid)?.value||"aguardando";
+    const start=$("#sub_start_"+aid)?.value||null;
+    const end=$("#sub_end_"+aid)?.value||null;
     if(!action) continue;
-    if(aid.startsWith("new_")){const {data:r,error}=await sb.from("program_actions").insert({program_id:programId,action,start_date:start,end_date:end}).select().single();if(error)throw error;keep.push(r.id)}
-    else{const {error}=await sb.from("program_actions").update({action,start_date:start,end_date:end}).eq("id",aid);if(error)throw error;keep.push(aid)}
+    if(aid.startsWith("new_")){
+      const {data:r,error}=await sb.from("program_actions").insert({program_id:programId,action,status,start_date:start,end_date:end}).select().single();
+      if(error)throw error;keep.push(r.id)
+    } else {
+      const {error}=await sb.from("program_actions").update({action,status,start_date:start,end_date:end}).eq("id",aid);
+      if(error)throw error;keep.push(aid)
+    }
   }
   const old=data.actions.filter(a=>a.program_id===programId).map(a=>a.id);
   const del=old.filter(id=>!keep.includes(id));if(del.length) await sb.from("program_actions").delete().in("id",del);
 }
+
 $("#saveModal").onclick=async()=>{
   const {type,id}=modalState;msg($("#modalMsg"),"Salvando…");
   try{
@@ -236,7 +285,7 @@ $("#saveModal").onclick=async()=>{
     if(type==="program"){table="programs";payload={edition_id:edition.id,name:v("name"),summary:v("summary")||null,link_url:v("link_url")||null}}
     if(type==="quality"){table="quality_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
     if(type==="innovation"){table="innovation_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),cost:num("cost"),summary:v("summary")||null}}
-    if(type==="award"){table="awards_recognitions";payload={edition_id:edition.id,category:v("category"),name:v("name")||null,placement:v("placement")||null,quantity:num("quantity")??1,notes:v("notes")||null}}
+    if(type==="award"){table="awards_recognitions";payload={edition_id:edition.id,category:v("category"),name:v("name")||null,placement:v("placement")||null,quantity:1,notes:v("notes")||null}}
     if(type==="partner"){table="partners";payload={edition_id:edition.id,name:v("name"),is_top5:$("#f_is_top5").checked,notes:v("notes")||null}}
     if(type==="attention"){table="attention_points";payload={edition_id:edition.id,name:v("name"),mitigation_action:v("mitigation_action"),deadline:v("deadline")||null,notes:v("notes")||null}}
     if(!payload.name && !["award"].includes(type)) throw new Error("Preencha o nome.");
@@ -254,19 +303,56 @@ $("#deleteModal").onclick=async()=>{
   const tables={indicator:"indicators",program:"programs",quality:"quality_projects",innovation:"innovation_projects",award:"awards_recognitions",partner:"partners",attention:"attention_points"};
   const {error}=await sb.from(tables[type]).delete().eq("id",id);if(error)return msg($("#modalMsg"),error.message,"error");await loadEditionData();$("#modal").classList.add("hidden");
 };
-$("#saveEditionBtn").onclick=async()=>{
+async function saveEditionHeader(){
   const payload={year:Number($("#editionYear").value),version:Number($("#editionVersion").value),title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null};
-  const {data:r,error}=await sb.from("editions").update(payload).eq("id",edition.id).select().single();if(error)return msg($("#editionMsg"),error.message,"error");edition=r;msg($("#editionMsg"),"Edição salva.","success");await loadEditionData();
+  const {data:r,error}=await sb.from("editions").update(payload).eq("id",edition.id).select().single();
+  if(error)throw error; edition=r; return r;
+}
+$("#saveEditionBtn").onclick=async()=>{
+  try{await saveEditionHeader();msg($("#editionMsg"),"Edição salva.","success");await loadEditionData()}
+  catch(error){msg($("#editionMsg"),error.message,"error")}
 };
 $("#publishBtn").onclick=async()=>{
-  if(!confirm("Publicar esta edição para o público? A edição publicada anteriormente será arquivada."))return;
-  msg($("#editionMsg"),"Publicando…");const {error}=await sb.rpc("publish_edition",{p_edition_id:edition.id,p_notes:"Publicação pela área administrativa"});if(error)return msg($("#editionMsg"),error.message,"error");msg($("#editionMsg"),"Edição publicada com sucesso.","success");await loadAll();
+  if(edition.status!=="draft")return;
+  if(!confirm("Publicar esta edição? Se houver uma versão publicada anterior, ela será arquivada somente agora."))return;
+  msg($("#editionMsg"),"Publicando…");
+  try{
+    await saveEditionHeader();
+    const {error}=await sb.rpc("publish_edition",{p_edition_id:edition.id,p_notes:"Publicação pela área administrativa"});
+    if(error)throw error;
+    msg($("#editionMsg"),"Edição publicada com sucesso.","success");
+    await loadAll();
+  }catch(error){msg($("#editionMsg"),error.message,"error")}
+};
+$("#updateVersionBtn").onclick=async()=>{
+  if(edition.status!=="published")return;
+  if(!confirm(`Atualizar a versão ${edition.version}? O número será mantido e a data de publicação será renovada.`))return;
+  msg($("#editionMsg"),"Atualizando versão…");
+  try{
+    await saveEditionHeader();
+    const {error}=await sb.rpc("update_published_edition",{p_edition_id:edition.id,p_notes:"Atualização da versão publicada"});
+    if(error)throw error;
+    msg($("#editionMsg"),`Versão ${edition.version} atualizada. Número mantido; data de publicação renovada.`,"success");
+    await loadAll();
+  }catch(error){msg($("#editionMsg"),error.message,"error")}
 };
 async function createEdition(){
-  const year=new Date().getFullYear();const {data:all}=await sb.from("editions").select("version").eq("year",year).order("version",{ascending:false}).limit(1);const version=(all?.[0]?.version||0)+1;
-  const {data:r,error}=await sb.from("editions").insert({year,version,title:"Relatório Executivo Anual",subtitle:"Núcleo de Qualidade e Inovação",status:"draft"}).select().single();if(error)throw error;edition=r;await loadEditionData();
+  if(edition?.status==="draft") throw new Error("Já existe uma versão em rascunho.");
+  const year=edition?.year||new Date().getFullYear();
+  const {data:all,error:e0}=await sb.from("editions").select("version").eq("year",year).order("version",{ascending:false}).limit(1);
+  if(e0)throw e0;
+  const version=(all?.[0]?.version||0)+1;
+  const {data:r,error}=await sb.from("editions").insert({year,version,title:edition?.title||"Relatório Executivo Anual",subtitle:edition?.subtitle||"Núcleo de Qualidade e Inovação",intro:edition?.intro||null,status:"draft"}).select().single();
+  if(error)throw error;
+  edition=r;
+  await loadEditionData();
+  msg($("#editionMsg"),`Nova versão ${version} criada como rascunho. A versão anterior continua publicada até esta nova versão ser publicada.`,"success");
 }
-$("#newEditionBtn").onclick=async()=>{if(confirm("Criar uma nova versão em rascunho?"))await createEdition()};
+$("#newEditionBtn").onclick=async()=>{
+  if(edition.status==="draft")return msg($("#editionMsg"),"Publique o rascunho atual antes de criar outra versão.","error");
+  if(!confirm("Criar nova versão em rascunho? A versão publicada atual continuará no ar."))return;
+  try{await createEdition()}catch(error){msg($("#editionMsg"),error.message,"error")}
+};
 if(typeof supabase==="undefined"){
   msg($("#loginMsg"),"Não foi possível carregar o serviço de autenticação. Verifique sua conexão e recarregue a página.","error");
 }else{

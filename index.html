@@ -11,37 +11,32 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--deep:#003c71;--blue:#005ca9;--orange:#f7941d;--paper:#f5f1e8;--ink:#172a36;--muted:#687983;--line:#dce3e6;--white:#fff;--soft:#edf5fa;--danger:#b44b3c;--ok:#287657}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif}
-a{color:inherit} .wrap{max-width:1180px;margin:auto;padding:0 24px} .cover{min-height:82vh;background:linear-gradient(140deg,var(--deep),#075e9e);color:white;display:flex;align-items:flex-end;position:relative;overflow:hidden}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif}
+a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:0 24px}.cover{min-height:82vh;background:linear-gradient(140deg,var(--deep),#075e9e);color:white;display:flex;align-items:flex-end;position:relative;overflow:hidden}
 .cover:after{content:"";position:absolute;inset:auto -12% -45% auto;width:620px;height:620px;border:2px solid rgba(255,255,255,.16);border-radius:50%;box-shadow:0 0 0 70px rgba(255,255,255,.04),0 0 0 150px rgba(255,255,255,.03)}
-.cover-inner{position:relative;z-index:2;padding:70px 0 62px;width:100%} .eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;font-weight:700;color:#ffbd57}
-h1,h2,h3{font-family:"Libre Caslon Display",Georgia,serif;font-weight:400} h1{font-size:clamp(4rem,9vw,8rem);line-height:.86;max-width:900px;margin:14px 0 24px;letter-spacing:-.04em}
-.cover p{max-width:680px;color:#d7e6f0;line-height:1.65;font-size:1.04rem} .meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;font-size:.78rem;color:#c6dbe7}
-.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,60,113,.10)} .nav-inner{display:flex;gap:18px;overflow:auto;padding:13px 0;white-space:nowrap} .nav a{text-decoration:none;font-size:.77rem;font-weight:700;color:#53656f}
-.section{padding:74px 0;border-bottom:1px solid rgba(0,60,113,.10)} .chapter{display:grid;grid-template-columns:120px 1fr;gap:30px} .num{font-family:"Libre Caslon Display";font-size:4.2rem;color:var(--orange);line-height:1} .section h2{font-size:clamp(2.6rem,5vw,4.8rem);margin:0 0 12px;color:var(--deep);letter-spacing:-.035em} .lede{color:var(--muted);max-width:760px;line-height:1.65;margin-bottom:28px}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px} .card{grid-column:span 4;background:white;border-radius:22px;padding:22px;border:1px solid #e6ebed;box-shadow:0 12px 36px rgba(13,45,65,.055)} .card.wide{grid-column:span 6} .card.full{grid-column:1/-1} .kicker{font-size:.67rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--orange)} .card h3{font-size:1.55rem;color:var(--deep);margin:7px 0 10px} .small{font-size:.8rem;color:var(--muted);line-height:1.5} .value{font-family:"Libre Caslon Display";font-size:2.4rem;color:var(--deep)} .pill{display:inline-block;border-radius:999px;padding:5px 9px;background:var(--soft);color:var(--blue);font-size:.68rem;font-weight:700;margin:3px 4px 3px 0} .status{display:inline-block;border-radius:999px;padding:5px 9px;font-size:.68rem;font-weight:700;background:#eef2f4} .status.done{background:#e6f3ec;color:var(--ok)} .status.att{background:#fff0e4;color:#9c5d08}
-.program{background:#fff;border-radius:24px;padding:24px;border:1px solid #e1e7e9;margin-bottom:14px} .program-actions{margin-top:14px;display:grid;gap:8px} .action{padding:11px 13px;background:#f8fafb;border-radius:12px;font-size:.82rem;display:flex;justify-content:space-between;gap:16px} .attention{border-left:5px solid var(--orange)} .attention.overdue{border-left-color:var(--danger)} .attention.soon{border-left-color:#d78508}
-.empty{padding:30px;background:#fff;border-radius:18px;color:var(--muted);border:1px dashed #cbd6db} footer{padding:38px 0 50px;color:#6a7a83;font-size:.75rem} .loading{position:fixed;inset:0;background:var(--paper);display:grid;place-items:center;z-index:999} .loading.hidden{display:none}
+.cover-inner{position:relative;z-index:2;padding:70px 0 62px;width:100%}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;font-weight:700;color:#ffbd57}
+h1,h2,h3{font-family:"Libre Caslon Display",Georgia,serif;font-weight:400}h1{font-size:clamp(4rem,9vw,8rem);line-height:.86;max-width:900px;margin:14px 0 24px;letter-spacing:-.04em}
+.cover p{max-width:680px;color:#d7e6f0;line-height:1.65;font-size:1.04rem}.meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;font-size:.78rem;color:#c6dbe7}
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,60,113,.10)}.nav-inner{display:flex;gap:18px;overflow:auto;padding:13px 0;white-space:nowrap}.nav a{text-decoration:none;font-size:.77rem;font-weight:700;color:#53656f}
+.section{padding:74px 0;border-bottom:1px solid rgba(0,60,113,.10)}.chapter{display:grid;grid-template-columns:120px 1fr;gap:30px}.num{font-family:"Libre Caslon Display";font-size:4.2rem;color:var(--orange);line-height:1}.section h2{font-size:clamp(2.6rem,5vw,4.8rem);margin:0 0 12px;color:var(--deep);letter-spacing:-.035em}.lede{color:var(--muted);max-width:760px;line-height:1.65;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{grid-column:span 4;background:white;border-radius:22px;padding:22px;border:1px solid #e6ebed;box-shadow:0 12px 36px rgba(13,45,65,.055)}.card.wide{grid-column:span 6}.card.full{grid-column:1/-1}.kicker{font-size:.67rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--orange)}.card h3{font-size:1.55rem;color:var(--deep);margin:7px 0 10px}.small{font-size:.8rem;color:var(--muted);line-height:1.5}.value{font-family:"Libre Caslon Display";font-size:2.4rem;color:var(--deep)}.pill{display:inline-block;border-radius:999px;padding:5px 9px;background:var(--soft);color:var(--blue);font-size:.68rem;font-weight:700;margin:3px 4px 3px 0}
+.program{background:#fff;border-radius:24px;padding:24px;border:1px solid #e1e7e9;margin-bottom:14px}.program-actions{margin-top:14px;display:grid;gap:8px}.action{padding:11px 13px;background:#f8fafb;border-radius:12px;font-size:.82rem;display:flex;justify-content:space-between;gap:16px}.attention{border-left:5px solid var(--orange)}.attention.overdue{border-left-color:var(--danger)}.attention.soon{border-left-color:#d78508}
+.empty{padding:30px;background:#fff;border-radius:18px;color:var(--muted);border:1px dashed #cbd6db}footer{padding:38px 0 50px;color:#6a7a83;font-size:.75rem}.loading{position:fixed;inset:0;background:var(--paper);display:grid;place-items:center;z-index:999}.loading.hidden{display:none}
 @media(max-width:850px){.chapter{grid-template-columns:1fr}.num{font-size:2.5rem}.card,.card.wide{grid-column:1/-1}.cover{min-height:70vh}}
 @media print{.nav{display:none}.cover{min-height:auto;padding:30px 0}.section{break-inside:avoid}}
 </style>
 </head>
 <body>
 <div class="loading" id="loading"><div>Carregando edição publicada…</div></div>
-
-<header class="cover">
-  <div class="wrap cover-inner">
-    <div class="eyebrow">Núcleo de Qualidade e Inovação · Senac</div>
-    <h1 id="coverTitle">Relatório Executivo Anual</h1>
-    <p id="coverIntro">Uma leitura executiva dos resultados, iniciativas e prioridades do ano.</p>
-    <div class="meta"><span id="coverYear">—</span><span id="publishedAt">—</span><span>Fonte oficial publicada</span></div>
-  </div>
-</header>
-
+<header class="cover"><div class="wrap cover-inner">
+<div class="eyebrow">Núcleo de Qualidade e Inovação · Senac</div>
+<h1 id="coverTitle">Relatório Executivo Anual</h1>
+<p id="coverIntro">Uma leitura executiva dos resultados, iniciativas e prioridades do ano.</p>
+<div class="meta"><span id="coverYear">—</span><span id="publishedAt">—</span><span>Fonte oficial publicada</span></div>
+</div></header>
 <nav class="nav"><div class="wrap nav-inner">
 <a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Projetos de Qualidade</a><a href="#inovacao">04 Projetos de Inovação</a><a href="#premios">05 Prêmios e Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a>
 </div></nav>
-
 <main>
 <section class="section" id="indicadores"><div class="wrap chapter"><div class="num">01</div><div><h2>Indicadores</h2><p class="lede">Resultados acompanhados por PLP, Contrato de Gestão e OKRs.</p><div class="grid" id="indicatorsGrid"></div></div></div></section>
 <section class="section" id="programas"><div class="wrap chapter"><div class="num">02</div><div><h2>Programas</h2><p class="lede">Programas estruturantes, ações e conexões com os indicadores do ano.</p><div id="programsList"></div></div></div></section>
@@ -52,10 +47,9 @@ h1,h2,h3{font-family:"Libre Caslon Display",Georgia,serif;font-weight:400} h1{fo
 <section class="section" id="atencao"><div class="wrap chapter"><div class="num">07</div><div><h2>Pontos de Atenção</h2><p class="lede">Prioridades que exigem acompanhamento executivo e ação de mitigação.</p><div class="grid" id="attentionGrid"></div></div></div></section>
 </main>
 <footer><div class="wrap">Relatório Executivo Anual · Núcleo de Qualidade e Inovação</div></footer>
-
 <script>
-const SUPABASE_URL="https://sfotzodsufntqaqsgmtv.supabase.co";
-const SUPABASE_KEY="sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w";
+const SUPABASE_URL='https://sfotzodsufntqaqsgmtv.supabase.co';
+const SUPABASE_KEY='sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
@@ -63,26 +57,30 @@ const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new D
 const dtt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium",timeStyle:"short"}).format(new Date(v)):"—";
 const money=v=>v==null?"—":new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(v);
 const statusLabel=s=>({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—");
+const actionStatusLabel=s=>({aguardando:"Aguardando",em_andamento:"Em andamento",finalizada:"Finalizada"}[s]||s||"—");
+const targetDirLabel=s=>({gte:"Maior ou igual",lte:"Menor ou igual",exact:"Exato"}[s]||s||"—");
+const categoryLabel=s=>({premio_reconhecimento:"Prêmio / reconhecimento",edital_educacao_inovadora:"Edital Educação Inovadora",meee:"MEEE"}[s]||s||"—");
 const empty=msg=>`<div class="empty">${esc(msg)}</div>`;
+
+function showPreparing(){
+  $("#coverTitle").textContent="Relatório Executivo Anual";
+  $("#coverIntro").textContent="A edição está em preparação. O conteúdo aparecerá aqui assim que for publicado pela área administrativa.";
+  $("#coverYear").textContent="Edição em preparação";
+  $("#publishedAt").textContent="Ainda não publicada";
+  $("#indicatorsGrid").innerHTML=empty("Os indicadores aparecerão após a primeira publicação.");
+  $("#programsList").innerHTML=empty("Os programas aparecerão após a primeira publicação.");
+  $("#qualityGrid").innerHTML=empty("Os projetos de qualidade aparecerão após a primeira publicação.");
+  $("#innovationGrid").innerHTML=empty("Os projetos de inovação aparecerão após a primeira publicação.");
+  $("#awardsGrid").innerHTML=empty("Os prêmios e reconhecimentos aparecerão após a primeira publicação.");
+  $("#partnersGrid").innerHTML=empty("As parcerias aparecerão após a primeira publicação.");
+  $("#attentionGrid").innerHTML=empty("Os pontos de atenção aparecerão após a primeira publicação.");
+  $("#loading").classList.add("hidden");
+}
 
 async function load(){
   const {data:eds,error:e0}=await sb.from("editions").select("*").eq("status","published").limit(1);
   if(e0) throw e0;
-  if(!eds?.length){
-    $("#coverTitle").textContent="Relatório Executivo Anual";
-    $("#coverIntro").textContent="A edição está em preparação. O conteúdo aparecerá aqui assim que for publicado pela área administrativa.";
-    $("#coverYear").textContent="Edição em preparação";
-    $("#publishedAt").textContent="Ainda não publicada";
-    $("#indicatorsGrid").innerHTML=empty("Os indicadores aparecerão após a primeira publicação.");
-    $("#programsList").innerHTML=empty("Os programas aparecerão após a primeira publicação.");
-    $("#qualityGrid").innerHTML=empty("Os projetos de qualidade aparecerão após a primeira publicação.");
-    $("#innovationGrid").innerHTML=empty("Os projetos de inovação aparecerão após a primeira publicação.");
-    $("#awardsGrid").innerHTML=empty("Os prêmios e reconhecimentos aparecerão após a primeira publicação.");
-    $("#partnersGrid").innerHTML=empty("As parcerias aparecerão após a primeira publicação.");
-    $("#attentionGrid").innerHTML=empty("Os pontos de atenção aparecerão após a primeira publicação.");
-    $("#loading").classList.add("hidden");
-    return;
-  }
+  if(!eds?.length) return showPreparing();
   const ed=eds[0];
   $("#coverTitle").textContent=ed.title||"Relatório Executivo Anual";
   $("#coverIntro").textContent=ed.intro||ed.subtitle||"Uma leitura executiva dos resultados, iniciativas e prioridades do ano.";
@@ -107,39 +105,76 @@ async function load(){
   const rel=(rows,key,id)=>rows.filter(x=>x[key]===id).map(x=>byId[x.indicator_id]).filter(Boolean);
 
   $("#indicatorsGrid").innerHTML=indicators.length?indicators.map(x=>`
-    <article class="card"><div class="kicker">${esc(x.segment)}</div><h3>${esc(x.name)}</h3>
-    <div class="value">${x.latest_value??"—"}${x.unit?" "+esc(x.unit):""}</div>
-    <div class="small">Meta: ${x.target_value??"—"}${x.unit?" "+esc(x.unit):""}${x.measurement_date?" · medição "+dt(x.measurement_date):""}</div>
-    ${x.notes?`<p class="small">${esc(x.notes)}</p>`:""}</article>`).join(""):empty("Nenhum indicador publicado.");
+    <article class="card">
+      <div class="kicker">${esc(x.segment)}</div>
+      <h3>${esc(x.name)}</h3>
+      ${x.code?`<p class="small"><strong>Código:</strong> ${esc(x.code)}</p>`:""}
+      <div class="value">${x.latest_value??"—"}${x.unit?" "+esc(x.unit):""}</div>
+      <p class="small"><strong>Meta:</strong> ${x.target_value??"—"}${x.unit?" "+esc(x.unit):""}</p>
+      ${x.unit?`<p class="small"><strong>Unidade:</strong> ${esc(x.unit)}</p>`:""}
+      <p class="small"><strong>Direção da meta:</strong> ${targetDirLabel(x.target_direction)}</p>
+      ${x.measurement_date?`<p class="small"><strong>Data da medição:</strong> ${dt(x.measurement_date)}</p>`:""}
+      ${x.notes?`<p class="small"><strong>Observações:</strong> ${esc(x.notes)}</p>`:""}
+    </article>`).join(""):empty("Nenhum indicador publicado.");
 
   $("#programsList").innerHTML=programs.length?programs.map(p=>{
     const ac=actions.filter(a=>a.program_id===p.id), links=rel(rpi.data||[],"program_id",p.id);
-    return `<article class="program"><div class="kicker">Programa</div><h3>${esc(p.name)}</h3>${p.summary?`<p class="small">${esc(p.summary)}</p>`:""}
-    <div>${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>
-    <div class="program-actions">${ac.map(a=>`<div class="action"><span>${esc(a.action)}</span><span class="small">${dt(a.start_date)} — ${dt(a.end_date)}</span></div>`).join("")}</div></article>`;
+    return `<article class="program">
+      <div class="kicker">Programa</div><h3>${esc(p.name)}</h3>
+      ${p.summary?`<p class="small"><strong>Resumo:</strong> ${esc(p.summary)}</p>`:""}
+      ${p.link_url?`<p class="small"><strong>Link:</strong> ${esc(p.link_url)}</p>`:""}
+      ${links.length?`<div><strong class="small">Indicadores relacionados:</strong><br>${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:""}
+      <div class="program-actions">
+      ${ac.length?ac.map(a=>`<div class="action"><div><strong>${esc(a.action)}</strong><div class="small">Status: ${actionStatusLabel(a.status)}</div></div><span class="small">${dt(a.start_date)} — ${dt(a.end_date)}</span></div>`).join(""):'<div class="small">Nenhuma ação cadastrada.</div>'}
+      </div>
+    </article>`;
   }).join(""):empty("Nenhum programa publicado.");
 
-  $("#qualityGrid").innerHTML=quality.length?quality.map(p=>`<article class="card wide"><div class="kicker">Qualidade</div><h3>${esc(p.name)}</h3><span class="status ${p.status==="concluido"?"done":"att"}">${statusLabel(p.status)}</span><p class="small">${dt(p.start_date)} — ${dt(p.end_date)}</p>${p.summary?`<p class="small">${esc(p.summary)}</p>`:""}<div>${rel(rqi.data||[],"project_id",p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div></article>`).join(""):empty("Nenhum projeto de qualidade publicado.");
+  $("#qualityGrid").innerHTML=quality.length?quality.map(p=>`<article class="card wide">
+    <div class="kicker">Qualidade</div><h3>${esc(p.name)}</h3>
+    <p class="small"><strong>Status:</strong> ${statusLabel(p.status)}</p>
+    ${p.start_date?`<p class="small"><strong>Início:</strong> ${dt(p.start_date)}</p>`:""}
+    ${p.end_date?`<p class="small"><strong>Fim:</strong> ${dt(p.end_date)}</p>`:""}
+    ${p.summary?`<p class="small"><strong>Resumo:</strong> ${esc(p.summary)}</p>`:""}
+    ${rel(rqi.data||[],"project_id",p.id).length?`<div><strong class="small">Indicadores relacionados:</strong><br>${rel(rqi.data||[],"project_id",p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:""}
+  </article>`).join(""):empty("Nenhum projeto de qualidade publicado.");
 
-  $("#innovationGrid").innerHTML=innovation.length?innovation.map(p=>`<article class="card wide"><div class="kicker">Inovação</div><h3>${esc(p.name)}</h3><span class="status ${p.status==="concluido"?"done":"att"}">${statusLabel(p.status)}</span><p class="small">${dt(p.start_date)} — ${dt(p.end_date)} · ${money(p.cost)}</p>${p.summary?`<p class="small">${esc(p.summary)}</p>`:""}<div>${rel(rii.data||[],"project_id",p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div></article>`).join(""):empty("Nenhum projeto de inovação publicado.");
+  $("#innovationGrid").innerHTML=innovation.length?innovation.map(p=>`<article class="card wide">
+    <div class="kicker">Inovação</div><h3>${esc(p.name)}</h3>
+    <p class="small"><strong>Status:</strong> ${statusLabel(p.status)}</p>
+    ${p.start_date?`<p class="small"><strong>Início:</strong> ${dt(p.start_date)}</p>`:""}
+    ${p.end_date?`<p class="small"><strong>Fim:</strong> ${dt(p.end_date)}</p>`:""}
+    ${p.cost!=null?`<p class="small"><strong>Custo:</strong> ${money(p.cost)}</p>`:""}
+    ${p.summary?`<p class="small"><strong>Resumo:</strong> ${esc(p.summary)}</p>`:""}
+    ${rel(rii.data||[],"project_id",p.id).length?`<div><strong class="small">Indicadores relacionados:</strong><br>${rel(rii.data||[],"project_id",p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:""}
+  </article>`).join(""):empty("Nenhum projeto de inovação publicado.");
 
-  $("#awardsGrid").innerHTML=awards.length?awards.map(a=>`<article class="card"><div class="kicker">${esc(a.category.replaceAll("_"," "))}</div><h3>${esc(a.name||"Registro")}</h3><div class="value">${a.quantity}</div>${a.placement?`<p class="small">Colocação: ${esc(a.placement)}</p>`:""}${a.notes?`<p class="small">${esc(a.notes)}</p>`:""}</article>`).join(""):empty("Nenhum prêmio ou reconhecimento publicado.");
+  $("#awardsGrid").innerHTML=awards.length?awards.map(a=>`<article class="card">
+    <div class="kicker">${categoryLabel(a.category)}</div>
+    <h3>${esc(a.name||categoryLabel(a.category))}</h3>
+    ${a.placement?`<p class="small"><strong>Colocação:</strong> ${esc(a.placement)}</p>`:""}
+    ${a.notes?`<p class="small"><strong>Observações:</strong> ${esc(a.notes)}</p>`:""}
+  </article>`).join(""):empty("Nenhum prêmio ou reconhecimento publicado.");
 
-  const top=partners.filter(p=>p.is_top5);
-  $("#partnersGrid").innerHTML=partners.length?`<article class="card full"><div class="kicker">Rede de parceiros</div><div class="value">${partners.length}</div><p class="small">parceiros registrados nesta edição</p><div>${(top.length?top:partners.slice(0,5)).map(p=>`<span class="pill">${esc(p.name)}</span>`).join("")}</div></article>`:empty("Nenhuma parceria publicada.");
+  $("#partnersGrid").innerHTML=partners.length?`
+    <article class="card full"><div class="kicker">Rede de parceiros</div><div class="value">${partners.length}</div><p class="small">parceiros registrados nesta edição</p></article>
+    ${partners.map(p=>`<article class="card"><div class="kicker">${p.is_top5?"Top 5":"Parceria"}</div><h3>${esc(p.name)}</h3>${p.notes?`<p class="small"><strong>Observações:</strong> ${esc(p.notes)}</p>`:""}</article>`).join("")}
+  `:empty("Nenhuma parceria publicada.");
 
-  const today=new Date(); today.setHours(0,0,0,0);
+  const today=new Date();today.setHours(0,0,0,0);
   $("#attentionGrid").innerHTML=attention.length?attention.map(a=>{
-    const d=a.deadline?new Date(a.deadline+"T12:00:00"):null; let cls="",label="";
-    if(d){const days=Math.ceil((d-today)/86400000); if(days<0){cls="overdue";label="Prazo vencido"} else if(days<=30){cls="soon";label="Prazo próximo"} else label="Em acompanhamento"}
-    return `<article class="card wide attention ${cls}"><div class="kicker">${label||"Acompanhamento"}</div><h3>${esc(a.name)}</h3><p class="small"><strong>Ação:</strong> ${esc(a.mitigation_action)}</p><p class="small"><strong>Prazo:</strong> ${dt(a.deadline)}</p></article>`;
+    const d=a.deadline?new Date(a.deadline+"T12:00:00"):null;let cls="",label="";
+    if(d){const days=Math.ceil((d-today)/86400000);if(days<0){cls="overdue";label="Prazo vencido"}else if(days<=30){cls="soon";label="Prazo próximo"}else label="Em acompanhamento"}
+    return `<article class="card wide attention ${cls}"><div class="kicker">${label||"Acompanhamento"}</div><h3>${esc(a.name)}</h3><p class="small"><strong>Ação de mitigação:</strong> ${esc(a.mitigation_action)}</p><p class="small"><strong>Prazo:</strong> ${dt(a.deadline)}</p>${a.notes?`<p class="small"><strong>Observações:</strong> ${esc(a.notes)}</p>`:""}</article>`;
   }).join(""):empty("Nenhum ponto de atenção publicado.");
+
   $("#loading").classList.add("hidden");
 }
+
 if(typeof supabase==="undefined"){
   $("#loading").innerHTML="<div>Não foi possível carregar o serviço de dados. Verifique sua conexão e recarregue a página.</div>";
 }else{
-  load().catch(err=>{console.error(err);$("#loading").innerHTML="<div>Não foi possível carregar a edição publicada. Recarregue a página em alguns instantes.</div>"});
+  load().catch(err=>{console.error(err);$("#loading").innerHTML="<div>Não foi possível carregar a edição publicada. Recarregue a página em alguns instantes.</div>";});
 }
 </script>
 </body>
