@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Administração da publicação — NQI</title>
+<style>
+:root{--blue:#005CA9;--deep:#003C71;--orange:#F7941D;--ink:#172A36;--paper:#F5F2EB;--white:#fff;--line:#D9E1E5}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--paper);color:var(--ink)}
+.wrap{max-width:980px;margin:auto;padding:48px 24px 80px}.head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:40px}
+.brand{font-weight:800;color:var(--blue);font-size:1.35rem}.tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);font-weight:800}
+h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(3rem,6vw,5.5rem);line-height:.9;color:var(--deep);margin:10px 0 16px}
+.lead{color:#5f7079;max-width:720px}.card{background:var(--white);border-radius:28px;padding:30px;box-shadow:0 18px 60px rgba(0,44,78,.08);margin-top:20px}
+.step{display:grid;grid-template-columns:48px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
+.n{width:38px;height:38px;border-radius:50%;background:#E7F1F8;color:var(--blue);display:grid;place-items:center;font-weight:800}
+h2{font-family:Georgia,serif;font-weight:400;color:var(--deep);font-size:1.5rem;margin:0 0 6px}.step p{margin:0;color:#61717A}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-block;border-radius:999px;padding:12px 16px;font-weight:800;text-decoration:none}
+.primary{background:var(--blue);color:white}.secondary{background:#FFF0DD;color:#945B0A}.ghost{border:1px solid var(--line);color:var(--ink);background:white}
+.notice{border-left:4px solid var(--orange);padding:14px 16px;background:#FFF6E9;border-radius:0 14px 14px 0;margin-top:24px;color:#6d5735}
+code{background:#EEF3F6;padding:3px 6px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <div class="tag">Administração da publicação</div>
+      <h1>Publicar nova edição.</h1>
+      <p class="lead">A versão oficial do relatório usa um único arquivo central: <code>dados/Relatorio_NQI.xlsx</code>. Substitua esse arquivo no GitHub e todos os visitantes verão a mesma edição após o deploy do Pages.</p>
+    </div>
+    <div class="brand">Senac · NQI</div>
+  </div>
+
+  <div class="card">
+    <div class="step"><div class="n">1</div><div><h2>Valide localmente</h2><p>No relatório público, use “Pré-visualizar Excel” para conferir a nova base antes da publicação.</p></div></div>
+    <div class="step"><div class="n">2</div><div><h2>Abra a pasta de dados no GitHub</h2><p>A publicação usa o login do GitHub como proteção administrativa. Apenas pessoas com permissão de escrita no repositório conseguem substituir o arquivo oficial.</p></div></div>
+    <div class="step"><div class="n">3</div><div><h2>Substitua o arquivo</h2><p>Apague ou sobrescreva <code>dados/Relatorio_NQI.xlsx</code> usando exatamente o mesmo nome. Não altere a estrutura das abas/colunas do modelo.</p></div></div>
+    <div class="step"><div class="n">4</div><div><h2>Confirme o commit</h2><p>Use uma mensagem como “Atualiza relatório NQI — 2026-10-06”. O GitHub Pages fará o deploy automaticamente.</p></div></div>
+
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/priscillasilveira/relatorio-nqi/tree/main/dados" target="_blank" rel="noopener">Abrir pasta dados no GitHub ↗</a>
+      <a class="btn secondary" href="https://github.com/priscillasilveira/relatorio-nqi/upload/main/dados" target="_blank" rel="noopener">Enviar novo Excel ↗</a>
+      <a class="btn ghost" href="./">Voltar ao relatório</a>
+    </div>
+
+    <div class="notice"><strong>Segurança:</strong> esta página não armazena senha ou token. A autorização de publicação é controlada pelo próprio GitHub e pelas permissões do repositório.</div>
+  </div>
+</div>
+</body>
+</html>

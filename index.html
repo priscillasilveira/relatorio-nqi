@@ -312,21 +312,23 @@
         </div>
 
         <div class="upload-card no-print">
-          <div class="micro">Atualização de dados</div>
-          <h3>Carregue a edição do ano.</h3>
-          <p>Use o modelo Excel atualizado. O processamento é feito localmente no navegador.</p>
+          <div class="micro">Pré-visualização local</div>
+          <h3>Teste um Excel antes de publicar.</h3>
+          <p>O upload abaixo altera apenas este navegador. A versão oficial é carregada automaticamente do Excel publicado no site.</p>
           <label class="drop" id="dropZone" for="excelInput">
             <strong>Solte o Excel aqui</strong>
             <span>ou clique para selecionar .xlsx</span>
           </label>
           <input class="file-input" id="excelInput" type="file" accept=".xlsx,.xlsm,.xls">
           <div class="upload-actions">
-            <label class="btn primary" for="excelInput">↑ Carregar Excel</label>
+            <label class="btn primary" for="excelInput">↑ Pré-visualizar Excel</label>
             <a class="btn secondary" href="./Modelo_Relatorio_Anual_NQI_Revista.xlsx" download>↓ Modelo</a>
+            <a class="btn ghost" href="./admin.html">Administrar publicação</a>
             <button class="btn ghost" id="printBtn" type="button">Imprimir / PDF</button>
             <button class="btn ghost" id="clearBtn" type="button">Limpar dados</button>
           </div>
           <div class="update-meta">
+            <div>Fonte oficial: <strong id="sourceStatus">Excel publicado</strong></div>
             <div>Última atualização: <strong id="lastUpdate">—</strong></div>
             <div>Último Excel: <span id="lastFileWrap">nenhum arquivo carregado</span></div>
           </div>
@@ -820,6 +822,41 @@
     els.lastFileWrap.innerHTML=`<a href="${lastObjectUrl}" download="${esc(record.name)}">${esc(record.name)}</a>`;
   }
 
+
+  async function loadPublishedExcel(){
+    if(!window.XLSX) return null;
+    try{
+      const url="./dados/Relatorio_NQI.xlsx?ts="+Date.now();
+      const resp=await fetch(url,{cache:"no-store"});
+      if(!resp.ok) throw new Error("HTTP "+resp.status);
+      const buf=await resp.arrayBuffer();
+      const wb=XLSX.read(buf,{type:"array",cellDates:true});
+      const data=extractData(wb);
+      const totalRows =
+        data.indicadores.length +
+        data.projetosQualidade.length +
+        data.programas.length +
+        data.projetosInovacao.length +
+        data.premios.length +
+        data.parcerias.length +
+        data.pontosAtencao.length;
+      if(totalRows===0) throw new Error("Base publicada ainda está vazia");
+      const lastModified=resp.headers.get("last-modified");
+      return {
+        data,
+        meta:{
+          updatedAt:lastModified?new Date(lastModified).toISOString():new Date().toISOString(),
+          fileName:"Relatorio_NQI.xlsx",
+          demo:false,
+          published:true
+        }
+      };
+    }catch(err){
+      console.warn("Não foi possível carregar a base publicada:",err);
+      return null;
+    }
+  }
+
   async function handleFile(file){
     if(!file)return;
     if(!/\.xls(x|m)?$/i.test(file.name)){toast("Selecione um arquivo Excel (.xlsx, .xlsm ou .xls).",true);return}
@@ -827,17 +864,34 @@
     try{
       const buf=await file.arrayBuffer(),wb=XLSX.read(buf,{type:"array",cellDates:true}),data=extractData(wb),updatedAt=new Date().toISOString(),meta={updatedAt,fileName:file.name,demo:false};
       localStorage.setItem("nqi_report_data_v2",JSON.stringify(data));localStorage.setItem("nqi_report_meta_v2",JSON.stringify(meta));
-      await saveLatestFile(file,updatedAt);renderAll(data,meta);showFileLink({name:file.name,blob:file,updatedAt});toast("Nova edição publicada com sucesso.");
+      await saveLatestFile(file,updatedAt);renderAll(data,meta);$("#sourceStatus").textContent="Pré-visualização local";showFileLink({name:file.name,blob:file,updatedAt});toast("Pré-visualização carregada. Para publicar para todos, use Administrar publicação.");
     }catch(err){console.error(err);toast(String(err.message||err).replace(/\n/g," "),true)}
     finally{els.input.value=""}
   }
 
   async function restore(){
+    const published=await loadPublishedExcel();
+    if(published){
+      const data=published.data,meta=published.meta;
+      if(!Array.isArray(data.pontosAtencao))data.pontosAtencao=[];
+      renderAll(data,meta);
+      $("#sourceStatus").textContent="Excel publicado";
+      $("#lastFileWrap").innerHTML='<a href="./dados/Relatorio_NQI.xlsx" download>Relatorio_NQI.xlsx</a>';
+      return;
+    }
+
     let data=null,meta=null;
-    try{const raw=localStorage.getItem("nqi_report_data_v2"),rawMeta=localStorage.getItem("nqi_report_meta_v2");if(raw)data=JSON.parse(raw);if(rawMeta)meta=JSON.parse(rawMeta)}catch(e){}
+    try{
+      const raw=localStorage.getItem("nqi_report_data_v2"),
+            rawMeta=localStorage.getItem("nqi_report_meta_v2");
+      if(raw)data=JSON.parse(raw);
+      if(rawMeta)meta=JSON.parse(rawMeta);
+    }catch(e){}
     if(!data){data=demo;meta={demo:true,updatedAt:null}}
     if(!Array.isArray(data.pontosAtencao))data.pontosAtencao=[];
-    renderAll(data,meta);showFileLink(await loadLatestFile());
+    renderAll(data,meta);
+    $("#sourceStatus").textContent="Fallback local";
+    showFileLink(await loadLatestFile());
   }
 
   els.input.addEventListener("change",e=>handleFile(e.target.files[0]));
@@ -845,7 +899,7 @@
   ["dragleave","drop"].forEach(evt=>els.drop.addEventListener(evt,e=>{e.preventDefault();els.drop.classList.remove("drag")}));
   els.drop.addEventListener("drop",e=>handleFile(e.dataTransfer.files[0]));
   $("#printBtn").addEventListener("click",()=>window.print());
-  $("#clearBtn").addEventListener("click",async()=>{localStorage.removeItem("nqi_report_data_v2");localStorage.removeItem("nqi_report_meta_v2");await clearLatestFile();showFileLink(null);renderAll(demo,{demo:true,updatedAt:null});toast("Dados locais removidos. O modo demonstração foi restaurado.")});
+  $("#clearBtn").addEventListener("click",async()=>{localStorage.removeItem("nqi_report_data_v2");localStorage.removeItem("nqi_report_meta_v2");await clearLatestFile();showFileLink(null);await restore();toast("Pré-visualização local removida. A versão publicada foi restaurada.")});
   window.addEventListener("scroll",()=>{const doc=document.documentElement,den=doc.scrollHeight-doc.clientHeight,pct=den>0?(doc.scrollTop/den)*100:0;$("#pageProgress").style.width=pct+"%"},{passive:true});
   restore();
 })();
