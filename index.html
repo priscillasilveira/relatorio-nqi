@@ -69,7 +69,18 @@ async function load(){
   const {data:eds,error:e0}=await sb.from("editions").select("*").eq("status","published").limit(1);
   if(e0) throw e0;
   if(!eds?.length){
-    document.body.innerHTML='<div style="max-width:720px;margin:80px auto;font-family:system-ui;padding:24px"><h1>Nenhuma edição publicada</h1><p>A área administrativa ainda não publicou uma edição oficial.</p></div>';
+    $("#coverTitle").textContent="Relatório Executivo Anual";
+    $("#coverIntro").textContent="A edição está em preparação. O conteúdo aparecerá aqui assim que for publicado pela área administrativa.";
+    $("#coverYear").textContent="Edição em preparação";
+    $("#publishedAt").textContent="Ainda não publicada";
+    $("#indicatorsGrid").innerHTML=empty("Os indicadores aparecerão após a primeira publicação.");
+    $("#programsList").innerHTML=empty("Os programas aparecerão após a primeira publicação.");
+    $("#qualityGrid").innerHTML=empty("Os projetos de qualidade aparecerão após a primeira publicação.");
+    $("#innovationGrid").innerHTML=empty("Os projetos de inovação aparecerão após a primeira publicação.");
+    $("#awardsGrid").innerHTML=empty("Os prêmios e reconhecimentos aparecerão após a primeira publicação.");
+    $("#partnersGrid").innerHTML=empty("As parcerias aparecerão após a primeira publicação.");
+    $("#attentionGrid").innerHTML=empty("Os pontos de atenção aparecerão após a primeira publicação.");
+    $("#loading").classList.add("hidden");
     return;
   }
   const ed=eds[0];
@@ -125,7 +136,11 @@ async function load(){
   }).join(""):empty("Nenhum ponto de atenção publicado.");
   $("#loading").classList.add("hidden");
 }
-load().catch(err=>{console.error(err);$("#loading").innerHTML="<div>Não foi possível carregar a edição publicada.</div>"});
+if(typeof supabase==="undefined"){
+  $("#loading").innerHTML="<div>Não foi possível carregar o serviço de dados. Verifique sua conexão e recarregue a página.</div>";
+}else{
+  load().catch(err=>{console.error(err);$("#loading").innerHTML="<div>Não foi possível carregar a edição publicada. Recarregue a página em alguns instantes.</div>"});
+}
 </script>
 </body>
 </html>

@@ -30,9 +30,10 @@
     <p class="small">Apenas <strong>pcmsilveira@gmail.com</strong> pode acessar os dados e publicar edições.</p>
     <div class="field"><label>E-mail</label><input id="email" type="email" value="pcmsilveira@gmail.com" readonly></div>
     <div class="field"><label>Senha</label><input id="password" type="password" placeholder="Sua senha"></div>
-    <div class="row"><button class="btn primary" id="loginBtn">Entrar</button><button class="btn ghost" id="signupBtn">Primeiro acesso</button></div>
-    <p class="small" id="loginMsg"></p>
-    <div class="notice" style="margin-top:18px">No primeiro acesso, use “Primeiro acesso” para criar sua senha. Dependendo da configuração do Supabase, você poderá receber um e-mail para confirmar o cadastro.</div>
+    <div class="row"><button class="btn primary" id="loginBtn">Entrar</button><button class="btn ghost" id="signupBtn">Criar meu acesso</button></div>
+    <button class="btn ghost mini" id="forgotBtn" style="margin-top:10px">Esqueci minha senha</button>
+    <p class="small" id="loginMsg" aria-live="polite"></p>
+    <div class="notice" style="margin-top:18px"><strong>Primeiro acesso:</strong> crie uma senha com pelo menos 8 caracteres e clique em “Criar meu acesso”. Se receber um e-mail do Supabase, confirme o cadastro e depois volte a esta página para entrar.</div>
   </div>
 </section>
 
@@ -91,6 +92,16 @@ function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kin
 function empty(t){return `<div class="empty">${esc(t)}</div>`}
 function statusLabel(s){return ({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—")}
 
+function authMessage(error){
+  const m=String(error?.message||error||"").toLowerCase();
+  if(m.includes("invalid login credentials")) return "E-mail ou senha incorretos. Se este for seu primeiro acesso, clique em “Criar meu acesso”.";
+  if(m.includes("email not confirmed")) return "Seu cadastro ainda não foi confirmado. Abra o e-mail enviado pelo Supabase, confirme e depois volte para entrar.";
+  if(m.includes("user already registered") || m.includes("already been registered")) return "Seu acesso já foi criado. Use “Entrar”. Se não lembrar a senha, clique em “Esqueci minha senha”.";
+  if(m.includes("password") && m.includes("least")) return "A senha precisa ter pelo menos 8 caracteres.";
+  if(m.includes("rate limit")) return "Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.";
+  return error?.message || String(error || "Não foi possível concluir o acesso.");
+}
+
 async function authInit(){
   const {data:{session:s}}=await sb.auth.getSession();
   if(s && s.user?.email===ADMIN_EMAIL) return enter(s);
@@ -102,19 +113,30 @@ async function enter(s){
   session=s;$("#sessionEmail").textContent=s.user.email;$("#loginScreen").classList.add("hidden");$("#app").classList.remove("hidden");await loadAll();
 }
 $("#loginBtn").onclick=async()=>{
+  const pw=$("#password").value;
+  if(!pw)return msg($("#loginMsg"),"Digite sua senha.","error");
   msg($("#loginMsg"),"Entrando…");
-  const {data:d,error}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:$("#password").value});
-  if(error)return msg($("#loginMsg"),error.message,"error");
+  const {data:d,error}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:pw});
+  if(error)return msg($("#loginMsg"),authMessage(error),"error");
+  if(!d.session)return msg($("#loginMsg"),"Não foi possível iniciar a sessão. Tente novamente.","error");
   enter(d.session);
 };
 $("#signupBtn").onclick=async()=>{
   const pw=$("#password").value;
   if(pw.length<8)return msg($("#loginMsg"),"Use uma senha com pelo menos 8 caracteres.","error");
-  msg($("#loginMsg"),"Criando acesso…");
+  msg($("#loginMsg"),"Criando seu acesso…");
   const {data:d,error}=await sb.auth.signUp({email:ADMIN_EMAIL,password:pw});
-  if(error)return msg($("#loginMsg"),error.message,"error");
+  if(error)return msg($("#loginMsg"),authMessage(error),"error");
   if(d.session)return enter(d.session);
-  msg($("#loginMsg"),"Cadastro criado. Verifique seu e-mail para confirmar o acesso e depois volte para entrar.","success");
+  if(d.user && Array.isArray(d.user.identities) && d.user.identities.length===0)
+    return msg($("#loginMsg"),"Seu acesso já existe. Use “Entrar” ou “Esqueci minha senha”.","error");
+  msg($("#loginMsg"),"Acesso criado. Confira sua caixa de entrada e o spam para confirmar o e-mail. Depois volte aqui e clique em “Entrar”.","success");
+};
+$("#forgotBtn").onclick=async()=>{
+  msg($("#loginMsg"),"Enviando instruções de recuperação…");
+  const {error}=await sb.auth.resetPasswordForEmail(ADMIN_EMAIL);
+  if(error)return msg($("#loginMsg"),authMessage(error),"error");
+  msg($("#loginMsg"),"Se o acesso já existir, você receberá um e-mail para redefinir a senha. Confira também o spam.","success");
 };
 $("#logoutBtn").onclick=async()=>{await sb.auth.signOut();location.reload()};
 
@@ -245,6 +267,10 @@ async function createEdition(){
   const {data:r,error}=await sb.from("editions").insert({year,version,title:"Relatório Executivo Anual",subtitle:"Núcleo de Qualidade e Inovação",status:"draft"}).select().single();if(error)throw error;edition=r;await loadEditionData();
 }
 $("#newEditionBtn").onclick=async()=>{if(confirm("Criar uma nova versão em rascunho?"))await createEdition()};
-authInit().catch(e=>msg($("#loginMsg"),e.message,"error"));
+if(typeof supabase==="undefined"){
+  msg($("#loginMsg"),"Não foi possível carregar o serviço de autenticação. Verifique sua conexão e recarregue a página.","error");
+}else{
+  authInit().catch(e=>msg($("#loginMsg"),authMessage(e),"error"));
+}
 </script>
 </body></html>
