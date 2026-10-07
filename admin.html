@@ -18,8 +18,8 @@
 .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap} .card{background:white;border-radius:20px;padding:20px;border:1px solid #e5eaec;margin-bottom:12px} .cardhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start} .tag{display:inline-block;border-radius:999px;background:#eef5f9;color:var(--blue);padding:4px 8px;font-size:.66rem;font-weight:700} .muted{color:var(--muted)} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .modal{position:fixed;inset:0;background:rgba(10,28,40,.55);z-index:100;display:grid;place-items:center;padding:20px} .modalbox{width:min(760px,100%);max-height:90vh;overflow:auto;background:white;border-radius:24px;padding:24px} .modalhead{display:flex;justify-content:space-between;gap:18px} .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px} .check{display:flex;gap:8px;align-items:flex-start;padding:9px;background:#f8fafb;border-radius:10px} .check input{width:auto;margin-top:2px}
 .notice{border-left:4px solid var(--orange);background:#fff7e9;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.8rem;color:#6c5836} .statusline{font-size:.8rem;color:var(--muted)} .success{color:var(--green)} .error{color:var(--red)}
-.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
-@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.admin-filters{display:grid;grid-template-columns:minmax(180px,1fr) 170px;gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
+@media(max-width:900px){.admin-filters{grid-template-columns:1fr}.history-row{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
 </style>
 
 <style>
@@ -59,24 +59,26 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
     <section class="panel active" id="panel-overview">
       <div class="hero"><div class="eyebrow">Edição em trabalho</div><h2 id="editionTitle">Relatório Executivo Anual</h2><div class="grid3">
         <div class="field"><label>Ano</label><input id="editionYear" type="number" min="2000" max="2100"></div>
-        <div class="field"><label>Versão</label><input id="editionVersion" type="number" min="1"></div>
+        <div class="field"><label>Versão</label><input id="editionVersion" type="number" value="1" readonly></div>
         <div class="field"><label>Status</label><input id="editionStatus" readonly></div>
       </div>
       <div class="field"><label>Título</label><input id="editionName"></div>
       <div class="field"><label>Subtítulo</label><input id="editionSubtitle"></div>
       <div class="field"><label>Texto de abertura</label><textarea id="editionIntro"></textarea></div>
-      <div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn orange hidden" id="updateVersionBtn">Atualizar versão</button><button class="btn ghost" id="newEditionBtn">Criar nova versão</button><a class="btn ghost" href="./" target="_blank">Abrir relatório público ↗</a></div>
+      <div class="field"><label>Período / ano para consulta</label><select id="adminYearFilter"></select></div>
+<div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn orange hidden" id="updateVersionBtn">Atualizar edição do ano</button><button class="btn ghost" id="newEditionBtn">Criar novo ano</button><button class="btn ghost" id="openYearReportBtn">Abrir relatório do ano ↗</button><button class="btn ghost" id="pdfYearBtn">Gerar PDF</button></div>
       <p class="statusline" id="editionMsg"></p></div>
-      <div class="card"><h3>Como funciona</h3><p class="small">Enquanto a edição estiver como <strong>Rascunho</strong>, você pode alterar os formulários sem afetar o relatório público. Ao clicar em <strong>Publicar edição</strong>, ela passa a ser a versão oficial. Depois de publicada, use <strong>Atualizar versão</strong> para manter o mesmo número de versão e apenas renovar sua data de publicação. A versão anterior só é arquivada quando uma <strong>nova versão</strong> é criada e publicada.</p></div>
+      <div class="card"><h3>Como funciona</h3><p class="small">Existe <strong>uma única edição por ano</strong>. O ano em andamento pode ficar como rascunho até a publicação. Quando um novo ano for criado e publicado, a edição publicada do ano anterior ficará arquivada e preservada para consulta. Edições arquivadas são somente leitura.</p></div>
+<div class="card"><div class="toolbar"><div><div class="eyebrow">Histórico</div><h3>Edições anuais</h3></div></div><div id="historyList" class="history-list"></div></div>
     </section>
 
-    <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div id="indicatorsList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-programs"><div class="hero"><div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2></div><button class="btn primary" data-add="program">+ Novo programa</button></div><div id="programsList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-quality"><div class="hero"><div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2></div><button class="btn primary" data-add="quality">+ Novo projeto</button></div><div id="qualityList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-innovation"><div class="hero"><div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2></div><button class="btn primary" data-add="innovation">+ Novo projeto</button></div><div id="innovationList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-awards"><div class="hero"><div class="toolbar"><div><div class="eyebrow">05</div><h2>Prêmios e Reconhecimentos</h2></div><button class="btn primary" data-add="award">+ Novo registro</button></div><div id="awardsList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-partners"><div class="hero"><div class="toolbar"><div><div class="eyebrow">06</div><h2>Parcerias</h2></div><button class="btn primary" data-add="partner">+ Nova parceria</button></div><div id="partnersList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2></div><button class="btn primary" data-add="attention">+ Novo ponto</button></div><div id="attentionList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="indicators" aria-label="Buscar em Indicadores"><select data-section-sort="indicators"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="indicatorsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-programs"><div class="hero"><div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2></div><button class="btn primary" data-add="program">+ Novo programa</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="programs" aria-label="Buscar em Programas"><select data-section-sort="programs"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="programsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-quality"><div class="hero"><div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2></div><button class="btn primary" data-add="quality">+ Novo projeto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="quality" aria-label="Buscar em Projetos de Qualidade"><select data-section-sort="quality"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="qualityList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-innovation"><div class="hero"><div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2></div><button class="btn primary" data-add="innovation">+ Novo projeto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="innovation" aria-label="Buscar em Projetos de Inovação"><select data-section-sort="innovation"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="innovationList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-awards"><div class="hero"><div class="toolbar"><div><div class="eyebrow">05</div><h2>Prêmios e Reconhecimentos</h2></div><button class="btn primary" data-add="award">+ Novo registro</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="awards" aria-label="Buscar em Prêmios e Reconhecimentos"><select data-section-sort="awards"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="awardsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-partners"><div class="hero"><div class="toolbar"><div><div class="eyebrow">06</div><h2>Parcerias</h2></div><button class="btn primary" data-add="partner">+ Nova parceria</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="partners" aria-label="Buscar em Parcerias"><select data-section-sort="partners"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="partnersList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2></div><button class="btn primary" data-add="attention">+ Novo ponto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="attention" aria-label="Buscar em Pontos de Atenção"><select data-section-sort="attention"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="attentionList" class="sectionlist"></div></div></section>
   </main>
 </div>
 </div>
@@ -90,7 +92,7 @@ const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
-let session=null, edition=null, data={indicators:[],programs:[],actions:[],quality:[],innovation:[],qualityActions:[],innovationActions:[],awards:[],partners:[],attention:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
+let session=null, edition=null, editions=[], data={indicators:[],programs:[],actions:[],quality:[],innovation:[],qualityActions:[],innovationActions:[],awards:[],partners:[],attention:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
 let modalState={type:null,id:null};
 
 function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kind}
@@ -152,19 +154,39 @@ $("#logoutBtn").onclick=async()=>{await sb.auth.signOut();location.reload()};
 
 $$(".navbtn").forEach(b=>b.onclick=()=>{$$(".navbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");$$(".panel").forEach(x=>x.classList.remove("active"));$("#panel-"+b.dataset.panel).classList.add("active")});
 
-async function loadAll(){
-  const {data:eds,error}=await sb.from("editions").select("*").order("created_at",{ascending:false});
+async function loadAll(preferredYear=null){
+  const {data:eds,error}=await sb.from("editions").select("*").order("year",{ascending:false});
   if(error)throw error;
-  edition=eds.find(x=>x.status==="draft")||eds[0];
-  if(!edition) return createEdition();
+  editions=eds||[];
+  if(!editions.length) return createAnnualEdition();
+  edition=(preferredYear?editions.find(x=>x.year===Number(preferredYear)):null) || editions.find(x=>x.status==="draft") || editions.find(x=>x.status==="published") || editions[0];
+  populateYearFilter();
+  renderHistory();
   await loadEditionData();
+}
+function populateYearFilter(){
+  const sel=$("#adminYearFilter");
+  if(!sel)return;
+  sel.innerHTML=editions.map(e=>`<option value="${e.year}" ${e.id===edition.id?"selected":""}>${e.year} · ${editionStatusLabel(e.status)}</option>`).join("");
+}
+function renderHistory(){
+  const el=$("#historyList"); if(!el)return;
+  el.innerHTML=editions.length?editions.map(e=>`<div class="history-row"><div class="history-year">${e.year}</div><div><strong>${editionStatusLabel(e.status)}</strong><div class="small">${e.published_at?`Última publicação: ${new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium",timeStyle:"short"}).format(new Date(e.published_at))}`:"Ainda não publicada"}</div></div><div class="row"><button class="btn ghost mini" type="button" data-history-open="${e.year}">Consultar</button><button class="btn ghost mini" type="button" data-history-pdf="${e.year}">PDF</button></div></div>`).join(""):empty("Nenhuma edição anual cadastrada.");
+  $$("[data-history-open]").forEach(b=>b.onclick=()=>loadAll(Number(b.dataset.historyOpen)));
+  $$("[data-history-pdf]").forEach(b=>b.onclick=()=>openPdfForYear(Number(b.dataset.historyPdf)));
 }
 async function loadEditionData(){
   $("#editionYear").value=edition.year;$("#editionVersion").value=edition.version;$("#editionStatus").value=editionStatusLabel(edition.status);$("#editionName").value=edition.title||"";$("#editionSubtitle").value=edition.subtitle||"";$("#editionIntro").value=edition.intro||"";$("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year} · v${edition.version}`;
+  const isArchived=edition.status==="archived";
+  $("#app").classList.toggle("readonly-mode",isArchived);
   $("#publishBtn").classList.toggle("hidden",edition.status!=="draft");
   $("#updateVersionBtn").classList.toggle("hidden",edition.status!=="published");
+  $("#saveEditionBtn").classList.toggle("hidden",isArchived);
   $("#newEditionBtn").disabled=edition.status==="draft";
-  $("#newEditionBtn").title=edition.status==="draft"?"Publique o rascunho atual antes de criar uma nova versão.":"";
+  $("#newEditionBtn").title=edition.status==="draft"?"Publique o rascunho atual antes de criar um novo ano.":"";
+  ["editionYear","editionName","editionSubtitle","editionIntro"].forEach(id=>{$("#"+id).disabled=isArchived});
+  $("#editionMsg").innerHTML=isArchived?'<span class="readonly-note">Ano arquivado: consulta somente leitura. Para alterar dados, utilize o ano atual.</span>':"";
+  if($("#adminYearFilter"))$("#adminYearFilter").value=String(edition.year);
   const id=edition.id;
   const [i,p,a,q,iv,qa,ia,aw,pa,at,pl,ql,il]=await Promise.all([
     sb.from("indicators").select("*").eq("edition_id",id).order("sort_order"),
@@ -193,8 +215,9 @@ function renderAll(){
   $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
   $("#attentionList").innerHTML=data.attention.length?data.attention.map(x=>card("attention",x.id,x.name,`${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
+  applyAllSectionFilters();
 }
-function card(type,id,title,sub){return `<article class="card"><div class="cardhead"><div><h3>${esc(title)}</h3><div class="small">${esc(sub)}</div></div><button class="btn ghost mini" data-edit="${id}" data-type="${type}">Editar</button></div></article>`}
+function card(type,id,title,sub){return `<article class="card" data-filter-card data-filter-title="${esc(title).toLowerCase()}"><div class="cardhead"><div><h3>${esc(title)}</h3><div class="small">${esc(sub)}</div></div><button class="btn ghost mini" data-edit="${id}" data-type="${type}">${edition.status==="archived"?"Consultar":"Editar"}</button></div></article>`}
 $$("[data-add]").forEach(b=>b.onclick=()=>openModal(b.dataset.add,null));
 $("#closeModal").onclick=()=>$("#modal").classList.add("hidden");
 
@@ -202,6 +225,21 @@ function indChecks(selectedIds=[]){return `<div class="field"><label>Indicadores
 function field(name,label,value="",type="text",extra=""){return `<div class="field"><label>${label}</label><input id="f_${name}" type="${type}" value="${esc(value??"")}" ${extra}></div>`}
 function area(name,label,value=""){return `<div class="field"><label>${label}</label><textarea id="f_${name}">${esc(value??"")}</textarea></div>`}
 function select(name,label,value,opts){return `<div class="field"><label>${label}</label><select id="f_${name}">${opts.map(o=>`<option value="${o[0]}" ${o[0]===value?"selected":""}>${o[1]}</option>`).join("")}</select></div>`}
+
+function applySectionFilter(section){
+  const list=$("#"+section+"List"), search=$(`[data-section-search="${section}"]`), sort=$(`[data-section-sort="${section}"]`);
+  if(!list)return;
+  const q=(search?.value||"").trim().toLowerCase();
+  const cards=[...list.querySelectorAll("[data-filter-card]")];
+  cards.forEach(c=>{c.style.display=!q||c.textContent.toLowerCase().includes(q)?"":"none"});
+  if(sort?.value==="az"||sort?.value==="za"){
+    const mult=sort.value==="az"?1:-1;
+    [...cards].sort((a,b)=>mult*(a.dataset.filterTitle||"").localeCompare(b.dataset.filterTitle||"","pt-BR")).forEach(c=>list.appendChild(c));
+  }
+}
+function applyAllSectionFilters(){["indicators","programs","quality","innovation","awards","partners","attention"].forEach(applySectionFilter)}
+$$("[data-section-search]").forEach(el=>el.addEventListener("input",()=>applySectionFilter(el.dataset.sectionSearch)));
+$$("[data-section-sort]").forEach(el=>el.addEventListener("change",()=>applySectionFilter(el.dataset.sectionSort)));
 
 function openModal(type,id){
   modalState={type,id};
@@ -265,8 +303,12 @@ function openModal(type,id){
   if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title=id?"Editar parceria":"Nova parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Destacar no Top 5</label></div>`+area("notes","Observações",x.notes||"");}
   if(type==="attention"){x=data.attention.find(v=>v.id===id)||{};title=id?"Editar ponto":"Novo ponto de atenção";body=field("name","Ponto de atenção",x.name||"")+field("category","Categoria",extractAttentionCategory(x)==="Sem categoria"?"":extractAttentionCategory(x))+area("mitigation_action","Ação de mitigação",x.mitigation_action||"")+field("deadline","Prazo",x.deadline||"","date")+area("notes","Observações",extractAttentionNotes(x));}
   $("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;
-  if(type==="program"&&id) setupActionsEditor();
-  if((type==="quality"||type==="innovation")&&id) setupProjectActionsEditor();
+  const historical=edition.status==="archived";
+  $("#saveModal").classList.toggle("hidden",historical);
+  $("#deleteModal").classList.toggle("hidden",historical||!id);
+  if(historical)$("#modalBody").querySelectorAll("input,select,textarea,button").forEach(el=>el.disabled=true);
+  if(type==="program"&&id&&!historical) setupActionsEditor();
+  if((type==="quality"||type==="innovation")&&id&&!historical) setupProjectActionsEditor();
 }
 function v(name){return $("#f_"+name)?.value??""}
 function num(name){const x=v(name);return x===""?null:Number(x)}
@@ -401,8 +443,19 @@ $("#deleteModal").onclick=async()=>{
   const tables={indicator:"indicators",program:"programs",quality:"quality_projects",innovation:"innovation_projects",award:"awards_recognitions",partner:"partners",attention:"attention_points"};
   const {error}=await sb.from(tables[type]).delete().eq("id",id);if(error)return msg($("#modalMsg"),error.message,"error");await loadEditionData();$("#modal").classList.add("hidden");
 };
+function openReportForYear(year,pdf=false){
+  const url=new URL("./",location.href);
+  url.searchParams.set("year",String(year));
+  if(pdf)url.searchParams.set("pdf","1");
+  window.open(url.toString(),"_blank","noopener");
+}
+function openPdfForYear(year){openReportForYear(year,true)}
+$("#adminYearFilter").addEventListener("change",e=>loadAll(Number(e.target.value)));
+$("#openYearReportBtn").onclick=()=>openReportForYear(edition.year,false);
+$("#pdfYearBtn").onclick=()=>openPdfForYear(edition.year);
+
 async function saveEditionHeader(){
-  const payload={year:Number($("#editionYear").value),version:Number($("#editionVersion").value),title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null};
+  if(edition.status==="archived")throw new Error("Edição arquivada é somente leitura."); const payload={year:Number($("#editionYear").value),version:1,title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null};
   const {data:r,error}=await sb.from("editions").update(payload).eq("id",edition.id).select().single();
   if(error)throw error; edition=r; return r;
 }
@@ -412,44 +465,45 @@ $("#saveEditionBtn").onclick=async()=>{
 };
 $("#publishBtn").onclick=async()=>{
   if(edition.status!=="draft")return;
-  if(!confirm("Publicar esta edição? Se houver uma versão publicada anterior, ela será arquivada somente agora."))return;
+  if(!confirm("Publicar a edição deste ano? A edição publicada do ano anterior será arquivada e preservada no histórico."))return;
   msg($("#editionMsg"),"Publicando…");
   try{
     await saveEditionHeader();
     const {error}=await sb.rpc("publish_edition",{p_edition_id:edition.id,p_notes:"Publicação pela área administrativa"});
     if(error)throw error;
     msg($("#editionMsg"),"Edição publicada com sucesso.","success");
-    await loadAll();
+    await loadAll(edition.year);
   }catch(error){msg($("#editionMsg"),error.message,"error")}
 };
 $("#updateVersionBtn").onclick=async()=>{
   if(edition.status!=="published")return;
-  if(!confirm(`Atualizar a versão ${edition.version}? O número será mantido e a data de publicação será renovada.`))return;
+  if(!confirm(`Atualizar a edição de ${edition.year}? A data de atualização será renovada e o histórico do ano será preservado.`))return;
   msg($("#editionMsg"),"Atualizando versão…");
   try{
     await saveEditionHeader();
     const {error}=await sb.rpc("update_published_edition",{p_edition_id:edition.id,p_notes:"Atualização da versão publicada"});
     if(error)throw error;
-    msg($("#editionMsg"),`Versão ${edition.version} atualizada. Número mantido; data de publicação renovada.`,"success");
-    await loadAll();
+    msg($("#editionMsg"),`Edição de ${edition.year} atualizada. Data de atualização renovada.`,"success");
+    await loadAll(edition.year);
   }catch(error){msg($("#editionMsg"),error.message,"error")}
 };
-async function createEdition(){
-  if(edition?.status==="draft") throw new Error("Já existe uma versão em rascunho.");
-  const year=edition?.year||new Date().getFullYear();
-  const {data:all,error:e0}=await sb.from("editions").select("version").eq("year",year).order("version",{ascending:false}).limit(1);
-  if(e0)throw e0;
-  const version=(all?.[0]?.version||0)+1;
-  const {data:r,error}=await sb.from("editions").insert({year,version,title:edition?.title||"Relatório Executivo Anual",subtitle:edition?.subtitle||"Núcleo de Qualidade e Inovação",intro:edition?.intro||null,status:"draft"}).select().single();
+async function createAnnualEdition(){
+  const maxYear=editions.length?Math.max(...editions.map(e=>e.year)):new Date().getFullYear()-1;
+  const suggested=Math.max(new Date().getFullYear(),maxYear+1);
+  const raw=prompt("Informe o ano da nova edição:",String(suggested));
+  if(raw===null)return;
+  const year=Number(raw);
+  if(!Number.isInteger(year)||year<2000||year>2100)throw new Error("Informe um ano válido.");
+  if(editions.some(e=>e.year===year))throw new Error("Já existe uma edição cadastrada para este ano.");
+  const current=edition;
+  const {data:r,error}=await sb.from("editions").insert({year,version:1,title:current?.title||"Relatório Executivo Anual",subtitle:current?.subtitle||"Núcleo de Qualidade e Inovação",intro:current?.intro||null,status:"draft"}).select().single();
   if(error)throw error;
-  edition=r;
-  await loadEditionData();
-  msg($("#editionMsg"),`Nova versão ${version} criada como rascunho. A versão anterior continua publicada até esta nova versão ser publicada.`,"success");
+  await loadAll(year);
+  msg($("#editionMsg"),`Edição ${year} criada como rascunho. Os anos anteriores permanecem preservados para consulta.`,"success");
 }
 $("#newEditionBtn").onclick=async()=>{
-  if(edition.status==="draft")return msg($("#editionMsg"),"Publique o rascunho atual antes de criar outra versão.","error");
-  if(!confirm("Criar nova versão em rascunho? A versão publicada atual continuará no ar."))return;
-  try{await createEdition()}catch(error){msg($("#editionMsg"),error.message,"error")}
+  if(edition.status==="draft")return msg($("#editionMsg"),"Já existe um ano em rascunho. Publique-o antes de criar outro ano.","error");
+  try{await createAnnualEdition()}catch(error){msg($("#editionMsg"),error.message,"error")}
 };
 if(typeof supabase==="undefined"){
   msg($("#loginMsg"),"Não foi possível carregar o serviço de autenticação. Verifique sua conexão e recarregue a página.","error");
