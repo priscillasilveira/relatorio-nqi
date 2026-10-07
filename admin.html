@@ -18,8 +18,8 @@
 .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap} .card{background:white;border-radius:20px;padding:20px;border:1px solid #e5eaec;margin-bottom:12px} .cardhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start} .tag{display:inline-block;border-radius:999px;background:#eef5f9;color:var(--blue);padding:4px 8px;font-size:.66rem;font-weight:700} .muted{color:var(--muted)} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .modal{position:fixed;inset:0;background:rgba(10,28,40,.55);z-index:100;display:grid;place-items:center;padding:20px} .modalbox{width:min(760px,100%);max-height:90vh;overflow:auto;background:white;border-radius:24px;padding:24px} .modalhead{display:flex;justify-content:space-between;gap:18px} .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px} .check{display:flex;gap:8px;align-items:flex-start;padding:9px;background:#f8fafb;border-radius:10px} .check input{width:auto;margin-top:2px}
 .notice{border-left:4px solid var(--orange);background:#fff7e9;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.8rem;color:#6c5836} .statusline{font-size:.8rem;color:var(--muted)} .success{color:var(--green)} .error{color:var(--red)}
-.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.health-preview{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;font-size:.7rem;font-weight:800;margin-top:4px}.health-preview:before{content:"⚑"}.hp-risco{background:#fdebea;color:#a9342c}.hp-atencao{background:#fff4d8;color:#8a6200}.hp-adequada{background:#e6f4eb;color:#2e7d4f}.admin-filters{display:grid;grid-template-columns:minmax(190px,1fr) repeat(3,minmax(145px,180px));gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
-@media(max-width:900px){.admin-filters{grid-template-columns:1fr}.history-row{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.admin-action-list{display:grid;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid #edf1f2}.admin-action-row{display:grid;grid-template-columns:minmax(160px,1.2fr) .7fr .55fr .55fr;gap:8px;align-items:center;padding:8px 10px;border-radius:11px;background:#f8fafb;font-size:.75rem;color:#566a75}.admin-action-row.finalizada{background:#f1f7f3;color:#53705f}.admin-action-name{font-weight:700;color:#314b5a}.admin-action-status,.admin-health{display:inline-block;padding:4px 7px;border-radius:999px;font-size:.66rem;font-weight:800;white-space:nowrap}.aas-em_andamento{background:#e7f1f8;color:#005ca9}.aas-aguardando{background:#f7eedb;color:#7a6233}.aas-finalizada{background:#e7f3eb;color:#2e8656}.aah-risco{background:#fdebea;color:#a9342c}.aah-atencao{background:#fff4d8;color:#8a6200}.aah-adequada{background:#e6f4eb;color:#2e7d4f}.health-preview{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;font-size:.7rem;font-weight:800;margin-top:4px}.health-preview:before{content:"⚑"}.hp-risco{background:#fdebea;color:#a9342c}.hp-atencao{background:#fff4d8;color:#8a6200}.hp-adequada{background:#e6f4eb;color:#2e7d4f}.admin-filters{display:grid;grid-template-columns:minmax(190px,1fr) repeat(3,minmax(145px,180px));gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
+@media(max-width:900px){.admin-action-row{grid-template-columns:1fr}.admin-filters{grid-template-columns:1fr}.history-row{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
 </style>
 
 <style>
@@ -116,6 +116,14 @@ function statusLabel(s){return ({planejado:"Planejado",em_andamento:"Em andament
 function healthStatusLabel(s){return ({risco:"Em risco",atencao:"Em atenção",adequada:"Adequada"}[s]||"Adequada")}
 function editionStatusLabel(s){return ({draft:"Rascunho",published:"Publicada",archived:"Arquivada"}[s]||s||"—")}
 function indicatorTypeLabel(s){return ({PLP:"PLP",DN:"DN",OKR:"OKR",GERENCIAL:"Gerencial"}[s]||s||"—")}
+const adminActionRank={em_andamento:1,aguardando:2,finalizada:3};
+const adminProjectRank={em_andamento:1,planejado:2,pausado:3,concluido:4,cancelado:5};
+const dateRank=v=>v?Date.parse(v+"T12:00:00"):Number.MAX_SAFE_INTEGER;
+const sortAdminActions=rows=>[...rows].sort((a,b)=>(adminActionRank[a.status]||9)-(adminActionRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0));
+const programAdminRank=p=>{const rows=data.actions.filter(a=>a.program_id===p.id);if(rows.some(a=>a.status==="em_andamento"))return 1;if(rows.some(a=>a.status==="aguardando"))return 2;if(rows.length&&rows.every(a=>a.status==="finalizada"))return 3;return 2};
+const programEndRank=p=>{const dates=data.actions.filter(a=>a.program_id===p.id&&a.end_date).map(a=>dateRank(a.end_date));return dates.length?Math.max(...dates):Number.MAX_SAFE_INTEGER};
+function actionHealthLabel(s){return ({risco:"Em risco",atencao:"Em atenção",adequada:"Adequada"}[s]||"Adequada")}
+function renderAdminActions(rows){return rows.length?`<div class="admin-action-list">${sortAdminActions(rows).map(a=>`<div class="admin-action-row ${a.status||"aguardando"}"><span class="admin-action-name">${esc(a.action)}</span><span>${dt(a.end_date)}</span><span class="admin-action-status aas-${a.status||"aguardando"}">${a.status==="em_andamento"?"Em andamento":a.status==="finalizada"?"Finalizada":"Aguardando"}</span><span class="admin-health aah-${a.health_status||"adequada"}">⚑ ${actionHealthLabel(a.health_status)}</span></div>`).join("")}</div>`:""}
 function extractAttentionCategory(row){const raw=String(row?.notes||"");const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category|| (m?m[1].trim():""))||"Sem categoria"}
 function extractAttentionNotes(row){return String(row?.notes||"").replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,"").trim()}
 function packAttentionNotes(category,notes){const cat=String(category||"").trim(); const txt=String(notes||"").trim(); return cat?`[[CAT]]${cat}[[/CAT]]${txt?`\n${txt}`:""}`:txt}
@@ -224,12 +232,12 @@ async function loadEditionData(){
 }
 function renderAll(){
   $("#indicatorsList").innerHTML=data.indicators.length?[...data.indicators].sort((a,b)=>({PLP:1,DN:2,OKR:3,GERENCIAL:4}[a.segment]||99)-({PLP:1,DN:2,OKR:3,GERENCIAL:4}[b.segment]||99)).map(x=>`<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}" data-indicator-type="${esc(x.segment||"")}" data-indicator-contract="${x.is_management_contract?"yes":"no"}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${indicatorTypeLabel(x.segment)}${x.is_management_contract?" · Contrato de Gestão":""} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="indicator">${edition.status==="archived"?"Consultar":"Editar"}</button></div></article>`).join(""):empty("Nenhum indicador cadastrado.");
-  $("#programsList").innerHTML=data.programs.length?data.programs.map(x=>{const ac=data.actions.filter(a=>a.program_id===x.id).length; const rels=data.programLinks.filter(l=>l.program_id===x.id).length; return card("program",x.id,x.name,`${ac} ações · ${rels} indicador(es) relacionado(s)`) }).join(""):empty("Nenhum programa cadastrado.");
-  $("#qualityList").innerHTML=data.quality.length?data.quality.map(x=>{const ac=data.qualityActions.filter(a=>a.project_id===x.id).length;return card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
-  $("#innovationList").innerHTML=data.innovation.length?data.innovation.map(x=>{const ac=data.innovationActions.filter(a=>a.project_id===x.id).length;return card("innovation",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
+  $("#programsList").innerHTML=data.programs.length?[...data.programs].sort((a,b)=>programAdminRank(a)-programAdminRank(b)||programEndRank(a)-programEndRank(b)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const rows=data.actions.filter(a=>a.program_id===x.id);const rels=data.programLinks.filter(l=>l.program_id===x.id).length;const rank=programAdminRank(x);const stage=rank===1?"Em andamento":rank===3?"Finalizado":"Aguardando";return `<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${stage} · ${rows.length} ação(ões) · ${rels} indicador(es) relacionado(s)`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="program">${edition.status==="archived"?"Consultar":"Editar"}</button></div>${renderAdminActions(rows)}</article>`}).join(""):empty("Nenhum programa cadastrado.");
+  $("#qualityList").innerHTML=data.quality.length?[...data.quality].sort((a,b)=>(adminProjectRank[a.status]||9)-(adminProjectRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const ac=data.qualityActions.filter(a=>a.project_id===x.id).length;return card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
+  $("#innovationList").innerHTML=data.innovation.length?[...data.innovation].sort((a,b)=>(adminProjectRank[a.status]||9)-(adminProjectRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const ac=data.innovationActions.filter(a=>a.project_id===x.id).length;return card("innovation",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
   $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category}${x.placement?" · "+x.placement:""}`)).join(""):empty("Nenhum registro cadastrado.");
   $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
-  $("#attentionList").innerHTML=data.attention.length?data.attention.map(x=>card("attention",x.id,x.name,`${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
+  $("#attentionList").innerHTML=data.attention.length?[...data.attention].sort((a,b)=>dateRank(a.deadline)-dateRank(b.deadline)||(a.sort_order||0)-(b.sort_order||0)).map(x=>card("attention",x.id,x.name,`${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
   applyAllSectionFilters();
 }
@@ -275,7 +283,7 @@ function openModal(type,id){
     select("segment","Tipo do indicador",x.segment||"PLP",[["PLP","PLP"],["DN","DN"],["OKR","OKR"],["GERENCIAL","Gerencial"]])+
     select("is_management_contract","Contrato de Gestão",x.is_management_contract?"sim":"nao",[["nao","Não"],["sim","Sim"]])+
     '</div>'+
-    field("code","Código",x.code||"")+field("name","Nome",x.name||"")+
+    field("name","Nome",x.name||"") +
     '<div class="grid2">'+field("latest_value","Último valor",x.latest_value??"","number",'step="any"')+field("target_value","Meta",x.target_value??"","number",'step="any"')+'</div>'+
     '<div class="grid2">'+field("unit","Unidade",x.unit||"")+select("target_direction","Direção da meta",x.target_direction||"gte",[["gte","Maior ou igual"],["lte","Menor ou igual"],["exact","Exato"]])+'</div>'+
     field("measurement_date","Data da medição",x.measurement_date||"","date")+area("notes","Observações",x.notes||"");}
@@ -284,7 +292,7 @@ function openModal(type,id){
     area("summary","Resumo",x.summary||"")+
     field("link_url","Link",x.link_url||"","url")+
     indChecks(links)+
-    (id?`<div class="field"><label>Ações do programa</label><div id="actionsEditor">${ac.map(a=>`
+    `<div class="field"><label>Ações do programa</label><div id="actionsEditor">${ac.map(a=>`
       <div class="card" data-action-id="${a.id}">
         <div class="grid2">
           ${field("action_"+a.id,"Ação",a.action).replace('id="f_action_'+a.id+'"','id="sub_action_'+a.id+'"')}
@@ -297,8 +305,7 @@ function openModal(type,id){
         </div>
         <button type="button" class="btn danger mini remove-action" data-remove-action="${a.id}">Remover ação</button>
       </div>`).join("")}</div>
-      <button type="button" class="btn ghost mini" id="addActionBtn">+ Cadastrar ação</button></div>`:
-      '<p class="small">Salve o programa primeiro. Depois abra-o novamente para cadastrar as ações.</p>');}
+      <button type="button" class="btn ghost mini" id="addActionBtn">+ Cadastrar ação</button></div>`;}
   if(type==="quality"||type==="innovation"){
     const arr=type==="quality"?data.quality:data.innovation;
     x=arr.find(v=>v.id===id)||{};
@@ -306,11 +313,11 @@ function openModal(type,id){
     const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id);
     const projectActions=(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===id);
     body=field("name","Nome",x.name||"")+
-      '<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+
+      '<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+ 
       select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+
       area("summary","Resumo",x.summary||"")+
       indChecks(links)+
-      (id?`<div class="field"><label>Ações do projeto</label><div id="projectActionsEditor">${projectActions.map(a=>`
+      `<div class="field"><label>Ações do projeto</label><div id="projectActionsEditor">${projectActions.map(a=>`
         <div class="card" data-project-action-id="${a.id}">
           <div class="grid2">
             ${field("paction_"+a.id,"Ação",a.action).replace('id="f_paction_'+a.id+'"','id="sub_paction_'+a.id+'"')}
@@ -323,8 +330,7 @@ function openModal(type,id){
           </div>
           <button type="button" class="btn danger mini remove-project-action" data-remove-project-action="${a.id}">Remover ação</button>
         </div>`).join("")}</div>
-        <button type="button" class="btn ghost mini" id="addProjectActionBtn">+ Cadastrar ação</button>
-      </div>`:'<p class="small">Salve o projeto primeiro. Depois abra-o novamente para cadastrar as ações.</p>');
+        <button type="button" class="btn ghost mini" id="addProjectActionBtn">+ Cadastrar ação</button></div>`;
   }
   if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title=id?"Editar registro":"Novo prêmio ou reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Colocação",x.placement||"")+area("notes","Observações",x.notes||"");}
   if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title=id?"Editar parceria":"Nova parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Destacar no Top 5</label></div>`+area("notes","Observações",x.notes||"");}
@@ -334,8 +340,8 @@ function openModal(type,id){
   $("#saveModal").classList.toggle("hidden",historical);
   $("#deleteModal").classList.toggle("hidden",historical||!id);
   if(historical)$("#modalBody").querySelectorAll("input,select,textarea,button").forEach(el=>el.disabled=true);
-  if(type==="program"&&id&&!historical) setupActionsEditor();
-  if((type==="quality"||type==="innovation")&&id&&!historical) setupProjectActionsEditor();
+  if(type==="program"&&!historical) setupActionsEditor();
+  if((type==="quality"||type==="innovation")&&!historical) setupProjectActionsEditor();
 }
 function v(name){return $("#f_"+name)?.value??""}
 function num(name){const x=v(name);return x===""?null:Number(x)}
@@ -446,7 +452,7 @@ $("#saveModal").onclick=async()=>{
   const {type,id}=modalState;msg($("#modalMsg"),"Salvando…");
   try{
     let table,payload,retId=id;
-    if(type==="indicator"){table="indicators";payload={edition_id:edition.id,segment:v("segment"),is_management_contract:v("is_management_contract")==="sim",code:v("code")||null,name:v("name"),latest_value:num("latest_value"),target_value:num("target_value"),unit:v("unit")||null,target_direction:v("target_direction"),measurement_date:v("measurement_date")||null,notes:v("notes")||null}}
+    if(type==="indicator"){table="indicators";payload={edition_id:edition.id,segment:v("segment"),is_management_contract:v("is_management_contract")==="sim",name:v("name"),latest_value:num("latest_value"),target_value:num("target_value"),unit:v("unit")||null,target_direction:v("target_direction"),measurement_date:v("measurement_date")||null,notes:v("notes")||null}}
     if(type==="program"){table="programs";payload={edition_id:edition.id,name:v("name"),summary:v("summary")||null,link_url:v("link_url")||null}}
     if(type==="quality"){table="quality_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
     if(type==="innovation"){table="innovation_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
@@ -457,14 +463,14 @@ $("#saveModal").onclick=async()=>{
     let res;if(id)res=await sb.from(table).update(payload).eq("id",id).select().single();else res=await sb.from(table).insert(payload).select().single();
     if(res.error)throw res.error;retId=res.data.id;
     const inds=selectedIndicators();
-    if(type==="program"){await syncLinks("program_indicators","program_id",retId,inds);if(id)await syncActions(retId)}
+    if(type==="program"){await syncLinks("program_indicators","program_id",retId,inds);await syncActions(retId)}
     if(type==="quality"){
       await syncLinks("quality_project_indicators","project_id",retId,inds);
-      if(id)await syncProjectActions("quality",retId);
+      await syncProjectActions("quality",retId);
     }
     if(type==="innovation"){
       await syncLinks("innovation_project_indicators","project_id",retId,inds);
-      if(id)await syncProjectActions("innovation",retId);
+      await syncProjectActions("innovation",retId);
     }
     msg($("#modalMsg"),"Salvo.","success");await loadEditionData();setTimeout(()=>$("#modal").classList.add("hidden"),350);
   }catch(e){msg($("#modalMsg"),e.message,"error")}
