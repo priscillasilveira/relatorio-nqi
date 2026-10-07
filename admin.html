@@ -21,6 +21,11 @@
 .actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
 @media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
 </style>
+
+<style>
+/* Ajuste visual fino do Admin */
+body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:18px}.sidebar{border:1px solid #e4e9ea;box-shadow:0 10px 28px rgba(20,45,60,.035)}.hero{border:1px solid #e4e9ea;box-shadow:0 10px 28px rgba(20,45,60,.035)}.card{box-shadow:0 8px 22px rgba(20,45,60,.03)}.navbtn{font-size:.86rem}.panel h2{letter-spacing:-.025em}.btn{transition:transform .15s ease,box-shadow .15s ease}.btn:hover{transform:translateY(-1px)}
+</style>
 </head>
 <body>
 <section class="login" id="loginScreen">
@@ -92,6 +97,9 @@ function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kin
 function empty(t){return `<div class="empty">${esc(t)}</div>`}
 function statusLabel(s){return ({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—")}
 function editionStatusLabel(s){return ({draft:"Rascunho",published:"Publicada",archived:"Arquivada"}[s]||s||"—")}
+function extractAttentionCategory(row){const raw=String(row?.notes||"");const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category|| (m?m[1].trim():""))||"Sem categoria"}
+function extractAttentionNotes(row){return String(row?.notes||"").replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,"").trim()}
+function packAttentionNotes(category,notes){const cat=String(category||"").trim(); const txt=String(notes||"").trim(); return cat?`[[CAT]]${cat}[[/CAT]]${txt?`\n${txt}`:""}`:txt}
 
 function authMessage(error){
   const m=String(error?.message||error||"").toLowerCase();
@@ -175,12 +183,12 @@ async function loadEditionData(){
 }
 function renderAll(){
   $("#indicatorsList").innerHTML=data.indicators.length?data.indicators.map(x=>card("indicator",x.id,x.name,`${x.segment} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)).join(""):empty("Nenhum indicador cadastrado.");
-  $("#programsList").innerHTML=data.programs.length?data.programs.map(x=>card("program",x.id,x.name,`${data.actions.filter(a=>a.program_id===x.id).length} ações`)).join(""):empty("Nenhum programa cadastrado.");
+  $("#programsList").innerHTML=data.programs.length?data.programs.map(x=>{const ac=data.actions.filter(a=>a.program_id===x.id).length; const rels=data.programLinks.filter(l=>l.program_id===x.id).length; return card("program",x.id,x.name,`${ac} ações · ${rels} indicador(es) relacionado(s)`) }).join(""):empty("Nenhum programa cadastrado.");
   $("#qualityList").innerHTML=data.quality.length?data.quality.map(x=>card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)}`)).join(""):empty("Nenhum projeto cadastrado.");
-  $("#innovationList").innerHTML=data.innovation.length?data.innovation.map(x=>card("innovation",x.id,x.name,`${statusLabel(x.status)} · custo ${x.cost??"—"}`)).join(""):empty("Nenhum projeto cadastrado.");
+  $("#innovationList").innerHTML=data.innovation.length?data.innovation.map(x=>card("innovation",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)}`)).join(""):empty("Nenhum projeto cadastrado.");
   $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category}${x.placement?" · "+x.placement:""}`)).join(""):empty("Nenhum registro cadastrado.");
   $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
-  $("#attentionList").innerHTML=data.attention.length?data.attention.map(x=>card("attention",x.id,x.name,`Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
+  $("#attentionList").innerHTML=data.attention.length?data.attention.map(x=>card("attention",x.id,x.name,`${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)).join(""):empty("Nenhum ponto de atenção cadastrado.");
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
 }
 function card(type,id,title,sub){return `<article class="card"><div class="cardhead"><div><h3>${esc(title)}</h3><div class="small">${esc(sub)}</div></div><button class="btn ghost mini" data-edit="${id}" data-type="${type}">Editar</button></div></article>`}
@@ -221,10 +229,10 @@ function openModal(type,id){
       </div>`).join("")}</div>
       <button type="button" class="btn ghost mini" id="addActionBtn">+ Cadastrar ação</button></div>`:
       '<p class="small">Salve o programa primeiro. Depois abra-o novamente para cadastrar as ações.</p>');}
-  if(type==="quality"||type==="innovation"){const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?"Editar projeto":"Novo projeto";const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id);body=field("name","Nome",x.name||"")+'<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+(type==="innovation"?field("cost","Custo (R$)",x.cost??"","number",'step="0.01"'):"")+area("summary","Resumo",x.summary||"")+indChecks(links);}
+  if(type==="quality"||type==="innovation"){const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?"Editar projeto":"Novo projeto";const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id);body=field("name","Nome",x.name||"")+'<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+area("summary","Resumo",x.summary||"")+indChecks(links);}
   if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title=id?"Editar registro":"Novo prêmio ou reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Colocação",x.placement||"")+area("notes","Observações",x.notes||"");}
   if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title=id?"Editar parceria":"Nova parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Destacar no Top 5</label></div>`+area("notes","Observações",x.notes||"");}
-  if(type==="attention"){x=data.attention.find(v=>v.id===id)||{};title=id?"Editar ponto":"Novo ponto de atenção";body=field("name","Ponto de atenção",x.name||"")+area("mitigation_action","Ação de mitigação",x.mitigation_action||"")+field("deadline","Prazo",x.deadline||"","date")+area("notes","Observações",x.notes||"");}
+  if(type==="attention"){x=data.attention.find(v=>v.id===id)||{};title=id?"Editar ponto":"Novo ponto de atenção";body=field("name","Ponto de atenção",x.name||"")+field("category","Categoria",extractAttentionCategory(x)==="Sem categoria"?"":extractAttentionCategory(x))+area("mitigation_action","Ação de mitigação",x.mitigation_action||"")+field("deadline","Prazo",x.deadline||"","date")+area("notes","Observações",extractAttentionNotes(x));}
   $("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;
   if(type==="program"&&id) setupActionsEditor();
 }
@@ -284,10 +292,10 @@ $("#saveModal").onclick=async()=>{
     if(type==="indicator"){table="indicators";payload={edition_id:edition.id,segment:v("segment"),code:v("code")||null,name:v("name"),latest_value:num("latest_value"),target_value:num("target_value"),unit:v("unit")||null,target_direction:v("target_direction"),measurement_date:v("measurement_date")||null,notes:v("notes")||null}}
     if(type==="program"){table="programs";payload={edition_id:edition.id,name:v("name"),summary:v("summary")||null,link_url:v("link_url")||null}}
     if(type==="quality"){table="quality_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
-    if(type==="innovation"){table="innovation_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),cost:num("cost"),summary:v("summary")||null}}
+    if(type==="innovation"){table="innovation_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
     if(type==="award"){table="awards_recognitions";payload={edition_id:edition.id,category:v("category"),name:v("name")||null,placement:v("placement")||null,quantity:1,notes:v("notes")||null}}
     if(type==="partner"){table="partners";payload={edition_id:edition.id,name:v("name"),is_top5:$("#f_is_top5").checked,notes:v("notes")||null}}
-    if(type==="attention"){table="attention_points";payload={edition_id:edition.id,name:v("name"),mitigation_action:v("mitigation_action"),deadline:v("deadline")||null,notes:v("notes")||null}}
+    if(type==="attention"){table="attention_points";payload={edition_id:edition.id,name:v("name"),mitigation_action:v("mitigation_action"),deadline:v("deadline")||null,notes:packAttentionNotes(v("category"),v("notes"))||null}}
     if(!payload.name && !["award"].includes(type)) throw new Error("Preencha o nome.");
     let res;if(id)res=await sb.from(table).update(payload).eq("id",id).select().single();else res=await sb.from(table).insert(payload).select().single();
     if(res.error)throw res.error;retId=res.data.id;

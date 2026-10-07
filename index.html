@@ -10,172 +10,142 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--deep:#003c71;--blue:#005ca9;--orange:#f7941d;--paper:#f5f1e8;--ink:#172a36;--muted:#687983;--line:#dce3e6;--white:#fff;--soft:#edf5fa;--danger:#b44b3c;--ok:#287657}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif}
-a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:0 24px}.cover{min-height:82vh;background:linear-gradient(140deg,var(--deep),#075e9e);color:white;display:flex;align-items:flex-end;position:relative;overflow:hidden}
-.cover:after{content:"";position:absolute;inset:auto -12% -45% auto;width:620px;height:620px;border:2px solid rgba(255,255,255,.16);border-radius:50%;box-shadow:0 0 0 70px rgba(255,255,255,.04),0 0 0 150px rgba(255,255,255,.03)}
-.cover-inner{position:relative;z-index:2;padding:70px 0 62px;width:100%}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;font-weight:700;color:#ffbd57}
-h1,h2,h3{font-family:"Libre Caslon Display",Georgia,serif;font-weight:400}h1{font-size:clamp(4rem,9vw,8rem);line-height:.86;max-width:900px;margin:14px 0 24px;letter-spacing:-.04em}
-.cover p{max-width:680px;color:#d7e6f0;line-height:1.65;font-size:1.04rem}.meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;font-size:.78rem;color:#c6dbe7}
-.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,60,113,.10)}.nav-inner{display:flex;gap:18px;overflow:auto;padding:13px 0;white-space:nowrap}.nav a{text-decoration:none;font-size:.77rem;font-weight:700;color:#53656f}
-.section{padding:74px 0;border-bottom:1px solid rgba(0,60,113,.10)}.chapter{display:grid;grid-template-columns:120px 1fr;gap:30px}.num{font-family:"Libre Caslon Display";font-size:4.2rem;color:var(--orange);line-height:1}.section h2{font-size:clamp(2.6rem,5vw,4.8rem);margin:0 0 12px;color:var(--deep);letter-spacing:-.035em}.lede{color:var(--muted);max-width:760px;line-height:1.65;margin-bottom:28px}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{grid-column:span 4;background:white;border-radius:22px;padding:22px;border:1px solid #e6ebed;box-shadow:0 12px 36px rgba(13,45,65,.055)}.card.wide{grid-column:span 6}.card.full{grid-column:1/-1}.kicker{font-size:.67rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--orange)}.card h3{font-size:1.55rem;color:var(--deep);margin:7px 0 10px}.small{font-size:.8rem;color:var(--muted);line-height:1.5}.value{font-family:"Libre Caslon Display";font-size:2.4rem;color:var(--deep)}.pill{display:inline-block;border-radius:999px;padding:5px 9px;background:var(--soft);color:var(--blue);font-size:.68rem;font-weight:700;margin:3px 4px 3px 0}
-.program{background:#fff;border-radius:24px;padding:24px;border:1px solid #e1e7e9;margin-bottom:14px}.program-actions{margin-top:14px;display:grid;gap:8px}.action{padding:11px 13px;background:#f8fafb;border-radius:12px;font-size:.82rem;display:flex;justify-content:space-between;gap:16px}.attention{border-left:5px solid var(--orange)}.attention.overdue{border-left-color:var(--danger)}.attention.soon{border-left-color:#d78508}
-.empty{padding:30px;background:#fff;border-radius:18px;color:var(--muted);border:1px dashed #cbd6db}footer{padding:38px 0 50px;color:#6a7a83;font-size:.75rem}.loading{position:fixed;inset:0;background:var(--paper);display:grid;place-items:center;z-index:999}.loading.hidden{display:none}
-@media(max-width:850px){.chapter{grid-template-columns:1fr}.num{font-size:2.5rem}.card,.card.wide{grid-column:1/-1}.cover{min-height:70vh}}
-@media print{.nav{display:none}.cover{min-height:auto;padding:30px 0}.section{break-inside:avoid}}
+:root{--blue:#005ca9;--deep:#003c71;--navy:#062b49;--ink:#152733;--muted:#647783;--paper:#f4efe5;--paper2:#fbf8f2;--white:#fff;--orange:#f7941d;--gold:#d6b26c;--line:#ded8cc;--soft:#edf4f7;--ok:#2e8656;--warn:#ce7617;--bad:#b4493c}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif} a{color:inherit} .wrap{max-width:1240px;margin:auto;padding:0 28px}
+.loading{position:fixed;inset:0;z-index:999;background:#f5f0e7;display:grid;place-items:center;color:var(--deep);font-weight:600} .loading.hidden{display:none}
+.senac-lockup{display:flex;align-items:center;gap:14px}.senac-word{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#dbeaf2}.senac-logo svg{display:block;width:120px;height:auto}
+.issue-cover{position:relative;min-height:96vh;overflow:hidden;background:linear-gradient(125deg,#052b4a 0%,#003c71 48%,#0876ad 100%);color:#fff}
+.issue-cover:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 74% 22%,rgba(255,255,255,.16),transparent 20%),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:auto,56px 56px,56px 56px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 90%)}
+.issue-cover:after{content:"";position:absolute;width:660px;height:660px;border:1px solid rgba(255,255,255,.16);border-radius:50%;right:-220px;bottom:-250px;box-shadow:0 0 0 76px rgba(255,255,255,.04),0 0 0 164px rgba(255,255,255,.025)}
+.cover-inner{position:relative;z-index:2;padding:38px 0 54px} .cover-top{display:grid;grid-template-columns:1fr auto;align-items:start;gap:24px} .brand{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#ffd08a;font-weight:700} .issue-mark{text-align:right;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#dcebf3}
+.cover-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:44px;align-items:end;margin-top:76px} .cover-title{font-family:"Libre Caslon Display",serif;font-size:clamp(4.8rem,9vw,8.9rem);line-height:.82;letter-spacing:-.055em;margin:0;max-width:880px} .cover-deck{max-width:740px;margin-top:24px;font-size:1.08rem;line-height:1.82;color:#d9e8f0} .cover-rule{width:88px;height:5px;background:var(--orange);border-radius:999px;margin:24px 0}
+.cover-note{position:relative;padding:28px;border-radius:30px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17);backdrop-filter:blur(14px);box-shadow:0 24px 55px rgba(0,0,0,.16)} .cover-note small{text-transform:uppercase;letter-spacing:.18em;color:#ffd18d;font-weight:700} .cover-note h3{font-family:"Libre Caslon Display",serif;font-size:2.25rem;line-height:1.02;margin:12px 0 16px} .cover-note p{color:#dfebf1;line-height:1.75;margin:0}
+.cover-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px} .meta-chip{padding:9px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);font-size:.76rem;color:#eef7fb}
+.cover-numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:46px} .cover-number{padding:19px 18px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.14)} .cover-number strong{font-family:"Libre Caslon Display",serif;font-size:2.6rem;line-height:1;display:block} .cover-number span{font-size:.78rem;color:#d7e6ee;display:block;margin-top:6px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(250,247,240,.9);backdrop-filter:blur(15px);border-bottom:1px solid rgba(0,60,113,.08)} .nav-inner{display:flex;gap:18px;overflow:auto;white-space:nowrap;padding:14px 0} .nav a{font-size:.76rem;font-weight:700;text-decoration:none;color:#566974;letter-spacing:.03em}
+.vision{padding:72px 0 66px;background:linear-gradient(180deg,#f8f3ea,#f2eadf)} .vision-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:42px;align-items:start} .vision-kicker{font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--orange);font-weight:700} .vision h2{font-family:"Libre Caslon Display",serif;font-size:clamp(3.3rem,6vw,5.7rem);line-height:.9;color:var(--deep);margin:10px 0 18px;letter-spacing:-.04em} .vision-lead{font-family:"Libre Caslon Display",serif;font-size:2rem;line-height:1.25;color:#2d4658;margin:0 0 20px} .vision-copy{font-size:.98rem;line-height:1.8;color:var(--muted)} .edition-map{display:grid;grid-template-columns:repeat(2,1fr);gap:14px} .map-item{min-height:130px;padding:19px;border-radius:24px;background:rgba(255,255,255,.78);border:1px solid #e5ddd0;position:relative;overflow:hidden} .map-item:after{content:"";position:absolute;right:-28px;bottom:-28px;width:90px;height:90px;border-radius:50%;border:1px solid #eadbc3} .map-item b{display:block;color:var(--deep);font-size:1rem} .map-item span{display:block;margin-top:6px;font-size:.8rem;line-height:1.5;color:var(--muted)} .map-item em{font-style:normal;font-family:"Libre Caslon Display",serif;font-size:2rem;color:var(--orange)}
+.editorial-break{padding:26px 0;background:#0b3555;color:#fff} .editorial-break .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center} .pull-quote{font-family:"Libre Caslon Display",serif;font-size:2.4rem;line-height:1.12} .pull-copy{color:#cfe0e9;line-height:1.75;font-size:.92rem}
+.section{padding:88px 0;border-bottom:1px solid rgba(0,60,113,.07)} .section-head{display:grid;grid-template-columns:110px 1fr;gap:28px;margin-bottom:32px} .chapter{font-family:"Libre Caslon Display",serif;font-size:4.7rem;color:var(--orange);line-height:.85} .section h2{font-family:"Libre Caslon Display",serif;font-size:clamp(3rem,5.4vw,5rem);line-height:.9;letter-spacing:-.04em;color:var(--deep);margin:0 0 12px} .section-lead{max-width:860px;color:var(--muted);font-size:1rem;line-height:1.8}
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:18px} .card{background:rgba(255,255,255,.9);border:1px solid #e2e8ea;border-radius:28px;padding:24px;box-shadow:0 16px 45px rgba(23,42,54,.055)} .s4{grid-column:span 4} .s5{grid-column:span 5} .s6{grid-column:span 6} .s7{grid-column:span 7} .s12{grid-column:1/-1} .kicker{font-size:.67rem;text-transform:uppercase;letter-spacing:.15em;color:var(--orange);font-weight:700} .card h3{font-family:"Libre Caslon Display",serif;color:var(--deep);font-size:1.75rem;line-height:1.08;margin:9px 0 12px} .copy{font-size:.87rem;line-height:1.72;color:var(--muted)}
+.metric-card{position:relative;overflow:hidden} .metric-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--gold)} .metric-card.good:before{background:var(--ok)} .metric-card.alert:before{background:var(--bad)} .metric-value{font-size:3.1rem;font-weight:700;line-height:.92;margin:15px 0 12px;letter-spacing:-.03em} .metric-status{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;font-size:.73rem;font-weight:700} .metric-status.good{background:rgba(46,134,86,.12);color:var(--ok)} .metric-status.alert{background:rgba(180,73,60,.12);color:var(--bad)} .metric-status.neutral{background:rgba(214,178,108,.18);color:#765f31} .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px} .spec{padding:10px 11px;background:#f7fafb;border-radius:15px;font-size:.78rem;line-height:1.5;color:#60727d} .spec b{color:#415764}
+.segment-block{margin-bottom:30px} .segment-title{display:flex;gap:14px;align-items:center;margin:0 0 14px} .segment-title span{font-family:"Libre Caslon Display",serif;font-size:2.1rem;color:var(--deep)} .segment-title:after{content:"";height:1px;background:#ddd4c6;flex:1}
+.program-feature{position:relative;background:linear-gradient(135deg,#ffffff,#f7fafb);border-radius:32px;border:1px solid #dfe8eb;box-shadow:0 22px 60px rgba(17,44,61,.06);margin-bottom:22px;overflow:hidden} .program-feature:before{content:"";position:absolute;inset:0 auto 0 0;width:8px;background:linear-gradient(var(--orange),#f6c064)} .program-content{padding:28px 28px 26px 32px} .program-top{display:grid;grid-template-columns:1.05fr .95fr;gap:28px} .program-index{font-family:"Libre Caslon Display",serif;font-size:4rem;color:#e8ddcc;line-height:.8;float:right} .pill-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px} .pill{display:inline-block;padding:7px 10px;border-radius:999px;background:#eef5f8;color:var(--blue);font-size:.72rem;font-weight:700} .actions{display:grid;gap:9px;margin-top:18px} .action-row{display:grid;grid-template-columns:1.15fr .75fr .55fr;gap:12px;align-items:center;padding:12px 13px;border-radius:16px;background:#f8fafb;border:1px solid #edf1f2;font-size:.82rem} .action-status{display:inline-block;padding:6px 9px;border-radius:999px;font-weight:700;font-size:.7rem} .aguardando{background:#f7eedb;color:#7a6233} .em_andamento{background:#e7f1f8;color:var(--blue)} .finalizada{background:#e7f3eb;color:var(--ok)}
+.quality-section{background:#fbf8f2} .project-card{min-height:100%;position:relative} .project-card:after{content:"";position:absolute;right:20px;top:20px;width:42px;height:42px;border-radius:50%;background:radial-gradient(circle,var(--orange) 0 3px,transparent 4px)} .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px} .tag{padding:7px 9px;border-radius:999px;background:#f1f6f8;color:#60717c;font-size:.72rem;font-weight:700}
+.innovation-section{background:linear-gradient(145deg,#082e4e,#0b4168);color:#fff} .innovation-section h2{color:#fff} .innovation-section .section-lead{color:#c8dbe6} .innovation-section .chapter{color:#ffb650} .innovation-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);box-shadow:none;color:#fff} .innovation-card h3{color:#fff} .innovation-card .copy{color:#d2e2ea} .innovation-card .tag{background:rgba(255,255,255,.11);color:#e3eff4}
+.awards-section{background:linear-gradient(180deg,#f9f3e6,#f4ead8)} .award-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:16px} .award-card{position:relative;padding:25px;border-radius:28px;background:linear-gradient(180deg,#fffdf8,#fff);border:1px solid #ead7ac;box-shadow:0 15px 40px rgba(87,64,24,.07)} .award-card:before{content:"✦";position:absolute;right:20px;top:16px;color:#d4ae61;font-size:1.3rem} .award-placement{font-family:"Libre Caslon Display",serif;font-size:2rem;color:#8b6b31;margin-top:10px}
+.partners-section{background:#f7f4ee} .partners-hero{display:grid;grid-template-columns:.72fr 1.28fr;gap:18px;margin-bottom:18px} .partners-count{padding:30px;border-radius:30px;background:var(--deep);color:#fff} .partners-count .big{font-family:"Libre Caslon Display",serif;font-size:6rem;line-height:.8} .partners-count p{color:#cfe0e9} .partners-top{padding:26px;border-radius:30px;background:#fff;border:1px solid #e0e6e8} .partners-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.attention-section{background:#f9f5ed} .attention-group{margin-bottom:30px} .attention-group-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:13px;padding-bottom:10px;border-bottom:1px solid #ddd3c3} .attention-group-head h3{font-family:"Libre Caslon Display",serif;font-size:2.25rem;color:var(--deep);margin:0} .attention-card{position:relative;overflow:hidden} .attention-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--gold)} .attention-card.overdue:before{background:var(--bad)} .attention-card.soon:before{background:var(--warn)} .attention-card.track:before{background:var(--gold)}
+.final-note{padding:52px 0 64px;background:#072d4b;color:#fff} .final-note .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:end} .final-note h3{font-family:"Libre Caslon Display",serif;font-size:3rem;line-height:1.05;margin:0} .final-note p{color:#cfe0e9;line-height:1.75;margin:0} footer{padding:26px 0 40px;background:#072d4b;color:#a9c0cc;font-size:.74rem;border-top:1px solid rgba(255,255,255,.08)}
+.empty{padding:30px;border-radius:24px;border:1px dashed #cbd3d7;background:rgba(255,255,255,.7);color:var(--muted)}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease} .reveal.show{opacity:1;transform:none} @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media(max-width:1020px){.cover-grid,.vision-grid,.editorial-break .wrap,.program-top,.partners-hero,.final-note .wrap{grid-template-columns:1fr} .cover-numbers{grid-template-columns:repeat(2,1fr)} .award-wall,.partners-list{grid-template-columns:repeat(2,1fr)} .action-row{grid-template-columns:1fr}}
+@media(max-width:760px){.wrap{padding:0 20px} .issue-cover{min-height:auto} .cover-grid{margin-top:48px} .cover-title{font-size:3.9rem} .cover-numbers,.edition-map,.award-wall,.partners-list{grid-template-columns:1fr} .section{padding:66px 0} .section-head{grid-template-columns:1fr;gap:12px} .chapter{font-size:2.8rem} .grid12 .s4,.grid12 .s5,.grid12 .s6,.grid12 .s7,.grid12 .s12{grid-column:1/-1} .pull-quote{font-size:1.8rem}}
+
+/* Refinamento editorial final */
+:root{--paper:#f3eee4;--paper2:#fcfaf6;--line:#ddd7cc}
+body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
+.wrap{max-width:1280px;padding-left:34px;padding-right:34px}
+.issue-cover{min-height:90vh;background:linear-gradient(118deg,#052b49 0%,#003b6c 54%,#086897 100%)}
+.issue-cover:before{opacity:.62;background:radial-gradient(circle at 78% 24%,rgba(255,255,255,.15),transparent 18%),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px);background-size:auto,72px 72px,72px 72px}
+.cover-inner{padding-top:34px;padding-bottom:42px}
+.cover-top{align-items:center}
+.senac-lockup{gap:16px}.senac-logo{width:142px;min-height:64px;padding:9px 13px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:15px;box-shadow:0 8px 24px rgba(0,0,0,.13)}.senac-logo img{display:block;max-width:116px;max-height:46px;object-fit:contain}.senac-fallback{display:none;font-family:Arial,sans-serif;font-size:29px;font-weight:700;color:#005ca9}.senac-word{max-width:290px;font-size:.72rem;line-height:1.45;letter-spacing:.11em;color:#d5e5ee}
+.issue-mark{font-size:.69rem;line-height:1.55;letter-spacing:.11em;color:#c8dce7}
+.cover-grid{grid-template-columns:minmax(0,1.45fr) minmax(290px,.55fr);gap:54px;margin-top:62px}
+.cover-title{font-size:clamp(4.7rem,8.4vw,8.15rem);line-height:.86;letter-spacing:-.05em;max-width:930px}
+.cover-rule{width:72px;height:4px;margin:20px 0 25px}
+.cover-deck{max-width:750px;font-size:1.04rem;line-height:1.72;margin-top:25px;color:#deebf1}
+.cover-meta{margin-top:30px;gap:9px}.meta-chip{padding:9px 12px;border-radius:10px;background:rgba(2,35,60,.28);border-color:rgba(255,255,255,.15);font-size:.73rem;font-weight:600;letter-spacing:.015em}
+.cover-note{border-radius:22px;padding:24px 24px 25px;background:rgba(5,38,62,.34);border-color:rgba(255,255,255,.14);box-shadow:none}.cover-note small{font-size:.66rem;letter-spacing:.15em}.cover-note h3{font-size:1.85rem;line-height:1.08;margin:10px 0 13px}.cover-note p{font-size:.88rem;line-height:1.68;color:#d7e6ed}
+.cover-numbers{gap:1px;margin-top:40px;border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden;background:rgba(255,255,255,.1)}.cover-number{border:0;border-radius:0;background:rgba(2,35,60,.24);padding:18px 19px}.cover-number+ .cover-number{border-left:1px solid rgba(255,255,255,.13)}.cover-number strong{font-family:"DM Sans",sans-serif;font-size:2rem;font-weight:600}.cover-number span{font-size:.73rem;line-height:1.4;color:#d4e4ec}
+.nav{background:rgba(251,249,245,.94)}.nav-inner{padding-top:13px;padding-bottom:13px;gap:22px}.nav a{font-size:.72rem;color:#4f626d}
+.vision{padding:78px 0 72px;background:linear-gradient(180deg,#f8f4ec 0%,#f1e9dc 100%)}.vision-grid{grid-template-columns:.75fr 1.25fr;gap:52px}.vision h2{font-size:clamp(3.15rem,5vw,4.8rem);line-height:.94}.vision-lead{font-family:"DM Sans",sans-serif;font-size:1.35rem;line-height:1.5;font-weight:500;color:#2c4556;max-width:590px}.vision-copy{max-width:580px;font-size:.91rem;line-height:1.72}.edition-map{gap:12px}.map-item{min-height:146px;border-radius:18px;padding:20px 20px 18px;background:rgba(255,255,255,.84)}.map-item:after{display:none}.map-item em{font-family:"DM Sans",sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;color:var(--orange)}.map-item b{margin-top:14px;font-size:1.03rem}.map-item span{font-size:.79rem;line-height:1.55}
+.editorial-break{padding:22px 0}.pull-quote{font-family:"DM Sans",sans-serif;font-size:1.25rem;line-height:1.35;font-weight:600}.pull-copy{font-size:.84rem;line-height:1.6}
+.section{padding:82px 0}.section-head{grid-template-columns:88px 1fr;gap:26px;margin-bottom:36px}.chapter{font-family:"DM Sans",sans-serif;font-size:2.05rem;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--orange);padding-top:5px}.section h2{font-size:clamp(2.8rem,4.6vw,4.3rem);line-height:.96;letter-spacing:-.035em;margin-bottom:13px}.section-lead{max-width:840px;font-size:.94rem;line-height:1.72}
+.grid12{gap:16px}.card{border-radius:20px;padding:22px;border-color:#e1e7e8;box-shadow:0 10px 30px rgba(23,42,54,.045)}.card h3{font-size:1.55rem}.copy{font-size:.84rem;line-height:1.65}
+.metric-card:before{width:5px}.metric-value{font-size:2.85rem}.metric-status{font-size:.68rem;padding:6px 9px}.spec-grid{gap:8px}.spec{border-radius:11px;padding:9px 10px;font-size:.74rem}
+.segment-block{margin-bottom:34px}.segment-title span{font-size:1.72rem}.segment-title:after{background:#d8d0c3}
+.program-feature{border-radius:22px;margin-bottom:18px;box-shadow:0 12px 34px rgba(17,44,61,.05)}.program-feature:before{width:6px}.program-content{padding:25px 26px 24px 30px}.program-index{font-family:"DM Sans",sans-serif;font-weight:700;font-size:2.8rem;color:#e3dacc}.program-top{gap:30px}.action-row{border-radius:12px;font-size:.78rem;padding:11px 12px}
+.quality-section{background:#faf8f4}.quality-section .card{background:#fff}.project-card:after{width:30px;height:30px;right:18px;top:18px;background:radial-gradient(circle,var(--orange) 0 2px,transparent 3px)}
+.innovation-section{background:linear-gradient(145deg,#082e4e,#0a3b60)}.innovation-card{border-radius:20px}.innovation-section .tag{font-weight:600}
+.awards-section{background:linear-gradient(180deg,#f8f3e9,#f3eadc)}.award-wall{gap:14px}.award-card{border-radius:20px;padding:22px;box-shadow:0 9px 28px rgba(87,64,24,.055)}.award-card:before{font-size:1rem;right:17px;top:15px}.award-placement{font-size:1.65rem}
+.partners-section{background:#f8f6f1}.partners-hero{gap:14px}.partners-count,.partners-top{border-radius:20px;padding:25px}.partners-count .big{font-family:"DM Sans",sans-serif;font-size:4.3rem;font-weight:600}.partners-list{gap:12px}.partners-list .card{padding:20px}
+.attention-section{background:#faf6ee}.attention-group{margin-bottom:34px}.attention-group-head{margin-bottom:15px}.attention-group-head h3{font-size:1.85rem}.attention-card:before{width:5px}
+.final-note{padding:44px 0 50px}.final-note h3{font-size:2.3rem}.final-note p{font-size:.88rem;line-height:1.65}footer{padding:21px 0 30px}
+@media(max-width:1020px){.cover-grid{grid-template-columns:1fr}.cover-note{max-width:650px}.vision-grid{grid-template-columns:1fr}.edition-map{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.wrap{padding-left:20px;padding-right:20px}.cover-top{grid-template-columns:1fr;gap:18px}.issue-mark{text-align:left}.senac-lockup{align-items:center}.senac-logo{width:122px;min-height:56px}.senac-logo img{max-width:100px}.senac-word{font-size:.64rem}.cover-grid{margin-top:42px;gap:28px}.cover-title{font-size:clamp(3.7rem,17vw,5rem)}.cover-numbers{grid-template-columns:repeat(2,1fr);gap:1px}.cover-number:nth-child(3){border-left:0;border-top:1px solid rgba(255,255,255,.13)}.cover-number:nth-child(4){border-top:1px solid rgba(255,255,255,.13)}.edition-map{grid-template-columns:1fr}.section-head{grid-template-columns:1fr;gap:9px}.chapter{font-size:1.2rem}.section{padding:64px 0}.section h2{font-size:2.75rem}.final-note .wrap{grid-template-columns:1fr}.final-note h3{font-size:2rem}}
+
 </style>
 </head>
 <body>
-<div class="loading" id="loading"><div>Carregando edição publicada…</div></div>
-<header class="cover"><div class="wrap cover-inner">
-<div class="eyebrow">Núcleo de Qualidade e Inovação · Senac</div>
-<h1 id="coverTitle">Relatório Executivo Anual</h1>
-<p id="coverIntro">Uma leitura executiva dos resultados, iniciativas e prioridades do ano.</p>
-<div class="meta"><span id="coverYear">—</span><span id="publishedAt">—</span><span>Fonte oficial publicada</span></div>
-</div></header>
-<nav class="nav"><div class="wrap nav-inner">
-<a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Projetos de Qualidade</a><a href="#inovacao">04 Projetos de Inovação</a><a href="#premios">05 Prêmios e Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a>
-</div></nav>
+<div class="loading" id="loading">Preparando a edição…</div>
+<header class="issue-cover">
+  <div class="wrap cover-inner">
+    <div class="cover-top"><div class="senac-lockup"><div class="senac-logo" aria-label="Senac"><img src="https://www.rn.senac.br/assets/logo_senac.png" alt="Senac" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="senac-fallback">Senac</span></div><div class="senac-word">Núcleo de Qualidade e Inovação</div></div><div class="issue-mark">Edição anual<br>Relatório executivo</div></div>
+    <div class="cover-grid">
+      <div>
+        <div class="cover-rule"></div>
+        <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
+        <p class="cover-deck" id="coverIntro">Síntese anual dos resultados, programas, projetos e prioridades do Núcleo de Qualidade e Inovação.</p>
+        <div class="cover-meta"><span class="meta-chip" id="coverYear">Versão: —</span><span class="meta-chip" id="publishedAt">Data de atualização: —</span><span class="meta-chip" id="coverEdition">Edição: em preparação</span></div>
+      </div>
+      <aside class="cover-note"><small>Apresentação</small><h3>Relatório executivo anual</h3><p>Consolidação anual dos resultados, da execução dos programas e projetos, dos reconhecimentos, das parcerias e dos pontos de atenção.</p></aside>
+    </div>
+    <div class="cover-numbers" id="coverNumbers"></div>
+  </div>
+</header>
+<nav class="nav"><div class="wrap nav-inner"><a href="#visao">Visão do ano</a><a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Qualidade</a><a href="#inovacao">04 Inovação</a><a href="#premios">05 Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a></div></nav>
+<section class="vision" id="visao"><div class="wrap vision-grid reveal"><div><div class="vision-kicker">Visão do ano</div><h2>Estrutura da edição.</h2><p class="vision-lead" id="visionLead">A edição organiza o conteúdo em resultados, execução, reconhecimento institucional e pontos de atenção.</p><p class="vision-copy" id="visionCopy">A visão abaixo resume os capítulos e a distribuição dos principais conteúdos do período.</p></div><div class="edition-map" id="editionMap"></div></div></section>
+<section class="editorial-break"><div class="wrap"><div class="pull-quote" id="pullQuote">Leitura estruturada para acompanhamento executivo.</div><div class="pull-copy" id="pullCopy">Os capítulos combinam resultados, execução, reconhecimento institucional e pontos de atenção em uma única publicação.</div></div></section>
 <main>
-<section class="section" id="indicadores"><div class="wrap chapter"><div class="num">01</div><div><h2>Indicadores</h2><p class="lede">Resultados acompanhados por PLP, Contrato de Gestão e OKRs.</p><div class="grid" id="indicatorsGrid"></div></div></div></section>
-<section class="section" id="programas"><div class="wrap chapter"><div class="num">02</div><div><h2>Programas</h2><p class="lede">Programas estruturantes, ações e conexões com os indicadores do ano.</p><div id="programsList"></div></div></div></section>
-<section class="section" id="qualidade"><div class="wrap chapter"><div class="num">03</div><div><h2>Projetos de Qualidade</h2><p class="lede">Projetos voltados à consistência, melhoria e excelência dos processos.</p><div class="grid" id="qualityGrid"></div></div></div></section>
-<section class="section" id="inovacao"><div class="wrap chapter"><div class="num">04</div><div><h2>Projetos de Inovação</h2><p class="lede">Experimentação, investimento e transformação aplicada.</p><div class="grid" id="innovationGrid"></div></div></div></section>
-<section class="section" id="premios"><div class="wrap chapter"><div class="num">05</div><div><h2>Prêmios e Reconhecimentos</h2><p class="lede">Reconhecimentos externos, submissões e evidências da capacidade institucional.</p><div class="grid" id="awardsGrid"></div></div></div></section>
-<section class="section" id="parcerias"><div class="wrap chapter"><div class="num">06</div><div><h2>Parcerias</h2><p class="lede">Relações estratégicas que ampliaram alcance, repertório e capacidade de entrega.</p><div class="grid" id="partnersGrid"></div></div></div></section>
-<section class="section" id="atencao"><div class="wrap chapter"><div class="num">07</div><div><h2>Pontos de Atenção</h2><p class="lede">Prioridades que exigem acompanhamento executivo e ação de mitigação.</p><div class="grid" id="attentionGrid"></div></div></div></section>
+<section class="section" id="indicadores"><div class="wrap"><div class="section-head reveal"><div class="chapter">01</div><div><h2>Indicadores de resultado</h2><p class="section-lead">Os indicadores estão organizados por segmento e recebem sinalização visual quando o resultado não atende à meta.</p></div></div><div id="indicatorsGrid"></div></div></section>
+<section class="section" id="programas"><div class="wrap"><div class="section-head reveal"><div class="chapter">02</div><div><h2>Programas</h2><p class="section-lead">Os programas estruturantes apresentam objetivo, relação com indicadores e o conjunto de ações cadastradas com seu respectivo status.</p></div></div><div id="programsList"></div></div></section>
+<section class="section quality-section" id="qualidade"><div class="wrap"><div class="section-head reveal"><div class="chapter">03</div><div><h2>Projetos de qualidade</h2><p class="section-lead">Projetos de qualidade apresentados com status, período, síntese e indicadores relacionados.</p></div></div><div class="grid12" id="qualityGrid"></div></div></section>
+<section class="section innovation-section" id="inovacao"><div class="wrap"><div class="section-head reveal"><div class="chapter">04</div><div><h2>Projetos de inovação</h2><p class="section-lead">Projetos de inovação apresentados com status, período, síntese e indicadores relacionados.</p></div></div><div class="grid12" id="innovationGrid"></div></div></section>
+<section class="section awards-section" id="premios"><div class="wrap"><div class="section-head reveal"><div class="chapter">05</div><div><h2>Prêmios e reconhecimentos</h2><p class="section-lead">Registros de prêmios, reconhecimentos e submissões relacionados ao período.</p></div></div><div class="award-wall" id="awardsGrid"></div></div></section>
+<section class="section partners-section" id="parcerias"><div class="wrap"><div class="section-head reveal"><div class="chapter">06</div><div><h2>Parcerias</h2><p class="section-lead">Parcerias registradas na edição, com identificação dos destaques definidos no cadastro administrativo.</p></div></div><div id="partnersGrid"></div></div></section>
+<section class="section attention-section" id="atencao"><div class="wrap"><div class="section-head reveal"><div class="chapter">07</div><div><h2>Pontos de atenção</h2><p class="section-lead">Temas que requerem acompanhamento executivo, agrupados por categoria e priorizados pelo prazo.</p></div></div><div id="attentionGrid"></div></div></section>
 </main>
+<section class="final-note"><div class="wrap"><h3>Encerramento da edição</h3><p>Esta publicação consolida a versão vigente do relatório, identificando resultados, execução, reconhecimento institucional e pontos de atenção para acompanhamento.</p></div></section>
 <footer><div class="wrap">Relatório Executivo Anual · Núcleo de Qualidade e Inovação</div></footer>
 <script>
-const SUPABASE_URL='https://sfotzodsufntqaqsgmtv.supabase.co';
-const SUPABASE_KEY='sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w';
+const SUPABASE_URL="https://sfotzodsufntqaqsgmtv.supabase.co";
+const SUPABASE_KEY="sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w";
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
-const dtt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium",timeStyle:"short"}).format(new Date(v)):"—";
-const money=v=>v==null?"—":new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(v);
-const statusLabel=s=>({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—");
-const actionStatusLabel=s=>({aguardando:"Aguardando",em_andamento:"Em andamento",finalizada:"Finalizada"}[s]||s||"—");
-const targetDirLabel=s=>({gte:"Maior ou igual",lte:"Menor ou igual",exact:"Exato"}[s]||s||"—");
-const categoryLabel=s=>({premio_reconhecimento:"Prêmio / reconhecimento",edital_educacao_inovadora:"Edital Educação Inovadora",meee:"MEEE"}[s]||s||"—");
-const empty=msg=>`<div class="empty">${esc(msg)}</div>`;
-
-function showPreparing(){
-  $("#coverTitle").textContent="Relatório Executivo Anual";
-  $("#coverIntro").textContent="A edição está em preparação. O conteúdo aparecerá aqui assim que for publicado pela área administrativa.";
-  $("#coverYear").textContent="Edição em preparação";
-  $("#publishedAt").textContent="Ainda não publicada";
-  $("#indicatorsGrid").innerHTML=empty("Os indicadores aparecerão após a primeira publicação.");
-  $("#programsList").innerHTML=empty("Os programas aparecerão após a primeira publicação.");
-  $("#qualityGrid").innerHTML=empty("Os projetos de qualidade aparecerão após a primeira publicação.");
-  $("#innovationGrid").innerHTML=empty("Os projetos de inovação aparecerão após a primeira publicação.");
-  $("#awardsGrid").innerHTML=empty("Os prêmios e reconhecimentos aparecerão após a primeira publicação.");
-  $("#partnersGrid").innerHTML=empty("As parcerias aparecerão após a primeira publicação.");
-  $("#attentionGrid").innerHTML=empty("Os pontos de atenção aparecerão após a primeira publicação.");
-  $("#loading").classList.add("hidden");
-}
-
+const dt=v=>v?new Intl.DateTimeFormat('pt-BR',{dateStyle:'medium'}).format(new Date(v+'T12:00:00')):'—';
+const dtt=v=>v?new Intl.DateTimeFormat('pt-BR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(v)):'—';
+const money=v=>v==null?'—':new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
+const statusLabel=s=>({planejado:'Planejado',em_andamento:'Em andamento',concluido:'Concluído',pausado:'Pausado',cancelado:'Cancelado'}[s]||s||'—');
+const actionStatusLabel=s=>({aguardando:'Aguardando',em_andamento:'Em andamento',finalizada:'Finalizada'}[s]||s||'—');
+const targetDirLabel=s=>({gte:'Maior ou igual',lte:'Menor ou igual',exact:'Exato'}[s]||s||'—');
+const categoryLabel=s=>({premio_reconhecimento:'Prêmio / reconhecimento',edital_educacao_inovadora:'Edital Educação Inovadora',meee:'MEEE'}[s]||s||'—');
+const cleanUnit=u=>{const t=String(u||'').trim().toLowerCase();return ['número','numero','números','numeros','unidade','unidades'].includes(t)?'':String(u||'').trim();};
+const formatMetric=(v,u)=>v==null||v===''?'—':`${v}${cleanUnit(u)?` ${esc(cleanUnit(u))}`:''}`;
+const empty=t=>`<div class="empty">${esc(t)}</div>`;
+function metricState(x){if(x.latest_value==null||x.target_value==null)return{cls:'neutral',label:'Sem comparação'};const a=Number(x.latest_value),b=Number(x.target_value);if(Number.isNaN(a)||Number.isNaN(b))return{cls:'neutral',label:'Sem comparação'};let ok=x.target_direction==='lte'?a<=b:x.target_direction==='exact'?a===b:a>=b;return ok?{cls:'good',label:'Meta atendida'}:{cls:'alert',label:'Atenção à meta'};}
+function attentionCategory(row){const raw=String(row?.notes||'');const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category||(m?m[1].trim():''))||'Sem categoria';}
+function attentionNotes(row){return String(row?.notes||'').replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,'').trim();}
+function setupReveal(){const els=[...document.querySelectorAll('.reveal')];if(!('IntersectionObserver'in window)){els.forEach(x=>x.classList.add('show'));return};const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});els.forEach(x=>io.observe(x));}
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>Resultados e metas.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>Programas, projetos de qualidade e projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>Reconhecimentos e rede de parceiros.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>Prioridades agrupadas.</span></div>`;$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#loading').classList.add('hidden');setupReveal();}
 async function load(){
-  const {data:eds,error:e0}=await sb.from("editions").select("*").eq("status","published").limit(1);
-  if(e0) throw e0;
-  if(!eds?.length) return showPreparing();
-  const ed=eds[0];
-  $("#coverTitle").textContent=ed.title||"Relatório Executivo Anual";
-  $("#coverIntro").textContent=ed.intro||ed.subtitle||"Uma leitura executiva dos resultados, iniciativas e prioridades do ano.";
-  $("#coverYear").textContent=`Edição ${ed.year} · v${ed.version}`;
-  $("#publishedAt").textContent=ed.published_at?`Publicada em ${dtt(ed.published_at)}`:"Publicada";
-
-  const [ri,rp,rpa,rq,rinv,raw,rpar,ratt,rpi,rqi,rii]=await Promise.all([
-    sb.from("indicators").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("programs").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("program_actions").select("*").order("sort_order"),
-    sb.from("quality_projects").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("innovation_projects").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("awards_recognitions").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("partners").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("attention_points").select("*").eq("edition_id",ed.id).order("sort_order"),
-    sb.from("program_indicators").select("*"),
-    sb.from("quality_project_indicators").select("*"),
-    sb.from("innovation_project_indicators").select("*")
-  ]);
-  const indicators=ri.data||[], programs=rp.data||[], actions=rpa.data||[], quality=rq.data||[], innovation=rinv.data||[], awards=raw.data||[], partners=rpar.data||[], attention=ratt.data||[];
-  const byId=Object.fromEntries(indicators.map(x=>[x.id,x]));
-  const rel=(rows,key,id)=>rows.filter(x=>x[key]===id).map(x=>byId[x.indicator_id]).filter(Boolean);
-
-  $("#indicatorsGrid").innerHTML=indicators.length?indicators.map(x=>`
-    <article class="card">
-      <div class="kicker">${esc(x.segment)}</div>
-      <h3>${esc(x.name)}</h3>
-      ${x.code?`<p class="small"><strong>Código:</strong> ${esc(x.code)}</p>`:""}
-      <div class="value">${x.latest_value??"—"}${x.unit?" "+esc(x.unit):""}</div>
-      <p class="small"><strong>Meta:</strong> ${x.target_value??"—"}${x.unit?" "+esc(x.unit):""}</p>
-      ${x.unit?`<p class="small"><strong>Unidade:</strong> ${esc(x.unit)}</p>`:""}
-      <p class="small"><strong>Direção da meta:</strong> ${targetDirLabel(x.target_direction)}</p>
-      ${x.measurement_date?`<p class="small"><strong>Data da medição:</strong> ${dt(x.measurement_date)}</p>`:""}
-      ${x.notes?`<p class="small"><strong>Observações:</strong> ${esc(x.notes)}</p>`:""}
-    </article>`).join(""):empty("Nenhum indicador publicado.");
-
-  $("#programsList").innerHTML=programs.length?programs.map(p=>{
-    const ac=actions.filter(a=>a.program_id===p.id), links=rel(rpi.data||[],"program_id",p.id);
-    return `<article class="program">
-      <div class="kicker">Programa</div><h3>${esc(p.name)}</h3>
-      ${p.summary?`<p class="small"><strong>Resumo:</strong> ${esc(p.summary)}</p>`:""}
-      ${p.link_url?`<p class="small"><strong>Link:</strong> ${esc(p.link_url)}</p>`:""}
-      ${links.length?`<div><strong class="small">Indicadores relacionados:</strong><br>${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:""}
-      <div class="program-actions">
-      ${ac.length?ac.map(a=>`<div class="action"><div><strong>${esc(a.action)}</strong><div class="small">Status: ${actionStatusLabel(a.status)}</div></div><span class="small">${dt(a.start_date)} — ${dt(a.end_date)}</span></div>`).join(""):'<div class="small">Nenhuma ação cadastrada.</div>'}
-      </div>
-    </article>`;
-  }).join(""):empty("Nenhum programa publicado.");
-
-  $("#qualityGrid").innerHTML=quality.length?quality.map(p=>`<article class="card wide">
-    <div class="kicker">Qualidade</div><h3>${esc(p.name)}</h3>
-    <p class="small"><strong>Status:</strong> ${statusLabel(p.status)}</p>
-    ${p.start_date?`<p class="small"><strong>Início:</strong> ${dt(p.start_date)}</p>`:""}
-    ${p.end_date?`<p class="small"><strong>Fim:</strong> ${dt(p.end_date)}</p>`:""}
-    ${p.summary?`<p class="small"><strong>Resumo:</strong> ${esc(p.summary)}</p>`:""}
-    ${rel(rqi.data||[],"project_id",p.id).length?`<div><strong class="small">Indicadores relacionados:</strong><br>${rel(rqi.data||[],"project_id",p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:""}
-  </article>`).join(""):empty("Nenhum projeto de qualidade publicado.");
-
-  $("#innovationGrid").innerHTML=innovation.length?innovation.map(p=>`<article class="card wide">
-    <div class="kicker">Inovação</div><h3>${esc(p.name)}</h3>
-    <p class="small"><strong>Status:</strong> ${statusLabel(p.status)}</p>
-    ${p.start_date?`<p class="small"><strong>Início:</strong> ${dt(p.start_date)}</p>`:""}
-    ${p.end_date?`<p class="small"><strong>Fim:</strong> ${dt(p.end_date)}</p>`:""}
-    ${p.cost!=null?`<p class="small"><strong>Custo:</strong> ${money(p.cost)}</p>`:""}
-    ${p.summary?`<p class="small"><strong>Resumo:</strong> ${esc(p.summary)}</p>`:""}
-    ${rel(rii.data||[],"project_id",p.id).length?`<div><strong class="small">Indicadores relacionados:</strong><br>${rel(rii.data||[],"project_id",p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:""}
-  </article>`).join(""):empty("Nenhum projeto de inovação publicado.");
-
-  $("#awardsGrid").innerHTML=awards.length?awards.map(a=>`<article class="card">
-    <div class="kicker">${categoryLabel(a.category)}</div>
-    <h3>${esc(a.name||categoryLabel(a.category))}</h3>
-    ${a.placement?`<p class="small"><strong>Colocação:</strong> ${esc(a.placement)}</p>`:""}
-    ${a.notes?`<p class="small"><strong>Observações:</strong> ${esc(a.notes)}</p>`:""}
-  </article>`).join(""):empty("Nenhum prêmio ou reconhecimento publicado.");
-
-  $("#partnersGrid").innerHTML=partners.length?`
-    <article class="card full"><div class="kicker">Rede de parceiros</div><div class="value">${partners.length}</div><p class="small">parceiros registrados nesta edição</p></article>
-    ${partners.map(p=>`<article class="card"><div class="kicker">${p.is_top5?"Top 5":"Parceria"}</div><h3>${esc(p.name)}</h3>${p.notes?`<p class="small"><strong>Observações:</strong> ${esc(p.notes)}</p>`:""}</article>`).join("")}
-  `:empty("Nenhuma parceria publicada.");
-
-  const today=new Date();today.setHours(0,0,0,0);
-  $("#attentionGrid").innerHTML=attention.length?attention.map(a=>{
-    const d=a.deadline?new Date(a.deadline+"T12:00:00"):null;let cls="",label="";
-    if(d){const days=Math.ceil((d-today)/86400000);if(days<0){cls="overdue";label="Prazo vencido"}else if(days<=30){cls="soon";label="Prazo próximo"}else label="Em acompanhamento"}
-    return `<article class="card wide attention ${cls}"><div class="kicker">${label||"Acompanhamento"}</div><h3>${esc(a.name)}</h3><p class="small"><strong>Ação de mitigação:</strong> ${esc(a.mitigation_action)}</p><p class="small"><strong>Prazo:</strong> ${dt(a.deadline)}</p>${a.notes?`<p class="small"><strong>Observações:</strong> ${esc(a.notes)}</p>`:""}</article>`;
-  }).join(""):empty("Nenhum ponto de atenção publicado.");
-
-  $("#loading").classList.add("hidden");
+ const{data:eds,error:e0}=await sb.from('editions').select('*').eq('status','published').limit(1);if(e0)throw e0;if(!eds?.length)return showPreparing();const ed=eds[0];
+ $('#coverTitle').textContent=ed.title||'Relatório Executivo Anual';$('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese anual dos resultados, programas, projetos e prioridades do Núcleo de Qualidade e Inovação.';$('#coverYear').textContent=`Versão: v${ed.version}`;$('#publishedAt').textContent=ed.published_at?`Data de atualização: ${dtt(ed.published_at)}`:'Data de atualização: —';$('#coverEdition').textContent=`Edição: ${ed.year}`;
+ const[ri,rp,rpa,rq,rinv,raw,rpar,ratt,rpi,rqi,rii]=await Promise.all([sb.from('indicators').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('programs').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('program_actions').select('*').order('sort_order'),sb.from('quality_projects').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('innovation_projects').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('awards_recognitions').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('partners').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('attention_points').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('program_indicators').select('*'),sb.from('quality_project_indicators').select('*'),sb.from('innovation_project_indicators').select('*')]);
+ const indicators=ri.data||[],programs=rp.data||[],actions=rpa.data||[],quality=rq.data||[],innovation=rinv.data||[],awards=raw.data||[],partners=rpar.data||[],attention=ratt.data||[];const byId=Object.fromEntries(indicators.map(x=>[x.id,x]));const rel=(rows,key,id)=>rows.filter(x=>x[key]===id).map(x=>byId[x.indicator_id]).filter(Boolean);const projects=quality.length+innovation.length;
+ $('#coverNumbers').innerHTML=`<div class="cover-number"><strong>${indicators.length}</strong><span>indicadores acompanhados</span></div><div class="cover-number"><strong>${programs.length}</strong><span>programas cadastrados</span></div><div class="cover-number"><strong>${projects}</strong><span>projetos cadastrados</span></div><div class="cover-number"><strong>${attention.length}</strong><span>pontos de atenção</span></div>`;
+ $('#visionLead').textContent=`Esta edição reúne ${indicators.length} indicadores, ${programs.length} programas, ${projects} projetos, ${awards.length} registros de prêmios e ${partners.length} parcerias.`;$('#visionCopy').textContent='A estrutura abaixo resume como o conteúdo está distribuído nos capítulos do relatório.';$('#pullQuote').textContent='Leitura estruturada para acompanhamento executivo.';$('#pullCopy').textContent=`Resultados, execução, prêmios, parcerias e pontos de atenção estão organizados em sete capítulos.`;
+ $('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>${indicators.length} indicadores organizados por segmento.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>${programs.length} programas, ${quality.length} projetos de qualidade e ${innovation.length} projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>${awards.length} registros de prêmios/reconhecimentos e ${partners.length} parcerias.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>${attention.length} pontos agrupados por categoria.</span></div>`;
+ const grouped=Object.groupBy?Object.groupBy(indicators,x=>x.segment||'Outros'):indicators.reduce((a,x)=>{(a[x.segment||'Outros']??=[]).push(x);return a},{});$('#indicatorsGrid').innerHTML=Object.keys(grouped).length?Object.entries(grouped).map(([seg,items])=>`<div class="segment-block"><div class="segment-title"><span>${esc(seg)}</span></div><div class="grid12">${items.map(x=>{const st=metricState(x);return`<article class="card metric-card s4 ${st.cls}"><div class="kicker">${esc(x.name)}</div><div class="metric-value">${formatMetric(x.latest_value,x.unit)}</div><span class="metric-status ${st.cls}">${st.label}</span><div class="spec-grid"><div class="spec"><b>Meta</b><br>${formatMetric(x.target_value,x.unit)}</div><div class="spec"><b>Direção</b><br>${targetDirLabel(x.target_direction)}</div>${x.measurement_date?`<div class="spec"><b>Medição</b><br>${dt(x.measurement_date)}</div>`:''}${cleanUnit(x.unit)?`<div class="spec"><b>Unidade</b><br>${esc(cleanUnit(x.unit))}</div>`:''}</div>${x.code?`<p class="copy"><strong>Código:</strong> ${esc(x.code)}</p>`:''}${x.notes?`<p class="copy">${esc(x.notes)}</p>`:''}</article>`}).join('')}</div></div>`).join(''):empty('Nenhum indicador publicado.');
+ $('#programsList').innerHTML=programs.length?programs.map((p,idx)=>{const ac=actions.filter(a=>a.program_id===p.id),links=rel(rpi.data||[],'program_id',p.id);return`<article class="program-feature"><div class="program-content"><div class="program-index">${String(idx+1).padStart(2,'0')}</div><div class="program-top"><div><div class="kicker">Programa</div><h3>${esc(p.name)}</h3>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${p.link_url?`<p class="copy"><strong>Link:</strong> ${esc(p.link_url)}</p>`:''}</div><div><div class="kicker">Indicadores relacionados</div>${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:'<p class="copy">Sem indicadores relacionados.</p>'}</div></div><div class="actions">${ac.length?ac.map(a=>`<div class="action-row"><div><strong>${esc(a.action)}</strong></div><div>${dt(a.start_date)} — ${dt(a.end_date)}</div><div><span class="action-status ${a.status||'aguardando'}">${actionStatusLabel(a.status)}</span></div></div>`).join(''):'<div class="empty">Nenhuma ação cadastrada.</div>'}</div></div></article>`}).join(''):empty('Nenhum programa publicado.');
+ $('#qualityGrid').innerHTML=quality.length?quality.map(p=>`<article class="card project-card s6"><div class="kicker">Projeto de qualidade</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${rel(rqi.data||[],'project_id',p.id).length?`<div class="pill-list">${rel(rqi.data||[],'project_id',p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}</article>`).join(''):empty('Nenhum projeto de qualidade publicado.');
+ $('#innovationGrid').innerHTML=innovation.length?innovation.map(p=>`<article class="card innovation-card s6"><div class="kicker">Projeto de inovação</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${rel(rii.data||[],'project_id',p.id).length?`<div class="pill-list">${rel(rii.data||[],'project_id',p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}</article>`).join(''):empty('Nenhum projeto de inovação publicado.');
+ $('#awardsGrid').innerHTML=awards.length?awards.map(a=>`<article class="award-card"><div class="kicker">${categoryLabel(a.category)}</div><h3>${esc(a.name||categoryLabel(a.category))}</h3>${a.placement?`<div class="award-placement">${esc(a.placement)}</div>`:''}${a.notes?`<p class="copy">${esc(a.notes)}</p>`:''}</article>`).join(''):empty('Nenhum prêmio ou reconhecimento publicado.');
+ const top=partners.filter(p=>p.is_top5);$('#partnersGrid').innerHTML=partners.length?`<div class="partners-hero"><div class="partners-count"><div class="big">${partners.length}</div><p>parcerias registradas nesta edição.</p></div><div class="partners-top"><div class="kicker">Destaques da rede</div><h3>Top 5 parceiros</h3><div class="pill-list">${(top.length?top:partners.slice(0,5)).map(p=>`<span class="pill">${esc(p.name)}</span>`).join('')}</div></div></div><div class="partners-list">${partners.map(p=>`<article class="card"><div class="kicker">${p.is_top5?'Top 5':'Parceria'}</div><h3>${esc(p.name)}</h3>${p.notes?`<p class="copy">${esc(p.notes)}</p>`:''}</article>`).join('')}</div>`:empty('Nenhuma parceria publicada.');
+ const groups=attention.reduce((a,row)=>{const c=attentionCategory(row);(a[c]??=[]).push(row);return a},{}),today=new Date();today.setHours(0,0,0,0);$('#attentionGrid').innerHTML=attention.length?Object.entries(groups).map(([cat,items])=>`<div class="attention-group"><div class="attention-group-head"><h3>${esc(cat)}</h3><div class="copy">${items.length} ponto(s)</div></div><div class="grid12">${items.map(a=>{const d=a.deadline?new Date(a.deadline+'T12:00:00'):null;let cls='track',label='Em acompanhamento';if(d){const days=Math.ceil((d-today)/86400000);if(days<0){cls='overdue';label='Prazo vencido'}else if(days<=30){cls='soon';label='Prazo próximo'}}const note=attentionNotes(a);return`<article class="card attention-card s6 ${cls}"><div class="kicker">${label}</div><h3>${esc(a.name)}</h3><p class="copy"><strong>Ação de mitigação:</strong> ${esc(a.mitigation_action)}</p><p class="copy"><strong>Prazo:</strong> ${dt(a.deadline)}</p>${note?`<p class="copy">${esc(note)}</p>`:''}</article>`}).join('')}</div></div>`).join(''):empty('Nenhum ponto de atenção publicado.');
+ $('#loading').classList.add('hidden');setupReveal();
 }
-
-if(typeof supabase==="undefined"){
-  $("#loading").innerHTML="<div>Não foi possível carregar o serviço de dados. Verifique sua conexão e recarregue a página.</div>";
-}else{
-  load().catch(err=>{console.error(err);$("#loading").innerHTML="<div>Não foi possível carregar a edição publicada. Recarregue a página em alguns instantes.</div>";});
-}
+if(typeof supabase==='undefined'){$('#loading').textContent='Não foi possível carregar o serviço de dados.'}else{load().catch(e=>{console.error(e);$('#loading').textContent='Não foi possível carregar a edição publicada neste momento.'})}
 </script>
-</body>
-</html>
+</body></html>
