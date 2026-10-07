@@ -18,7 +18,7 @@
 .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap} .card{background:white;border-radius:20px;padding:20px;border:1px solid #e5eaec;margin-bottom:12px} .cardhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start} .tag{display:inline-block;border-radius:999px;background:#eef5f9;color:var(--blue);padding:4px 8px;font-size:.66rem;font-weight:700} .muted{color:var(--muted)} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .modal{position:fixed;inset:0;background:rgba(10,28,40,.55);z-index:100;display:grid;place-items:center;padding:20px} .modalbox{width:min(760px,100%);max-height:90vh;overflow:auto;background:white;border-radius:24px;padding:24px} .modalhead{display:flex;justify-content:space-between;gap:18px} .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px} .check{display:flex;gap:8px;align-items:flex-start;padding:9px;background:#f8fafb;border-radius:10px} .check input{width:auto;margin-top:2px}
 .notice{border-left:4px solid var(--orange);background:#fff7e9;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.8rem;color:#6c5836} .statusline{font-size:.8rem;color:var(--muted)} .success{color:var(--green)} .error{color:var(--red)}
-.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.health-preview{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;font-size:.7rem;font-weight:800;margin-top:4px}.health-preview:before{content:"⚑"}.hp-risco{background:#fdebea;color:#a9342c}.hp-atencao{background:#fff4d8;color:#8a6200}.hp-adequada{background:#e6f4eb;color:#2e7d4f}.admin-filters{display:grid;grid-template-columns:minmax(180px,1fr) 170px;gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.health-preview{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;font-size:.7rem;font-weight:800;margin-top:4px}.health-preview:before{content:"⚑"}.hp-risco{background:#fdebea;color:#a9342c}.hp-atencao{background:#fff4d8;color:#8a6200}.hp-adequada{background:#e6f4eb;color:#2e7d4f}.admin-filters{display:grid;grid-template-columns:minmax(190px,1fr) repeat(3,minmax(145px,180px));gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
 @media(max-width:900px){.admin-filters{grid-template-columns:1fr}.history-row{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
 </style>
 
@@ -72,7 +72,22 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 <div class="card"><div class="toolbar"><div><div class="eyebrow">Histórico</div><h3>Edições anuais</h3></div></div><div id="historyList" class="history-list"></div></div>
     </section>
 
-    <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="indicators" aria-label="Buscar em Indicadores"><select data-section-sort="indicators"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="indicatorsList" class="sectionlist"></div></div></section>
+    <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div class="admin-filters">
+<input type="search" placeholder="Buscar indicador…" data-section-search="indicators" aria-label="Buscar em Indicadores">
+<select data-indicator-type-filter aria-label="Filtrar por tipo de indicador">
+<option value="all">Todos os tipos</option>
+<option value="PLP">PLP</option>
+<option value="DN">DN</option>
+<option value="OKR">OKR</option>
+<option value="GERENCIAL">Gerencial</option>
+</select>
+<select data-indicator-contract-filter aria-label="Filtrar por Contrato de Gestão">
+<option value="all">Contrato de Gestão: Todos</option>
+<option value="yes">Contrato de Gestão: Sim</option>
+<option value="no">Contrato de Gestão: Não</option>
+</select>
+<select data-section-sort="indicators"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select>
+</div><div id="indicatorsList" class="sectionlist"></div></div></section>
     <section class="panel" id="panel-programs"><div class="hero"><div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2></div><button class="btn primary" data-add="program">+ Novo programa</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="programs" aria-label="Buscar em Programas"><select data-section-sort="programs"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="programsList" class="sectionlist"></div></div></section>
     <section class="panel" id="panel-quality"><div class="hero"><div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2></div><button class="btn primary" data-add="quality">+ Novo projeto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="quality" aria-label="Buscar em Projetos de Qualidade"><select data-section-sort="quality"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="qualityList" class="sectionlist"></div></div></section>
     <section class="panel" id="panel-innovation"><div class="hero"><div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2></div><button class="btn primary" data-add="innovation">+ Novo projeto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="innovation" aria-label="Buscar em Projetos de Inovação"><select data-section-sort="innovation"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="innovationList" class="sectionlist"></div></div></section>
@@ -208,7 +223,7 @@ async function loadEditionData(){
   renderAll();
 }
 function renderAll(){
-  $("#indicatorsList").innerHTML=data.indicators.length?[...data.indicators].sort((a,b)=>({PLP:1,DN:2,OKR:3,GERENCIAL:4}[a.segment]||99)-({PLP:1,DN:2,OKR:3,GERENCIAL:4}[b.segment]||99)).map(x=>card("indicator",x.id,x.name,`${indicatorTypeLabel(x.segment)}${x.is_management_contract?" · Contrato de Gestão":""} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)).join(""):empty("Nenhum indicador cadastrado.");
+  $("#indicatorsList").innerHTML=data.indicators.length?[...data.indicators].sort((a,b)=>({PLP:1,DN:2,OKR:3,GERENCIAL:4}[a.segment]||99)-({PLP:1,DN:2,OKR:3,GERENCIAL:4}[b.segment]||99)).map(x=>`<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}" data-indicator-type="${esc(x.segment||"")}" data-indicator-contract="${x.is_management_contract?"yes":"no"}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${indicatorTypeLabel(x.segment)}${x.is_management_contract?" · Contrato de Gestão":""} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="indicator">${edition.status==="archived"?"Consultar":"Editar"}</button></div></article>`).join(""):empty("Nenhum indicador cadastrado.");
   $("#programsList").innerHTML=data.programs.length?data.programs.map(x=>{const ac=data.actions.filter(a=>a.program_id===x.id).length; const rels=data.programLinks.filter(l=>l.program_id===x.id).length; return card("program",x.id,x.name,`${ac} ações · ${rels} indicador(es) relacionado(s)`) }).join(""):empty("Nenhum programa cadastrado.");
   $("#qualityList").innerHTML=data.quality.length?data.quality.map(x=>{const ac=data.qualityActions.filter(a=>a.project_id===x.id).length;return card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
   $("#innovationList").innerHTML=data.innovation.length?data.innovation.map(x=>{const ac=data.innovationActions.filter(a=>a.project_id===x.id).length;return card("innovation",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
@@ -231,8 +246,15 @@ function applySectionFilter(section){
   const list=$("#"+section+"List"), search=$(`[data-section-search="${section}"]`), sort=$(`[data-section-sort="${section}"]`);
   if(!list)return;
   const q=(search?.value||"").trim().toLowerCase();
+  const typeFilter=section==="indicators"?$("[data-indicator-type-filter]")?.value||"all":"all";
+  const contractFilter=section==="indicators"?$("[data-indicator-contract-filter]")?.value||"all":"all";
   const cards=[...list.querySelectorAll("[data-filter-card]")];
-  cards.forEach(c=>{c.style.display=!q||c.textContent.toLowerCase().includes(q)?"":"none"});
+  cards.forEach(c=>{
+    const textOk=!q||c.textContent.toLowerCase().includes(q);
+    const typeOk=typeFilter==="all"||c.dataset.indicatorType===typeFilter;
+    const contractOk=contractFilter==="all"||c.dataset.indicatorContract===contractFilter;
+    c.style.display=textOk&&typeOk&&contractOk?"":"none";
+  });
   if(sort?.value==="az"||sort?.value==="za"){
     const mult=sort.value==="az"?1:-1;
     [...cards].sort((a,b)=>mult*(a.dataset.filterTitle||"").localeCompare(b.dataset.filterTitle||"","pt-BR")).forEach(c=>list.appendChild(c));
@@ -241,6 +263,8 @@ function applySectionFilter(section){
 function applyAllSectionFilters(){["indicators","programs","quality","innovation","awards","partners","attention"].forEach(applySectionFilter)}
 $$("[data-section-search]").forEach(el=>el.addEventListener("input",()=>applySectionFilter(el.dataset.sectionSearch)));
 $$("[data-section-sort]").forEach(el=>el.addEventListener("change",()=>applySectionFilter(el.dataset.sectionSort)));
+$("[data-indicator-type-filter]")?.addEventListener("change",()=>applySectionFilter("indicators"));
+$("[data-indicator-contract-filter]")?.addEventListener("change",()=>applySectionFilter("indicators"));
 
 function openModal(type,id){
   modalState={type,id};
