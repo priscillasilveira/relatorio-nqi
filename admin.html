@@ -18,7 +18,7 @@
 .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap} .card{background:white;border-radius:20px;padding:20px;border:1px solid #e5eaec;margin-bottom:12px} .cardhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start} .tag{display:inline-block;border-radius:999px;background:#eef5f9;color:var(--blue);padding:4px 8px;font-size:.66rem;font-weight:700} .muted{color:var(--muted)} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .modal{position:fixed;inset:0;background:rgba(10,28,40,.55);z-index:100;display:grid;place-items:center;padding:20px} .modalbox{width:min(760px,100%);max-height:90vh;overflow:auto;background:white;border-radius:24px;padding:24px} .modalhead{display:flex;justify-content:space-between;gap:18px} .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px} .check{display:flex;gap:8px;align-items:flex-start;padding:9px;background:#f8fafb;border-radius:10px} .check input{width:auto;margin-top:2px}
 .notice{border-left:4px solid var(--orange);background:#fff7e9;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.8rem;color:#6c5836} .statusline{font-size:.8rem;color:var(--muted)} .success{color:var(--green)} .error{color:var(--red)}
-.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.admin-filters{display:grid;grid-template-columns:minmax(180px,1fr) 170px;gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.health-preview{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;font-size:.7rem;font-weight:800;margin-top:4px}.health-preview:before{content:"⚑"}.hp-risco{background:#fdebea;color:#a9342c}.hp-atencao{background:#fff4d8;color:#8a6200}.hp-adequada{background:#e6f4eb;color:#2e7d4f}.admin-filters{display:grid;grid-template-columns:minmax(180px,1fr) 170px;gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
 @media(max-width:900px){.admin-filters{grid-template-columns:1fr}.history-row{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
 </style>
 
@@ -98,6 +98,7 @@ let modalState={type:null,id:null};
 function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kind}
 function empty(t){return `<div class="empty">${esc(t)}</div>`}
 function statusLabel(s){return ({planejado:"Planejado",em_andamento:"Em andamento",concluido:"Concluído",pausado:"Pausado",cancelado:"Cancelado"}[s]||s||"—")}
+function healthStatusLabel(s){return ({risco:"Em risco",atencao:"Em atenção",adequada:"Adequada"}[s]||"Adequada")}
 function editionStatusLabel(s){return ({draft:"Rascunho",published:"Publicada",archived:"Arquivada"}[s]||s||"—")}
 function indicatorTypeLabel(s){return ({PLP:"PLP",DN:"DN",OKR:"OKR",GERENCIAL:"Gerencial"}[s]||s||"—")}
 function extractAttentionCategory(row){const raw=String(row?.notes||"");const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category|| (m?m[1].trim():""))||"Sem categoria"}
@@ -264,6 +265,7 @@ function openModal(type,id){
         <div class="grid2">
           ${field("action_"+a.id,"Ação",a.action).replace('id="f_action_'+a.id+'"','id="sub_action_'+a.id+'"')}
           ${select("status_"+a.id,"Status",a.status||"aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_status_'+a.id+'"','id="sub_status_'+a.id+'"')}
+          ${select("health_"+a.id,"Situação da ação",a.health_status||"adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_health_'+a.id+'"','id="sub_health_'+a.id+'"')}
         </div>
         <div class="grid2">
           ${field("start_"+a.id,"Data de início",a.start_date||"","date").replace('id="f_start_'+a.id+'"','id="sub_start_'+a.id+'"')}
@@ -289,6 +291,7 @@ function openModal(type,id){
           <div class="grid2">
             ${field("paction_"+a.id,"Ação",a.action).replace('id="f_paction_'+a.id+'"','id="sub_paction_'+a.id+'"')}
             ${select("pstatus_"+a.id,"Status",a.status||"aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_pstatus_'+a.id+'"','id="sub_pstatus_'+a.id+'"')}
+            ${select("phealth_"+a.id,"Situação da ação",a.health_status||"adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_phealth_'+a.id+'"','id="sub_phealth_'+a.id+'"')}
           </div>
           <div class="grid2">
             ${field("pstart_"+a.id,"Data de início",a.start_date||"","date").replace('id="f_pstart_'+a.id+'"','id="sub_pstart_'+a.id+'"')}
@@ -322,6 +325,7 @@ function setupActionsEditor(){
       <div class="grid2">
         ${field("tmp_action","Ação","").replace('id="f_tmp_action"','id="sub_action_'+id+'"')}
         ${select("tmp_status","Status","aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_tmp_status"','id="sub_status_'+id+'"')}
+        ${select("tmp_health","Situação da ação","adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_tmp_health"','id="sub_health_'+id+'"')}
       </div>
       <div class="grid2">
         ${field("tmp_start","Data de início","","date").replace('id="f_tmp_start"','id="sub_start_'+id+'"')}
@@ -343,6 +347,7 @@ function setupProjectActionsEditor(){
       <div class="grid2">
         ${field("tmp_paction","Ação","").replace('id="f_tmp_paction"','id="sub_paction_'+id+'"')}
         ${select("tmp_pstatus","Status","aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_tmp_pstatus"','id="sub_pstatus_'+id+'"')}
+        ${select("tmp_phealth","Situação da ação","adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_tmp_phealth"','id="sub_phealth_'+id+'"')}
       </div>
       <div class="grid2">
         ${field("tmp_pstart","Data de início","","date").replace('id="f_tmp_pstart"','id="sub_pstart_'+id+'"')}
@@ -365,14 +370,15 @@ async function syncActions(programId){
     const aid=b.dataset.actionId;
     const action=$("#sub_action_"+aid)?.value.trim();
     const status=$("#sub_status_"+aid)?.value||"aguardando";
+    const health_status=$("#sub_health_"+aid)?.value||"adequada";
     const start=$("#sub_start_"+aid)?.value||null;
     const end=$("#sub_end_"+aid)?.value||null;
     if(!action) continue;
     if(aid.startsWith("new_")){
-      const {data:r,error}=await sb.from("program_actions").insert({program_id:programId,action,status,start_date:start,end_date:end}).select().single();
+      const {data:r,error}=await sb.from("program_actions").insert({program_id:programId,action,status,health_status,start_date:start,end_date:end}).select().single();
       if(error)throw error;keep.push(r.id)
     } else {
-      const {error}=await sb.from("program_actions").update({action,status,start_date:start,end_date:end}).eq("id",aid);
+      const {error}=await sb.from("program_actions").update({action,status,health_status,start_date:start,end_date:end}).eq("id",aid);
       if(error)throw error;keep.push(aid)
     }
   }
@@ -390,15 +396,16 @@ async function syncProjectActions(type,projectId){
     const aid=b.dataset.projectActionId;
     const action=$("#sub_paction_"+aid)?.value.trim();
     const status=$("#sub_pstatus_"+aid)?.value||"aguardando";
+    const health_status=$("#sub_phealth_"+aid)?.value||"adequada";
     const start=$("#sub_pstart_"+aid)?.value||null;
     const end=$("#sub_pend_"+aid)?.value||null;
     if(!action) continue;
     if(aid.startsWith("new_")){
-      const {data:r,error}=await sb.from(table).insert({project_id:projectId,action,status,start_date:start,end_date:end}).select().single();
+      const {data:r,error}=await sb.from(table).insert({project_id:projectId,action,status,health_status,start_date:start,end_date:end}).select().single();
       if(error)throw error;
       keep.push(r.id);
     }else{
-      const {error}=await sb.from(table).update({action,status,start_date:start,end_date:end}).eq("id",aid);
+      const {error}=await sb.from(table).update({action,status,health_status,start_date:start,end_date:end}).eq("id",aid);
       if(error)throw error;
       keep.push(aid);
     }
