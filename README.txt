@@ -5,13 +5,6 @@ ARQUITETURA
 - admin.html: área administrativa com login
 - Supabase: banco, autenticação e regras de acesso
 
-PRIMEIRO ACESSO
-1. Abra admin.html no site.
-2. Digite uma senha com no mínimo 8 caracteres.
-3. Clique em "Primeiro acesso".
-4. Se receber e-mail de confirmação, confirme.
-5. Volte ao admin e clique em "Entrar".
-
 FLUXO
 - Preencha os formulários por seção.
 - Os dados ficam salvos no banco como rascunho.
