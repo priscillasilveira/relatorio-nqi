@@ -5,10 +5,6 @@ ARQUITETURA
 - admin.html: área administrativa com login
 - Supabase: banco, autenticação e regras de acesso
 
-ACESSO ADMINISTRATIVO
-Único e-mail autorizado:
-pcmsilveira@gmail.com
-
 PRIMEIRO ACESSO
 1. Abra admin.html no site.
 2. Digite uma senha com no mínimo 8 caracteres.
