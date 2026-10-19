@@ -5,7 +5,9 @@
 <title>Admin NQI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <style>
 :root{--deep:#003c71;--blue:#005ca9;--orange:#f7941d;--paper:#f4f1ea;--ink:#172a36;--muted:#667781;--line:#d9e1e5;--white:#fff;--green:#287657;--red:#a94639}
 *{box-sizing:border-box} body{margin:0;background:var(--paper);font-family:"DM Sans",system-ui,sans-serif;color:var(--ink)} button,input,select,textarea{font:inherit} .hidden{display:none!important}
@@ -35,10 +37,10 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
     <p class="small">Apenas <strong>pcmsilveira@gmail.com</strong> pode acessar os dados e publicar edições.</p>
     <div class="field"><label>E-mail</label><input id="email" type="email" value="pcmsilveira@gmail.com" readonly></div>
     <div class="field"><label>Senha</label><input id="password" type="password" placeholder="Sua senha"></div>
-    <div class="row"><button class="btn primary" id="loginBtn">Entrar</button><button class="btn ghost" id="signupBtn">Criar meu acesso</button></div>
+    <div class="row"><button class="btn primary" id="loginBtn">Entrar</button></div>
     <button class="btn ghost mini" id="forgotBtn" style="margin-top:10px">Esqueci minha senha</button>
     <p class="small" id="loginMsg" aria-live="polite"></p>
-    <div class="notice" style="margin-top:18px"><strong>Primeiro acesso:</strong> crie uma senha com pelo menos 8 caracteres e clique em “Criar meu acesso”. Se receber um e-mail do Supabase, confirme o cadastro e depois volte a esta página para entrar.</div>
+    <div class="notice" style="margin-top:18px"><strong>Acesso restrito:</strong> use a conta administrativa cadastrada no Firebase Authentication. A criação de novos usuários é feita somente pelo console do Firebase.</div>
   </div>
 </section>
 
@@ -100,10 +102,16 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 <div class="modal hidden" id="modal"><div class="modalbox"><div class="modalhead"><div><div class="eyebrow" id="modalEyebrow">Editar</div><h3 id="modalTitle">Registro</h3></div><button class="btn ghost mini" id="closeModal">Fechar</button></div><div id="modalBody"></div><div class="row" style="margin-top:18px"><button class="btn primary" id="saveModal">Salvar</button><button class="btn danger hidden" id="deleteModal">Excluir</button></div><p class="statusline" id="modalMsg"></p></div></div>
 
 <script>
-const SUPABASE_URL="https://sfotzodsufntqaqsgmtv.supabase.co";
-const SUPABASE_KEY="sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w";
+let db,auth;
+const FIREBASE_CONFIG={
+  apiKey:"AIzaSyC1Dkhtl3PYlbhzWwaGzxayfVLAPj9cRns",
+  authDomain:"relatorionqi.firebaseapp.com",
+  projectId:"relatorionqi",
+  storageBucket:"relatorionqi.firebasestorage.app",
+  messagingSenderId:"741829970405",
+  appId:"1:741829970405:web:a1c514bdea447446b5c70c"
+};
 const ADMIN_EMAIL="pcmsilveira@gmail.com";
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
@@ -128,62 +136,72 @@ function extractAttentionCategory(row){const raw=String(row?.notes||"");const m=
 function extractAttentionNotes(row){return String(row?.notes||"").replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,"").trim()}
 function packAttentionNotes(category,notes){const cat=String(category||"").trim(); const txt=String(notes||"").trim(); return cat?`[[CAT]]${cat}[[/CAT]]${txt?`\n${txt}`:""}`:txt}
 
-function authMessage(error){
-  const m=String(error?.message||error||"").toLowerCase();
-  if(m.includes("invalid login credentials")) return "E-mail ou senha incorretos. Se este for seu primeiro acesso, clique em “Criar meu acesso”.";
-  if(m.includes("email not confirmed")) return "Seu cadastro ainda não foi confirmado. Abra o e-mail enviado pelo Supabase, confirme e depois volte para entrar.";
-  if(m.includes("user already registered") || m.includes("already been registered")) return "Seu acesso já foi criado. Use “Entrar”. Se não lembrar a senha, clique em “Esqueci minha senha”.";
-  if(m.includes("password") && m.includes("least")) return "A senha precisa ter pelo menos 8 caracteres.";
-  if(m.includes("rate limit")) return "Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.";
-  return error?.message || String(error || "Não foi possível concluir o acesso.");
-}
 
-async function authInit(){
-  const {data:{session:s}}=await sb.auth.getSession();
-  if(s && s.user?.email===ADMIN_EMAIL) return enter(s);
-  showLogin();
+
+function authMessage(error){
+  const code=String(error?.code||"");
+  if(["auth/invalid-credential","auth/wrong-password","auth/user-not-found"].includes(code))return "E-mail ou senha incorretos.";
+  if(code==="auth/too-many-requests")return "Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.";
+  if(code==="auth/network-request-failed")return "Falha de conexão. Verifique sua internet e tente novamente.";
+  if(code==="auth/invalid-email")return "O e-mail administrativo configurado é inválido.";
+  return error?.message||String(error||"Não foi possível concluir o acesso.");
 }
 function showLogin(){$("#loginScreen").classList.remove("hidden");$("#app").classList.add("hidden")}
-async function enter(s){
-  if(s.user?.email!==ADMIN_EMAIL){await sb.auth.signOut();return showLogin()}
-  session=s;$("#sessionEmail").textContent=s.user.email;$("#loginScreen").classList.add("hidden");$("#app").classList.remove("hidden");await loadAll();
+let enteredUid=null;
+async function enter(user){
+  if(!user||user.email!==ADMIN_EMAIL){
+    if(user)await auth.signOut();
+    enteredUid=null;
+    return showLogin();
+  }
+  if(enteredUid===user.uid&&!$("#app").classList.contains("hidden"))return;
+  enteredUid=user.uid;
+  session=user;
+  $("#sessionEmail").textContent=user.email;
+  $("#loginScreen").classList.add("hidden");
+  $("#app").classList.remove("hidden");
+  await loadAll();
 }
 $("#loginBtn").onclick=async()=>{
   const pw=$("#password").value;
   if(!pw)return msg($("#loginMsg"),"Digite sua senha.","error");
   msg($("#loginMsg"),"Entrando…");
-  const {data:d,error}=await sb.auth.signInWithPassword({email:ADMIN_EMAIL,password:pw});
-  if(error)return msg($("#loginMsg"),authMessage(error),"error");
-  if(!d.session)return msg($("#loginMsg"),"Não foi possível iniciar a sessão. Tente novamente.","error");
-  enter(d.session);
+  try{
+    await auth.signInWithEmailAndPassword(ADMIN_EMAIL,pw);
+  }catch(error){
+    msg($("#loginMsg"),authMessage(error),"error");
+  }
 };
-$("#signupBtn").onclick=async()=>{
-  const pw=$("#password").value;
-  if(pw.length<8)return msg($("#loginMsg"),"Use uma senha com pelo menos 8 caracteres.","error");
-  msg($("#loginMsg"),"Criando seu acesso…");
-  const {data:d,error}=await sb.auth.signUp({email:ADMIN_EMAIL,password:pw});
-  if(error)return msg($("#loginMsg"),authMessage(error),"error");
-  if(d.session)return enter(d.session);
-  if(d.user && Array.isArray(d.user.identities) && d.user.identities.length===0)
-    return msg($("#loginMsg"),"Seu acesso já existe. Use “Entrar” ou “Esqueci minha senha”.","error");
-  msg($("#loginMsg"),"Acesso criado. Confira sua caixa de entrada e o spam para confirmar o e-mail. Depois volte aqui e clique em “Entrar”.","success");
-};
+$("#password").addEventListener("keydown",e=>{if(e.key==="Enter")$("#loginBtn").click()});
 $("#forgotBtn").onclick=async()=>{
   msg($("#loginMsg"),"Enviando instruções de recuperação…");
-  const {error}=await sb.auth.resetPasswordForEmail(ADMIN_EMAIL);
-  if(error)return msg($("#loginMsg"),authMessage(error),"error");
-  msg($("#loginMsg"),"Se o acesso já existir, você receberá um e-mail para redefinir a senha. Confira também o spam.","success");
+  try{
+    await auth.sendPasswordResetEmail(ADMIN_EMAIL);
+    msg($("#loginMsg"),"Enviamos um e-mail para redefinir a senha. Confira também o spam.","success");
+  }catch(error){
+    msg($("#loginMsg"),authMessage(error),"error");
+  }
 };
-$("#logoutBtn").onclick=async()=>{await sb.auth.signOut();location.reload()};
+$("#logoutBtn").onclick=async()=>{await auth.signOut();location.reload()};
 
 $$(".navbtn").forEach(b=>b.onclick=()=>{$$(".navbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");$$(".panel").forEach(x=>x.classList.remove("active"));$("#panel-"+b.dataset.panel).classList.add("active")});
 
+
+
+function editionRef(year=edition?.year){return db.collection("edicoes").doc(String(year))}
+function editionCollection(name,year=edition?.year){return editionRef(year).collection(name)}
+async function readCollection(name){
+  const snap=await editionCollection(name).get();
+  return snap.docs.map(d=>({id:d.id,...d.data()}));
+}
+function deriveLinks(items,key){
+  return items.flatMap(item=>(item.indicator_ids||[]).map(indicator_id=>({[key]:item.id,indicator_id})));
+}
 async function loadAll(preferredYear=null){
-  const {data:eds,error}=await sb.from("editions").select("*").order("year",{ascending:false});
-  if(error)throw error;
-  editions=eds||[];
-  if(!editions.length) return createAnnualEdition();
-  edition=(preferredYear?editions.find(x=>x.year===Number(preferredYear)):null) || editions.find(x=>x.status==="draft") || editions.find(x=>x.status==="published") || editions[0];
+  const snap=await db.collection("edicoes").get();
+  editions=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.year||0)-(a.year||0));
+  if(!editions.length)return createAnnualEdition();
+  edition=(preferredYear?editions.find(x=>x.year===Number(preferredYear)):null)||editions.find(x=>x.status==="draft")||editions.find(x=>x.status==="published")||editions[0];
   populateYearFilter();
   renderHistory();
   await loadEditionData();
@@ -194,13 +212,19 @@ function populateYearFilter(){
   sel.innerHTML=editions.map(e=>`<option value="${e.year}" ${e.id===edition.id?"selected":""}>${e.year} · ${editionStatusLabel(e.status)}</option>`).join("");
 }
 function renderHistory(){
-  const el=$("#historyList"); if(!el)return;
+  const el=$("#historyList");if(!el)return;
   el.innerHTML=editions.length?editions.map(e=>`<div class="history-row"><div class="history-year">${e.year}</div><div><strong>${editionStatusLabel(e.status)}</strong><div class="small">${e.published_at?`Última publicação: ${new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium",timeStyle:"short"}).format(new Date(e.published_at))}`:"Ainda não publicada"}</div></div><div class="row"><button class="btn ghost mini" type="button" data-history-open="${e.year}">Consultar</button><button class="btn ghost mini" type="button" data-history-pdf="${e.year}">PDF</button></div></div>`).join(""):empty("Nenhuma edição anual cadastrada.");
   $$("[data-history-open]").forEach(b=>b.onclick=()=>loadAll(Number(b.dataset.historyOpen)));
   $$("[data-history-pdf]").forEach(b=>b.onclick=()=>openPdfForYear(Number(b.dataset.historyPdf)));
 }
 async function loadEditionData(){
-  $("#editionYear").value=edition.year;$("#editionVersion").value=edition.version;$("#editionStatus").value=editionStatusLabel(edition.status);$("#editionName").value=edition.title||"";$("#editionSubtitle").value=edition.subtitle||"";$("#editionIntro").value=edition.intro||"";$("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year} · v${edition.version}`;
+  $("#editionYear").value=edition.year;
+  $("#editionVersion").value=edition.version||1;
+  $("#editionStatus").value=editionStatusLabel(edition.status);
+  $("#editionName").value=edition.title||"";
+  $("#editionSubtitle").value=edition.subtitle||"";
+  $("#editionIntro").value=edition.intro||"";
+  $("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year} · v${edition.version||1}`;
   const isArchived=edition.status==="archived";
   $("#app").classList.toggle("readonly-mode",isArchived);
   $("#publishBtn").classList.toggle("hidden",edition.status!=="draft");
@@ -208,28 +232,32 @@ async function loadEditionData(){
   $("#saveEditionBtn").classList.toggle("hidden",isArchived);
   $("#newEditionBtn").disabled=edition.status==="draft";
   $("#newEditionBtn").title=edition.status==="draft"?"Publique o rascunho atual antes de criar um novo ano.":"";
-  ["editionYear","editionName","editionSubtitle","editionIntro"].forEach(id=>{$("#"+id).disabled=isArchived});
+  $("#editionYear").disabled=true;
+  ["editionName","editionSubtitle","editionIntro"].forEach(id=>{$("#"+id).disabled=isArchived});
   $("#editionMsg").innerHTML=isArchived?'<span class="readonly-note">Ano arquivado: consulta somente leitura. Para alterar dados, utilize o ano atual.</span>':"";
   if($("#adminYearFilter"))$("#adminYearFilter").value=String(edition.year);
-  const id=edition.id;
-  const [i,p,a,q,iv,qa,ia,aw,pa,at,pl,ql,il]=await Promise.all([
-    sb.from("indicators").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("programs").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("program_actions").select("*").order("sort_order"),
-    sb.from("quality_projects").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("innovation_projects").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("quality_project_actions").select("*").order("sort_order"),
-    sb.from("innovation_project_actions").select("*").order("sort_order"),
-    sb.from("awards_recognitions").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("partners").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("attention_points").select("*").eq("edition_id",id).order("sort_order"),
-    sb.from("program_indicators").select("*"),
-    sb.from("quality_project_indicators").select("*"),
-    sb.from("innovation_project_indicators").select("*")
+
+  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention]=await Promise.all([
+    readCollection("indicators"),
+    readCollection("programs"),
+    readCollection("program_actions"),
+    readCollection("quality_projects"),
+    readCollection("innovation_projects"),
+    readCollection("quality_project_actions"),
+    readCollection("innovation_project_actions"),
+    readCollection("awards_recognitions"),
+    readCollection("partners"),
+    readCollection("attention_points")
   ]);
-  Object.assign(data,{indicators:i.data||[],programs:p.data||[],actions:a.data||[],quality:q.data||[],innovation:iv.data||[],qualityActions:qa.data||[],innovationActions:ia.data||[],awards:aw.data||[],partners:pa.data||[],attention:at.data||[],programLinks:pl.data||[],qualityLinks:ql.data||[],innovationLinks:il.data||[]});
+  Object.assign(data,{
+    indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,
+    programLinks:deriveLinks(programs,"program_id"),
+    qualityLinks:deriveLinks(quality,"project_id"),
+    innovationLinks:deriveLinks(innovation,"project_id")
+  });
   renderAll();
 }
+
 function renderAll(){
   $("#indicatorsList").innerHTML=data.indicators.length?[...data.indicators].sort((a,b)=>({PLP:1,DN:2,OKR:3,GERENCIAL:4}[a.segment]||99)-({PLP:1,DN:2,OKR:3,GERENCIAL:4}[b.segment]||99)).map(x=>`<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}" data-indicator-type="${esc(x.segment||"")}" data-indicator-contract="${x.is_management_contract?"yes":"no"}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${indicatorTypeLabel(x.segment)}${x.is_management_contract?" · Contrato de Gestão":""} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="indicator">${edition.status==="archived"?"Consultar":"Editar"}</button></div></article>`).join(""):empty("Nenhum indicador cadastrado.");
   $("#programsList").innerHTML=data.programs.length?[...data.programs].sort((a,b)=>programAdminRank(a)-programAdminRank(b)||programEndRank(a)-programEndRank(b)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const rows=data.actions.filter(a=>a.program_id===x.id);const rels=data.programLinks.filter(l=>l.program_id===x.id).length;const rank=programAdminRank(x);const stage=rank===1?"Em andamento":rank===3?"Finalizado":"Aguardando";return `<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${stage} · ${rows.length} ação(ões) · ${rels} indicador(es) relacionado(s)`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="program">${edition.status==="archived"?"Consultar":"Editar"}</button></div>${renderAdminActions(rows)}</article>`}).join(""):empty("Nenhum programa cadastrado.");
@@ -390,95 +418,125 @@ function setupProjectActionsEditor(){
   bindRemove();
 }
 
-async function syncLinks(table,key,id,ids){
-  await sb.from(table).delete().eq(key,id);
-  if(ids.length){const rows=ids.map(indicator_id=>({[key]:id,indicator_id}));const {error}=await sb.from(table).insert(rows);if(error)throw error}
+
+
+async function saveRecord(collectionName,id,payload){
+  const ref=id?editionCollection(collectionName).doc(id):editionCollection(collectionName).doc();
+  const now=new Date().toISOString();
+  const body={...payload,updated_at:now};
+  if(!id){body.created_at=now;body.sort_order=Date.now()}
+  await ref.set(body,{merge:!!id});
+  return {id:ref.id,...body};
 }
 async function syncActions(programId){
-  const blocks=$$("[data-action-id]");const keep=[];
+  const blocks=$$("[data-action-id]"),keep=[];
+  let offset=0;
   for(const b of blocks){
     const aid=b.dataset.actionId;
     const action=$("#sub_action_"+aid)?.value.trim();
     const status=$("#sub_status_"+aid)?.value||"aguardando";
     const health_status=$("#sub_health_"+aid)?.value||"adequada";
-    const start=$("#sub_start_"+aid)?.value||null;
-    const end=$("#sub_end_"+aid)?.value||null;
-    if(!action) continue;
+    const start_date=$("#sub_start_"+aid)?.value||null;
+    const end_date=$("#sub_end_"+aid)?.value||null;
+    if(!action)continue;
     if(aid.startsWith("new_")){
-      const {data:r,error}=await sb.from("program_actions").insert({program_id:programId,action,status,health_status,start_date:start,end_date:end}).select().single();
-      if(error)throw error;keep.push(r.id)
-    } else {
-      const {error}=await sb.from("program_actions").update({action,status,health_status,start_date:start,end_date:end}).eq("id",aid);
-      if(error)throw error;keep.push(aid)
+      const ref=editionCollection("program_actions").doc();
+      await ref.set({program_id:programId,action,status,health_status,start_date,end_date,sort_order:Date.now()+(offset++),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+      keep.push(ref.id);
+    }else{
+      await editionCollection("program_actions").doc(aid).set({program_id:programId,action,status,health_status,start_date,end_date,updated_at:new Date().toISOString()},{merge:true});
+      keep.push(aid);
     }
   }
   const old=data.actions.filter(a=>a.program_id===programId).map(a=>a.id);
-  const del=old.filter(id=>!keep.includes(id));if(del.length) await sb.from("program_actions").delete().in("id",del);
+  await Promise.all(old.filter(id=>!keep.includes(id)).map(id=>editionCollection("program_actions").doc(id).delete()));
 }
-
-
 async function syncProjectActions(type,projectId){
-  const table=type==="quality"?"quality_project_actions":"innovation_project_actions";
+  const collectionName=type==="quality"?"quality_project_actions":"innovation_project_actions";
   const oldRows=type==="quality"?data.qualityActions:data.innovationActions;
-  const blocks=$$("[data-project-action-id]");
-  const keep=[];
+  const blocks=$$("[data-project-action-id]"),keep=[];
+  let offset=0;
   for(const b of blocks){
     const aid=b.dataset.projectActionId;
     const action=$("#sub_paction_"+aid)?.value.trim();
     const status=$("#sub_pstatus_"+aid)?.value||"aguardando";
     const health_status=$("#sub_phealth_"+aid)?.value||"adequada";
-    const start=$("#sub_pstart_"+aid)?.value||null;
-    const end=$("#sub_pend_"+aid)?.value||null;
-    if(!action) continue;
+    const start_date=$("#sub_pstart_"+aid)?.value||null;
+    const end_date=$("#sub_pend_"+aid)?.value||null;
+    if(!action)continue;
     if(aid.startsWith("new_")){
-      const {data:r,error}=await sb.from(table).insert({project_id:projectId,action,status,health_status,start_date:start,end_date:end}).select().single();
-      if(error)throw error;
-      keep.push(r.id);
+      const ref=editionCollection(collectionName).doc();
+      await ref.set({project_id:projectId,action,status,health_status,start_date,end_date,sort_order:Date.now()+(offset++),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+      keep.push(ref.id);
     }else{
-      const {error}=await sb.from(table).update({action,status,health_status,start_date:start,end_date:end}).eq("id",aid);
-      if(error)throw error;
+      await editionCollection(collectionName).doc(aid).set({project_id:projectId,action,status,health_status,start_date,end_date,updated_at:new Date().toISOString()},{merge:true});
       keep.push(aid);
     }
   }
   const old=oldRows.filter(a=>a.project_id===projectId).map(a=>a.id);
-  const del=old.filter(id=>!keep.includes(id));
-  if(del.length){
-    const {error}=await sb.from(table).delete().in("id",del);
-    if(error)throw error;
-  }
+  await Promise.all(old.filter(id=>!keep.includes(id)).map(id=>editionCollection(collectionName).doc(id).delete()));
 }
 
 $("#saveModal").onclick=async()=>{
-  const {type,id}=modalState;msg($("#modalMsg"),"Salvando…");
+  const {type,id}=modalState;
+  msg($("#modalMsg"),"Salvando…");
   try{
-    let table,payload,retId=id;
-    if(type==="indicator"){table="indicators";payload={edition_id:edition.id,segment:v("segment"),is_management_contract:v("is_management_contract")==="sim",name:v("name"),latest_value:num("latest_value"),target_value:num("target_value"),unit:v("unit")||null,target_direction:v("target_direction"),measurement_date:v("measurement_date")||null,notes:v("notes")||null}}
-    if(type==="program"){table="programs";payload={edition_id:edition.id,name:v("name"),summary:v("summary")||null,link_url:v("link_url")||null}}
-    if(type==="quality"){table="quality_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
-    if(type==="innovation"){table="innovation_projects";payload={edition_id:edition.id,name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null}}
-    if(type==="award"){table="awards_recognitions";payload={edition_id:edition.id,category:v("category"),name:v("name")||null,placement:v("placement")||null,quantity:1,notes:v("notes")||null}}
-    if(type==="partner"){table="partners";payload={edition_id:edition.id,name:v("name"),is_top5:$("#f_is_top5").checked,notes:v("notes")||null}}
-    if(type==="attention"){table="attention_points";payload={edition_id:edition.id,name:v("name"),mitigation_action:v("mitigation_action"),deadline:v("deadline")||null,notes:packAttentionNotes(v("category"),v("notes"))||null}}
-    if(!payload.name && !["award"].includes(type)) throw new Error("Preencha o nome.");
-    let res;if(id)res=await sb.from(table).update(payload).eq("id",id).select().single();else res=await sb.from(table).insert(payload).select().single();
-    if(res.error)throw res.error;retId=res.data.id;
+    let collectionName,payload,retId=id;
     const inds=selectedIndicators();
-    if(type==="program"){await syncLinks("program_indicators","program_id",retId,inds);await syncActions(retId)}
-    if(type==="quality"){
-      await syncLinks("quality_project_indicators","project_id",retId,inds);
-      await syncProjectActions("quality",retId);
-    }
-    if(type==="innovation"){
-      await syncLinks("innovation_project_indicators","project_id",retId,inds);
-      await syncProjectActions("innovation",retId);
-    }
-    msg($("#modalMsg"),"Salvo.","success");await loadEditionData();setTimeout(()=>$("#modal").classList.add("hidden"),350);
-  }catch(e){msg($("#modalMsg"),e.message,"error")}
+    if(type==="indicator"){collectionName="indicators";payload={segment:v("segment"),is_management_contract:v("is_management_contract")==="sim",name:v("name"),latest_value:num("latest_value"),target_value:num("target_value"),unit:v("unit")||null,target_direction:v("target_direction"),measurement_date:v("measurement_date")||null,notes:v("notes")||null}}
+    if(type==="program"){collectionName="programs";payload={name:v("name"),summary:v("summary")||null,link_url:v("link_url")||null,indicator_ids:inds}}
+    if(type==="quality"){collectionName="quality_projects";payload={name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null,indicator_ids:inds}}
+    if(type==="innovation"){collectionName="innovation_projects";payload={name:v("name"),start_date:v("start_date")||null,end_date:v("end_date")||null,status:v("status"),summary:v("summary")||null,indicator_ids:inds}}
+    if(type==="award"){collectionName="awards_recognitions";payload={category:v("category"),name:v("name")||null,placement:v("placement")||null,notes:v("notes")||null}}
+    if(type==="partner"){collectionName="partners";payload={name:v("name"),is_top5:$("#f_is_top5").checked,notes:v("notes")||null}}
+    if(type==="attention"){collectionName="attention_points";payload={name:v("name"),mitigation_action:v("mitigation_action"),deadline:v("deadline")||null,notes:packAttentionNotes(v("category"),v("notes"))||null}}
+    if(!payload.name&&!["award"].includes(type))throw new Error("Preencha o nome.");
+    const saved=await saveRecord(collectionName,id,payload);
+    retId=saved.id;
+    if(type==="program")await syncActions(retId);
+    if(type==="quality")await syncProjectActions("quality",retId);
+    if(type==="innovation")await syncProjectActions("innovation",retId);
+    msg($("#modalMsg"),"Salvo.","success");
+    await loadEditionData();
+    setTimeout(()=>$("#modal").classList.add("hidden"),350);
+  }catch(e){
+    msg($("#modalMsg"),authMessage(e),"error");
+  }
 };
+
+async function removeIndicatorFromRelations(indicatorId,batch){
+  const groups=[
+    ["programs",data.programs],
+    ["quality_projects",data.quality],
+    ["innovation_projects",data.innovation]
+  ];
+  for(const [collectionName,items] of groups){
+    for(const item of items){
+      if(!(item.indicator_ids||[]).includes(indicatorId))continue;
+      batch.update(editionCollection(collectionName).doc(item.id),{
+        indicator_ids:(item.indicator_ids||[]).filter(id=>id!==indicatorId),
+        updated_at:new Date().toISOString()
+      });
+    }
+  }
+}
 $("#deleteModal").onclick=async()=>{
-  const {type,id}=modalState;if(!id||!confirm("Excluir este registro?"))return;
-  const tables={indicator:"indicators",program:"programs",quality:"quality_projects",innovation:"innovation_projects",award:"awards_recognitions",partner:"partners",attention:"attention_points"};
-  const {error}=await sb.from(tables[type]).delete().eq("id",id);if(error)return msg($("#modalMsg"),error.message,"error");await loadEditionData();$("#modal").classList.add("hidden");
+  const {type,id}=modalState;
+  if(!id||!confirm("Excluir este registro?"))return;
+  try{
+    const collections={indicator:"indicators",program:"programs",quality:"quality_projects",innovation:"innovation_projects",award:"awards_recognitions",partner:"partners",attention:"attention_points"};
+    const batch=db.batch();
+    batch.delete(editionCollection(collections[type]).doc(id));
+    if(type==="program")data.actions.filter(a=>a.program_id===id).forEach(a=>batch.delete(editionCollection("program_actions").doc(a.id)));
+    if(type==="quality")data.qualityActions.filter(a=>a.project_id===id).forEach(a=>batch.delete(editionCollection("quality_project_actions").doc(a.id)));
+    if(type==="innovation")data.innovationActions.filter(a=>a.project_id===id).forEach(a=>batch.delete(editionCollection("innovation_project_actions").doc(a.id)));
+    if(type==="indicator")await removeIndicatorFromRelations(id,batch);
+    await batch.commit();
+    await loadEditionData();
+    $("#modal").classList.add("hidden");
+  }catch(error){
+    msg($("#modalMsg"),error.message,"error");
+  }
 };
 function openReportForYear(year,pdf=false){
   const url=new URL("./",location.href);
@@ -492,13 +550,18 @@ $("#openYearReportBtn").onclick=()=>openReportForYear(edition.year,false);
 $("#pdfYearBtn").onclick=()=>openPdfForYear(edition.year);
 
 async function saveEditionHeader(){
-  if(edition.status==="archived")throw new Error("Edição arquivada é somente leitura."); const payload={year:Number($("#editionYear").value),version:1,title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null};
-  const {data:r,error}=await sb.from("editions").update(payload).eq("id",edition.id).select().single();
-  if(error)throw error; edition=r; return r;
+  if(edition.status==="archived")throw new Error("Edição arquivada é somente leitura.");
+  const payload={year:edition.year,version:1,title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null,updated_at:new Date().toISOString()};
+  await editionRef().set(payload,{merge:true});
+  edition={...edition,...payload};
+  return edition;
 }
 $("#saveEditionBtn").onclick=async()=>{
-  try{await saveEditionHeader();msg($("#editionMsg"),"Edição salva.","success");await loadEditionData()}
-  catch(error){msg($("#editionMsg"),error.message,"error")}
+  try{
+    await saveEditionHeader();
+    msg($("#editionMsg"),"Edição salva.","success");
+    await loadEditionData();
+  }catch(error){msg($("#editionMsg"),error.message,"error")}
 };
 $("#publishBtn").onclick=async()=>{
   if(edition.status!=="draft")return;
@@ -506,20 +569,22 @@ $("#publishBtn").onclick=async()=>{
   msg($("#editionMsg"),"Publicando…");
   try{
     await saveEditionHeader();
-    const {error}=await sb.rpc("publish_edition",{p_edition_id:edition.id,p_notes:"Publicação pela área administrativa"});
-    if(error)throw error;
+    const published=await db.collection("edicoes").where("status","==","published").get();
+    const batch=db.batch();
+    published.docs.forEach(d=>{if(d.id!==String(edition.year))batch.update(d.ref,{status:"archived",updated_at:new Date().toISOString()})});
+    batch.set(editionRef(),{status:"published",version:1,published_at:new Date().toISOString(),updated_at:new Date().toISOString()},{merge:true});
+    await batch.commit();
     msg($("#editionMsg"),"Edição publicada com sucesso.","success");
     await loadAll(edition.year);
   }catch(error){msg($("#editionMsg"),error.message,"error")}
 };
 $("#updateVersionBtn").onclick=async()=>{
   if(edition.status!=="published")return;
-  if(!confirm(`Atualizar a edição de ${edition.year}? A data de atualização será renovada e o histórico do ano será preservado.`))return;
-  msg($("#editionMsg"),"Atualizando versão…");
+  if(!confirm(`Atualizar a edição de ${edition.year}? A data de atualização será renovada.`))return;
+  msg($("#editionMsg"),"Atualizando edição…");
   try{
     await saveEditionHeader();
-    const {error}=await sb.rpc("update_published_edition",{p_edition_id:edition.id,p_notes:"Atualização da versão publicada"});
-    if(error)throw error;
+    await editionRef().set({published_at:new Date().toISOString(),updated_at:new Date().toISOString(),version:1},{merge:true});
     msg($("#editionMsg"),`Edição de ${edition.year} atualizada. Data de atualização renovada.`,"success");
     await loadAll(edition.year);
   }catch(error){msg($("#editionMsg"),error.message,"error")}
@@ -533,19 +598,35 @@ async function createAnnualEdition(){
   if(!Number.isInteger(year)||year<2000||year>2100)throw new Error("Informe um ano válido.");
   if(editions.some(e=>e.year===year))throw new Error("Já existe uma edição cadastrada para este ano.");
   const current=edition;
-  const {data:r,error}=await sb.from("editions").insert({year,version:1,title:current?.title||"Relatório Executivo Anual",subtitle:current?.subtitle||"Núcleo de Qualidade e Inovação",intro:current?.intro||null,status:"draft"}).select().single();
-  if(error)throw error;
+  await db.collection("edicoes").doc(String(year)).set({
+    year,version:1,
+    title:current?.title||"Relatório Executivo Anual",
+    subtitle:current?.subtitle||"Núcleo de Qualidade e Inovação",
+    intro:current?.intro||null,
+    status:"draft",
+    created_at:new Date().toISOString(),
+    updated_at:new Date().toISOString()
+  });
   await loadAll(year);
   msg($("#editionMsg"),`Edição ${year} criada como rascunho. Os anos anteriores permanecem preservados para consulta.`,"success");
 }
 $("#newEditionBtn").onclick=async()=>{
-  if(edition.status==="draft")return msg($("#editionMsg"),"Já existe um ano em rascunho. Publique-o antes de criar outro ano.","error");
+  if(edition?.status==="draft")return msg($("#editionMsg"),"Já existe um ano em rascunho. Publique-o antes de criar outro ano.","error");
   try{await createAnnualEdition()}catch(error){msg($("#editionMsg"),error.message,"error")}
 };
-if(typeof supabase==="undefined"){
-  msg($("#loginMsg"),"Não foi possível carregar o serviço de autenticação. Verifique sua conexão e recarregue a página.","error");
+
+
+if(typeof firebase==="undefined"){
+  msg($("#loginMsg"),"Não foi possível carregar o Firebase. Verifique sua conexão e recarregue a página.","error");
 }else{
-  authInit().catch(e=>msg($("#loginMsg"),authMessage(e),"error"));
+  firebase.initializeApp(FIREBASE_CONFIG);
+  auth=firebase.auth();
+  db=firebase.firestore();
+  auth.onAuthStateChanged(user=>{
+    if(user)enter(user).catch(e=>msg($("#loginMsg"),e.message,"error"));
+    else{enteredUid=null;showLogin()}
+  });
 }
+
 </script>
 </body></html>

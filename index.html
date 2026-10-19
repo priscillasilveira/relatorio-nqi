@@ -8,7 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <style>
 :root{--blue:#005ca9;--deep:#003c71;--navy:#062b49;--ink:#152733;--muted:#647783;--paper:#f4efe5;--paper2:#fbf8f2;--white:#fff;--orange:#f7941d;--gold:#d6b26c;--line:#ded8cc;--soft:#edf4f7;--ok:#2e8656;--warn:#ce7617;--bad:#b4493c}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif} a{color:inherit} .wrap{max-width:1240px;margin:auto;padding:0 28px}
@@ -129,9 +131,15 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 <section class="final-note"><div class="wrap"><h3>Encerramento da edição</h3><p>Esta publicação consolida a versão vigente do relatório, identificando resultados, execução, reconhecimento institucional e pontos de atenção para acompanhamento.</p></div></section>
 <footer><div class="wrap">Relatório Executivo Anual · Núcleo de Qualidade e Inovação</div></footer>
 <script>
-const SUPABASE_URL="https://sfotzodsufntqaqsgmtv.supabase.co";
-const SUPABASE_KEY="sb_publishable_EpSulVju1WrgQrXvPDjnhA_2EFRhP4w";
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let db,auth;
+const FIREBASE_CONFIG={
+  apiKey:"AIzaSyC1Dkhtl3PYlbhzWwaGzxayfVLAPj9cRns",
+  authDomain:"relatorionqi.firebaseapp.com",
+  projectId:"relatorionqi",
+  storageBucket:"relatorionqi.firebasestorage.app",
+  messagingSenderId:"741829970405",
+  appId:"1:741829970405:web:a1c514bdea447446b5c70c"
+};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat('pt-BR',{dateStyle:'medium'}).format(new Date(v+'T12:00:00')):'—';
@@ -186,27 +194,107 @@ window.addEventListener("beforeprint",()=>{printDetailsState=[...document.queryS
 window.addEventListener("afterprint",()=>{document.querySelectorAll(".actions-dropdown").forEach((d,i)=>d.open=!!printDetailsState[i])});
 $("#printPdfBtn")?.addEventListener("click",()=>window.print());
 
-async function load(){
- let editionQuery=sb.from('editions').select('*');
- if(requestedYear) editionQuery=editionQuery.eq('year',requestedYear).limit(1);
- else editionQuery=editionQuery.eq('status','published').limit(1);
- const{data:eds,error:e0}=await editionQuery;if(e0)throw e0;if(!eds?.length)return showPreparing();const ed=eds[0];
- $('#coverTitle').textContent=ed.title||'Relatório Executivo Anual';$('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese anual dos resultados, programas, projetos e prioridades do Núcleo de Qualidade e Inovação.';$('#coverYear').textContent=`Versão: v${ed.version}`;$('#publishedAt').textContent=ed.published_at?`Data de atualização: ${dtt(ed.published_at)}`:'Data de atualização: —';$('#coverEdition').textContent=`Edição: ${ed.year}`;
- const[ri,rp,rpa,rq,rinv,rqa,ria,raw,rpar,ratt,rpi,rqi,rii]=await Promise.all([sb.from('indicators').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('programs').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('program_actions').select('*').order('sort_order'),sb.from('quality_projects').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('innovation_projects').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('quality_project_actions').select('*').order('sort_order'),sb.from('innovation_project_actions').select('*').order('sort_order'),sb.from('awards_recognitions').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('partners').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('attention_points').select('*').eq('edition_id',ed.id).order('sort_order'),sb.from('program_indicators').select('*'),sb.from('quality_project_indicators').select('*'),sb.from('innovation_project_indicators').select('*')]);
- const indicators=ri.data||[],programs=rp.data||[],actions=rpa.data||[],quality=rq.data||[],innovation=rinv.data||[],qualityActions=rqa.data||[],innovationActions=ria.data||[],awards=raw.data||[],partners=rpar.data||[],attention=ratt.data||[];const byId=Object.fromEntries(indicators.map(x=>[x.id,x]));const rel=(rows,key,id)=>rows.filter(x=>x[key]===id).map(x=>byId[x.indicator_id]).filter(Boolean);const projects=quality.length+innovation.length;
- $('#coverNumbers').innerHTML=`<div class="cover-number"><strong>${indicators.length}</strong><span>indicadores acompanhados</span></div><div class="cover-number"><strong>${programs.length}</strong><span>programas cadastrados</span></div><div class="cover-number"><strong>${projects}</strong><span>projetos cadastrados</span></div><div class="cover-number"><strong>${attention.length}</strong><span>pontos de atenção</span></div>`;
- $('#visionLead').textContent=`Esta edição reúne ${indicators.length} indicadores, ${programs.length} programas, ${projects} projetos, ${awards.length} registros de prêmios e ${partners.length} parcerias.`;$('#visionCopy').textContent='A estrutura abaixo resume como o conteúdo está distribuído nos capítulos do relatório.';$('#pullQuote').textContent='Leitura estruturada para acompanhamento executivo.';$('#pullCopy').textContent=`Resultados, execução, prêmios, parcerias e pontos de atenção estão organizados em sete capítulos.`;
- $('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>${indicators.length} indicadores organizados por segmento.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>${programs.length} programas, ${quality.length} projetos de qualidade e ${innovation.length} projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>${awards.length} registros de prêmios/reconhecimentos e ${partners.length} parcerias.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>${attention.length} pontos agrupados por categoria.</span></div>`;
- publishedIndicators=indicators; currentIndicatorFilter="all"; applyIndicatorFilter();
- $('#programsList').innerHTML=programs.length?[...programs].sort((a,b)=>programRank(a,actions)-programRank(b,actions)||(a.sort_order||0)-(b.sort_order||0)).map((p,idx)=>{const ac=actions.filter(a=>a.program_id===p.id),links=rel(rpi.data||[],'program_id',p.id),done=isProgramCompleted(p,actions);return`<article class="program-feature ${done?"completed-item":""}"><div class="program-content"><div class="program-index">${String(idx+1).padStart(2,'0')}</div><div class="program-top"><div><div class="kicker">Programa</div><h3>${esc(p.name)}</h3>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${p.link_url?`<p class="copy"><strong>Link:</strong> ${esc(p.link_url)}</p>`:''}</div><div><div class="kicker">Indicadores relacionados</div>${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:'<p class="copy">Sem indicadores relacionados.</p>'}</div></div>${renderActionDropdown(ac)}</div></article>`}).join(''):empty('Nenhum programa publicado.');
- $('#qualityGrid').innerHTML=quality.length?sortProjects(quality).map(p=>{const pa=qualityActions.filter(a=>a.project_id===p.id),done=p.status==="concluido";return`<article class="card project-card s6 ${done?"completed-item":""}"><div class="kicker">Projeto de qualidade</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${rel(rqi.data||[],'project_id',p.id).length?`<div class="pill-list">${rel(rqi.data||[],'project_id',p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}${renderActionDropdown(pa)}</article>`}).join(''):empty('Nenhum projeto de qualidade publicado.');
- $('#innovationGrid').innerHTML=innovation.length?sortProjects(innovation).map(p=>{const pa=innovationActions.filter(a=>a.project_id===p.id),done=p.status==="concluido";return`<article class="card innovation-card s6 ${done?"completed-item":""}"><div class="kicker">Projeto de inovação</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${rel(rii.data||[],'project_id',p.id).length?`<div class="pill-list">${rel(rii.data||[],'project_id',p.id).map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}${renderActionDropdown(pa)}</article>`}).join(''):empty('Nenhum projeto de inovação publicado.');
- $('#awardsGrid').innerHTML=awards.length?awards.map(a=>`<article class="award-card"><div class="kicker">${categoryLabel(a.category)}</div><h3>${esc(a.name||categoryLabel(a.category))}</h3>${a.placement?`<div class="award-placement">${esc(a.placement)}</div>`:''}${a.notes?`<p class="copy">${esc(a.notes)}</p>`:''}</article>`).join(''):empty('Nenhum prêmio ou reconhecimento publicado.');
- const top=partners.filter(p=>p.is_top5);$('#partnersGrid').innerHTML=partners.length?`<div class="partners-hero"><div class="partners-count"><div class="big">${partners.length}</div><p>parcerias registradas nesta edição.</p></div><div class="partners-top"><div class="kicker">Destaques da rede</div><h3>Top 5 parceiros</h3><div class="pill-list">${(top.length?top:partners.slice(0,5)).map(p=>`<span class="pill">${esc(p.name)}</span>`).join('')}</div></div></div><div class="partners-list">${partners.map(p=>`<article class="card"><div class="kicker">${p.is_top5?'Top 5':'Parceria'}</div><h3>${esc(p.name)}</h3>${p.notes?`<p class="copy">${esc(p.notes)}</p>`:''}</article>`).join('')}</div>`:empty('Nenhuma parceria publicada.');
- const groups=attention.reduce((a,row)=>{const c=attentionCategory(row);(a[c]??=[]).push(row);return a},{}),today=new Date();today.setHours(0,0,0,0);$('#attentionGrid').innerHTML=attention.length?Object.entries(groups).map(([cat,items])=>`<div class="attention-group"><div class="attention-group-head"><h3>${esc(cat)}</h3><div class="copy">${items.length} ponto(s)</div></div><div class="grid12">${items.map(a=>{const d=a.deadline?new Date(a.deadline+'T12:00:00'):null;let cls='track',label='Em acompanhamento';if(d){const days=Math.ceil((d-today)/86400000);if(days<0){cls='overdue';label='Prazo vencido'}else if(days<=30){cls='soon';label='Prazo próximo'}}const note=attentionNotes(a);return`<article class="card attention-card s6 ${cls}"><div class="kicker">${label}</div><h3>${esc(a.name)}</h3><p class="copy"><strong>Ação de mitigação:</strong> ${esc(a.mitigation_action)}</p><p class="copy"><strong>Prazo:</strong> ${dt(a.deadline)}</p>${note?`<p class="copy">${esc(note)}</p>`:''}</article>`}).join('')}</div></div>`).join(''):empty('Nenhum ponto de atenção publicado.');
- $('#loading').classList.add('hidden');setupReveal();
+
+
+async function readEditionCollection(edRef,name){
+  const snap=await edRef.collection(name).get();
+  return snap.docs.map(d=>({id:d.id,...d.data()}));
 }
+async function resolveEdition(){
+  if(requestedYear){
+    const snap=await db.collection("edicoes").doc(String(requestedYear)).get();
+    return snap.exists?{id:snap.id,...snap.data()}:null;
+  }
+  const snap=await db.collection("edicoes").where("status","==","published").limit(1).get();
+  if(snap.empty)return null;
+  const d=snap.docs[0];
+  return {id:d.id,...d.data()};
+}
+async function load(){
+  const ed=await resolveEdition();
+  if(!ed)return showPreparing();
+  const edRef=db.collection("edicoes").doc(String(ed.id||ed.year));
+  $('#coverTitle').textContent=ed.title||'Relatório Executivo Anual';
+  $('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese anual dos resultados, programas, projetos e prioridades do Núcleo de Qualidade e Inovação.';
+  $('#coverYear').textContent=`Versão: v${ed.version||1}`;
+  $('#publishedAt').textContent=ed.published_at?`Data de atualização: ${dtt(ed.published_at)}`:'Data de atualização: —';
+  $('#coverEdition').textContent=`Edição: ${ed.year}`;
+
+  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention]=await Promise.all([
+    readEditionCollection(edRef,'indicators'),
+    readEditionCollection(edRef,'programs'),
+    readEditionCollection(edRef,'program_actions'),
+    readEditionCollection(edRef,'quality_projects'),
+    readEditionCollection(edRef,'innovation_projects'),
+    readEditionCollection(edRef,'quality_project_actions'),
+    readEditionCollection(edRef,'innovation_project_actions'),
+    readEditionCollection(edRef,'awards_recognitions'),
+    readEditionCollection(edRef,'partners'),
+    readEditionCollection(edRef,'attention_points')
+  ]);
+
+  const byId=Object.fromEntries(indicators.map(x=>[x.id,x]));
+  const rel=item=>(item.indicator_ids||[]).map(id=>byId[id]).filter(Boolean);
+  const projects=quality.length+innovation.length;
+
+  $('#coverNumbers').innerHTML=`<div class="cover-number"><strong>${indicators.length}</strong><span>indicadores acompanhados</span></div><div class="cover-number"><strong>${programs.length}</strong><span>programas cadastrados</span></div><div class="cover-number"><strong>${projects}</strong><span>projetos cadastrados</span></div><div class="cover-number"><strong>${attention.length}</strong><span>pontos de atenção</span></div>`;
+  $('#visionLead').textContent=`Esta edição reúne ${indicators.length} indicadores, ${programs.length} programas, ${projects} projetos, ${awards.length} registros de prêmios e ${partners.length} parcerias.`;
+  $('#visionCopy').textContent='A estrutura abaixo resume como o conteúdo está distribuído nos capítulos do relatório.';
+  $('#pullQuote').textContent='Leitura estruturada para acompanhamento executivo.';
+  $('#pullCopy').textContent=`Resultados, execução, prêmios, parcerias e pontos de atenção estão organizados em sete capítulos.`;
+  $('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>${indicators.length} indicadores organizados por segmento.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>${programs.length} programas, ${quality.length} projetos de qualidade e ${innovation.length} projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>${awards.length} registros de prêmios/reconhecimentos e ${partners.length} parcerias.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>${attention.length} pontos agrupados por categoria.</span></div>`;
+
+  publishedIndicators=indicators;
+  currentIndicatorFilter="all";
+  applyIndicatorFilter();
+
+  $('#programsList').innerHTML=programs.length?[...programs].sort((a,b)=>programRank(a,actions)-programRank(b,actions)||(a.sort_order||0)-(b.sort_order||0)).map((p,idx)=>{
+    const ac=actions.filter(a=>a.program_id===p.id),links=rel(p),done=isProgramCompleted(p,actions);
+    return `<article class="program-feature ${done?"completed-item":""}"><div class="program-content"><div class="program-index">${String(idx+1).padStart(2,'0')}</div><div class="program-top"><div><div class="kicker">Programa</div><h3>${esc(p.name)}</h3>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${p.link_url?`<p class="copy"><strong>Link:</strong> ${esc(p.link_url)}</p>`:''}</div><div><div class="kicker">Indicadores relacionados</div>${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:'<p class="copy">Sem indicadores relacionados.</p>'}</div></div>${renderActionDropdown(ac)}</div></article>`;
+  }).join(''):empty('Nenhum programa publicado.');
+
+  $('#qualityGrid').innerHTML=quality.length?sortProjects(quality).map(p=>{
+    const pa=qualityActions.filter(a=>a.project_id===p.id),done=p.status==="concluido",links=rel(p);
+    return `<article class="card project-card s6 ${done?"completed-item":""}"><div class="kicker">Projeto de qualidade</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}${renderActionDropdown(pa)}</article>`;
+  }).join(''):empty('Nenhum projeto de qualidade publicado.');
+
+  $('#innovationGrid').innerHTML=innovation.length?sortProjects(innovation).map(p=>{
+    const pa=innovationActions.filter(a=>a.project_id===p.id),done=p.status==="concluido",links=rel(p);
+    return `<article class="card innovation-card s6 ${done?"completed-item":""}"><div class="kicker">Projeto de inovação</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}${renderActionDropdown(pa)}</article>`;
+  }).join(''):empty('Nenhum projeto de inovação publicado.');
+
+  $('#awardsGrid').innerHTML=awards.length?awards.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)).map(a=>`<article class="award-card"><div class="kicker">${categoryLabel(a.category)}</div><h3>${esc(a.name||categoryLabel(a.category))}</h3>${a.placement?`<div class="award-placement">${esc(a.placement)}</div>`:''}${a.notes?`<p class="copy">${esc(a.notes)}</p>`:''}</article>`).join(''):empty('Nenhum prêmio ou reconhecimento publicado.');
+
+  const top=partners.filter(p=>p.is_top5);
+  $('#partnersGrid').innerHTML=partners.length?`<div class="partners-hero"><div class="partners-count"><div class="big">${partners.length}</div><p>parcerias registradas nesta edição.</p></div><div class="partners-top"><div class="kicker">Destaques da rede</div><h3>Top 5 parceiros</h3><div class="pill-list">${(top.length?top:partners.slice(0,5)).map(p=>`<span class="pill">${esc(p.name)}</span>`).join('')}</div></div></div><div class="partners-list">${partners.map(p=>`<article class="card"><div class="kicker">${p.is_top5?'Top 5':'Parceria'}</div><h3>${esc(p.name)}</h3>${p.notes?`<p class="copy">${esc(p.notes)}</p>`:''}</article>`).join('')}</div>`:empty('Nenhuma parceria publicada.');
+
+  const groups=attention.reduce((a,row)=>{const c=attentionCategory(row);(a[c]??=[]).push(row);return a},{}),today=new Date();
+  today.setHours(0,0,0,0);
+  $('#attentionGrid').innerHTML=attention.length?Object.entries(groups).map(([cat,items])=>`<div class="attention-group"><div class="attention-group-head"><h3>${esc(cat)}</h3><div class="copy">${items.length} ponto(s)</div></div><div class="grid12">${items.sort((a,b)=>(a.deadline||"9999").localeCompare(b.deadline||"9999")).map(a=>{const d=a.deadline?new Date(a.deadline+'T12:00:00'):null;let cls='track',label='Em acompanhamento';if(d){const days=Math.ceil((d-today)/86400000);if(days<0){cls='overdue';label='Prazo vencido'}else if(days<=30){cls='soon';label='Prazo próximo'}}const note=attentionNotes(a);return`<article class="card attention-card s6 ${cls}"><div class="kicker">${label}</div><h3>${esc(a.name)}</h3><p class="copy"><strong>Ação de mitigação:</strong> ${esc(a.mitigation_action)}</p><p class="copy"><strong>Prazo:</strong> ${dt(a.deadline)}</p>${note?`<p class="copy">${esc(note)}</p>`:''}</article>`}).join('')}</div></div>`).join(''):empty('Nenhum ponto de atenção publicado.');
+
+  $('#loading').classList.add('hidden');
+  setupReveal();
+  if(autoPdf)setTimeout(()=>window.print(),350);
+}
+
+
 document.querySelectorAll(".indicator-filter").forEach(btn=>btn.addEventListener("click",()=>{currentIndicatorFilter=btn.dataset.filter||"all";applyIndicatorFilter()}));
-if(typeof supabase==='undefined'){$('#loading').textContent='Não foi possível carregar o serviço de dados.'}else{load().catch(e=>{console.error(e);$('#loading').textContent='Não foi possível carregar a edição publicada neste momento.'})}
+if(typeof firebase==="undefined"){
+  $('#loading').textContent='Não foi possível carregar o serviço de dados.';
+}else{
+  firebase.initializeApp(FIREBASE_CONFIG);
+  db=firebase.firestore();
+  auth=firebase.auth();
+  let started=false;
+  auth.onAuthStateChanged(()=>{
+    if(started)return;
+    started=true;
+    load().catch(e=>{
+      console.error(e);
+      $('#loading').textContent=requestedYear?'Esta edição não está disponível para consulta neste acesso.':'Não foi possível carregar a edição publicada neste momento.';
+    });
+  });
+}
+
 </script>
 </body></html>
