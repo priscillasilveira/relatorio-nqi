@@ -40,7 +40,7 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
     <div class="row"><button class="btn primary" id="loginBtn">Entrar</button></div>
     <button class="btn ghost mini" id="forgotBtn" style="margin-top:10px">Esqueci minha senha</button>
     <p class="small" id="loginMsg" aria-live="polite"></p>
-    <div class="notice" style="margin-top:18px"><strong>Acesso restrito:</strong> use uma das contas administrativas autorizadas e cadastradas no Firebase Authentication. A criação de novos usuários é feita somente pelo console do Firebase.</div>
+    <div class="notice" style="margin-top:18px"><strong>Acesso restrito:</strong> use uma conta cadastrada no Firebase Authentication. Todos os usuários autenticados têm acesso ao mesmo conteúdo administrativo. A criação de novos usuários é feita somente pelo console do Firebase.</div>
   </div>
 </section>
 
@@ -111,7 +111,7 @@ const FIREBASE_CONFIG={
   messagingSenderId:"741829970405",
   appId:"1:741829970405:web:a1c514bdea447446b5c70c"
 };
-const ADMIN_EMAILS=["pcmsilveira@gmail.com","nqi@rn.senac.br"];
+
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
@@ -146,13 +146,10 @@ function authMessage(error){
   if(code==="auth/invalid-email")return "O e-mail administrativo configurado é inválido.";
   return error?.message||String(error||"Não foi possível concluir o acesso.");
 }
-function isAllowedAdminEmail(email){
-  return ADMIN_EMAILS.includes(String(email||"").trim().toLowerCase());
-}
 function showLogin(){$("#loginScreen").classList.remove("hidden");$("#app").classList.add("hidden")}
 let enteredUid=null;
 async function enter(user){
-  if(!user||!isAllowedAdminEmail(user.email)){
+  if(!user){
     if(user)await auth.signOut();
     enteredUid=null;
     return showLogin();
@@ -169,7 +166,6 @@ $("#loginBtn").onclick=async()=>{
   const email=$("#email").value.trim().toLowerCase();
   const pw=$("#password").value;
   if(!email)return msg($("#loginMsg"),"Digite seu e-mail.","error");
-  if(!isAllowedAdminEmail(email))return msg($("#loginMsg"),"Este e-mail não está autorizado para o Admin NQI.","error");
   if(!pw)return msg($("#loginMsg"),"Digite sua senha.","error");
   msg($("#loginMsg"),"Entrando…");
   try{
@@ -183,7 +179,6 @@ $("#password").addEventListener("keydown",e=>{if(e.key==="Enter")$("#loginBtn").
 $("#forgotBtn").onclick=async()=>{
   const email=$("#email").value.trim().toLowerCase();
   if(!email)return msg($("#loginMsg"),"Digite o e-mail para recuperar a senha.","error");
-  if(!isAllowedAdminEmail(email))return msg($("#loginMsg"),"Este e-mail não está autorizado para o Admin NQI.","error");
   msg($("#loginMsg"),"Enviando instruções de recuperação…");
   try{
     await auth.sendPasswordResetEmail(email);
@@ -633,7 +628,11 @@ if(typeof firebase==="undefined"){
   auth=firebase.auth();
   db=firebase.firestore();
   auth.onAuthStateChanged(user=>{
-    if(user)enter(user).catch(e=>msg($("#loginMsg"),e.message,"error"));
+    if(user)enter(user).catch(e=>{
+      console.error(e);
+      const target=$("#editionMsg")||$("#loginMsg");
+      msg(target,"Não foi possível carregar os dados: "+(e.message||e),"error");
+    });
     else{enteredUid=null;showLogin()}
   });
 }
