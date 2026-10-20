@@ -35,12 +35,12 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
     <div class="brand">Senac · NQI</div><div class="eyebrow" style="margin-top:14px">Área administrativa restrita</div>
     <h1>Gestão do relatório.</h1>
     <p class="small">Apenas <strong>pcmsilveira@gmail.com</strong> pode acessar os dados e publicar edições.</p>
-    <div class="field"><label>E-mail</label><input id="email" type="email" value="pcmsilveira@gmail.com" readonly></div>
+    <div class="field"><label>E-mail</label><input id="email" type="email" autocomplete="username" placeholder="Digite seu e-mail de acesso"></div>
     <div class="field"><label>Senha</label><input id="password" type="password" placeholder="Sua senha"></div>
     <div class="row"><button class="btn primary" id="loginBtn">Entrar</button></div>
     <button class="btn ghost mini" id="forgotBtn" style="margin-top:10px">Esqueci minha senha</button>
     <p class="small" id="loginMsg" aria-live="polite"></p>
-    <div class="notice" style="margin-top:18px"><strong>Acesso restrito:</strong> use a conta administrativa cadastrada no Firebase Authentication. A criação de novos usuários é feita somente pelo console do Firebase.</div>
+    <div class="notice" style="margin-top:18px"><strong>Acesso restrito:</strong> use uma das contas administrativas autorizadas e cadastradas no Firebase Authentication. A criação de novos usuários é feita somente pelo console do Firebase.</div>
   </div>
 </section>
 
@@ -111,7 +111,7 @@ const FIREBASE_CONFIG={
   messagingSenderId:"741829970405",
   appId:"1:741829970405:web:a1c514bdea447446b5c70c"
 };
-const ADMIN_EMAIL="pcmsilveira@gmail.com";
+const ADMIN_EMAILS=["pcmsilveira@gmail.com","nqi@rn.senac.br"];
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
@@ -146,10 +146,13 @@ function authMessage(error){
   if(code==="auth/invalid-email")return "O e-mail administrativo configurado é inválido.";
   return error?.message||String(error||"Não foi possível concluir o acesso.");
 }
+function isAllowedAdminEmail(email){
+  return ADMIN_EMAILS.includes(String(email||"").trim().toLowerCase());
+}
 function showLogin(){$("#loginScreen").classList.remove("hidden");$("#app").classList.add("hidden")}
 let enteredUid=null;
 async function enter(user){
-  if(!user||user.email!==ADMIN_EMAIL){
+  if(!user||!isAllowedAdminEmail(user.email)){
     if(user)await auth.signOut();
     enteredUid=null;
     return showLogin();
@@ -163,20 +166,27 @@ async function enter(user){
   await loadAll();
 }
 $("#loginBtn").onclick=async()=>{
+  const email=$("#email").value.trim().toLowerCase();
   const pw=$("#password").value;
+  if(!email)return msg($("#loginMsg"),"Digite seu e-mail.","error");
+  if(!isAllowedAdminEmail(email))return msg($("#loginMsg"),"Este e-mail não está autorizado para o Admin NQI.","error");
   if(!pw)return msg($("#loginMsg"),"Digite sua senha.","error");
   msg($("#loginMsg"),"Entrando…");
   try{
-    await auth.signInWithEmailAndPassword(ADMIN_EMAIL,pw);
+    await auth.signInWithEmailAndPassword(email,pw);
   }catch(error){
     msg($("#loginMsg"),authMessage(error),"error");
   }
 };
+$("#email").addEventListener("keydown",e=>{if(e.key==="Enter")$("#loginBtn").click()});
 $("#password").addEventListener("keydown",e=>{if(e.key==="Enter")$("#loginBtn").click()});
 $("#forgotBtn").onclick=async()=>{
+  const email=$("#email").value.trim().toLowerCase();
+  if(!email)return msg($("#loginMsg"),"Digite o e-mail para recuperar a senha.","error");
+  if(!isAllowedAdminEmail(email))return msg($("#loginMsg"),"Este e-mail não está autorizado para o Admin NQI.","error");
   msg($("#loginMsg"),"Enviando instruções de recuperação…");
   try{
-    await auth.sendPasswordResetEmail(ADMIN_EMAIL);
+    await auth.sendPasswordResetEmail(email);
     msg($("#loginMsg"),"Enviamos um e-mail para redefinir a senha. Confira também o spam.","success");
   }catch(error){
     msg($("#loginMsg"),authMessage(error),"error");
