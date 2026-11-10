@@ -141,11 +141,15 @@ function attentionStatusLabelAdmin(s){return ({aberto:"Aberto",em_tratamento:"Em
 function attentionImpactLabelAdmin(s){return ({baixo:"Baixo",medio:"Médio",alto:"Alto",critico:"Crítico"}[s]||"Médio")}
 function attentionPriorityAdmin(row){
   if(attentionStatusAdmin(row)==="resolvido")return {rank:4,code:"RES",label:"Resolvido"};
+  const impact=attentionImpactAdmin(row);
   const d=row.deadline?new Date(row.deadline+"T12:00:00"):null;
   const today=new Date();today.setHours(0,0,0,0);
   const days=d?Math.ceil((d-today)/86400000):null;
-  if(attentionImpactAdmin(row)==="critico"||(days!==null&&days<0))return {rank:1,code:"P1",label:"Prioridade 1"};
-  if(attentionImpactAdmin(row)==="alto"||(days!==null&&days<=30))return {rank:2,code:"P2",label:"Prioridade 2"};
+  const overdue=days!==null&&days<0;
+  const soon=days!==null&&days<=30;
+  const decision=row.requires_decision===true;
+  if(impact==="critico"||(impact==="alto"&&overdue)||(decision&&(impact==="alto"||impact==="critico")))return {rank:1,code:"P1",label:"Prioridade 1"};
+  if(impact==="alto"||(impact==="medio"&&overdue)||soon||decision)return {rank:2,code:"P2",label:"Prioridade 2"};
   return {rank:3,code:"P3",label:"Acompanhamento"};
 }
 
@@ -283,7 +287,7 @@ function renderAll(){
   $("#innovationList").innerHTML=data.innovation.length?[...data.innovation].sort((a,b)=>(adminProjectRank[a.status]||9)-(adminProjectRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const ac=data.innovationActions.filter(a=>a.project_id===x.id).length;return card("innovation",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
   $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category}${x.placement?" · "+x.placement:""}`)).join(""):empty("Nenhum registro cadastrado.");
   $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
-  $("#attentionList").innerHTML=data.attention.length?[...data.attention].sort((a,b)=>attentionPriorityAdmin(a).rank-attentionPriorityAdmin(b).rank||dateRank(a.deadline)-dateRank(b.deadline)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const p=attentionPriorityAdmin(x);return card("attention",x.id,x.name,`${p.code} · ${attentionImpactLabelAdmin(attentionImpactAdmin(x))} · ${attentionStatusLabelAdmin(attentionStatusAdmin(x))} · ${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)}).join(""):empty("Nenhum ponto de atenção cadastrado.");
+  $("#attentionList").innerHTML=data.attention.length?[...data.attention].sort((a,b)=>attentionPriorityAdmin(a).rank-attentionPriorityAdmin(b).rank||(a.requires_decision===true?0:1)-(b.requires_decision===true?0:1)||dateRank(a.deadline)-dateRank(b.deadline)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const p=attentionPriorityAdmin(x);return card("attention",x.id,x.name,`${p.code}${x.requires_decision===true?" · DECISÃO REQUERIDA":""} · ${attentionImpactLabelAdmin(attentionImpactAdmin(x))} · ${attentionStatusLabelAdmin(attentionStatusAdmin(x))} · ${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)}).join(""):empty("Nenhum ponto de atenção cadastrado.");
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
   applyAllSectionFilters();
 }
@@ -398,9 +402,9 @@ function openModal(type,id){
       `<div id="decisionNeededWrap" class="${requiresDecision==="sim"?"":"hidden"}">`+
         area("decision_needed","Qual decisão é necessária?",x.decision_needed||"")+
       '</div>'+
-      area("mitigation_action","Ações de mitigação — uma ação por linha",x.mitigation_action||"")+
-      `<div class="small" style="margin:-4px 0 12px">Use uma linha para cada ação. O relatório exibirá tudo em um dropdown.</div>`+
-      area("notes","Evidências / contexto (opcional)",extractAttentionNotes(x));
+      area("mitigation_action","Resposta em curso — uma ação por linha",x.mitigation_action||"")+
+      `<div class="small" style="margin:-4px 0 12px">Use uma linha para cada ação de resposta. O relatório exibirá tudo em um dropdown.</div>`+
+      area("notes","Evidência / contexto gerencial (opcional)",extractAttentionNotes(x));
   }
   $("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;
   const historical=edition.status==="archived";

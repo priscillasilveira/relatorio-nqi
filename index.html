@@ -73,6 +73,42 @@
 .attention-chip{padding:6px 9px;border-radius:999px;background:#f1f5f7;color:#5e727e;font-size:.69rem;font-weight:800}
 .attention-chip.priority-p1{background:#fdebea;color:#a9342c}.attention-chip.priority-p2{background:#fff4d8;color:#8a6200}.attention-chip.priority-p3{background:#f4eddc;color:#76643a}.attention-chip.priority-resolved{background:#e6f4eb;color:#2e7d4f}
 .attention-decision{margin:13px 0;padding:12px 13px;border-left:4px solid var(--orange);background:#fff8ec;border-radius:0 12px 12px 0;color:#5f4d2f;font-size:.8rem;line-height:1.55}
+.attention-decision-queue{margin:0 0 20px;padding:24px;border-radius:28px;background:linear-gradient(135deg,#062f50,#0a527e);color:#fff;box-shadow:0 20px 50px rgba(6,47,80,.12)}
+.attention-decision-queue-head{display:grid;grid-template-columns:1fr minmax(220px,.55fr);gap:22px;align-items:end;margin-bottom:16px}
+.attention-decision-queue .kicker{color:#ffbf66}
+.attention-decision-queue h3{font-family:"Libre Caslon Display",serif;font-size:2.15rem;line-height:1.05;margin:7px 0 0;color:#fff}
+.attention-decision-queue-head p{margin:0;color:#cfe0e9;font-size:.82rem;line-height:1.6}
+.attention-decision-list{display:grid;gap:9px}
+.attention-decision-item{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:13px;align-items:center;padding:14px 15px;border-radius:17px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13)}
+.attention-decision-num{width:36px;height:36px;border-radius:11px;background:#fff;color:var(--deep);display:grid;place-items:center;font-weight:900;font-size:.76rem}
+.attention-decision-item strong{display:block;color:#fff;font-size:.91rem;line-height:1.35}
+.attention-decision-item small{display:block;margin-top:4px;color:#d4e4ec;font-size:.72rem;line-height:1.45}
+.attention-decision-text{margin-top:6px;color:#ffe1b0;font-size:.78rem;line-height:1.45;font-weight:700}
+.attention-decision-badge{white-space:nowrap;padding:7px 9px;border-radius:999px;background:#fff3dc;color:#855b1d;font-size:.65rem;font-weight:900}
+.attention-decision-empty{padding:14px;border-radius:15px;background:rgba(255,255,255,.08);color:#dce9ef;font-size:.82rem;line-height:1.55}
+
+.attention-exec-summary{margin:0 0 28px}
+.attention-exec-item.decision strong{color:var(--orange)}
+.attention-exec-item.resolved strong{color:var(--ok)}
+
+.attention-card{padding-top:21px}
+.attention-card .attention-card-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:3px}
+.attention-card .attention-card-head h3{margin:4px 0 0}
+.attention-priority-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:999px;font-size:.67rem;font-weight:900;white-space:nowrap}
+.attention-priority-badge.p1{background:#fdebea;color:#a9342c}
+.attention-priority-badge.p2{background:#fff4d8;color:#8a6200}
+.attention-priority-badge.p3{background:#f4eddc;color:#76643a}
+.attention-priority-badge.resolved{background:#e6f4eb;color:#2e7d4f}
+.attention-context-line{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:10px 0 12px;color:#62747f;font-size:.74rem}
+.attention-context-line b{color:#3f5664}
+.attention-context-dot{width:3px;height:3px;border-radius:50%;background:#9eabb1}
+.attention-evidence{margin:10px 0 0;padding:12px 13px;border-radius:14px;background:#f8fafb;color:#62747f;font-size:.8rem;line-height:1.58}
+.attention-evidence strong{color:#405867}
+.attention-decision{margin:12px 0 0}
+.mitigation-dropdown{margin-top:14px}
+.mitigation-dropdown summary{border:1px solid #cfdde4;background:#f5f9fb}
+.mitigation-dropdown summary span:first-child{color:#264e67}
+
 
 .section{padding:88px 0;border-bottom:1px solid rgba(0,60,113,.07)} .section-head{display:grid;grid-template-columns:110px 1fr;gap:28px;margin-bottom:32px} .chapter{font-family:"Libre Caslon Display",serif;font-size:4.7rem;color:var(--orange);line-height:.85} .section h2{font-family:"Libre Caslon Display",serif;font-size:clamp(3rem,5.4vw,5rem);line-height:.9;letter-spacing:-.04em;color:var(--deep);margin:0 0 12px} .section-lead{max-width:860px;color:var(--muted);font-size:1rem;line-height:1.8}
 .grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:18px} .card{background:rgba(255,255,255,.9);border:1px solid #e2e8ea;border-radius:28px;padding:24px;box-shadow:0 16px 45px rgba(23,42,54,.055)} .s4{grid-column:span 4} .s5{grid-column:span 5} .s6{grid-column:span 6} .s7{grid-column:span 7} .s12{grid-column:1/-1} .kicker{font-size:.67rem;text-transform:uppercase;letter-spacing:.15em;color:var(--orange);font-weight:700} .card h3{font-family:"Libre Caslon Display",serif;color:var(--deep);font-size:1.75rem;line-height:1.08;margin:9px 0 12px} .copy{font-size:.87rem;line-height:1.72;color:var(--muted)}
@@ -104,7 +140,7 @@
 .empty{padding:30px;border-radius:24px;border:1px dashed #cbd3d7;background:rgba(255,255,255,.7);color:var(--muted)}
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease} .reveal.show{opacity:1;transform:none} @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 @media(max-width:1020px){.cover-grid,.vision-grid,.editorial-break .wrap,.program-top,.partners-hero,.final-note .wrap{grid-template-columns:1fr} .cover-numbers{grid-template-columns:repeat(2,1fr)} .award-wall,.partners-list{grid-template-columns:repeat(2,1fr)} .action-row{grid-template-columns:1fr}.executive-grid,.executive-lower{grid-template-columns:1fr}}
-@media(max-width:760px){.wrap{padding:0 20px} .issue-cover{min-height:auto} .cover-grid{margin-top:48px} .cover-title{font-size:3.9rem} .cover-numbers,.edition-map,.award-wall,.partners-list{grid-template-columns:1fr} .section{padding:66px 0} .section-head{grid-template-columns:1fr;gap:12px} .chapter{font-size:2.8rem} .grid12 .s4,.grid12 .s5,.grid12 .s6,.grid12 .s7,.grid12 .s12{grid-column:1/-1} .pull-quote{font-size:1.8rem}.executive-section{padding:58px 0 64px}.executive-stats{grid-template-columns:1fr 1fr}.attention-exec-summary{grid-template-columns:1fr 1fr}.executive-agenda-item{grid-template-columns:auto 1fr}.executive-agenda-type{grid-column:2}}
+@media(max-width:760px){.attention-decision-queue-head{grid-template-columns:1fr}.attention-decision-item{grid-template-columns:36px 1fr}.attention-decision-badge{grid-column:2;justify-self:start}.wrap{padding:0 20px} .issue-cover{min-height:auto} .cover-grid{margin-top:48px} .cover-title{font-size:3.9rem} .cover-numbers,.edition-map,.award-wall,.partners-list{grid-template-columns:1fr} .section{padding:66px 0} .section-head{grid-template-columns:1fr;gap:12px} .chapter{font-size:2.8rem} .grid12 .s4,.grid12 .s5,.grid12 .s6,.grid12 .s7,.grid12 .s12{grid-column:1/-1} .pull-quote{font-size:1.8rem}.executive-section{padding:58px 0 64px}.executive-stats{grid-template-columns:1fr 1fr}.attention-exec-summary{grid-template-columns:1fr 1fr}.executive-agenda-item{grid-template-columns:auto 1fr}.executive-agenda-type{grid-column:2}}
 
 /* Refinamento editorial final */
 :root{--paper:#f3eee4;--paper2:#fcfaf6;--line:#ddd7cc}
@@ -145,8 +181,100 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   .mitigation-row{grid-template-columns:1fr;gap:8px}
   .mitigation-flag{justify-self:start}
 }
+
+/* Indicadores executivos · v21 */
+.indicators-section{background:#f8f5ef}
+.indicator-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:-2px 0 24px}
+.indicator-overview-item{padding:15px 16px;border-radius:18px;background:#fff;border:1px solid #e0e6e8;min-height:88px}
+.indicator-overview-item strong{display:block;font-family:"Libre Caslon Display",serif;font-size:2rem;line-height:1;color:var(--deep)}
+.indicator-overview-item span{display:block;margin-top:6px;color:var(--muted);font-size:.72rem;line-height:1.35}
+.indicator-overview-item.good strong{color:var(--ok)}
+.indicator-overview-item.alert strong{color:var(--bad)}
+.indicator-overview-item.neutral strong{color:#876b36}
+.indicator-overview-item.contract{background:#f5f8fa;border-color:#d5e1e6}
+.indicator-overview-contract{grid-column:1/-1;padding:12px 15px;border-radius:14px;background:#edf4f7;color:#4e6674;font-size:.8rem;line-height:1.55}
+.indicator-overview-contract strong{color:var(--deep)}
+
+.indicator-priority-panel{padding:24px;border-radius:28px;background:#fff;border:1px solid #dfe6e9;box-shadow:0 16px 40px rgba(23,42,54,.045);margin-bottom:22px}
+.indicator-priority-head{display:grid;grid-template-columns:1fr minmax(240px,.7fr);gap:24px;align-items:end;margin-bottom:16px}
+.indicator-priority-head h3{font-family:"Libre Caslon Display",serif;color:var(--deep);font-size:2rem;line-height:1.05;margin:7px 0 0}
+.indicator-priority-head p{margin:0;color:var(--muted);font-size:.8rem;line-height:1.55}
+.indicator-priority-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.indicator-priority-card{position:relative;padding:18px;border:1px solid #ecd6d1;border-radius:20px;background:linear-gradient(180deg,#fff9f7,#fff);overflow:hidden}
+.indicator-priority-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--bad)}
+.indicator-priority-rank{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#9a625b;font-weight:800}
+.indicator-priority-card h4{font-family:"Libre Caslon Display",serif;font-size:1.35rem;line-height:1.08;color:var(--deep);margin:7px 0 12px}
+.indicator-priority-values{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.indicator-priority-values strong{font-size:1.55rem;color:var(--ink)}
+.indicator-priority-values span{font-size:.73rem;color:var(--muted)}
+.indicator-priority-gap{display:inline-flex;margin-top:10px;padding:6px 9px;border-radius:999px;background:#fdebea;color:#a9342c;font-size:.69rem;font-weight:800}
+
+.indicator-controls{display:grid;grid-template-columns:1fr 1fr auto;gap:18px;align-items:end;padding:18px 20px;border:1px solid #e0e5e7;border-radius:22px;background:rgba(255,255,255,.82);margin-bottom:13px}
+.indicator-control-group{min-width:0}
+.indicator-control-label{display:block;margin-bottom:8px;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#6d7f89;font-weight:800}
+.indicator-filter-row{display:flex;gap:7px;flex-wrap:wrap}
+.indicator-sort-control select{min-width:190px;border:1px solid #d6e0e4;background:#fff;color:#425c6a;border-radius:13px;padding:10px 12px;font:700 .75rem "DM Sans",system-ui;outline:none}
+.indicator-sort-control select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,92,169,.1)}
+.indicator-list-meta{display:flex;gap:6px;align-items:baseline;margin:0 4px 9px;color:var(--muted);font-size:.72rem}
+.indicator-list-meta strong{font-size:.9rem;color:var(--deep)}
+
+.indicator-list-shell{border:1px solid #dfe5e7;border-radius:24px;background:#fff;overflow:hidden}
+.indicator-list-header,.indicator-executive-row{display:grid;grid-template-columns:minmax(230px,1.65fr) .72fr .9fr 1.05fr 1.4fr .82fr;gap:14px;align-items:center}
+.indicator-list-header{padding:11px 18px;background:#f1f5f6;border-bottom:1px solid #dfe5e7;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:#70818b;font-weight:800}
+.indicator-executive-row{position:relative;padding:16px 18px;border-bottom:1px solid #edf0f1;min-height:100px}
+.indicator-executive-row:last-child{border-bottom:0}
+.indicator-executive-row:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:4px;border-radius:0 4px 4px 0;background:#d6b26c}
+.indicator-executive-row.good:before{background:var(--ok)}
+.indicator-executive-row.alert:before{background:var(--bad)}
+.indicator-name-cell h3{font-family:"Libre Caslon Display",serif;color:var(--deep);font-size:1.22rem;line-height:1.12;margin:0 0 7px}
+.indicator-row-tags{display:flex;flex-wrap:wrap;gap:6px}
+.indicator-row-tag{display:inline-flex;padding:5px 7px;border-radius:999px;background:#eef4f7;color:#55707f;font-size:.62rem;font-weight:800}
+.indicator-row-tag.contract{background:#fff2dc;color:#875611}
+.indicator-number-cell strong{display:block;font-size:1.18rem;color:var(--ink);letter-spacing:-.02em}
+.indicator-number-cell span{display:block;margin-top:3px;color:var(--muted);font-size:.66rem}
+.indicator-target-cell strong{display:block;font-size:.85rem;color:#425968}
+.indicator-gap-cell .metric-gap{margin:0}
+.indicator-status-cell .metric-status{padding:6px 9px;font-size:.67rem}
+.indicator-detail{margin-top:7px}
+.indicator-detail summary{cursor:pointer;list-style:none;color:var(--blue);font-size:.68rem;font-weight:800}
+.indicator-detail summary::-webkit-details-marker{display:none}
+.indicator-detail summary:after{content:" +"}
+.indicator-detail[open] summary:after{content:" −"}
+.indicator-detail-body{margin-top:7px;padding:9px 10px;border-radius:11px;background:#f7f9fa;color:var(--muted);font-size:.72rem;line-height:1.5}
+
+.bullet-wrap{min-width:130px}
+.bullet-labels{display:flex;justify-content:space-between;gap:10px;margin-bottom:5px;color:#70818b;font-size:.59rem;font-weight:700}
+.bullet-track{position:relative;height:12px;border-radius:999px;background:#e8edef;overflow:visible}
+.bullet-zone{position:absolute;top:0;bottom:0;border-radius:999px;background:rgba(46,134,86,.15)}
+.bullet-target{position:absolute;top:-4px;width:2px;height:20px;background:#173d58;border-radius:2px;transform:translateX(-1px)}
+.bullet-current{position:absolute;top:50%;width:13px;height:13px;border:3px solid #fff;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px rgba(0,92,169,.26);transform:translate(-50%,-50%)}
+.bullet-current.alert{background:var(--bad);box-shadow:0 0 0 2px rgba(180,73,60,.22)}
+.bullet-current.good{background:var(--ok);box-shadow:0 0 0 2px rgba(46,134,86,.22)}
+.bullet-current.neutral{background:#aa8b4c;box-shadow:0 0 0 2px rgba(170,139,76,.2)}
+.bullet-caption{margin-top:5px;color:#82919a;font-size:.58rem;line-height:1.25}
+.indicator-empty-success{padding:20px;border-radius:18px;background:#f0f8f3;border:1px solid #cfe4d7;color:#35694a;font-size:.83rem;line-height:1.55}
+
+@media(max-width:1080px){
+  .indicator-priority-grid{grid-template-columns:1fr}
+  .indicator-controls{grid-template-columns:1fr}
+  .indicator-sort-control select{width:100%}
+  .indicator-list-header{display:none}
+  .indicator-executive-row{grid-template-columns:1.4fr .7fr .9fr}
+  .indicator-bullet-cell{grid-column:1/3}
+  .indicator-status-cell{grid-column:3}
+}
+@media(max-width:760px){
+  .indicator-overview{grid-template-columns:1fr 1fr}
+  .indicator-priority-head{grid-template-columns:1fr}
+  .indicator-executive-row{grid-template-columns:1fr 1fr;gap:10px}
+  .indicator-name-cell{grid-column:1/-1}
+  .indicator-bullet-cell{grid-column:1/-1}
+  .indicator-status-cell{grid-column:1/-1}
+  .indicator-controls{padding:15px}
+}
+
 @media print{
-  .nav,.cover-actions,.indicator-filters{display:none!important}.actions-dropdown summary,.mitigation-dropdown summary{background:#f4f7f8!important}
+  .nav,.cover-actions,.indicator-filters,.indicator-controls{display:none!important}.actions-dropdown summary,.mitigation-dropdown summary{background:#f4f7f8!important}
   .issue-cover{min-height:auto!important;page-break-after:always}
   .section{break-inside:auto}
   .card,.program-feature,.award-card,.attention-card{break-inside:avoid}
@@ -218,22 +346,88 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   </div>
 </section>
 <main>
-<section class="section" id="indicadores"><div class="wrap"><div class="section-head reveal"><div class="chapter">01</div><div><h2>Indicadores de resultado</h2><p class="section-lead">Os indicadores estão organizados por tipo, na ordem PLP, DN, OKR e Gerencial. Use os filtros para visualizar todos os indicadores, apenas os que integram o Contrato de Gestão ou um tipo específico.</p></div></div>
-<div class="indicator-filters" id="indicatorFilters" aria-label="Filtros de indicadores">
-<button class="indicator-filter active" type="button" data-filter="all">Todos</button>
-<button class="indicator-filter" type="button" data-filter="contract">Contrato de Gestão</button>
-<button class="indicator-filter" type="button" data-filter="PLP">PLP</button>
-<button class="indicator-filter" type="button" data-filter="DN">DN</button>
-<button class="indicator-filter" type="button" data-filter="OKR">OKR</button>
-<button class="indicator-filter" type="button" data-filter="GERENCIAL">Gerencial</button>
-</div>
-<div id="indicatorsGrid"></div></div></section>
+<section class="section indicators-section" id="indicadores">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="chapter">01</div>
+      <div>
+        <h2>Indicadores de resultado</h2>
+        <p class="section-lead">Leitura comparativa orientada à decisão: primeiro os maiores desvios, depois o conjunto completo de indicadores com realizado, meta, gap e situação.</p>
+      </div>
+    </div>
+
+    <div id="indicatorOverview" class="indicator-overview"></div>
+
+    <section class="indicator-priority-panel" aria-labelledby="indicatorPriorityTitle">
+      <div class="indicator-priority-head">
+        <div>
+          <div class="kicker">Gestão por exceção</div>
+          <h3 id="indicatorPriorityTitle">Indicadores que requerem atenção</h3>
+        </div>
+        <p>Os maiores desvios são priorizados automaticamente pela distância em relação à meta.</p>
+      </div>
+      <div id="indicatorPriority"></div>
+    </section>
+
+    <div class="indicator-controls" aria-label="Controles dos indicadores">
+      <div class="indicator-control-group">
+        <span class="indicator-control-label">Situação</span>
+        <div class="indicator-filter-row">
+          <button class="indicator-filter active" type="button" data-ind-status="all">Todos</button>
+          <button class="indicator-filter" type="button" data-ind-status="attention">Requer atenção</button>
+          <button class="indicator-filter" type="button" data-ind-status="good">Meta atendida</button>
+          <button class="indicator-filter" type="button" data-ind-status="neutral">Sem comparação</button>
+        </div>
+      </div>
+
+      <div class="indicator-control-group">
+        <span class="indicator-control-label">Recorte</span>
+        <div class="indicator-filter-row">
+          <button class="indicator-filter active" type="button" data-ind-segment="all">Todos</button>
+          <button class="indicator-filter" type="button" data-ind-segment="contract">Contrato de Gestão</button>
+          <button class="indicator-filter" type="button" data-ind-segment="PLP">PLP</button>
+          <button class="indicator-filter" type="button" data-ind-segment="DN">DN</button>
+          <button class="indicator-filter" type="button" data-ind-segment="OKR">OKR</button>
+          <button class="indicator-filter" type="button" data-ind-segment="GERENCIAL">Gerencial</button>
+        </div>
+      </div>
+
+      <label class="indicator-sort-control">
+        <span class="indicator-control-label">Ordenar por</span>
+        <select id="indicatorSort" aria-label="Ordenar indicadores">
+          <option value="priority">Prioridade executiva</option>
+          <option value="segment">Segmento</option>
+          <option value="az">A–Z</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="indicator-list-meta">
+      <strong id="indicatorResultCount">—</strong>
+      <span>indicadores exibidos</span>
+    </div>
+    <div id="indicatorsGrid"></div>
+  </div>
+</section>
 <section class="section" id="programas"><div class="wrap"><div class="section-head reveal"><div class="chapter">02</div><div><h2>Programas</h2><p class="section-lead">Os programas estruturantes apresentam objetivo, relação com indicadores e o conjunto de ações cadastradas com seu respectivo status.</p></div></div><div id="programsList"></div></div></section>
 <section class="section quality-section" id="qualidade"><div class="wrap"><div class="section-head reveal"><div class="chapter">03</div><div><h2>Projetos de qualidade</h2><p class="section-lead">Projetos de qualidade apresentados com status, período, síntese, indicadores relacionados e ações cadastradas.</p></div></div><div class="grid12" id="qualityGrid"></div></div></section>
 <section class="section innovation-section" id="inovacao"><div class="wrap"><div class="section-head reveal"><div class="chapter">04</div><div><h2>Projetos de inovação</h2><p class="section-lead">Projetos de inovação apresentados com status, período, síntese, indicadores relacionados e ações cadastradas.</p></div></div><div class="grid12" id="innovationGrid"></div></div></section>
 <section class="section awards-section" id="premios"><div class="wrap"><div class="section-head reveal"><div class="chapter">05</div><div><h2>Prêmios e reconhecimentos</h2><p class="section-lead">Registros de prêmios, reconhecimentos e submissões relacionados ao período.</p></div></div><div class="award-wall" id="awardsGrid"></div></div></section>
 <section class="section partners-section" id="parcerias"><div class="wrap"><div class="section-head reveal"><div class="chapter">06</div><div><h2>Parcerias</h2><p class="section-lead">Parcerias registradas na edição, com identificação dos destaques definidos no cadastro administrativo.</p></div></div><div id="partnersGrid"></div></div></section>
-<section class="section attention-section" id="atencao"><div class="wrap"><div class="section-head reveal"><div class="chapter">07</div><div><h2>Pontos de atenção</h2><p class="section-lead">Temas priorizados automaticamente por impacto, prazo e status, com decisões requeridas e ações de mitigação disponíveis em detalhe.</p></div></div><div id="attentionExecutiveSummary"></div><div id="attentionGrid"></div></div></section>
+<section class="section attention-section" id="atencao">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="chapter">07</div>
+      <div>
+        <h2>Pontos de atenção</h2>
+        <p class="section-lead">Leitura orientada à decisão: primeiro o que requer posicionamento da liderança; depois os temas priorizados por impacto, urgência e status.</p>
+      </div>
+    </div>
+    <div id="attentionDecisionQueue"></div>
+    <div id="attentionExecutiveSummary"></div>
+    <div id="attentionGrid"></div>
+  </div>
+</section>
 </main>
 <section class="final-note"><div class="wrap"><h3>Encerramento da edição</h3><p>Esta publicação consolida a versão vigente do relatório, identificando resultados, execução, reconhecimento institucional e pontos de atenção para acompanhamento.</p></div></section>
 <footer><div class="wrap">Relatório Executivo Anual · Núcleo de Qualidade e Inovação</div></footer>
@@ -308,8 +502,23 @@ function attentionPriority(row){
   if(status==="resolvido")return {rank:4,code:"RES",label:"Resolvido",cls:"resolved"};
   const impact=attentionImpact(row);
   const state=attentionDeadlineState(row.deadline);
-  if(impact==="critico"||state.cls==="overdue")return {rank:1,code:"P1",label:"Prioridade 1",cls:"p1"};
-  if(impact==="alto"||state.cls==="soon")return {rank:2,code:"P2",label:"Prioridade 2",cls:"p2"};
+  const decision=row.requires_decision===true;
+  const overdue=state.cls==="overdue";
+  const soon=state.cls==="soon";
+
+  if(
+    impact==="critico" ||
+    (impact==="alto"&&overdue) ||
+    (decision&&(impact==="alto"||impact==="critico"))
+  ) return {rank:1,code:"P1",label:"Prioridade 1",cls:"p1"};
+
+  if(
+    impact==="alto" ||
+    (impact==="medio"&&overdue) ||
+    soon ||
+    decision
+  ) return {rank:2,code:"P2",label:"Prioridade 2",cls:"p2"};
+
   return {rank:3,code:"P3",label:"Acompanhamento",cls:"p3"};
 }
 function renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,attention}){
@@ -430,45 +639,94 @@ function renderAttentionExecutive(attention){
   const resolved=enriched.filter(x=>x.p.cls==="resolved").length;
   const p1=active.filter(x=>x.p.rank===1).length;
   const overdue=active.filter(x=>x.state.cls==="overdue").length;
-  const decisions=active.filter(x=>x.row.requires_decision===true).length;
+  const treatment=active.filter(x=>attentionStatus(x.row)==="em_tratamento").length;
+  const decisions=active.filter(x=>x.row.requires_decision===true);
+
+  // 1) O que a liderança precisa decidir vem primeiro.
+  const decisionItems=[...decisions].sort((a,b)=>
+    a.p.rank-b.p.rank ||
+    (a.row.deadline||"9999").localeCompare(b.row.deadline||"9999") ||
+    String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR")
+  );
+  $("#attentionDecisionQueue").innerHTML=`
+    <section class="attention-decision-queue">
+      <div class="attention-decision-queue-head">
+        <div><div class="kicker">Tomada de decisão</div><h3>Decisões requeridas</h3></div>
+        <p>Temas que dependem de posicionamento, validação ou escolha da liderança para avançar.</p>
+      </div>
+      ${decisionItems.length?`<div class="attention-decision-list">${decisionItems.slice(0,5).map(({row,p},i)=>{
+        const impact=attentionImpactLabel(attentionImpact(row));
+        const status=attentionStatusLabel(attentionStatus(row));
+        const deadline=row.deadline?`Prazo ${dt(row.deadline)}`:"Sem prazo informado";
+        return `<article class="attention-decision-item">
+          <span class="attention-decision-num">${String(i+1).padStart(2,"0")}</span>
+          <div>
+            <strong>${esc(row.name)}</strong>
+            <small>Impacto ${esc(impact)} · ${esc(status)} · ${deadline}</small>
+            <div class="attention-decision-text">Decisão: ${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>
+          </div>
+          <span class="attention-decision-badge">${p.code}</span>
+        </article>`;
+      }).join("")}</div>`:`<div class="attention-decision-empty"><strong>Nenhuma decisão pendente.</strong> Os pontos ativos podem seguir em acompanhamento pela resposta já definida.</div>`}
+    </section>`;
+
+  // 2) Síntese curta para leitura de portfólio.
   $("#attentionExecutiveSummary").innerHTML=`
     <div class="attention-exec-summary">
-      <div class="attention-exec-item"><strong>${active.length}</strong><span>pontos ativos</span></div>
+      <div class="attention-exec-item decision"><strong>${decisions.length}</strong><span>decisões requeridas</span></div>
       <div class="attention-exec-item"><strong>${p1}</strong><span>prioridade 1</span></div>
       <div class="attention-exec-item"><strong>${overdue}</strong><span>prazos vencidos</span></div>
-      <div class="attention-exec-item"><strong>${decisions}</strong><span>decisões requeridas</span></div>
+      <div class="attention-exec-item resolved"><strong>${resolved}</strong><span>resolvidos</span></div>
     </div>`;
 
+  // 3) Fila executiva por prioridade.
   const groups=[
-    {rank:1,title:"Prioridade 1",subtitle:"Impacto crítico ou prazo vencido."},
-    {rank:2,title:"Prioridade 2",subtitle:"Impacto alto ou prazo próximo."},
-    {rank:3,title:"Acompanhamento",subtitle:"Itens ativos sem urgência elevada."},
-    {rank:4,title:"Resolvidos",subtitle:`${resolved} item(ns) encerrado(s) no período.`}
+    {rank:1,title:"Prioridade 1",subtitle:"Temas de maior impacto e urgência gerencial."},
+    {rank:2,title:"Prioridade 2",subtitle:"Temas relevantes que exigem resposta ou acompanhamento próximo."},
+    {rank:3,title:"Acompanhamento",subtitle:"Itens ativos com resposta em curso e menor urgência."},
+    {rank:4,title:"Resolvidos",subtitle:`${resolved} item(ns) encerrado(s), mantidos como evidência de resposta.`}
   ];
+
   $("#attentionGrid").innerHTML=attention.length?groups.map(g=>{
-    const items=enriched.filter(x=>x.p.rank===g.rank).sort((a,b)=>(a.row.deadline||"9999").localeCompare(b.row.deadline||"9999"));
+    const items=enriched.filter(x=>x.p.rank===g.rank).sort((a,b)=>
+      (a.row.requires_decision===true?0:1)-(b.row.requires_decision===true?0:1) ||
+      (a.row.deadline||"9999").localeCompare(b.row.deadline||"9999") ||
+      String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR")
+    );
     if(!items.length)return "";
-    return `<div class="attention-priority-block"><div class="attention-priority-head"><h3>${g.title}</h3><div class="copy">${g.subtitle}</div></div><div class="grid12">${items.map(({row,p,state})=>{
-      const note=attentionNotes(row);
-      const category=attentionCategory(row);
-      const impact=attentionImpactLabel(attentionImpact(row));
-      const status=attentionStatusLabel(attentionStatus(row));
-      const decision=row.requires_decision===true&&row.decision_needed?`<div class="attention-decision"><strong>Decisão necessária:</strong> ${esc(row.decision_needed)}</div>`:"";
-      return `<article class="card attention-card s6 ${p.cls}">
-        <div class="kicker">${p.label}</div>
-        <h3>${esc(row.name)}</h3>
-        <div class="attention-meta">
-          <span class="attention-chip priority-${p.cls}">${p.code}</span>
-          <span class="attention-chip">${esc(category)}</span>
-          <span class="attention-chip">Impacto ${esc(impact)}</span>
-          <span class="attention-chip">${esc(status)}</span>
-          ${row.deadline?`<span class="attention-chip">Prazo ${dt(row.deadline)}</span>`:""}
-        </div>
-        ${decision}
-        ${note?`<p class="copy">${esc(note)}</p>`:""}
-        ${renderMitigationDropdown(row)}
-      </article>`;
-    }).join("")}</div></div>`;
+    return `<div class="attention-priority-block">
+      <div class="attention-priority-head"><h3>${g.title}</h3><div class="copy">${g.subtitle}</div></div>
+      <div class="grid12">${items.map(({row,p,state})=>{
+        const note=attentionNotes(row);
+        const category=attentionCategory(row);
+        const impact=attentionImpactLabel(attentionImpact(row));
+        const status=attentionStatusLabel(attentionStatus(row));
+        const deadline=row.deadline?dt(row.deadline):"Sem prazo";
+        const decision=row.requires_decision===true
+          ?`<div class="attention-decision"><strong>Decisão necessária</strong><br>${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>`
+          :"";
+        const evidence=note?`<div class="attention-evidence"><strong>Evidência / contexto</strong><br>${esc(note)}</div>`:"";
+
+        return `<article class="card attention-card s6 ${p.cls}">
+          <div class="attention-card-head">
+            <div>
+              <div class="kicker">${esc(category)}</div>
+              <h3>${esc(row.name)}</h3>
+            </div>
+            <span class="attention-priority-badge ${p.cls}">${p.code} · ${esc(impact)}</span>
+          </div>
+          <div class="attention-context-line">
+            <span><b>${esc(status)}</b></span>
+            <span class="attention-context-dot"></span>
+            <span>${deadline}</span>
+            ${state.cls==="overdue"?`<span class="attention-context-dot"></span><span style="color:var(--bad);font-weight:800">Prazo vencido</span>`:state.cls==="soon"?`<span class="attention-context-dot"></span><span style="color:var(--warn);font-weight:800">Prazo próximo</span>`:""}
+          </div>
+          ${decision}
+          ${evidence}
+          ${renderMitigationDropdown(row)}
+        </article>`;
+      }).join("")}</div>
+    </div>`;
   }).join(""):empty("Nenhum ponto de atenção publicado.");
 }
 function attentionCategory(row){const raw=String(row?.notes||'');const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category||(m?m[1].trim():''))||'Sem categoria';}
@@ -491,44 +749,164 @@ function renderMitigationDropdown(row){
   const actions=mitigationActions(row);
   const state=attentionDeadlineState(row.deadline);
   return `<details class="mitigation-dropdown">
-    <summary><span>Ações de mitigação</span><span>${actions.length} cadastrada(s)</span></summary>
+    <summary><span>Resposta em curso</span><span>${actions.length} ação(ões)</span></summary>
     <div class="mitigation-actions">
       ${actions.length?actions.map(action=>`<div class="mitigation-row">
         <div><strong>${esc(action)}</strong></div>
         <div class="mitigation-deadline">${row.deadline?`Prazo: ${dt(row.deadline)}`:"Prazo não informado"}</div>
         <div><span class="mitigation-flag ${state.cls}">⚑ ${state.label}</span></div>
-      </div>`).join(""):`<div class="mitigation-row"><div class="mitigation-empty">Nenhuma ação de mitigação cadastrada.</div></div>`}
+      </div>`).join(""):`<div class="mitigation-row"><div class="mitigation-empty">Nenhuma ação de resposta cadastrada.</div></div>`}
     </div>
   </details>`;
 }
 function setupReveal(){const els=[...document.querySelectorAll('.reveal')];if(!('IntersectionObserver'in window)){els.forEach(x=>x.classList.add('show'));return};const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.12});els.forEach(x=>io.observe(x));}
 const indicatorTypeLabel=s=>({PLP:"PLP",DN:"DN",OKR:"OKR",GERENCIAL:"Gerencial"}[s]||s||"Outros");
 const indicatorPriority={PLP:1,DN:2,OKR:3,GERENCIAL:4};
-let currentIndicatorFilter="all";
+let currentIndicatorStatusFilter="all";
+let currentIndicatorSegmentFilter="all";
+let currentIndicatorSort="priority";
 let publishedIndicators=[];
-function applyIndicatorFilter(){
-  const filtered=publishedIndicators.filter(x=>{
-    if(currentIndicatorFilter==="all") return true;
-    if(currentIndicatorFilter==="contract") return x.is_management_contract===true;
-    return x.segment===currentIndicatorFilter;
+
+function conciseTarget(x){
+  const value=formatMetric(x.target_value,x.unit);
+  if(x.target_value==null||x.target_value==="")return "Meta —";
+  if(x.target_direction==="lte")return `Limite ≤ ${value}`;
+  if(x.target_direction==="exact")return `Meta = ${value}`;
+  return `Meta ≥ ${value}`;
+}
+function indicatorStateRank(x){
+  const cls=metricState(x).cls;
+  return cls==="alert"?1:cls==="neutral"?2:3;
+}
+function bulletGeometry(x){
+  if(x.latest_value==null||x.target_value==null)return null;
+  const a=Number(x.latest_value),b=Number(x.target_value);
+  if(Number.isNaN(a)||Number.isNaN(b))return null;
+  let min=Math.min(0,a,b),max=Math.max(0,a,b);
+  if(max===min){max=min+1}
+  const range=max-min;
+  min-=range*.08;
+  max+=range*.12;
+  const pos=v=>Math.max(2,Math.min(98,((v-min)/(max-min))*100));
+  const current=pos(a),target=pos(b);
+  let zoneLeft=target,zoneWidth=100-target;
+  if(x.target_direction==="lte"){zoneLeft=0;zoneWidth=target}
+  if(x.target_direction==="exact"){zoneLeft=Math.max(0,target-2);zoneWidth=4}
+  return {current,target,zoneLeft,zoneWidth};
+}
+function indicatorBullet(x){
+  const g=bulletGeometry(x),st=metricState(x);
+  if(!g)return `<div class="bullet-wrap"><div class="bullet-caption">Comparação visual indisponível</div></div>`;
+  return `<div class="bullet-wrap" aria-label="Comparação entre realizado e meta">
+    <div class="bullet-labels"><span>Realizado</span><span>Meta</span></div>
+    <div class="bullet-track">
+      <span class="bullet-zone" style="left:${g.zoneLeft}%;width:${g.zoneWidth}%"></span>
+      <span class="bullet-target" style="left:${g.target}%"></span>
+      <span class="bullet-current ${st.cls}" style="left:${g.current}%"></span>
+    </div>
+    <div class="bullet-caption">● realizado &nbsp; | &nbsp; meta</div>
+  </div>`;
+}
+function sortIndicatorRows(items){
+  const rows=[...items];
+  if(currentIndicatorSort==="az"){
+    return rows.sort((a,b)=>String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
+  }
+  if(currentIndicatorSort==="segment"){
+    return rows.sort((a,b)=>(indicatorPriority[a.segment]||99)-(indicatorPriority[b.segment]||99)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
+  }
+  return rows.sort((a,b)=>{
+    const rank=indicatorStateRank(a)-indicatorStateRank(b);
+    if(rank)return rank;
+    const sa=metricGap(a).severity||0,sb=metricGap(b).severity||0;
+    if(metricState(a).cls==="alert"&&sa!==sb)return sb-sa;
+    return (indicatorPriority[a.segment]||99)-(indicatorPriority[b.segment]||99)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR");
   });
+}
+function renderIndicatorDecisionLayer(){
+  const states=publishedIndicators.map(x=>({item:x,state:metricState(x),gap:metricGap(x)}));
+  const good=states.filter(x=>x.state.cls==="good").length;
+  const alert=states.filter(x=>x.state.cls==="alert").length;
+  const neutral=states.filter(x=>x.state.cls==="neutral").length;
+  const contract=states.filter(x=>x.item.is_management_contract);
+  const contractGood=contract.filter(x=>x.state.cls==="good").length;
+  const contractAlert=contract.filter(x=>x.state.cls==="alert").length;
+  const contractComparable=contractGood+contractAlert;
+
+  $("#indicatorOverview").innerHTML=`
+    <div class="indicator-overview-item"><strong>${publishedIndicators.length}</strong><span>indicadores acompanhados</span></div>
+    <div class="indicator-overview-item good"><strong>${good}</strong><span>na meta</span></div>
+    <div class="indicator-overview-item alert"><strong>${alert}</strong><span>requerem atenção</span></div>
+    <div class="indicator-overview-item neutral"><strong>${neutral}</strong><span>sem comparação</span></div>
+    <div class="indicator-overview-contract"><strong>Contrato de Gestão:</strong> ${contractComparable?`${contractGood} de ${contractComparable} indicadores comparáveis estão na meta${contractAlert?`; ${contractAlert} requer(em) atenção.`:"."}`:"ainda não há base comparável suficiente."}</div>`;
+
+  const deviations=states.filter(x=>x.state.cls==="alert").sort((a,b)=>(b.gap.severity||0)-(a.gap.severity||0)).slice(0,3);
+  $("#indicatorPriority").innerHTML=deviations.length
+    ?`<div class="indicator-priority-grid">${deviations.map((x,i)=>`<article class="indicator-priority-card">
+        <div class="indicator-priority-rank">Desvio ${String(i+1).padStart(2,"0")} · ${esc(indicatorTypeLabel(x.item.segment))}</div>
+        <h4>${esc(x.item.name)}</h4>
+        <div class="indicator-priority-values"><strong>${formatMetric(x.item.latest_value,x.item.unit)}</strong><span>${conciseTarget(x.item)}</span></div>
+        <span class="indicator-priority-gap">${esc(x.gap.text)}</span>
+        <div style="margin-top:14px">${indicatorBullet(x.item)}</div>
+      </article>`).join("")}</div>`
+    :`<div class="indicator-empty-success"><strong>Nenhum desvio identificado.</strong> Todos os indicadores com dados comparáveis estão na meta.</div>`;
+}
+function applyIndicatorFilter(){
+  let filtered=publishedIndicators.filter(x=>{
+    const st=metricState(x).cls;
+    const statusOk=currentIndicatorStatusFilter==="all"
+      ||(currentIndicatorStatusFilter==="attention"&&st==="alert")
+      ||(currentIndicatorStatusFilter==="good"&&st==="good")
+      ||(currentIndicatorStatusFilter==="neutral"&&st==="neutral");
+    const segmentOk=currentIndicatorSegmentFilter==="all"
+      ||(currentIndicatorSegmentFilter==="contract"&&x.is_management_contract===true)
+      ||x.segment===currentIndicatorSegmentFilter;
+    return statusOk&&segmentOk;
+  });
+
+  filtered=sortIndicatorRows(filtered);
   renderIndicators(filtered);
-  document.querySelectorAll(".indicator-filter").forEach(btn=>btn.classList.toggle("active",btn.dataset.filter===currentIndicatorFilter));
+
+  document.querySelectorAll("[data-ind-status]").forEach(btn=>btn.classList.toggle("active",btn.dataset.indStatus===currentIndicatorStatusFilter));
+  document.querySelectorAll("[data-ind-segment]").forEach(btn=>btn.classList.toggle("active",btn.dataset.indSegment===currentIndicatorSegmentFilter));
+  $("#indicatorResultCount").textContent=filtered.length;
+  if($("#indicatorSort"))$("#indicatorSort").value=currentIndicatorSort;
 }
 function renderIndicators(items){
-  const sorted=[...items].sort((a,b)=>(indicatorPriority[a.segment]||99)-(indicatorPriority[b.segment]||99) || (a.sort_order||0)-(b.sort_order||0) || String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
-  const grouped=sorted.reduce((acc,x)=>{const k=x.segment||"OUTROS";(acc[k]??=[]).push(x);return acc},{});
-  const order=["PLP","DN","OKR","GERENCIAL",...Object.keys(grouped).filter(k=>!["PLP","DN","OKR","GERENCIAL"].includes(k))];
-  $("#indicatorsGrid").innerHTML=sorted.length?order.filter(k=>grouped[k]?.length).map(seg=>`<div class="segment-block"><div class="segment-title"><span>${esc(indicatorTypeLabel(seg))}</span></div><div class="grid12">${grouped[seg].map(x=>{const st=metricState(x);return`<article class="card metric-card s4 ${st.cls}"><div class="kicker">${esc(x.name)}</div><div class="metric-value">${formatMetric(x.latest_value,x.unit)}</div><span class="metric-status ${st.cls}">${st.label}</span>${x.is_management_contract?'<span class="contract-tag">Contrato de Gestão</span>':''}<div><span class="metric-gap ${metricGap(x).cls}">${esc(metricGap(x).text)}</span></div><div class="spec-grid"><div class="spec"><b>Meta</b><br>${formatMetric(x.target_value,x.unit)}</div><div class="spec"><b>Direção</b><br>${targetDirLabel(x.target_direction)}</div>${x.measurement_date?`<div class="spec"><b>Medição</b><br>${dt(x.measurement_date)}</div>`:''}${cleanUnit(x.unit)?`<div class="spec"><b>Unidade</b><br>${esc(cleanUnit(x.unit))}</div>`:''}</div>${x.notes?`<p class="copy">${esc(x.notes)}</p>`:''}</article>`}).join("")}</div></div>`).join(""):empty("Nenhum indicador encontrado para este filtro.");
+  if(!items.length){
+    $("#indicatorsGrid").innerHTML=empty("Nenhum indicador encontrado para os filtros selecionados.");
+    return;
+  }
+  $("#indicatorsGrid").innerHTML=`<div class="indicator-list-shell">
+    <div class="indicator-list-header">
+      <span>Indicador</span><span>Realizado</span><span>Meta</span><span>Gap</span><span>Realizado × meta</span><span>Situação</span>
+    </div>
+    ${items.map(x=>{
+      const st=metricState(x),gap=metricGap(x);
+      const detail=(x.measurement_date||x.notes)?`<details class="indicator-detail"><summary>Ver detalhe</summary><div class="indicator-detail-body">${x.measurement_date?`<div><strong>Medição:</strong> ${dt(x.measurement_date)}</div>`:""}${x.notes?`<div style="margin-top:${x.measurement_date?"5px":"0"}">${esc(x.notes)}</div>`:""}</div></details>`:"";
+      return `<article class="indicator-executive-row ${st.cls}">
+        <div class="indicator-name-cell">
+          <h3>${esc(x.name)}</h3>
+          <div class="indicator-row-tags"><span class="indicator-row-tag">${esc(indicatorTypeLabel(x.segment))}</span>${x.is_management_contract?'<span class="indicator-row-tag contract">Contrato de Gestão</span>':""}</div>
+          ${detail}
+        </div>
+        <div class="indicator-number-cell"><strong>${formatMetric(x.latest_value,x.unit)}</strong><span>realizado</span></div>
+        <div class="indicator-target-cell"><strong>${conciseTarget(x)}</strong></div>
+        <div class="indicator-gap-cell"><span class="metric-gap ${gap.cls}">${esc(gap.text)}</span></div>
+        <div class="indicator-bullet-cell">${indicatorBullet(x)}</div>
+        <div class="indicator-status-cell"><span class="metric-status ${st.cls}">${st.label}</span></div>
+      </article>`;
+    }).join("")}
+  </div>`;
 }
 
-function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>Resultados e metas.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>Programas, projetos de qualidade e projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>Reconhecimentos e rede de parceiros.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>Prioridades agrupadas.</span></div>`;$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionExecutiveSummary').innerHTML='';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>Resultados e metas.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>Programas, projetos de qualidade e projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>Reconhecimentos e rede de parceiros.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>Prioridades agrupadas.</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
 const reportParams=new URLSearchParams(location.search);
 const requestedYear=Number(reportParams.get("year"))||null;
 const autoPdf=reportParams.get("pdf")==="1";
 let printDetailsState=[];
-window.addEventListener("beforeprint",()=>{const all=[...document.querySelectorAll(".actions-dropdown,.mitigation-dropdown")];printDetailsState=all.map(d=>d.open);all.forEach(d=>d.open=true)});
-window.addEventListener("afterprint",()=>{document.querySelectorAll(".actions-dropdown,.mitigation-dropdown").forEach((d,i)=>d.open=!!printDetailsState[i])});
+window.addEventListener("beforeprint",()=>{const all=[...document.querySelectorAll(".actions-dropdown,.mitigation-dropdown,.indicator-detail")];printDetailsState=all.map(d=>d.open);all.forEach(d=>d.open=true)});
+window.addEventListener("afterprint",()=>{document.querySelectorAll(".actions-dropdown,.mitigation-dropdown,.indicator-detail").forEach((d,i)=>d.open=!!printDetailsState[i])});
 $("#printPdfBtn")?.addEventListener("click",()=>window.print());
 
 
@@ -582,7 +960,10 @@ async function load(){
   $('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>${indicators.length} indicadores organizados por segmento.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>${programs.length} programas, ${quality.length} projetos de qualidade e ${innovation.length} projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>${awards.length} registros de prêmios/reconhecimentos e ${partners.length} parcerias.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>${attention.length} pontos agrupados por categoria.</span></div>`;
 
   publishedIndicators=indicators;
-  currentIndicatorFilter="all";
+  currentIndicatorStatusFilter="all";
+  currentIndicatorSegmentFilter="all";
+  currentIndicatorSort="priority";
+  renderIndicatorDecisionLayer();
   applyIndicatorFilter();
 
   $('#programsList').innerHTML=programs.length?[...programs].sort((a,b)=>programRank(a,actions)-programRank(b,actions)||(a.sort_order||0)-(b.sort_order||0)).map((p,idx)=>{
@@ -614,7 +995,9 @@ async function load(){
 }
 
 
-document.querySelectorAll(".indicator-filter").forEach(btn=>btn.addEventListener("click",()=>{currentIndicatorFilter=btn.dataset.filter||"all";applyIndicatorFilter()}));
+document.querySelectorAll("[data-ind-status]").forEach(btn=>btn.addEventListener("click",()=>{currentIndicatorStatusFilter=btn.dataset.indStatus||"all";applyIndicatorFilter()}));
+document.querySelectorAll("[data-ind-segment]").forEach(btn=>btn.addEventListener("click",()=>{currentIndicatorSegmentFilter=btn.dataset.indSegment||"all";applyIndicatorFilter()}));
+$("#indicatorSort")?.addEventListener("change",e=>{currentIndicatorSort=e.target.value||"priority";applyIndicatorFilter()});
 if(typeof firebase==="undefined"){
   $('#loading').textContent='Não foi possível carregar o serviço de dados.';
 }else{
