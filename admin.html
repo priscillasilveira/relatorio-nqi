@@ -305,7 +305,22 @@ function attentionDeadlineRankAdmin(row){
   const d=new Date(row.deadline+"T12:00:00");
   return Number.isNaN(d.getTime())?Number.MAX_SAFE_INTEGER-1:d.getTime();
 }
-function attentionCategories(){return [...new Set((data.attention||[]).map(extractAttentionCategory).filter(x=>x&&x!=="Sem categoria"))].sort((a,b)=>a.localeCompare(b,"pt-BR"))}
+function attentionCategoryKeyAdmin(value){
+  return String(value||"")
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/\s+/g," ")
+    .toLowerCase();
+}
+function attentionCategories(){
+  const map=new Map();
+  (data.attention||[]).map(extractAttentionCategory).filter(x=>x&&x!=="Sem categoria").forEach(label=>{
+    const key=attentionCategoryKeyAdmin(label);
+    if(!map.has(key))map.set(key,label.trim());
+  });
+  return [...map.values()].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+}
 function attentionCategoryOptions(value=""){const list=attentionCategories();if(value&&!list.includes(value))list.unshift(value);return list.map(c=>`<option value="${esc(c)}"></option>`).join("")}
 function attentionStatusAdmin(row){return row?.attention_status||"aberto"}
 function attentionImpactAdmin(row){return row?.impact||"medio"}

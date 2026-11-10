@@ -128,10 +128,33 @@
 .attention-context-dot{width:3px;height:3px;border-radius:50%;background:#9eabb1}
 .attention-evidence{margin:10px 0 0;padding:12px 13px;border-radius:14px;background:#f8fafb;color:#62747f;font-size:.8rem;line-height:1.58}
 .attention-evidence strong{color:#405867}
-.attention-category-block{margin-bottom:34px}
-.attention-category-head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin-bottom:13px;padding:0 2px 11px;border-bottom:1px solid #d9d0c0}
+.attention-category-block{
+  margin:0 0 26px;
+  padding:22px 22px 20px;
+  border-radius:24px;
+  background:linear-gradient(180deg,#fbfcfc,#f7f9fa);
+  border:1px solid #dfe6e9;
+  box-shadow:0 12px 30px rgba(23,42,54,.035)
+}
+.attention-category-block:last-child{margin-bottom:0}
+.attention-category-block.is-overdue{border-color:#e8c8c3;background:linear-gradient(180deg,#fffafa,#fbf8f8)}
+.attention-category-block.is-resolved{border-color:#d9e5dd;background:linear-gradient(180deg,#fbfefc,#f5faf7)}
+.attention-category-head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:18px;
+  align-items:end;
+  margin-bottom:14px;
+  padding:0 2px 13px;
+  border-bottom:1px solid #d6e0e4
+}
+.attention-category-title-wrap{display:flex;align-items:center;gap:10px;min-width:0;flex-wrap:wrap}
+.attention-category-label{display:inline-flex;padding:5px 8px;border-radius:999px;background:#e8f0f4;color:#486777;font-size:.58rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.attention-category-alert{display:inline-flex;padding:5px 8px;border-radius:999px;background:#fdebea;color:#a9342c;font-size:.59rem;font-weight:900;white-space:nowrap}
 .attention-category-head h3{font-family:"Libre Caslon Display",serif;font-size:2.15rem;line-height:1.05;color:var(--deep);margin:0}
-.attention-category-meta{color:var(--muted);font-size:.74rem;line-height:1.45;text-align:right}
+.attention-category-meta{color:var(--muted);font-size:.71rem;line-height:1.5;text-align:right}
+.attention-category-meta span{display:block}
+.attention-category-meta strong{color:var(--deep)}
 .attention-category-meta strong{color:var(--deep)}
 .attention-list{display:grid;gap:10px}
 .attention-list-item{position:relative;display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:16px;align-items:start;padding:17px 18px;border-radius:18px;background:#fff;border:1px solid #e2e7e9;box-shadow:0 10px 24px rgba(23,42,54,.035)}
@@ -1000,39 +1023,175 @@ function renderExecutiveAnalytics({indicators,programs,actions,quality,innovatio
     :`<p class="executive-copy">Nenhuma exceção crítica foi identificada com os dados disponíveis nesta edição.</p>`;
 }
 function renderAttentionExecutive(attention){
-  const enriched=attention.map(row=>({row,category:attentionCategory(row),urgency:deadlineUrgencyLabel(row),deadlineRank:deadlineSortValue(row.deadline,attentionStatus(row))}));
+  const enriched=attention.map(row=>{
+    const category=attentionCategory(row);
+    return {
+      row,
+      category,
+      categoryKey:attentionCategoryKey(category),
+      urgency:deadlineUrgencyLabel(row),
+      deadlineRank:deadlineSortValue(row.deadline,attentionStatus(row))
+    };
+  });
+
   const active=enriched.filter(x=>attentionStatus(x.row)!=="resolvido");
   const resolved=enriched.filter(x=>attentionStatus(x.row)==="resolvido").length;
   const overdue=active.filter(x=>x.urgency.cls==="overdue").length;
-  const next30=active.filter(x=>{if(!x.row.deadline)return false;const today=new Date();today.setHours(0,0,0,0);const d=new Date(x.row.deadline+"T12:00:00");const days=Math.ceil((d-today)/86400000);return days>=0&&days<=30}).length;
+  const next30=active.filter(x=>{
+    if(!x.row.deadline)return false;
+    const today=new Date();today.setHours(0,0,0,0);
+    const d=new Date(x.row.deadline+"T12:00:00");
+    const days=Math.ceil((d-today)/86400000);
+    return days>=0&&days<=30;
+  }).length;
   const decisions=active.filter(x=>x.row.requires_decision===true);
-  const categories=[...new Set(active.map(x=>x.category))];
+  const categories=[...new Set(active.map(x=>x.categoryKey))];
 
-  const decisionItems=[...decisions].sort((a,b)=>a.deadlineRank-b.deadlineRank||String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR"));
-  $("#attentionDecisionQueue").innerHTML=decisionItems.length?`<section class="attention-decision-queue"><div class="attention-decision-queue-head"><div><div class="kicker">Tomada de decisão</div><h3>Decisões requeridas</h3></div><p>Itens excepcionalmente marcados para posicionamento da liderança.</p></div><div class="attention-decision-list">${decisionItems.slice(0,5).map(({row},i)=>`<article class="attention-decision-item"><span class="attention-decision-num">${String(i+1).padStart(2,"0")}</span><div><strong>${esc(row.name)}</strong><small>${esc(attentionCategory(row))} · ${row.deadline?`Prazo ${dt(row.deadline)}`:"Sem prazo informado"}</small><div class="attention-decision-text">Decisão: ${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div></div><span class="attention-decision-badge">Decisão</span></article>`).join("")}</div></section>`:"";
+  const decisionItems=[...decisions].sort((a,b)=>
+    a.deadlineRank-b.deadlineRank ||
+    String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR")
+  );
 
-  $("#attentionExecutiveSummary").innerHTML=`<div class="attention-exec-summary"><div class="attention-exec-item"><strong>${active.length}</strong><span>pontos ativos</span></div><div class="attention-exec-item"><strong>${overdue}</strong><span>vencidos</span></div><div class="attention-exec-item"><strong>${next30}</strong><span>vencem em até 30 dias</span></div><div class="attention-exec-item"><strong>${categories.length}</strong><span>categorias ativas</span></div></div>`;
+  $("#attentionDecisionQueue").innerHTML=decisionItems.length
+    ?`<section class="attention-decision-queue">
+      <div class="attention-decision-queue-head">
+        <div><div class="kicker">Tomada de decisão</div><h3>Decisões requeridas</h3></div>
+        <p>Itens excepcionalmente marcados para posicionamento da liderança.</p>
+      </div>
+      <div class="attention-decision-list">${decisionItems.slice(0,5).map(({row},i)=>`
+        <article class="attention-decision-item">
+          <span class="attention-decision-num">${String(i+1).padStart(2,"0")}</span>
+          <div>
+            <strong>${esc(row.name)}</strong>
+            <small>${esc(attentionCategory(row))} · ${row.deadline?`Prazo ${dt(row.deadline)}`:"Sem prazo informado"}</small>
+            <div class="attention-decision-text">Decisão: ${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>
+          </div>
+          <span class="attention-decision-badge">Decisão</span>
+        </article>`).join("")}</div>
+    </section>`
+    :"";
 
-  const grouped=enriched.reduce((acc,x)=>{(acc[x.category]??=[]).push(x);return acc},{});
-  const categoryRows=Object.entries(grouped).map(([category,items])=>{
-    const sorted=[...items].sort((a,b)=>a.deadlineRank-b.deadlineRank||String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR"));
+  $("#attentionExecutiveSummary").innerHTML=`
+    <div class="attention-exec-summary">
+      <div class="attention-exec-item"><strong>${active.length}</strong><span>pontos ativos</span></div>
+      <div class="attention-exec-item"><strong>${overdue}</strong><span>vencidos</span></div>
+      <div class="attention-exec-item"><strong>${next30}</strong><span>vencem em até 30 dias</span></div>
+      <div class="attention-exec-item"><strong>${categories.length}</strong><span>categorias ativas</span></div>
+    </div>`;
+
+  const grouped=enriched.reduce((acc,x)=>{
+    (acc[x.categoryKey]??=[]).push(x);
+    return acc;
+  },{});
+
+  const categoryRows=Object.entries(grouped).map(([categoryKey,items])=>{
+    const displayCategory=attentionCategoryDisplay(items);
+    const sorted=[...items].sort((a,b)=>{
+      const aResolved=attentionStatus(a.row)==="resolvido";
+      const bResolved=attentionStatus(b.row)==="resolvido";
+      if(aResolved!==bResolved)return aResolved?1:-1;
+      return a.deadlineRank-b.deadlineRank ||
+        String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR");
+    });
+
     const activeItems=sorted.filter(x=>attentionStatus(x.row)!=="resolvido");
+    const overdueItems=activeItems.filter(x=>x.urgency.cls==="overdue");
     const nextDeadline=activeItems.find(x=>x.row.deadline)?.row.deadline||null;
-    const categoryRank=activeItems.length?(nextDeadline?new Date(nextDeadline+"T12:00:00").getTime():Number.MAX_SAFE_INTEGER-1):Number.MAX_SAFE_INTEGER;
-    return {category,items:sorted,nextDeadline,categoryRank};
-  }).sort((a,b)=>a.categoryRank-b.categoryRank||a.category.localeCompare(b.category,"pt-BR"));
 
-  $("#attentionGrid").innerHTML=attention.length?categoryRows.map(group=>`<section class="attention-category-block"><div class="attention-category-head"><h3>${esc(group.category)}</h3><div class="attention-category-meta"><strong>${group.items.length}</strong> ponto(s)${group.nextDeadline?` · próximo prazo <strong>${dt(group.nextDeadline)}</strong>`:" · sem prazo ativo"}</div></div><div class="attention-list">${group.items.map(({row,urgency})=>{
-    const status=attentionStatusLabel(attentionStatus(row));
-    const impact=attentionImpactLabel(attentionImpact(row));
-    const note=attentionNotes(row);
-    const resolvedItem=attentionStatus(row)==="resolvido";
-    const decision=row.requires_decision===true?`<div class="attention-decision"><strong>Decisão necessária</strong><br>${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>`:"";
-    const evidence=note?`<div class="attention-evidence"><strong>Evidência / contexto</strong><br>${esc(note)}</div>`:"";
-    return `<article id="${execAnchor("attention",row.id)}" class="attention-list-item ${resolvedItem?"resolved":urgency.cls}"><div class="attention-date-block"><div class="attention-date-day">${shortDeadline(row.deadline)}</div><div class="attention-date-label ${resolvedItem?"resolved":urgency.cls}">${urgency.label}</div></div><div class="attention-list-main"><h4>${esc(row.name)}</h4><div class="attention-list-sub"><span><strong>${esc(status)}</strong></span>${row.deadline?`<span class="attention-mini-dot"></span><span>${dt(row.deadline)}</span>`:""}</div></div><div class="attention-list-actions">${row.requires_decision===true?'<span class="attention-badge-small decision">Decisão requerida</span>':""}${row.impact?`<span class="attention-badge-small impact">Impacto ${esc(impact)}</span>`:""}</div><div class="attention-list-details">${decision}${evidence}${renderMitigationDropdown(row)}</div></article>`;
-  }).join("")}</div></section>`).join(""):empty("Nenhum ponto de atenção publicado.");
+    const categoryRank=activeItems.length
+      ?(nextDeadline?new Date(nextDeadline+"T12:00:00").getTime():Number.MAX_SAFE_INTEGER-2)
+      :Number.MAX_SAFE_INTEGER;
+
+    return {
+      categoryKey,
+      category:displayCategory,
+      items:sorted,
+      activeCount:activeItems.length,
+      resolvedCount:sorted.length-activeItems.length,
+      overdueCount:overdueItems.length,
+      nextDeadline,
+      categoryRank
+    };
+  }).sort((a,b)=>
+    a.categoryRank-b.categoryRank ||
+    a.category.localeCompare(b.category,"pt-BR")
+  );
+
+  $("#attentionGrid").innerHTML=attention.length
+    ?categoryRows.map(group=>{
+      const groupClass=group.activeCount===0?"is-resolved":group.overdueCount>0?"is-overdue":"";
+      const countText=`${group.activeCount} ativo${group.activeCount===1?"":"s"}${group.resolvedCount?` · ${group.resolvedCount} resolvido${group.resolvedCount===1?"":"s"}`:""}`;
+
+      return `<section class="attention-category-block ${groupClass}">
+        <div class="attention-category-head">
+          <div class="attention-category-title-wrap">
+            <span class="attention-category-label">Categoria</span>
+            <h3>${esc(group.category)}</h3>
+            ${group.overdueCount?`<span class="attention-category-alert">${group.overdueCount} vencido${group.overdueCount===1?"":"s"}</span>`:""}
+          </div>
+          <div class="attention-category-meta">
+            <span><strong>${countText}</strong></span>
+            <span>${group.nextDeadline?`Próximo prazo: <strong>${dt(group.nextDeadline)}</strong>`:group.activeCount?"Sem prazo ativo":"Categoria encerrada"}</span>
+          </div>
+        </div>
+
+        <div class="attention-list">
+          ${group.items.map(({row,urgency})=>{
+            const status=attentionStatusLabel(attentionStatus(row));
+            const impact=attentionImpactLabel(attentionImpact(row));
+            const note=attentionNotes(row);
+            const resolvedItem=attentionStatus(row)==="resolvido";
+            const decision=row.requires_decision===true
+              ?`<div class="attention-decision"><strong>Decisão necessária</strong><br>${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>`
+              :"";
+            const evidence=note
+              ?`<div class="attention-evidence"><strong>Evidência / contexto</strong><br>${esc(note)}</div>`
+              :"";
+
+            return `<article id="${execAnchor("attention",row.id)}" class="attention-list-item ${resolvedItem?"resolved":urgency.cls}">
+              <div class="attention-date-block">
+                <div class="attention-date-day">${shortDeadline(row.deadline)}</div>
+                <div class="attention-date-label ${resolvedItem?"resolved":urgency.cls}">${urgency.label}</div>
+              </div>
+              <div class="attention-list-main">
+                <h4>${esc(row.name)}</h4>
+                <div class="attention-list-sub">
+                  <span><strong>${esc(status)}</strong></span>
+                  ${row.deadline?`<span class="attention-mini-dot"></span><span>${dt(row.deadline)}</span>`:""}
+                </div>
+              </div>
+              <div class="attention-list-actions">
+                ${row.requires_decision===true?'<span class="attention-badge-small decision">Decisão requerida</span>':""}
+                ${row.impact?`<span class="attention-badge-small impact">Impacto ${esc(impact)}</span>`:""}
+              </div>
+              <div class="attention-list-details">
+                ${decision}
+                ${evidence}
+                ${renderMitigationDropdown(row)}
+              </div>
+            </article>`;
+          }).join("")}
+        </div>
+      </section>`;
+    }).join("")
+    :empty("Nenhum ponto de atenção publicado.");
 }
 function attentionCategory(row){const raw=String(row?.notes||'');const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category||(m?m[1].trim():''))||'Sem categoria';}
+function attentionCategoryKey(value){
+  return String(value||"Sem categoria")
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/\s+/g," ")
+    .toLowerCase();
+}
+function attentionCategoryDisplay(items){
+  const labels=items.map(x=>String(x.category||"").trim()).filter(Boolean);
+  if(!labels.length)return "Sem categoria";
+  const counts=new Map();
+  labels.forEach(label=>counts.set(label,(counts.get(label)||0)+1));
+  return [...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"pt-BR"))[0][0];
+}
 function attentionNotes(row){return String(row?.notes||'').replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,'').trim();}
 function mitigationActions(row){
   const raw=String(row?.mitigation_action||"").trim();
