@@ -1,4 +1,4 @@
-NQI — SISTEMA COM FORMULÁRIOS + SUPABASE
+NQI — SISTEMA COM FORMULÁRIOS + FIREBASE
 
 ARQUITETURA
 - index.html: relatório público, somente leitura
