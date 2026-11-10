@@ -22,6 +22,81 @@
 .notice{border-left:4px solid var(--orange);background:#fff7e9;padding:13px 15px;border-radius:0 12px 12px 0;font-size:.8rem;color:#6c5836} .statusline{font-size:.8rem;color:var(--muted)} .success{color:var(--green)} .error{color:var(--red)}
 .actionrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px} .mini{font-size:.75rem;padding:7px 10px} .sectionlist{display:grid;gap:10px}.admin-action-list{display:grid;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid #edf1f2}.admin-action-row{display:grid;grid-template-columns:minmax(160px,1.2fr) .7fr .55fr .55fr;gap:8px;align-items:center;padding:8px 10px;border-radius:11px;background:#f8fafb;font-size:.75rem;color:#566a75}.admin-action-row.finalizada{background:#f1f7f3;color:#53705f}.admin-action-name{font-weight:700;color:#314b5a}.admin-action-status,.admin-health{display:inline-block;padding:4px 7px;border-radius:999px;font-size:.66rem;font-weight:800;white-space:nowrap}.aas-em_andamento{background:#e7f1f8;color:#005ca9}.aas-aguardando{background:#f7eedb;color:#7a6233}.aas-finalizada{background:#e7f3eb;color:#2e8656}.aah-risco{background:#fdebea;color:#a9342c}.aah-atencao{background:#fff4d8;color:#8a6200}.aah-adequada{background:#e6f4eb;color:#2e7d4f}.health-preview{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;font-size:.7rem;font-weight:800;margin-top:4px}.health-preview:before{content:"⚑"}.hp-risco{background:#fdebea;color:#a9342c}.hp-atencao{background:#fff4d8;color:#8a6200}.hp-adequada{background:#e6f4eb;color:#2e7d4f}.admin-filters{display:grid;grid-template-columns:minmax(190px,1fr) repeat(3,minmax(145px,180px));gap:10px;margin:0 0 14px}.history-list{display:grid;gap:10px}.history-row{display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center;padding:13px 14px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}.history-year{font-family:"Libre Caslon Display";font-size:1.5rem;color:var(--deep)}.readonly-note{padding:12px 14px;border-radius:12px;background:#eef5f8;color:#46606d;font-size:.8rem;margin:10px 0}.readonly-mode [data-add]{display:none!important} .empty{padding:22px;border:1px dashed #cbd6da;border-radius:15px;color:var(--muted);background:rgba(255,255,255,.55)}
 @media(max-width:900px){.admin-action-row{grid-template-columns:1fr}.admin-filters{grid-template-columns:1fr}.history-row{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow:auto;gap:5px}.navbtn{white-space:nowrap;width:auto}.grid2,.grid3{grid-template-columns:1fr}}
+
+.attention-quick-card{margin:20px 0;padding:18px;border:1px solid #dce4e7;border-radius:20px;background:#fbfcfc}.attention-quick-note{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-bottom:12px}.attention-quick-note strong{color:#173e59}.attention-quick-note span{color:#71818a;font-size:.76rem}.attention-quick-table{border:1px solid #dde5e8;border-radius:16px;overflow:hidden;background:#fff}.attention-quick-header,.attention-quick-row{display:grid;grid-template-columns:minmax(260px,1.7fr) minmax(180px,1fr) 155px 170px;gap:10px;align-items:center}.attention-quick-header{padding:9px 12px;background:#f1f5f6;color:#72818a;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800}.attention-quick-row{padding:9px 12px;border-top:1px solid #edf0f1}.attention-quick-row:first-child{border-top:0}.attention-quick-row input{width:100%;border:1px solid #d6e0e4;background:#fff;color:#283f4d;border-radius:10px;padding:9px 10px;font:inherit}.attention-quick-row input:focus{outline:none;border-color:#005ca9;box-shadow:0 0 0 3px rgba(0,92,169,.08)}.attention-quick-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}.attention-quick-actions button{border:0;background:transparent;color:#466273;font-weight:800;cursor:pointer;padding:6px}.attention-quick-actions button:hover{color:#005ca9}.attention-quick-actions .danger-link:hover{color:#b4493c}.attention-quick-state{font-size:.65rem;color:#2e8656;min-width:32px}.attention-quick-row.is-new{background:#fffdf7}.readonly-mode #addAttentionQuickRow,.readonly-mode [data-q-delete]{display:none!important}.form-advanced{border:1px solid #dfe6e9;border-radius:14px;padding:12px 13px;background:#fafcfc;margin-top:8px}.form-advanced summary{cursor:pointer;font-weight:800;color:#35566a}@media(max-width:900px){.attention-quick-header{display:none}.attention-quick-row{grid-template-columns:1fr}.attention-quick-actions{justify-content:flex-start}.attention-quick-note{align-items:flex-start;flex-direction:column}}
+
+
+/* v25 · Atualização em lote */
+.indicator-quick-table,.portfolio-quick-table{border:1px solid #dce4e7;border-radius:17px;overflow:hidden;background:#fff}
+.indicator-quick-header,.indicator-quick-row,.portfolio-quick-header,.portfolio-quick-row{display:grid;gap:9px;align-items:center}
+.indicator-quick-header,.portfolio-quick-header{padding:9px 11px;background:#f1f5f6;color:#72818a;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800}
+.indicator-quick-header,.indicator-quick-row{grid-template-columns:minmax(240px,1.55fr) 110px 125px 125px 145px 135px 175px}
+.portfolio-quick-header.program,.portfolio-quick-row.program{grid-template-columns:minmax(250px,1.55fr) 110px 80px 140px 190px}
+.portfolio-quick-header.project,.portfolio-quick-row.project{grid-template-columns:minmax(240px,1.4fr) 155px 150px 80px 190px}
+.indicator-quick-row,.portfolio-quick-row{padding:9px 11px;border-top:1px solid #edf0f1}
+.indicator-quick-row:first-child,.portfolio-quick-row:first-child{border-top:0}
+.indicator-quick-row.is-new,.portfolio-quick-row.is-new{background:#fffdf7}
+.indicator-quick-row input,.indicator-quick-row select,.portfolio-quick-row input,.portfolio-quick-row select{width:100%;padding:9px;border:1px solid #d6e0e4;background:#fff;border-radius:10px;color:#2a4351;font:inherit}
+.quick-state-badge,.portfolio-health{display:inline-flex;padding:6px 8px;border-radius:999px;font-size:.62rem;font-weight:900;white-space:nowrap}
+.quick-state-badge.good,.portfolio-health.good{background:#e6f4eb;color:#2e7d4f}
+.quick-state-badge.attention,.portfolio-health.risk{background:#fdebea;color:#a9342c}
+.quick-state-badge.neutral,.portfolio-health.neutral{background:#eef3f5;color:#60747f}
+.portfolio-health.attention{background:#fff4d8;color:#8a6200}
+.quick-row-actions,.portfolio-quick-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.quick-row-actions button,.portfolio-quick-actions button{border:0;background:transparent;color:#466273;font-weight:800;cursor:pointer;padding:5px}
+.quick-save-state,.portfolio-quick-state{font-size:.61rem;color:#2e8656;min-width:30px}
+.portfolio-quick-kpi{font-weight:800;color:#315164;font-size:.78rem}.portfolio-quick-kpi small{display:block;color:#7a8991;font-weight:500;margin-top:2px}
+.indicator-contract-mini{display:inline-flex;margin-top:4px;padding:4px 6px;border-radius:999px;background:#fff2dc;color:#875611;font-size:.56rem;font-weight:900}
+.form-optional{border:1px solid #dfe6e9;border-radius:14px;padding:12px 13px;background:#fafcfc;margin:10px 0}.form-optional summary{cursor:pointer;font-weight:800;color:#35566a}
+.action-editor-table{border:1px solid #dce4e7;border-radius:14px;overflow:hidden;background:#fff;margin-top:8px}
+.action-editor-header,.action-editor-row{display:grid;grid-template-columns:minmax(180px,1.5fr) 135px 135px 135px 135px 42px;gap:8px;align-items:center}
+.action-editor-header{padding:8px 10px;background:#f1f5f6;color:#72818a;font-size:.61rem;letter-spacing:.06em;text-transform:uppercase;font-weight:800}
+.action-editor-row{padding:8px 10px;border-top:1px solid #edf0f1}.action-editor-row input,.action-editor-row select{padding:8px 9px;border-radius:9px;font-size:.78rem}
+.action-editor-delete{border:0;background:transparent;color:#a94639;font-weight:900;cursor:pointer;font-size:1rem}.action-editor-toolbar{display:flex;justify-content:flex-end;margin-top:9px}
+.readonly-mode #addIndicatorQuickRow,.readonly-mode #addProgramQuickRow,.readonly-mode #addQualityQuickRow,.readonly-mode #addInnovationQuickRow,.readonly-mode [data-iq-delete],.readonly-mode [data-pq-delete]{display:none!important}
+@media(max-width:1080px){.indicator-quick-header,.portfolio-quick-header{display:none}.indicator-quick-row{grid-template-columns:1fr 1fr 1fr}.indicator-quick-row [data-iq-name]{grid-column:1/-1}.indicator-quick-row .quick-row-actions{grid-column:1/-1;justify-content:flex-start}.portfolio-quick-row.program,.portfolio-quick-row.project{grid-template-columns:1fr 1fr}.portfolio-quick-row [data-pq-name]{grid-column:1/-1}.portfolio-quick-actions{grid-column:1/-1;justify-content:flex-start}.action-editor-header{display:none}.action-editor-row{grid-template-columns:1fr 1fr}.action-editor-row>input:first-child{grid-column:1/-1}}
+
+
+/* v26 · Cadastro rápido de Reconhecimentos e Parcerias */
+.award-quick-table,.partner-quick-table{border:1px solid #dce4e7;border-radius:17px;overflow:hidden;background:#fff}
+.award-quick-header,.award-quick-row,.partner-quick-header,.partner-quick-row{display:grid;gap:9px;align-items:center}
+.award-quick-header{grid-template-columns:220px minmax(260px,1.5fr) minmax(180px,.8fr) 180px}
+.award-quick-row{grid-template-columns:220px minmax(260px,1.5fr) minmax(180px,.8fr) 180px}
+.partner-quick-header,.partner-quick-row{grid-template-columns:minmax(280px,1.6fr) 140px 180px}
+.award-quick-header,.partner-quick-header{padding:9px 11px;background:#f1f5f6;color:#72818a;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800}
+.award-quick-row,.partner-quick-row{padding:9px 11px;border-top:1px solid #edf0f1}
+.award-quick-row:first-child,.partner-quick-row:first-child{border-top:0}
+.award-quick-row.is-new,.partner-quick-row.is-new{background:#fffdf7}
+.award-quick-row input,.award-quick-row select,.partner-quick-row input{width:100%;padding:9px;border:1px solid #d6e0e4;background:#fff;border-radius:10px;color:#2a4351;font:inherit}
+.quick-feature-toggle{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:800;color:#506a79}
+.quick-feature-toggle input{width:auto}
+.award-quick-actions,.partner-quick-actions{display:flex;justify-content:flex-end;align-items:center;gap:6px;flex-wrap:wrap}
+.award-quick-actions button,.partner-quick-actions button{border:0;background:transparent;color:#466273;font-weight:800;cursor:pointer;padding:5px}
+.award-quick-actions .danger-link:hover,.partner-quick-actions .danger-link:hover{color:#b4493c}
+.readonly-mode #addAwardQuickRow,.readonly-mode #addPartnerQuickRow,.readonly-mode [data-award-delete],.readonly-mode [data-partner-delete]{display:none!important}
+@media(max-width:900px){.award-quick-header,.partner-quick-header{display:none}.award-quick-row,.partner-quick-row{grid-template-columns:1fr}.award-quick-actions,.partner-quick-actions{justify-content:flex-start}}
+
+
+/* v29 · Nova edição inteligente */
+.new-edition-box{width:min(860px,100%)}
+.new-edition-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.new-edition-mode{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 18px}
+.new-edition-mode-option{display:flex;gap:10px;align-items:flex-start;padding:14px;border:1px solid #dce4e7;border-radius:16px;background:#fafcfc;cursor:pointer}
+.new-edition-mode-option:has(input:checked){border-color:#8db7cf;background:#f2f8fb;box-shadow:0 0 0 3px rgba(0,92,169,.05)}
+.new-edition-mode-option input{width:auto;margin-top:3px}
+.new-edition-mode-option strong,.new-edition-checks strong{display:block;color:#284c62}
+.new-edition-mode-option small,.new-edition-checks small{display:block;color:#74848d;font-size:.7rem;line-height:1.45;margin-top:3px}
+.new-edition-section-title{font-weight:900;color:#294d62;margin:0 0 9px}
+.new-edition-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.new-edition-checks label{display:flex;gap:9px;align-items:flex-start;padding:12px;border:1px solid #e1e7e9;border-radius:14px;background:#fff}
+.new-edition-checks input{width:auto;margin-top:3px}
+.new-edition-reset-note{display:grid;gap:5px;margin-top:12px;padding:13px 14px;border-radius:14px;background:#fff8e9;border:1px solid #ead7ac;color:#6e5a35;font-size:.72rem;line-height:1.5}
+.new-edition-reset-note strong{color:#684c20}
+.new-edition-progress{display:flex;align-items:center;gap:8px;color:#315f7b;font-weight:800}
+.new-edition-progress:before{content:"";width:12px;height:12px;border:2px solid #a9c5d4;border-top-color:#315f7b;border-radius:50%;animation:newEditionSpin .7s linear infinite}
+@keyframes newEditionSpin{to{transform:rotate(360deg)}}
+@media(max-width:720px){.new-edition-grid,.new-edition-mode,.new-edition-checks{grid-template-columns:1fr}}
+
 </style>
 
 <style>
@@ -70,35 +145,108 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
       <div class="field"><label>Período / ano para consulta</label><select id="adminYearFilter"></select></div>
 <div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn orange hidden" id="updateVersionBtn">Atualizar edição do ano</button><button class="btn ghost" id="newEditionBtn">Criar novo ano</button><button class="btn ghost" id="openYearReportBtn">Abrir relatório do ano ↗</button><button class="btn ghost" id="pdfYearBtn">Gerar PDF</button></div>
       <p class="statusline" id="editionMsg"></p></div>
-      <div class="card"><h3>Como funciona</h3><p class="small">Existe <strong>uma única edição por ano</strong>. O ano em andamento pode ficar como rascunho até a publicação. Quando um novo ano for criado e publicado, a edição publicada do ano anterior ficará arquivada e preservada para consulta. Edições arquivadas são somente leitura.</p></div>
+      <div class="card"><h3>Como funciona</h3><p class="small">Existe <strong>uma única edição por ano</strong>. Ao criar o próximo ciclo, você pode começar vazio ou reaproveitar a estrutura de uma edição anterior. Estrutura reaproveitada nunca leva resultados, prazos, status executivos, prêmios ou pontos de atenção antigos para o novo ano.</p></div>
 <div class="card"><div class="toolbar"><div><div class="eyebrow">Histórico</div><h3>Edições anuais</h3></div></div><div id="historyList" class="history-list"></div></div>
     </section>
 
-    <section class="panel" id="panel-indicators"><div class="hero"><div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2></div><button class="btn primary" data-add="indicator">+ Novo indicador</button></div><div class="admin-filters">
+    <section class="panel" id="panel-indicators"><div class="hero">
+<div class="toolbar"><div><div class="eyebrow">01</div><h2>Indicadores</h2><div class="small">Atualização em lote: edite realizado, meta e data diretamente na lista. Use “Detalhes” para unidade, direção, Contrato de Gestão e observações.</div></div><button class="btn primary" id="addIndicatorQuickRow" type="button">+ Adicionar indicador</button></div>
+<div class="admin-filters">
 <input type="search" placeholder="Buscar indicador…" data-section-search="indicators" aria-label="Buscar em Indicadores">
-<select data-indicator-type-filter aria-label="Filtrar por tipo de indicador">
-<option value="all">Todos os tipos</option>
-<option value="PLP">PLP</option>
-<option value="DN">DN</option>
-<option value="OKR">OKR</option>
-<option value="GERENCIAL">Gerencial</option>
-</select>
-<select data-indicator-contract-filter aria-label="Filtrar por Contrato de Gestão">
-<option value="all">Contrato de Gestão: Todos</option>
-<option value="yes">Contrato de Gestão: Sim</option>
-<option value="no">Contrato de Gestão: Não</option>
-</select>
-<select data-section-sort="indicators"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select>
-</div><div id="indicatorsList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-programs"><div class="hero"><div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2></div><button class="btn primary" data-add="program">+ Novo programa</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="programs" aria-label="Buscar em Programas"><select data-section-sort="programs"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="programsList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-quality"><div class="hero"><div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2></div><button class="btn primary" data-add="quality">+ Novo projeto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="quality" aria-label="Buscar em Projetos de Qualidade"><select data-section-sort="quality"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="qualityList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-innovation"><div class="hero"><div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2></div><button class="btn primary" data-add="innovation">+ Novo projeto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="innovation" aria-label="Buscar em Projetos de Inovação"><select data-section-sort="innovation"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="innovationList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-awards"><div class="hero"><div class="toolbar"><div><div class="eyebrow">05</div><h2>Prêmios e Reconhecimentos</h2></div><button class="btn primary" data-add="award">+ Novo registro</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="awards" aria-label="Buscar em Prêmios e Reconhecimentos"><select data-section-sort="awards"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="awardsList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-partners"><div class="hero"><div class="toolbar"><div><div class="eyebrow">06</div><h2>Parcerias</h2></div><button class="btn primary" data-add="partner">+ Nova parceria</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="partners" aria-label="Buscar em Parcerias"><select data-section-sort="partners"><option value="original">Ordem cadastrada</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="partnersList" class="sectionlist"></div></div></section>
-    <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2><div class="small">Prioridade calculada automaticamente por impacto, prazo e status.</div></div><button class="btn primary" data-add="attention">+ Novo ponto</button></div><div class="admin-filters"><input type="search" placeholder="Buscar nesta seção…" data-section-search="attention" aria-label="Buscar em Pontos de Atenção"><select data-section-sort="attention"><option value="original">Prioridade executiva</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div><div id="attentionList" class="sectionlist"></div></div></section>
+<select data-indicator-type-filter><option value="all">Todos os tipos</option><option value="PLP">PLP</option><option value="DN">DN</option><option value="OKR">OKR</option><option value="GERENCIAL">Gerencial</option></select>
+<select data-indicator-contract-filter><option value="all">Contrato: Todos</option><option value="yes">Contrato: Sim</option><option value="no">Contrato: Não</option></select>
+<select data-indicator-status-filter><option value="all">Situação: Todos</option><option value="attention">Requer atenção</option><option value="good">Meta atendida</option><option value="neutral">Sem comparação</option></select>
+<select data-section-sort="indicators"><option value="original">Prioridade executiva</option><option value="az">A–Z</option><option value="za">Z–A</option></select>
+</div>
+<div class="indicator-quick-table"><div class="indicator-quick-header"><span>Indicador</span><span>Tipo</span><span>Realizado</span><span>Meta</span><span>Data</span><span>Situação</span><span></span></div><div id="indicatorsList"></div></div>
+</div></section>
+    <section class="panel" id="panel-programs"><div class="hero">
+<div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2><div class="small">Cadastro rápido pelo nome. Execução e situação são calculadas automaticamente pelas ações.</div></div><button class="btn primary" id="addProgramQuickRow" type="button">+ Adicionar programa</button></div>
+<div class="admin-filters"><input type="search" placeholder="Buscar programa…" data-section-search="programs"><select data-section-sort="programs"><option value="original">Prioridade de execução</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
+<div class="portfolio-quick-table"><div class="portfolio-quick-header program"><span>Programa</span><span>Execução</span><span>Ações</span><span>Situação</span><span></span></div><div id="programsList"></div></div>
+</div></section>
+    <section class="panel" id="panel-quality"><div class="hero">
+<div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2><div class="small">Nome, status e fim podem ser atualizados diretamente na lista.</div></div><button class="btn primary" id="addQualityQuickRow" type="button">+ Adicionar projeto</button></div>
+<div class="admin-filters"><input type="search" placeholder="Buscar projeto…" data-section-search="quality"><select data-section-sort="quality"><option value="original">Prioridade de execução</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
+<div class="portfolio-quick-table"><div class="portfolio-quick-header project"><span>Projeto</span><span>Status</span><span>Fim</span><span>Ações</span><span></span></div><div id="qualityList"></div></div>
+</div></section>
+    <section class="panel" id="panel-innovation"><div class="hero">
+<div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2><div class="small">Nome, status e fim podem ser atualizados diretamente na lista.</div></div><button class="btn primary" id="addInnovationQuickRow" type="button">+ Adicionar projeto</button></div>
+<div class="admin-filters"><input type="search" placeholder="Buscar projeto…" data-section-search="innovation"><select data-section-sort="innovation"><option value="original">Prioridade de execução</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
+<div class="portfolio-quick-table"><div class="portfolio-quick-header project"><span>Projeto</span><span>Status</span><span>Fim</span><span>Ações</span><span></span></div><div id="innovationList"></div></div>
+</div></section>
+    <section class="panel" id="panel-awards"><div class="hero">
+<div class="toolbar"><div><div class="eyebrow">05</div><h2>Prêmios e Reconhecimentos</h2><div class="small">Cadastro rápido por categoria, nome e resultado. Observações ficam em “Detalhes”.</div></div><button class="btn primary" id="addAwardQuickRow" type="button">+ Adicionar registro</button></div>
+<div class="admin-filters"><input type="search" placeholder="Buscar reconhecimento…" data-section-search="awards"><select data-section-sort="awards"><option value="original">Categoria / cadastro</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
+<div class="award-quick-table"><div class="award-quick-header"><span>Categoria</span><span>Nome</span><span>Resultado / colocação</span><span></span></div><div id="awardsList"></div></div>
+</div></section>
+    <section class="panel" id="panel-partners"><div class="hero">
+<div class="toolbar"><div><div class="eyebrow">06</div><h2>Parcerias</h2><div class="small">Cadastre o parceiro e marque como destaque quando ele merecer evidência especial no relatório.</div></div><button class="btn primary" id="addPartnerQuickRow" type="button">+ Adicionar parceria</button></div>
+<div class="admin-filters"><input type="search" placeholder="Buscar parceiro…" data-section-search="partners"><select data-section-sort="partners"><option value="original">Destaques primeiro</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
+<div class="partner-quick-table"><div class="partner-quick-header"><span>Parceiro</span><span>Destaque</span><span></span></div><div id="partnersList"></div></div>
+</div></section>
+    <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2><div class="small">Cadastro rápido: ponto, categoria e prazo. Os detalhes gerenciais são opcionais.</div></div><button class="btn primary" id="addAttentionQuickRow" type="button">+ Adicionar ponto</button></div><div class="attention-quick-card"><div class="attention-quick-note"><strong>Lista dinâmica</strong><span>Edite diretamente na linha. As alterações são salvas ao sair do campo ou pressionar Enter.</span></div><div class="attention-quick-table"><div class="attention-quick-header"><span>Ponto de atenção</span><span>Categoria</span><span>Prazo</span><span>Ações</span></div><div id="attentionQuickRows"></div></div><div class="small" style="margin-top:10px">Categorias existentes aparecem como sugestões; você também pode digitar uma nova categoria.</div></div><div id="attentionList" class="hidden"></div></div></section>
   </main>
 </div>
 </div>
+
+<div class="modal hidden" id="newEditionModal">
+  <div class="modalbox new-edition-box">
+    <div class="modalhead">
+      <div>
+        <div class="eyebrow">Novo ciclo anual</div>
+        <h3>Criar nova edição</h3>
+      </div>
+      <button class="btn ghost mini" id="closeNewEditionModal" type="button">Fechar</button>
+    </div>
+
+    <div class="new-edition-grid">
+      <div class="field">
+        <label>Ano da nova edição</label>
+        <input id="newEditionYear" type="number" min="2000" max="2100">
+      </div>
+      <div class="field">
+        <label>Edição de referência</label>
+        <select id="newEditionSourceYear"></select>
+      </div>
+    </div>
+
+    <div class="new-edition-mode">
+      <label class="new-edition-mode-option">
+        <input type="radio" name="newEditionMode" value="clone" checked>
+        <span><strong>Usar estrutura da edição anterior</strong><small>Reaproveita cadastros permanentes e limpa os dados do período.</small></span>
+      </label>
+      <label class="new-edition-mode-option">
+        <input type="radio" name="newEditionMode" value="blank">
+        <span><strong>Começar vazia</strong><small>Cria apenas o cabeçalho da nova edição.</small></span>
+      </label>
+    </div>
+
+    <div id="newEditionCloneOptions">
+      <div class="new-edition-section-title">O que reaproveitar</div>
+      <div class="new-edition-checks">
+        <label><input id="cloneIndicators" type="checkbox" checked><span><strong>Indicadores</strong><small>Nome, tipo, unidade, direção e vínculo com Contrato de Gestão.</small></span></label>
+        <label><input id="clonePrograms" type="checkbox" checked><span><strong>Programas + ações</strong><small>Ações entram como aguardando, adequadas e sem datas.</small></span></label>
+        <label><input id="cloneQuality" type="checkbox" checked><span><strong>Projetos de Qualidade + ações</strong><small>Projetos entram como planejados; ações são zeradas.</small></span></label>
+        <label><input id="cloneInnovation" type="checkbox" checked><span><strong>Projetos de Inovação + ações</strong><small>Projetos entram como planejados; ações são zeradas.</small></span></label>
+        <label><input id="clonePartners" type="checkbox" checked><span><strong>Parceiros</strong><small>Nomes são reaproveitados; destaques precisam ser definidos novamente.</small></span></label>
+      </div>
+
+      <div class="new-edition-reset-note">
+        <strong>O que será zerado automaticamente</strong>
+        <span>Realizado, meta e data dos indicadores; status e datas de projetos; status, situação e datas das ações; destaque de parceiros.</span>
+        <span><strong>Não serão copiados:</strong> prêmios e reconhecimentos, pontos de atenção e histórico de publicação.</span>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:18px">
+      <button class="btn primary" id="confirmNewEditionBtn" type="button">Criar nova edição</button>
+      <button class="btn ghost" id="cancelNewEditionBtn" type="button">Cancelar</button>
+    </div>
+    <p class="statusline" id="newEditionMsg"></p>
+  </div>
+</div>
+
 <div class="modal hidden" id="modal"><div class="modalbox"><div class="modalhead"><div><div class="eyebrow" id="modalEyebrow">Editar</div><h3 id="modalTitle">Registro</h3></div><button class="btn ghost mini" id="closeModal">Fechar</button></div><div id="modalBody"></div><div class="row" style="margin-top:18px"><button class="btn primary" id="saveModal">Salvar</button><button class="btn danger hidden" id="deleteModal">Excluir</button></div><p class="statusline" id="modalMsg"></p></div></div>
 
 <script>
@@ -132,9 +280,33 @@ const programAdminRank=p=>{const rows=data.actions.filter(a=>a.program_id===p.id
 const programEndRank=p=>{const dates=data.actions.filter(a=>a.program_id===p.id&&a.end_date).map(a=>dateRank(a.end_date));return dates.length?Math.max(...dates):Number.MAX_SAFE_INTEGER};
 function actionHealthLabel(s){return ({risco:"Em risco",atencao:"Em atenção",adequada:"Adequada"}[s]||"Adequada")}
 function renderAdminActions(rows){return rows.length?`<div class="admin-action-list">${sortAdminActions(rows).map(a=>`<div class="admin-action-row ${a.status||"aguardando"}"><span class="admin-action-name">${esc(a.action)}</span><span>${dt(a.end_date)}</span><span class="admin-action-status aas-${a.status||"aguardando"}">${a.status==="em_andamento"?"Em andamento":a.status==="finalizada"?"Finalizada":"Aguardando"}</span><span class="admin-health aah-${a.health_status||"adequada"}">⚑ ${actionHealthLabel(a.health_status)}</span></div>`).join("")}</div>`:""}
+function indicatorQuickState(x){
+  if(x.latest_value==null||x.latest_value===""||x.target_value==null||x.target_value==="")return {cls:"neutral",label:"Sem comparação",rank:2};
+  const a=Number(x.latest_value),b=Number(x.target_value);
+  if(Number.isNaN(a)||Number.isNaN(b))return {cls:"neutral",label:"Sem comparação",rank:2};
+  const ok=x.target_direction==="lte"?a<=b:x.target_direction==="exact"?a===b:a>=b;
+  return ok?{cls:"good",label:"Meta atendida",rank:3}:{cls:"attention",label:"Requer atenção",rank:1};
+}
+function indicatorQuickSort(a,b){const sa=indicatorQuickState(a),sb=indicatorQuickState(b);return sa.rank-sb.rank||({PLP:1,DN:2,OKR:3,GERENCIAL:4}[a.segment]||99)-({PLP:1,DN:2,OKR:3,GERENCIAL:4}[b.segment]||99)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR")}
+function adminActionStats(rows){const total=rows.length,finalized=rows.filter(a=>a.status==="finalizada").length,risk=rows.filter(a=>a.status!=="finalizada"&&a.health_status==="risco").length,attention=rows.filter(a=>a.status!=="finalizada"&&a.health_status==="atencao").length;const today=new Date();today.setHours(0,0,0,0);const overdue=rows.filter(a=>a.status!=="finalizada"&&a.end_date&&new Date(a.end_date+"T12:00:00")<today).length;return{total,finalized,risk,attention,overdue,rate:total?Math.round(finalized/total*100):0}}
+function adminPortfolioHealth(rows,completed=false){const s=adminActionStats(rows);if(completed)return{cls:"good",label:"Concluído",rank:4};if(s.risk||s.overdue)return{cls:"risk",label:s.risk?"Em risco":"Prazo vencido",rank:1};if(s.attention)return{cls:"attention",label:"Em atenção",rank:2};return{cls:"good",label:"Adequada",rank:3}}
+function programQuickSort(a,b){const ha=adminPortfolioHealth(data.actions.filter(x=>x.program_id===a.id)),hb=adminPortfolioHealth(data.actions.filter(x=>x.program_id===b.id));return ha.rank-hb.rank||(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR")}
+function projectQuickSort(type,a,b){const rowsA=(type==="quality"?data.qualityActions:data.innovationActions).filter(x=>x.project_id===a.id),rowsB=(type==="quality"?data.qualityActions:data.innovationActions).filter(x=>x.project_id===b.id);const ha=adminPortfolioHealth(rowsA,a.status==="concluido"),hb=adminPortfolioHealth(rowsB,b.status==="concluido");return ha.rank-hb.rank||(adminProjectRank[a.status]||9)-(adminProjectRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0)}
+function actionEditorRowHtml(a={},project=false){
+  const id=a.id||`new_${Date.now()}_${Math.random().toString(16).slice(2)}`,prefix=project?"p":"",dataAttr=project?`data-project-action-id="${id}"`:`data-action-id="${id}"`,removeAttr=project?`data-remove-project-action="${id}"`:`data-remove-action="${id}"`;
+  return `<div class="action-editor-row" ${dataAttr}><input id="sub_${prefix}action_${id}" value="${esc(a.action||"")}" placeholder="Ação"><select id="sub_${prefix}status_${id}"><option value="aguardando" ${(a.status||"aguardando")==="aguardando"?"selected":""}>Aguardando</option><option value="em_andamento" ${a.status==="em_andamento"?"selected":""}>Em andamento</option><option value="finalizada" ${a.status==="finalizada"?"selected":""}>Finalizada</option></select><select id="sub_${prefix}health_${id}"><option value="adequada" ${(a.health_status||"adequada")==="adequada"?"selected":""}>🟢 Adequada</option><option value="atencao" ${a.health_status==="atencao"?"selected":""}>🟡 Em atenção</option><option value="risco" ${a.health_status==="risco"?"selected":""}>🔴 Em risco</option></select><input id="sub_${prefix}start_${id}" type="date" value="${esc(a.start_date||"")}"><input id="sub_${prefix}end_${id}" type="date" value="${esc(a.end_date||"")}"><button type="button" class="action-editor-delete ${project?"remove-project-action":"remove-action"}" ${removeAttr}>×</button></div>`;
+}
 function extractAttentionCategory(row){const raw=String(row?.notes||"");const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category|| (m?m[1].trim():""))||"Sem categoria"}
 function extractAttentionNotes(row){return String(row?.notes||"").replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,"").trim()}
 function packAttentionNotes(category,notes){const cat=String(category||"").trim(); const txt=String(notes||"").trim(); return cat?`[[CAT]]${cat}[[/CAT]]${txt?`\n${txt}`:""}`:txt}
+function attentionDeadlineRankAdmin(row){
+  if(attentionStatusAdmin(row)==="resolvido")return Number.MAX_SAFE_INTEGER;
+  if(!row.deadline)return Number.MAX_SAFE_INTEGER-1;
+  const d=new Date(row.deadline+"T12:00:00");
+  return Number.isNaN(d.getTime())?Number.MAX_SAFE_INTEGER-1:d.getTime();
+}
+function attentionCategories(){return [...new Set((data.attention||[]).map(extractAttentionCategory).filter(x=>x&&x!=="Sem categoria"))].sort((a,b)=>a.localeCompare(b,"pt-BR"))}
+function attentionCategoryOptions(value=""){const list=attentionCategories();if(value&&!list.includes(value))list.unshift(value);return list.map(c=>`<option value="${esc(c)}"></option>`).join("")}
 function attentionStatusAdmin(row){return row?.attention_status||"aberto"}
 function attentionImpactAdmin(row){return row?.impact||"medio"}
 function attentionStatusLabelAdmin(s){return ({aberto:"Aberto",em_tratamento:"Em tratamento",resolvido:"Resolvido"}[s]||"Aberto")}
@@ -212,6 +384,57 @@ $$(".navbtn").forEach(b=>b.onclick=()=>{$$(".navbtn").forEach(x=>x.classList.rem
 
 function editionRef(year=edition?.year){return db.collection("edicoes").doc(String(year))}
 function editionCollection(name,year=edition?.year){return editionRef(year).collection(name)}
+
+async function readCollectionForYear(name,year){
+  const snap=await editionCollection(name,year).get();
+  return snap.docs.map(d=>({id:d.id,...d.data()}));
+}
+function cleanCloneObject(obj,keys){
+  return keys.reduce((acc,k)=>{if(obj[k]!==undefined)acc[k]=obj[k];return acc},{});
+}
+async function commitCloneWrites(writes){
+  const chunkSize=425;
+  for(let i=0;i<writes.length;i+=chunkSize){
+    const batch=db.batch();
+    writes.slice(i,i+chunkSize).forEach(write=>write(batch));
+    await batch.commit();
+  }
+}
+function suggestedNewEditionYear(){
+  const maxYear=editions.length?Math.max(...editions.map(e=>Number(e.year)||0)):new Date().getFullYear()-1;
+  return Math.max(new Date().getFullYear(),maxYear+1);
+}
+function populateNewEditionSourceYears(){
+  const sel=$("#newEditionSourceYear");
+  if(!sel)return;
+  const sourceEditions=[...editions].sort((a,b)=>(b.year||0)-(a.year||0));
+  sel.innerHTML=sourceEditions.length?sourceEditions.map(e=>`<option value="${e.year}" ${edition&&e.year===edition.year?"selected":""}>${e.year} · ${editionStatusLabel(e.status)}</option>`).join(""):`<option value="">Nenhuma edição disponível</option>`;
+}
+function updateNewEditionModeUI(){
+  const mode=document.querySelector('input[name="newEditionMode"]:checked')?.value||"clone";
+  $("#newEditionCloneOptions").classList.toggle("hidden",mode==="blank");
+  $("#newEditionSourceYear").disabled=mode==="blank";
+}
+function openNewEditionModal(){
+  if(edition?.status==="draft"){
+    msg($("#editionMsg"),"Já existe um ano em rascunho. Publique-o antes de criar outro ano.","error");
+    return;
+  }
+  $("#newEditionYear").value=String(suggestedNewEditionYear());
+  populateNewEditionSourceYears();
+  const cloneRadio=document.querySelector('input[name="newEditionMode"][value="clone"]');
+  if(cloneRadio)cloneRadio.checked=editions.length>0;
+  const blankRadio=document.querySelector('input[name="newEditionMode"][value="blank"]');
+  if(blankRadio)blankRadio.checked=!editions.length;
+  ["cloneIndicators","clonePrograms","cloneQuality","cloneInnovation","clonePartners"].forEach(id=>{const el=$("#"+id);if(el)el.checked=true});
+  $("#newEditionMsg").textContent="";
+  updateNewEditionModeUI();
+  $("#newEditionModal").classList.remove("hidden");
+}
+function closeNewEditionModal(){
+  $("#newEditionModal").classList.add("hidden");
+  $("#newEditionMsg").textContent="";
+}
 async function readCollection(name){
   const snap=await editionCollection(name).get();
   return snap.docs.map(d=>({id:d.id,...d.data()}));
@@ -280,19 +503,187 @@ async function loadEditionData(){
   renderAll();
 }
 
+function attentionQuickRowHtml(x={}){
+  const id=x.id||`new_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  const category=extractAttentionCategory(x)==="Sem categoria"?"":extractAttentionCategory(x);
+  const archived=edition?.status==="archived";
+  return `<div class="attention-quick-row ${x.id?"":"is-new"}" data-attention-quick="${id}" data-existing-id="${x.id||""}"><input type="text" data-q-name placeholder="Ponto de atenção" value="${esc(x.name||"")}" ${archived?"disabled":""}><div><input type="text" list="attentionCategoryList_${id}" data-q-category placeholder="Categoria" value="${esc(category)}" ${archived?"disabled":""}><datalist id="attentionCategoryList_${id}">${attentionCategoryOptions(category)}</datalist></div><input type="date" data-q-deadline value="${esc(x.deadline||"")}" ${archived?"disabled":""}><div class="attention-quick-actions"><span class="attention-quick-state" data-q-state></span><button type="button" data-q-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-q-delete class="danger-link">Excluir</button></div></div>`;
+}
+function quickRowMessage(row,text,kind="ok"){const el=row.querySelector("[data-q-state]");if(!el)return;el.textContent=text;el.style.color=kind==="error"?"#b4493c":"#2e8656";if(text)setTimeout(()=>{if(el.textContent===text)el.textContent=""},1800)}
+async function saveAttentionQuickRow(row){
+  if(edition?.status==="archived")return;
+  const name=row.querySelector("[data-q-name]")?.value.trim()||"";
+  const category=row.querySelector("[data-q-category]")?.value.trim()||"";
+  const deadline=row.querySelector("[data-q-deadline]")?.value||null;
+  const existingId=row.dataset.existingId||"";
+  if(!name){quickRowMessage(row,"Informe o ponto","error");return}
+  quickRowMessage(row,"Salvando…");
+  if(existingId){
+    const current=(data.attention||[]).find(x=>x.id===existingId)||{};
+    await editionCollection("attention_points").doc(existingId).set({name,deadline,notes:packAttentionNotes(category,extractAttentionNotes(current))||null},{merge:true});
+  }else{
+    const ref=editionCollection("attention_points").doc();
+    await ref.set({name,deadline,notes:packAttentionNotes(category,"")||null,impact:"medio",attention_status:"aberto",requires_decision:false,decision_needed:null,mitigation_action:"",sort_order:Date.now()},{merge:true});
+    row.dataset.existingId=ref.id;row.classList.remove("is-new");
+  }
+  quickRowMessage(row,"Salvo");
+  await loadEditionData();
+}
+function bindAttentionQuickRows(){
+  document.querySelectorAll("[data-attention-quick]").forEach(row=>{
+    row.querySelectorAll("[data-q-name],[data-q-category],[data-q-deadline]").forEach(input=>{
+      input.onchange=()=>saveAttentionQuickRow(row).catch(e=>{console.error(e);quickRowMessage(row,"Erro","error")});
+      input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();saveAttentionQuickRow(row).catch(err=>{console.error(err);quickRowMessage(row,"Erro","error")})}};
+    });
+    row.querySelector("[data-q-details]")?.addEventListener("click",async()=>{
+      if(!row.dataset.existingId){try{await saveAttentionQuickRow(row)}catch(e){console.error(e);quickRowMessage(row,"Erro","error");return}}
+      if(row.dataset.existingId)openModal("attention",row.dataset.existingId);
+    });
+    row.querySelector("[data-q-delete]")?.addEventListener("click",async()=>{
+      const id=row.dataset.existingId;if(!id){row.remove();return}if(!confirm("Excluir este ponto de atenção?"))return;await editionCollection("attention_points").doc(id).delete();await loadEditionData();
+    });
+  });
+}
+function renderAttentionQuickRows(){const root=$("#attentionQuickRows");if(!root)return;const rows=[...(data.attention||[])].sort((a,b)=>attentionDeadlineRankAdmin(a)-attentionDeadlineRankAdmin(b)||String(extractAttentionCategory(a)).localeCompare(String(extractAttentionCategory(b)),"pt-BR")||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));root.innerHTML=rows.length?rows.map(attentionQuickRowHtml).join(""):`<div class="empty">Nenhum ponto cadastrado. Use “+ Adicionar ponto”.</div>`;bindAttentionQuickRows()}
+function addAttentionQuickRow(){if(edition?.status==="archived")return;const root=$("#attentionQuickRows");if(!root)return;if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",attentionQuickRowHtml({}));bindAttentionQuickRows();root.querySelector(".attention-quick-row.is-new [data-q-name]")?.focus()}
+
+
+function rowSaveMessage(row,text,kind="ok",selector="[data-quick-state]"){const el=row.querySelector(selector);if(!el)return;el.textContent=text;el.style.color=kind==="error"?"#b4493c":"#2e8656";if(text)setTimeout(()=>{if(el.textContent===text)el.textContent=""},1500)}
+
+function indicatorQuickRowHtml(x={}){
+  const archived=edition?.status==="archived",state=indicatorQuickState(x);
+  return `<div class="indicator-quick-row ${x.id?"":"is-new"}" data-indicator-quick data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}" data-indicator-type="${esc(x.segment||"PLP")}" data-indicator-contract="${x.is_management_contract?"yes":"no"}" data-indicator-status="${state.cls}">
+  <div><input data-iq-name type="text" placeholder="Nome do indicador" value="${esc(x.name||"")}" ${archived?"disabled":""}>${x.is_management_contract?'<span class="indicator-contract-mini">Contrato de Gestão</span>':""}</div>
+  <select data-iq-segment ${archived?"disabled":""}><option value="PLP" ${(x.segment||"PLP")==="PLP"?"selected":""}>PLP</option><option value="DN" ${x.segment==="DN"?"selected":""}>DN</option><option value="OKR" ${x.segment==="OKR"?"selected":""}>OKR</option><option value="GERENCIAL" ${x.segment==="GERENCIAL"?"selected":""}>Gerencial</option></select>
+  <input data-iq-latest type="number" step="any" value="${esc(x.latest_value??"")}" ${archived?"disabled":""}><input data-iq-target type="number" step="any" value="${esc(x.target_value??"")}" ${archived?"disabled":""}><input data-iq-date type="date" value="${esc(x.measurement_date||"")}" ${archived?"disabled":""}>
+  <div><span class="quick-state-badge ${state.cls}">${state.label}</span></div><div class="quick-row-actions"><span class="quick-save-state" data-quick-state></span><button type="button" data-iq-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-iq-delete class="danger-link">Excluir</button></div></div>`;
+}
+function renderIndicatorQuickRows(){const rows=[...data.indicators].sort(indicatorQuickSort);$("#indicatorsList").innerHTML=rows.length?rows.map(indicatorQuickRowHtml).join(""):empty("Nenhum indicador cadastrado. Use “+ Adicionar indicador”.");bindIndicatorQuickRows();applySectionFilter("indicators")}
+async function saveIndicatorQuickRow(row){
+  if(edition?.status==="archived")return;
+  const id=row.dataset.existingId||"",name=row.querySelector("[data-iq-name]")?.value.trim()||"";if(!name){rowSaveMessage(row,"Informe o nome","error");return}
+  const segment=row.querySelector("[data-iq-segment]")?.value||"PLP",lr=row.querySelector("[data-iq-latest]")?.value??"",tr=row.querySelector("[data-iq-target]")?.value??"",latest_value=lr===""?null:Number(lr),target_value=tr===""?null:Number(tr),measurement_date=row.querySelector("[data-iq-date]")?.value||null;
+  rowSaveMessage(row,"Salvando…");
+  if(id)await editionCollection("indicators").doc(id).set({name,segment,latest_value,target_value,measurement_date,updated_at:new Date().toISOString()},{merge:true});
+  else{const ref=editionCollection("indicators").doc();await ref.set({name,segment,latest_value,target_value,measurement_date,is_management_contract:false,unit:null,target_direction:"gte",notes:null,sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}
+  rowSaveMessage(row,"Salvo");await loadEditionData();
+}
+async function deleteIndicatorQuick(id){if(!id||edition?.status==="archived")return;if(!confirm("Excluir este indicador? Ele também será removido das relações com programas e projetos."))return;const batch=db.batch();await removeIndicatorFromRelations(id,batch);batch.delete(editionCollection("indicators").doc(id));await batch.commit();await loadEditionData()}
+function bindIndicatorQuickRows(){document.querySelectorAll("[data-indicator-quick]").forEach(row=>{row.querySelectorAll("[data-iq-name],[data-iq-segment],[data-iq-latest],[data-iq-target],[data-iq-date]").forEach(el=>{el.onchange=()=>saveIndicatorQuickRow(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error")});el.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();saveIndicatorQuickRow(row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error")})}}});row.querySelector("[data-iq-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await saveIndicatorQuickRow(row);if(row.dataset.existingId)openModal("indicator",row.dataset.existingId)});row.querySelector("[data-iq-delete]")?.addEventListener("click",()=>deleteIndicatorQuick(row.dataset.existingId))})}
+function addIndicatorQuickRow(){if(edition?.status==="archived")return;const root=$("#indicatorsList");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",indicatorQuickRowHtml({}));bindIndicatorQuickRows();root.querySelector(".is-new [data-iq-name]")?.focus()}
+
+function programQuickRowHtml(x={}){const rows=x.id?data.actions.filter(a=>a.program_id===x.id):[],s=adminActionStats(rows),health=adminPortfolioHealth(rows),archived=edition?.status==="archived";return `<div class="portfolio-quick-row program ${x.id?"":"is-new"}" data-program-quick data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}"><input data-pq-name type="text" placeholder="Nome do programa" value="${esc(x.name||"")}" ${archived?"disabled":""}><div class="portfolio-quick-kpi">${x.id?s.rate+"%":"—"}<small>concluído</small></div><div class="portfolio-quick-kpi">${x.id?s.total:"—"}<small>ações</small></div><div>${x.id?`<span class="portfolio-health ${health.cls}">${health.label}</span>`:"—"}</div><div class="portfolio-quick-actions"><span class="portfolio-quick-state" data-pq-state></span><button type="button" data-pq-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-pq-delete class="danger-link">Excluir</button></div></div>`}
+function renderProgramQuickRows(){const rows=[...data.programs].sort(programQuickSort);$("#programsList").innerHTML=rows.length?rows.map(programQuickRowHtml).join(""):empty("Nenhum programa cadastrado.");bindProgramQuickRows();applySectionFilter("programs")}
+async function saveProgramQuickRow(row){if(edition?.status==="archived")return;const name=row.querySelector("[data-pq-name]")?.value.trim()||"",id=row.dataset.existingId||"";if(!name){rowSaveMessage(row,"Informe o nome","error","[data-pq-state]");return}rowSaveMessage(row,"Salvando…","ok","[data-pq-state]");if(id)await editionCollection("programs").doc(id).set({name,updated_at:new Date().toISOString()},{merge:true});else{const ref=editionCollection("programs").doc();await ref.set({name,summary:null,link_url:null,indicator_ids:[],sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}rowSaveMessage(row,"Salvo","ok","[data-pq-state]");await loadEditionData()}
+function bindProgramQuickRows(){document.querySelectorAll("[data-program-quick]").forEach(row=>{const input=row.querySelector("[data-pq-name]");input.onchange=()=>saveProgramQuickRow(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error","[data-pq-state]")});input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();saveProgramQuickRow(row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error","[data-pq-state]")})}};row.querySelector("[data-pq-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await saveProgramQuickRow(row);if(row.dataset.existingId)openModal("program",row.dataset.existingId)});row.querySelector("[data-pq-delete]")?.addEventListener("click",()=>deletePortfolioQuick("program",row.dataset.existingId))})}
+function addProgramQuickRow(){if(edition?.status==="archived")return;const root=$("#programsList");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",programQuickRowHtml({}));bindProgramQuickRows();root.querySelector(".is-new [data-pq-name]")?.focus()}
+
+function projectQuickRowHtml(type,x={}){const rows=x.id?(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===x.id):[],archived=edition?.status==="archived";return `<div class="portfolio-quick-row project ${x.id?"":"is-new"}" data-project-quick="${type}" data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}"><input data-pq-name type="text" placeholder="Nome do projeto" value="${esc(x.name||"")}" ${archived?"disabled":""}><select data-pq-status ${archived?"disabled":""}><option value="planejado" ${(x.status||"planejado")==="planejado"?"selected":""}>Planejado</option><option value="em_andamento" ${x.status==="em_andamento"?"selected":""}>Em andamento</option><option value="concluido" ${x.status==="concluido"?"selected":""}>Concluído</option><option value="pausado" ${x.status==="pausado"?"selected":""}>Pausado</option><option value="cancelado" ${x.status==="cancelado"?"selected":""}>Cancelado</option></select><input data-pq-end type="date" value="${esc(x.end_date||"")}" ${archived?"disabled":""}><div class="portfolio-quick-kpi">${x.id?rows.length:"—"}<small>ações</small></div><div class="portfolio-quick-actions"><span class="portfolio-quick-state" data-pq-state></span><button type="button" data-pq-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-pq-delete class="danger-link">Excluir</button></div></div>`}
+function renderProjectQuickRows(type){const arr=type==="quality"?data.quality:data.innovation,rows=[...arr].sort((a,b)=>projectQuickSort(type,a,b));$("#"+type+"List").innerHTML=rows.length?rows.map(x=>projectQuickRowHtml(type,x)).join(""):empty("Nenhum projeto cadastrado.");bindProjectQuickRows(type);applySectionFilter(type)}
+async function saveProjectQuickRow(type,row){if(edition?.status==="archived")return;const name=row.querySelector("[data-pq-name]")?.value.trim()||"",status=row.querySelector("[data-pq-status]")?.value||"planejado",end_date=row.querySelector("[data-pq-end]")?.value||null,id=row.dataset.existingId||"";if(!name){rowSaveMessage(row,"Informe o nome","error","[data-pq-state]");return}const collectionName=type==="quality"?"quality_projects":"innovation_projects";rowSaveMessage(row,"Salvando…","ok","[data-pq-state]");if(id)await editionCollection(collectionName).doc(id).set({name,status,end_date,updated_at:new Date().toISOString()},{merge:true});else{const ref=editionCollection(collectionName).doc();await ref.set({name,status,end_date,start_date:null,summary:null,indicator_ids:[],sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}rowSaveMessage(row,"Salvo","ok","[data-pq-state]");await loadEditionData()}
+function bindProjectQuickRows(type){document.querySelectorAll(`[data-project-quick="${type}"]`).forEach(row=>{row.querySelectorAll("[data-pq-name],[data-pq-status],[data-pq-end]").forEach(el=>{el.onchange=()=>saveProjectQuickRow(type,row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error","[data-pq-state]")});el.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();saveProjectQuickRow(type,row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error","[data-pq-state]")})}}});row.querySelector("[data-pq-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await saveProjectQuickRow(type,row);if(row.dataset.existingId)openModal(type,row.dataset.existingId)});row.querySelector("[data-pq-delete]")?.addEventListener("click",()=>deletePortfolioQuick(type,row.dataset.existingId))})}
+function addProjectQuickRow(type){if(edition?.status==="archived")return;const root=$("#"+type+"List");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",projectQuickRowHtml(type,{}));bindProjectQuickRows(type);root.querySelector(".is-new [data-pq-name]")?.focus()}
+async function deletePortfolioQuick(type,id){if(!id||edition?.status==="archived")return;if(!confirm(type==="program"?"Excluir este programa e suas ações?":"Excluir este projeto e suas ações?"))return;const batch=db.batch();if(type==="program"){data.actions.filter(a=>a.program_id===id).forEach(a=>batch.delete(editionCollection("program_actions").doc(a.id)));batch.delete(editionCollection("programs").doc(id))}else{const coll=type==="quality"?"quality_projects":"innovation_projects",acoll=type==="quality"?"quality_project_actions":"innovation_project_actions",rows=type==="quality"?data.qualityActions:data.innovationActions;rows.filter(a=>a.project_id===id).forEach(a=>batch.delete(editionCollection(acoll).doc(a.id)));batch.delete(editionCollection(coll).doc(id))}await batch.commit();await loadEditionData()}
+
+
+function awardCategoryLabelAdmin(s){return ({premio_reconhecimento:"Prêmio / reconhecimento",edital_educacao_inovadora:"Edital Educação Inovadora",meee:"MEEE"}[s]||s||"Prêmio / reconhecimento")}
+function awardQuickSort(a,b){
+  const rank={premio_reconhecimento:1,edital_educacao_inovadora:2,meee:3};
+  return (rank[a.category]||9)-(rank[b.category]||9)||(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR");
+}
+function awardQuickRowHtml(x={}){
+  const archived=edition?.status==="archived";
+  return `<div class="award-quick-row ${x.id?"":"is-new"}" data-award-quick data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}">
+    <select data-award-category ${archived?"disabled":""}><option value="premio_reconhecimento" ${(x.category||"premio_reconhecimento")==="premio_reconhecimento"?"selected":""}>Prêmio / reconhecimento</option><option value="edital_educacao_inovadora" ${x.category==="edital_educacao_inovadora"?"selected":""}>Edital Educação Inovadora</option><option value="meee" ${x.category==="meee"?"selected":""}>MEEE</option></select>
+    <input data-award-name type="text" placeholder="Nome do reconhecimento" value="${esc(x.name||"")}" ${archived?"disabled":""}>
+    <input data-award-placement type="text" placeholder="Ex.: 1º lugar / Selecionado" value="${esc(x.placement||"")}" ${archived?"disabled":""}>
+    <div class="award-quick-actions"><span class="quick-save-state" data-award-state></span><button type="button" data-award-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-award-delete class="danger-link">Excluir</button></div>
+  </div>`;
+}
+function renderAwardQuickRows(){
+  const rows=[...data.awards].sort(awardQuickSort);
+  $("#awardsList").innerHTML=rows.length?rows.map(awardQuickRowHtml).join(""):empty("Nenhum reconhecimento cadastrado.");
+  bindAwardQuickRows();applySectionFilter("awards");
+}
+async function saveAwardQuickRow(row){
+  if(edition?.status==="archived")return;
+  const id=row.dataset.existingId||"",category=row.querySelector("[data-award-category]")?.value||"premio_reconhecimento",name=row.querySelector("[data-award-name]")?.value.trim()||"",placement=row.querySelector("[data-award-placement]")?.value.trim()||null;
+  if(!name){rowSaveMessage(row,"Informe o nome","error","[data-award-state]");return}
+  rowSaveMessage(row,"Salvando…","ok","[data-award-state]");
+  if(id)await editionCollection("awards_recognitions").doc(id).set({category,name,placement,updated_at:new Date().toISOString()},{merge:true});
+  else{const ref=editionCollection("awards_recognitions").doc();await ref.set({category,name,placement,notes:null,sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}
+  rowSaveMessage(row,"Salvo","ok","[data-award-state]");await loadEditionData();
+}
+async function deleteAwardQuick(id){if(!id||edition?.status==="archived")return;if(!confirm("Excluir este reconhecimento?"))return;await editionCollection("awards_recognitions").doc(id).delete();await loadEditionData()}
+function bindAwardQuickRows(){
+  document.querySelectorAll("[data-award-quick]").forEach(row=>{
+    row.querySelectorAll("[data-award-category],[data-award-name],[data-award-placement]").forEach(el=>{
+      el.onchange=()=>saveAwardQuickRow(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error","[data-award-state]")});
+      el.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();saveAwardQuickRow(row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error","[data-award-state]")})}};
+    });
+    row.querySelector("[data-award-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await saveAwardQuickRow(row);if(row.dataset.existingId)openModal("award",row.dataset.existingId)});
+    row.querySelector("[data-award-delete]")?.addEventListener("click",()=>deleteAwardQuick(row.dataset.existingId));
+  });
+}
+function addAwardQuickRow(){if(edition?.status==="archived")return;const root=$("#awardsList");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",awardQuickRowHtml({}));bindAwardQuickRows();root.querySelector(".is-new [data-award-name]")?.focus()}
+
+function partnerQuickSort(a,b){return (a.is_top5===b.is_top5?0:a.is_top5?-1:1)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR")}
+function partnerQuickRowHtml(x={}){
+  const archived=edition?.status==="archived";
+  return `<div class="partner-quick-row ${x.id?"":"is-new"}" data-partner-quick data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}">
+    <input data-partner-name type="text" placeholder="Nome do parceiro" value="${esc(x.name||"")}" ${archived?"disabled":""}>
+    <label class="quick-feature-toggle"><input data-partner-featured type="checkbox" ${x.is_top5?"checked":""} ${archived?"disabled":""}> Destaque</label>
+    <div class="partner-quick-actions"><span class="quick-save-state" data-partner-state></span><button type="button" data-partner-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-partner-delete class="danger-link">Excluir</button></div>
+  </div>`;
+}
+function renderPartnerQuickRows(){
+  const rows=[...data.partners].sort(partnerQuickSort);
+  $("#partnersList").innerHTML=rows.length?rows.map(partnerQuickRowHtml).join(""):empty("Nenhuma parceria cadastrada.");
+  bindPartnerQuickRows();applySectionFilter("partners");
+}
+async function savePartnerQuickRow(row){
+  if(edition?.status==="archived")return;
+  const id=row.dataset.existingId||"",name=row.querySelector("[data-partner-name]")?.value.trim()||"",is_top5=!!row.querySelector("[data-partner-featured]")?.checked;
+  if(!name){rowSaveMessage(row,"Informe o nome","error","[data-partner-state]");return}
+  rowSaveMessage(row,"Salvando…","ok","[data-partner-state]");
+  if(id)await editionCollection("partners").doc(id).set({name,is_top5,updated_at:new Date().toISOString()},{merge:true});
+  else{const ref=editionCollection("partners").doc();await ref.set({name,is_top5,notes:null,sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}
+  rowSaveMessage(row,"Salvo","ok","[data-partner-state]");await loadEditionData();
+}
+async function deletePartnerQuick(id){if(!id||edition?.status==="archived")return;if(!confirm("Excluir esta parceria?"))return;await editionCollection("partners").doc(id).delete();await loadEditionData()}
+function bindPartnerQuickRows(){
+  document.querySelectorAll("[data-partner-quick]").forEach(row=>{
+    row.querySelectorAll("[data-partner-name],[data-partner-featured]").forEach(el=>{
+      el.onchange=()=>savePartnerQuickRow(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error","[data-partner-state]")});
+      el.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();savePartnerQuickRow(row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error","[data-partner-state]")})}};
+    });
+    row.querySelector("[data-partner-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await savePartnerQuickRow(row);if(row.dataset.existingId)openModal("partner",row.dataset.existingId)});
+    row.querySelector("[data-partner-delete]")?.addEventListener("click",()=>deletePartnerQuick(row.dataset.existingId));
+  });
+}
+function addPartnerQuickRow(){if(edition?.status==="archived")return;const root=$("#partnersList");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",partnerQuickRowHtml({}));bindPartnerQuickRows();root.querySelector(".is-new [data-partner-name]")?.focus()}
+
 function renderAll(){
-  $("#indicatorsList").innerHTML=data.indicators.length?[...data.indicators].sort((a,b)=>({PLP:1,DN:2,OKR:3,GERENCIAL:4}[a.segment]||99)-({PLP:1,DN:2,OKR:3,GERENCIAL:4}[b.segment]||99)).map(x=>`<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}" data-indicator-type="${esc(x.segment||"")}" data-indicator-contract="${x.is_management_contract?"yes":"no"}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${indicatorTypeLabel(x.segment)}${x.is_management_contract?" · Contrato de Gestão":""} · Atual ${x.latest_value??"—"} ${x.unit||""} · Meta ${x.target_value??"—"} ${x.unit||""} · Direção ${x.target_direction==="gte"?"≥":x.target_direction==="lte"?"≤":"="}`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="indicator">${edition.status==="archived"?"Consultar":"Editar"}</button></div></article>`).join(""):empty("Nenhum indicador cadastrado.");
-  $("#programsList").innerHTML=data.programs.length?[...data.programs].sort((a,b)=>programAdminRank(a)-programAdminRank(b)||programEndRank(a)-programEndRank(b)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const rows=data.actions.filter(a=>a.program_id===x.id);const rels=data.programLinks.filter(l=>l.program_id===x.id).length;const rank=programAdminRank(x);const stage=rank===1?"Em andamento":rank===3?"Finalizado":"Aguardando";return `<article class="card" data-filter-card data-filter-title="${esc(x.name).toLowerCase()}"><div class="cardhead"><div><h3>${esc(x.name)}</h3><div class="small">${esc(`${stage} · ${rows.length} ação(ões) · ${rels} indicador(es) relacionado(s)`)}</div></div><button class="btn ghost mini" data-edit="${x.id}" data-type="program">${edition.status==="archived"?"Consultar":"Editar"}</button></div>${renderAdminActions(rows)}</article>`}).join(""):empty("Nenhum programa cadastrado.");
-  $("#qualityList").innerHTML=data.quality.length?[...data.quality].sort((a,b)=>(adminProjectRank[a.status]||9)-(adminProjectRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const ac=data.qualityActions.filter(a=>a.project_id===x.id).length;return card("quality",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
-  $("#innovationList").innerHTML=data.innovation.length?[...data.innovation].sort((a,b)=>(adminProjectRank[a.status]||9)-(adminProjectRank[b.status]||9)||dateRank(a.end_date)-dateRank(b.end_date)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const ac=data.innovationActions.filter(a=>a.project_id===x.id).length;return card("innovation",x.id,x.name,`${statusLabel(x.status)} · ${dt(x.start_date)} — ${dt(x.end_date)} · ${ac} ação(ões)`) }).join(""):empty("Nenhum projeto cadastrado.");
-  $("#awardsList").innerHTML=data.awards.length?data.awards.map(x=>card("award",x.id,x.name||"Registro",`${x.category}${x.placement?" · "+x.placement:""}`)).join(""):empty("Nenhum registro cadastrado.");
-  $("#partnersList").innerHTML=data.partners.length?data.partners.map(x=>card("partner",x.id,x.name,x.is_top5?"Top 5":"Parceiro")).join(""):empty("Nenhuma parceria cadastrada.");
-  $("#attentionList").innerHTML=data.attention.length?[...data.attention].sort((a,b)=>attentionPriorityAdmin(a).rank-attentionPriorityAdmin(b).rank||(a.requires_decision===true?0:1)-(b.requires_decision===true?0:1)||dateRank(a.deadline)-dateRank(b.deadline)||(a.sort_order||0)-(b.sort_order||0)).map(x=>{const p=attentionPriorityAdmin(x);return card("attention",x.id,x.name,`${p.code}${x.requires_decision===true?" · DECISÃO REQUERIDA":""} · ${attentionImpactLabelAdmin(attentionImpactAdmin(x))} · ${attentionStatusLabelAdmin(attentionStatusAdmin(x))} · ${extractAttentionCategory(x)} · Prazo: ${dt(x.deadline)}`)}).join(""):empty("Nenhum ponto de atenção cadastrado.");
+  renderIndicatorQuickRows();
+  renderProgramQuickRows();
+  renderProjectQuickRows("quality");
+  renderProjectQuickRows("innovation");
+  renderAwardQuickRows();
+  renderPartnerQuickRows();
+  $("#attentionList").innerHTML="";
+  renderAttentionQuickRows();
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
   applyAllSectionFilters();
 }
 function card(type,id,title,sub){return `<article class="card" data-filter-card data-filter-title="${esc(title).toLowerCase()}"><div class="cardhead"><div><h3>${esc(title)}</h3><div class="small">${esc(sub)}</div></div><button class="btn ghost mini" data-edit="${id}" data-type="${type}">${edition.status==="archived"?"Consultar":"Editar"}</button></div></article>`}
 $$("[data-add]").forEach(b=>b.onclick=()=>openModal(b.dataset.add,null));
+$("#addIndicatorQuickRow")?.addEventListener("click",addIndicatorQuickRow);
+$("#addProgramQuickRow")?.addEventListener("click",addProgramQuickRow);
+$("#addQualityQuickRow")?.addEventListener("click",()=>addProjectQuickRow("quality"));
+$("#addInnovationQuickRow")?.addEventListener("click",()=>addProjectQuickRow("innovation"));
+$("#addAwardQuickRow")?.addEventListener("click",addAwardQuickRow);
+$("#addPartnerQuickRow")?.addEventListener("click",addPartnerQuickRow);
+$("#addAttentionQuickRow")?.addEventListener("click",addAttentionQuickRow);
 $("#closeModal").onclick=()=>$("#modal").classList.add("hidden");
 
 function indChecks(selectedIds=[]){return `<div class="field"><label>Indicadores relacionados</label><div class="checks">${data.indicators.map(i=>`<label class="check"><input type="checkbox" name="indicator_link" value="${i.id}" ${selectedIds.includes(i.id)?"checked":""}><span>${esc(i.name)}</span></label>`).join("")||'<span class="small">Cadastre indicadores primeiro.</span>'}</div></div>`}
@@ -306,12 +697,14 @@ function applySectionFilter(section){
   const q=(search?.value||"").trim().toLowerCase();
   const typeFilter=section==="indicators"?$("[data-indicator-type-filter]")?.value||"all":"all";
   const contractFilter=section==="indicators"?$("[data-indicator-contract-filter]")?.value||"all":"all";
+  const statusFilter=section==="indicators"?$("[data-indicator-status-filter]")?.value||"all":"all";
   const cards=[...list.querySelectorAll("[data-filter-card]")];
   cards.forEach(c=>{
     const textOk=!q||c.textContent.toLowerCase().includes(q);
     const typeOk=typeFilter==="all"||c.dataset.indicatorType===typeFilter;
     const contractOk=contractFilter==="all"||c.dataset.indicatorContract===contractFilter;
-    c.style.display=textOk&&typeOk&&contractOk?"":"none";
+    const statusOk=statusFilter==="all"||c.dataset.indicatorStatus===statusFilter;
+    c.style.display=textOk&&typeOk&&contractOk&&statusOk?"":"none";
   });
   if(sort?.value==="az"||sort?.value==="za"){
     const mult=sort.value==="az"?1:-1;
@@ -323,6 +716,7 @@ $$("[data-section-search]").forEach(el=>el.addEventListener("input",()=>applySec
 $$("[data-section-sort]").forEach(el=>el.addEventListener("change",()=>applySectionFilter(el.dataset.sectionSort)));
 $("[data-indicator-type-filter]")?.addEventListener("change",()=>applySectionFilter("indicators"));
 $("[data-indicator-contract-filter]")?.addEventListener("change",()=>applySectionFilter("indicators"));
+$("[data-indicator-status-filter]")?.addEventListener("change",()=>applySectionFilter("indicators"));
 
 function openModal(type,id){
   modalState={type,id};
@@ -337,53 +731,21 @@ function openModal(type,id){
     '<div class="grid2">'+field("latest_value","Último valor",x.latest_value??"","number",'step="any"')+field("target_value","Meta",x.target_value??"","number",'step="any"')+'</div>'+
     '<div class="grid2">'+field("unit","Unidade",x.unit||"")+select("target_direction","Direção da meta",x.target_direction||"gte",[["gte","Maior ou igual"],["lte","Menor ou igual"],["exact","Exato"]])+'</div>'+
     field("measurement_date","Data da medição",x.measurement_date||"","date")+area("notes","Observações",x.notes||"");}
-  if(type==="program"){x=data.programs.find(v=>v.id===id)||{};title=id?"Editar programa":"Novo programa";const links=data.programLinks.filter(l=>l.program_id===id).map(l=>l.indicator_id);const ac=data.actions.filter(a=>a.program_id===id);body=
-    field("name","Nome",x.name||"")+
-    area("summary","Resumo",x.summary||"")+
-    field("link_url","Link",x.link_url||"","url")+
-    indChecks(links)+
-    `<div class="field"><label>Ações do programa</label><div id="actionsEditor">${ac.map(a=>`
-      <div class="card" data-action-id="${a.id}">
-        <div class="grid2">
-          ${field("action_"+a.id,"Ação",a.action).replace('id="f_action_'+a.id+'"','id="sub_action_'+a.id+'"')}
-          ${select("status_"+a.id,"Status",a.status||"aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_status_'+a.id+'"','id="sub_status_'+a.id+'"')}
-          ${select("health_"+a.id,"Situação da ação",a.health_status||"adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_health_'+a.id+'"','id="sub_health_'+a.id+'"')}
-        </div>
-        <div class="grid2">
-          ${field("start_"+a.id,"Data de início",a.start_date||"","date").replace('id="f_start_'+a.id+'"','id="sub_start_'+a.id+'"')}
-          ${field("end_"+a.id,"Data final",a.end_date||"","date").replace('id="f_end_'+a.id+'"','id="sub_end_'+a.id+'"')}
-        </div>
-        <button type="button" class="btn danger mini remove-action" data-remove-action="${a.id}">Remover ação</button>
-      </div>`).join("")}</div>
-      <button type="button" class="btn ghost mini" id="addActionBtn">+ Cadastrar ação</button></div>`;}
-  if(type==="quality"||type==="innovation"){
-    const arr=type==="quality"?data.quality:data.innovation;
-    x=arr.find(v=>v.id===id)||{};
-    title=id?"Editar projeto":"Novo projeto";
-    const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id);
-    const projectActions=(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===id);
-    body=field("name","Nome",x.name||"")+
-      '<div class="grid2">'+field("start_date","Início",x.start_date||"","date")+field("end_date","Fim",x.end_date||"","date")+'</div>'+ 
-      select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+
-      area("summary","Resumo",x.summary||"")+
-      indChecks(links)+
-      `<div class="field"><label>Ações do projeto</label><div id="projectActionsEditor">${projectActions.map(a=>`
-        <div class="card" data-project-action-id="${a.id}">
-          <div class="grid2">
-            ${field("paction_"+a.id,"Ação",a.action).replace('id="f_paction_'+a.id+'"','id="sub_paction_'+a.id+'"')}
-            ${select("pstatus_"+a.id,"Status",a.status||"aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_pstatus_'+a.id+'"','id="sub_pstatus_'+a.id+'"')}
-            ${select("phealth_"+a.id,"Situação da ação",a.health_status||"adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_phealth_'+a.id+'"','id="sub_phealth_'+a.id+'"')}
-          </div>
-          <div class="grid2">
-            ${field("pstart_"+a.id,"Data de início",a.start_date||"","date").replace('id="f_pstart_'+a.id+'"','id="sub_pstart_'+a.id+'"')}
-            ${field("pend_"+a.id,"Data final",a.end_date||"","date").replace('id="f_pend_'+a.id+'"','id="sub_pend_'+a.id+'"')}
-          </div>
-          <button type="button" class="btn danger mini remove-project-action" data-remove-project-action="${a.id}">Remover ação</button>
-        </div>`).join("")}</div>
-        <button type="button" class="btn ghost mini" id="addProjectActionBtn">+ Cadastrar ação</button></div>`;
+  if(type==="program"){
+    x=data.programs.find(v=>v.id===id)||{};title=id?"Detalhes do programa":"Novo programa";
+    const links=data.programLinks.filter(l=>l.program_id===id).map(l=>l.indicator_id),ac=data.actions.filter(a=>a.program_id===id);
+    body=field("name","Nome",x.name||"")+`<details class="form-optional" open><summary>Contexto e indicadores</summary><div style="margin-top:10px">`+area("summary","Resumo",x.summary||"")+field("link_url","Link",x.link_url||"","url")+indChecks(links)+`</div></details>`+
+    `<div class="field"><label>Ações do programa</label><div class="action-editor-table"><div class="action-editor-header"><span>Ação</span><span>Status</span><span>Situação</span><span>Início</span><span>Fim</span><span></span></div><div id="actionsEditor">${ac.map(a=>actionEditorRowHtml(a,false)).join("")}</div></div><div class="action-editor-toolbar"><button type="button" class="btn ghost mini" id="addActionBtn">+ Ação</button></div></div>`;
   }
-  if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title=id?"Editar registro":"Novo prêmio ou reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Colocação",x.placement||"")+area("notes","Observações",x.notes||"");}
-  if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title=id?"Editar parceria":"Nova parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Destacar no Top 5</label></div>`+area("notes","Observações",x.notes||"");}
+  if(type==="quality"||type==="innovation"){
+    const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?"Detalhes do projeto":"Novo projeto";
+    const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id),projectActions=(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===id);
+    body=field("name","Nome",x.name||"")+'<div class="grid2">'+select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+field("end_date","Fim previsto",x.end_date||"","date")+'</div>'+
+    `<details class="form-optional" open><summary>Contexto e indicadores</summary><div style="margin-top:10px">`+field("start_date","Início",x.start_date||"","date")+area("summary","Resumo",x.summary||"")+indChecks(links)+`</div></details>`+
+    `<div class="field"><label>Ações do projeto</label><div class="action-editor-table"><div class="action-editor-header"><span>Ação</span><span>Status</span><span>Situação</span><span>Início</span><span>Fim</span><span></span></div><div id="projectActionsEditor">${projectActions.map(a=>actionEditorRowHtml(a,true)).join("")}</div></div><div class="action-editor-toolbar"><button type="button" class="btn ghost mini" id="addProjectActionBtn">+ Ação</button></div></div>`;
+  }
+  if(type==="award"){x=data.awards.find(v=>v.id===id)||{};title="Detalhes do reconhecimento";body=select("category","Categoria",x.category||"premio_reconhecimento",[["premio_reconhecimento","Prêmio / reconhecimento"],["edital_educacao_inovadora","Edital Educação Inovadora"],["meee","MEEE"]])+field("name","Nome",x.name||"")+field("placement","Resultado / colocação",x.placement||"")+area("notes","Observações (opcional)",x.notes||"");}
+  if(type==="partner"){x=data.partners.find(v=>v.id===id)||{};title="Detalhes da parceria";body=field("name","Nome do parceiro",x.name||"")+`<div class="field"><label><input id="f_is_top5" type="checkbox" style="width:auto" ${x.is_top5?"checked":""}> Exibir como parceria em destaque</label></div>`+area("notes","Observações (opcional)",x.notes||"");}
   if(type==="attention"){
     x=data.attention.find(v=>v.id===id)||{};
     title=id?"Editar ponto":"Novo ponto de atenção";
@@ -391,20 +753,20 @@ function openModal(type,id){
     body=
       field("name","Ponto de atenção",x.name||"")+
       field("category","Categoria",extractAttentionCategory(x)==="Sem categoria"?"":extractAttentionCategory(x))+
-      '<div class="grid2">'+
-        select("impact","Impacto",x.impact||"medio",[["baixo","Baixo"],["medio","Médio"],["alto","Alto"],["critico","Crítico"]])+
-        select("attention_status","Status",x.attention_status||"aberto",[["aberto","Aberto"],["em_tratamento","Em tratamento"],["resolvido","Resolvido"]])+
-      '</div>'+
-      '<div class="grid2">'+
-        field("deadline","Prazo",x.deadline||"","date")+
+      field("deadline","Prazo",x.deadline||"","date")+
+      `<details class="form-advanced"><summary>Detalhes opcionais</summary><div style="margin-top:12px">`+
+        '<div class="grid2">'+
+          select("impact","Impacto",x.impact||"medio",[["baixo","Baixo"],["medio","Médio"],["alto","Alto"],["critico","Crítico"]])+
+          select("attention_status","Status",x.attention_status||"aberto",[["aberto","Aberto"],["em_tratamento","Em tratamento"],["resolvido","Resolvido"]])+
+        '</div>'+ 
         select("requires_decision","Requer decisão da liderança?",requiresDecision,[["nao","Não"],["sim","Sim"]])+
-      '</div>'+
-      `<div id="decisionNeededWrap" class="${requiresDecision==="sim"?"":"hidden"}">`+
-        area("decision_needed","Qual decisão é necessária?",x.decision_needed||"")+
-      '</div>'+
-      area("mitigation_action","Resposta em curso — uma ação por linha",x.mitigation_action||"")+
-      `<div class="small" style="margin:-4px 0 12px">Use uma linha para cada ação de resposta. O relatório exibirá tudo em um dropdown.</div>`+
-      area("notes","Evidência / contexto gerencial (opcional)",extractAttentionNotes(x));
+        `<div id="decisionNeededWrap" class="${requiresDecision==="sim"?"":"hidden"}">`+
+          area("decision_needed","Qual decisão é necessária?",x.decision_needed||"")+
+        '</div>'+ 
+        area("mitigation_action","Resposta em curso — uma ação por linha",x.mitigation_action||"")+
+        `<div class="small" style="margin:-4px 0 12px">Use uma linha para cada ação de resposta.</div>`+
+        area("notes","Evidência / contexto gerencial (opcional)",extractAttentionNotes(x))+
+      '</div></details>';
   }
   $("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;
   const historical=edition.status==="archived";
@@ -426,49 +788,15 @@ function setupAttentionEditor(){
   sync();
 }
 function setupActionsEditor(){
-  const btn=$("#addActionBtn"); if(!btn)return;
-  const bindRemove=()=>$$(".remove-action").forEach(r=>r.onclick=()=>{const block=r.closest("[data-action-id]");if(block)block.remove()});
-  btn.onclick=()=>{
-    const id="new_"+Date.now();
-    $("#actionsEditor").insertAdjacentHTML("beforeend",`<div class="card" data-action-id="${id}">
-      <div class="grid2">
-        ${field("tmp_action","Ação","").replace('id="f_tmp_action"','id="sub_action_'+id+'"')}
-        ${select("tmp_status","Status","aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_tmp_status"','id="sub_status_'+id+'"')}
-        ${select("tmp_health","Situação da ação","adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_tmp_health"','id="sub_health_'+id+'"')}
-      </div>
-      <div class="grid2">
-        ${field("tmp_start","Data de início","","date").replace('id="f_tmp_start"','id="sub_start_'+id+'"')}
-        ${field("tmp_end","Data final","","date").replace('id="f_tmp_end"','id="sub_end_'+id+'"')}
-      </div>
-      <button type="button" class="btn danger mini remove-action" data-remove-action="${id}">Remover ação</button>
-    </div>`);
-    bindRemove();
-  };
-  bindRemove();
+  const btn=$("#addActionBtn");if(!btn)return;
+  const bindRemove=()=>$$(".remove-action").forEach(r=>r.onclick=()=>r.closest("[data-action-id]")?.remove());
+  btn.onclick=()=>{$("#actionsEditor").insertAdjacentHTML("beforeend",actionEditorRowHtml({},false));bindRemove();};bindRemove();
 }
-
 function setupProjectActionsEditor(){
-  const btn=$("#addProjectActionBtn"); if(!btn)return;
-  const bindRemove=()=>$$(".remove-project-action").forEach(r=>r.onclick=()=>{const block=r.closest("[data-project-action-id]");if(block)block.remove()});
-  btn.onclick=()=>{
-    const id="new_"+Date.now();
-    $("#projectActionsEditor").insertAdjacentHTML("beforeend",`<div class="card" data-project-action-id="${id}">
-      <div class="grid2">
-        ${field("tmp_paction","Ação","").replace('id="f_tmp_paction"','id="sub_paction_'+id+'"')}
-        ${select("tmp_pstatus","Status","aguardando",[["aguardando","Aguardando"],["em_andamento","Em andamento"],["finalizada","Finalizada"]]).replace('id="f_tmp_pstatus"','id="sub_pstatus_'+id+'"')}
-        ${select("tmp_phealth","Situação da ação","adequada",[["risco","🔴 Em risco"],["atencao","🟡 Em atenção"],["adequada","🟢 Adequada"]]).replace('id="f_tmp_phealth"','id="sub_phealth_'+id+'"')}
-      </div>
-      <div class="grid2">
-        ${field("tmp_pstart","Data de início","","date").replace('id="f_tmp_pstart"','id="sub_pstart_'+id+'"')}
-        ${field("tmp_pend","Data final","","date").replace('id="f_tmp_pend"','id="sub_pend_'+id+'"')}
-      </div>
-      <button type="button" class="btn danger mini remove-project-action" data-remove-project-action="${id}">Remover ação</button>
-    </div>`);
-    bindRemove();
-  };
-  bindRemove();
+  const btn=$("#addProjectActionBtn");if(!btn)return;
+  const bindRemove=()=>$$(".remove-project-action").forEach(r=>r.onclick=()=>r.closest("[data-project-action-id]")?.remove());
+  btn.onclick=()=>{$("#projectActionsEditor").insertAdjacentHTML("beforeend",actionEditorRowHtml({},true));bindRemove();};bindRemove();
 }
-
 
 
 async function saveRecord(collectionName,id,payload){
@@ -640,30 +968,205 @@ $("#updateVersionBtn").onclick=async()=>{
     await loadAll(edition.year);
   }catch(error){msg($("#editionMsg"),error.message,"error")}
 };
-async function createAnnualEdition(){
-  const maxYear=editions.length?Math.max(...editions.map(e=>e.year)):new Date().getFullYear()-1;
-  const suggested=Math.max(new Date().getFullYear(),maxYear+1);
-  const raw=prompt("Informe o ano da nova edição:",String(suggested));
-  if(raw===null)return;
-  const year=Number(raw);
+async function createAnnualEdition(options=null){
+  // Sem opções, abre a interface de criação. Isso mantém o fluxo legível e evita prompts destrutivos.
+  if(!options){
+    openNewEditionModal();
+    return;
+  }
+
+  const {year,mode,sourceYear,copyIndicators,copyPrograms,copyQuality,copyInnovation,copyPartners}=options;
   if(!Number.isInteger(year)||year<2000||year>2100)throw new Error("Informe um ano válido.");
-  if(editions.some(e=>e.year===year))throw new Error("Já existe uma edição cadastrada para este ano.");
-  const current=edition;
-  await db.collection("edicoes").doc(String(year)).set({
-    year,version:1,
-    title:current?.title||"Relatório Executivo Anual",
-    subtitle:current?.subtitle||"Núcleo de Qualidade e Inovação",
-    intro:current?.intro||null,
+  if(editions.some(e=>Number(e.year)===year))throw new Error("Já existe uma edição cadastrada para este ano.");
+
+  let sourceEdition=null;
+  if(mode==="clone"){
+    sourceEdition=editions.find(e=>Number(e.year)===Number(sourceYear));
+    if(!sourceEdition)throw new Error("Selecione uma edição de referência válida.");
+  }
+
+  const now=new Date().toISOString();
+  const headerSource=sourceEdition||edition||{};
+  const writes=[];
+
+  // Cabeçalho sempre nasce como rascunho e sem histórico de publicação.
+  writes.push(batch=>batch.set(db.collection("edicoes").doc(String(year)),{
+    year,
+    version:1,
+    title:headerSource.title||"Relatório Executivo Anual",
+    subtitle:headerSource.subtitle||"Núcleo de Qualidade e Inovação",
+    intro:headerSource.intro||null,
     status:"draft",
-    created_at:new Date().toISOString(),
-    updated_at:new Date().toISOString()
-  });
+    created_at:now,
+    updated_at:now,
+    copied_from_year:mode==="clone"?Number(sourceYear):null
+  }));
+
+  if(mode==="clone"){
+    const [srcIndicators,srcPrograms,srcProgramActions,srcQuality,srcQualityActions,srcInnovation,srcInnovationActions,srcPartners]=await Promise.all([
+      copyIndicators?readCollectionForYear("indicators",sourceYear):Promise.resolve([]),
+      copyPrograms?readCollectionForYear("programs",sourceYear):Promise.resolve([]),
+      copyPrograms?readCollectionForYear("program_actions",sourceYear):Promise.resolve([]),
+      copyQuality?readCollectionForYear("quality_projects",sourceYear):Promise.resolve([]),
+      copyQuality?readCollectionForYear("quality_project_actions",sourceYear):Promise.resolve([]),
+      copyInnovation?readCollectionForYear("innovation_projects",sourceYear):Promise.resolve([]),
+      copyInnovation?readCollectionForYear("innovation_project_actions",sourceYear):Promise.resolve([]),
+      copyPartners?readCollectionForYear("partners",sourceYear):Promise.resolve([])
+    ]);
+
+    const copiedIndicatorIds=new Set(srcIndicators.map(x=>x.id));
+    const normalizedIndicatorIds=ids=>copyIndicators?(ids||[]).filter(id=>copiedIndicatorIds.has(id)):[];
+
+    srcIndicators.forEach(x=>{
+      const payload={
+        ...cleanCloneObject(x,["name","segment","unit","target_direction","is_management_contract","notes","sort_order"]),
+        latest_value:null,
+        target_value:null,
+        measurement_date:null,
+        created_at:now,
+        updated_at:now
+      };
+      writes.push(batch=>batch.set(editionCollection("indicators",year).doc(x.id),payload));
+    });
+
+    srcPrograms.forEach(x=>{
+      const payload={
+        ...cleanCloneObject(x,["name","summary","link_url","sort_order"]),
+        indicator_ids:normalizedIndicatorIds(x.indicator_ids),
+        created_at:now,
+        updated_at:now
+      };
+      writes.push(batch=>batch.set(editionCollection("programs",year).doc(x.id),payload));
+    });
+    srcProgramActions.forEach(x=>{
+      if(!srcPrograms.some(p=>p.id===x.program_id))return;
+      writes.push(batch=>batch.set(editionCollection("program_actions",year).doc(x.id),{
+        program_id:x.program_id,
+        action:x.action||"",
+        status:"aguardando",
+        health_status:"adequada",
+        start_date:null,
+        end_date:null,
+        sort_order:x.sort_order??null,
+        created_at:now,
+        updated_at:now
+      }));
+    });
+
+    srcQuality.forEach(x=>{
+      writes.push(batch=>batch.set(editionCollection("quality_projects",year).doc(x.id),{
+        ...cleanCloneObject(x,["name","summary","sort_order"]),
+        indicator_ids:normalizedIndicatorIds(x.indicator_ids),
+        status:"planejado",
+        start_date:null,
+        end_date:null,
+        created_at:now,
+        updated_at:now
+      }));
+    });
+    srcQualityActions.forEach(x=>{
+      if(!srcQuality.some(p=>p.id===x.project_id))return;
+      writes.push(batch=>batch.set(editionCollection("quality_project_actions",year).doc(x.id),{
+        project_id:x.project_id,
+        action:x.action||"",
+        status:"aguardando",
+        health_status:"adequada",
+        start_date:null,
+        end_date:null,
+        sort_order:x.sort_order??null,
+        created_at:now,
+        updated_at:now
+      }));
+    });
+
+    srcInnovation.forEach(x=>{
+      writes.push(batch=>batch.set(editionCollection("innovation_projects",year).doc(x.id),{
+        ...cleanCloneObject(x,["name","summary","sort_order"]),
+        indicator_ids:normalizedIndicatorIds(x.indicator_ids),
+        status:"planejado",
+        start_date:null,
+        end_date:null,
+        created_at:now,
+        updated_at:now
+      }));
+    });
+    srcInnovationActions.forEach(x=>{
+      if(!srcInnovation.some(p=>p.id===x.project_id))return;
+      writes.push(batch=>batch.set(editionCollection("innovation_project_actions",year).doc(x.id),{
+        project_id:x.project_id,
+        action:x.action||"",
+        status:"aguardando",
+        health_status:"adequada",
+        start_date:null,
+        end_date:null,
+        sort_order:x.sort_order??null,
+        created_at:now,
+        updated_at:now
+      }));
+    });
+
+    srcPartners.forEach(x=>{
+      writes.push(batch=>batch.set(editionCollection("partners",year).doc(x.id),{
+        ...cleanCloneObject(x,["name","sort_order"]),
+        is_top5:false,
+        notes:null,
+        created_at:now,
+        updated_at:now
+      }));
+    });
+  }
+
+  await commitCloneWrites(writes);
   await loadAll(year);
-  msg($("#editionMsg"),`Edição ${year} criada como rascunho. Os anos anteriores permanecem preservados para consulta.`,"success");
+  return year;
 }
-$("#newEditionBtn").onclick=async()=>{
-  if(edition?.status==="draft")return msg($("#editionMsg"),"Já existe um ano em rascunho. Publique-o antes de criar outro ano.","error");
-  try{await createAnnualEdition()}catch(error){msg($("#editionMsg"),error.message,"error")}
+
+$("#newEditionBtn").onclick=()=>createAnnualEdition();
+
+$("#closeNewEditionModal").onclick=closeNewEditionModal;
+$("#cancelNewEditionBtn").onclick=closeNewEditionModal;
+document.querySelectorAll('input[name="newEditionMode"]').forEach(r=>r.addEventListener("change",updateNewEditionModeUI));
+
+$("#confirmNewEditionBtn").onclick=async()=>{
+  const btn=$("#confirmNewEditionBtn");
+  const year=Number($("#newEditionYear").value);
+  const mode=document.querySelector('input[name="newEditionMode"]:checked')?.value||"clone";
+  const sourceYear=Number($("#newEditionSourceYear").value);
+  const options={
+    year,mode,sourceYear,
+    copyIndicators:$("#cloneIndicators").checked,
+    copyPrograms:$("#clonePrograms").checked,
+    copyQuality:$("#cloneQuality").checked,
+    copyInnovation:$("#cloneInnovation").checked,
+    copyPartners:$("#clonePartners").checked
+  };
+
+  if(!Number.isInteger(year)||year<2000||year>2100)return msg($("#newEditionMsg"),"Informe um ano válido.","error");
+  if(editions.some(e=>Number(e.year)===year))return msg($("#newEditionMsg"),"Já existe uma edição cadastrada para esse ano.","error");
+  if(mode==="clone"&&!editions.some(e=>Number(e.year)===sourceYear))return msg($("#newEditionMsg"),"Selecione uma edição de referência.","error");
+
+  const sourceText=mode==="clone"?` usando a estrutura de ${sourceYear}`:" vazia";
+  if(!confirm(`Criar a edição ${year}${sourceText}? Resultados, prazos, status, prêmios e pontos de atenção antigos não serão levados para o novo ano.`))return;
+
+  btn.disabled=true;
+  $("#cancelNewEditionBtn").disabled=true;
+  $("#closeNewEditionModal").disabled=true;
+  $("#newEditionMsg").innerHTML='<span class="new-edition-progress">Criando a nova edição e preparando a estrutura…</span>';
+  try{
+    await createAnnualEdition(options);
+    closeNewEditionModal();
+    msg($("#editionMsg"),mode==="clone"
+      ?`Edição ${year} criada como rascunho a partir da estrutura de ${sourceYear}. Dados do período foram zerados automaticamente.`
+      :`Edição ${year} criada como rascunho vazio.`,
+      "success"
+    );
+  }catch(error){
+    msg($("#newEditionMsg"),error.message||String(error),"error");
+  }finally{
+    btn.disabled=false;
+    $("#cancelNewEditionBtn").disabled=false;
+    $("#closeNewEditionModal").disabled=false;
+  }
 };
 
 

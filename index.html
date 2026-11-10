@@ -31,6 +31,12 @@
 .executive-head{max-width:900px;margin-bottom:28px}
 .executive-head h2{font-family:"Libre Caslon Display",serif;font-size:clamp(3rem,5vw,4.8rem);line-height:.94;letter-spacing:-.04em;color:var(--deep);margin:10px 0 14px}
 .executive-head p{max-width:850px;margin:0;color:var(--muted);font-size:1rem;line-height:1.75}
+.executive-scope{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.executive-scope-item{display:inline-flex;align-items:baseline;gap:6px;padding:8px 11px;border-radius:999px;background:#f2f5f6;border:1px solid #e0e6e8;color:#526a77;font-size:.69rem;font-weight:700}
+.executive-scope-item strong{font-family:"Libre Caslon Display",serif;font-size:1rem;color:var(--deep);line-height:1}
+.executive-section{padding-top:66px}
+.executive-section:before{content:"";display:block;width:72px;height:4px;border-radius:999px;background:var(--orange);margin:0 auto 42px}
+
 .executive-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
 .executive-lower{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
 .executive-panel{background:#fff;border:1px solid #dfe6e9;border-radius:26px;padding:24px;box-shadow:0 16px 40px rgba(23,42,54,.045)}
@@ -56,6 +62,24 @@
 .executive-agenda-item strong{display:block;color:var(--deep);font-size:.86rem;line-height:1.35}
 .executive-agenda-item small{display:block;color:var(--muted);font-size:.72rem;line-height:1.45;margin-top:3px}
 .executive-agenda-type{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);white-space:nowrap}
+.executive-highlights-panel{margin:0 0 18px;padding:25px 26px;border-radius:26px;background:linear-gradient(135deg,#fffdf8,#f9fbfb);border:1px solid #e6dfd2;box-shadow:0 16px 38px rgba(30,48,58,.045)}
+.executive-highlights-head{display:grid;grid-template-columns:1fr minmax(260px,.55fr);gap:20px;align-items:end;margin-bottom:16px}
+.executive-highlights-head h3{font-family:"Libre Caslon Display",serif;font-size:2rem;line-height:1.05;color:var(--deep);margin:5px 0 0}
+.executive-highlights-head p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.55}
+.executive-highlights-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.executive-highlight-item{position:relative;display:flex;flex-direction:column;min-height:150px;padding:17px;border-radius:19px;background:#fff;border:1px solid #e1e7e9;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.executive-highlight-item:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(20,46,61,.07);border-color:#c7d7de}
+.executive-highlight-type{font-size:.61rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900;color:var(--orange)}
+.executive-highlight-item strong{display:block;margin-top:8px;color:var(--deep);font-family:"Libre Caslon Display",serif;font-size:1.28rem;line-height:1.12}
+.executive-highlight-item small{display:block;margin-top:8px;color:var(--muted);font-size:.72rem;line-height:1.5}
+.executive-highlight-link{margin-top:auto;padding-top:13px;color:#315f7b;font-size:.67rem;font-weight:900}
+.executive-highlights-empty{padding:16px;border-radius:16px;background:#f6f8f9;color:var(--muted);font-size:.8rem;line-height:1.5}
+.executive-agenda-item{cursor:pointer;transition:background .16s ease,padding .16s ease}
+.executive-agenda-item:hover{background:#f8fafb;padding-left:7px;padding-right:7px;border-radius:12px}
+.executive-agenda-item .agenda-evidence{display:block;margin-top:5px;color:#315f7b;font-size:.64rem;font-weight:900}
+.exec-target-flash{animation:execTargetFlash 1.9s ease}
+@keyframes execTargetFlash{0%{box-shadow:0 0 0 0 rgba(219,139,34,.38)}35%{box-shadow:0 0 0 8px rgba(219,139,34,.16)}100%{box-shadow:0 0 0 0 rgba(219,139,34,0)}}
+
 .coverage-list{display:grid;gap:7px;margin-top:13px}
 .coverage-gap{padding:9px 11px;border-radius:12px;background:#fff6f3;border:1px solid #f0d5cf;color:#83443c;font-size:.77rem;line-height:1.45}
 .metric-gap{display:inline-flex;margin-top:9px;padding:6px 9px;border-radius:999px;font-size:.69rem;font-weight:800}
@@ -104,6 +128,23 @@
 .attention-context-dot{width:3px;height:3px;border-radius:50%;background:#9eabb1}
 .attention-evidence{margin:10px 0 0;padding:12px 13px;border-radius:14px;background:#f8fafb;color:#62747f;font-size:.8rem;line-height:1.58}
 .attention-evidence strong{color:#405867}
+.attention-category-block{margin-bottom:34px}
+.attention-category-head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin-bottom:13px;padding:0 2px 11px;border-bottom:1px solid #d9d0c0}
+.attention-category-head h3{font-family:"Libre Caslon Display",serif;font-size:2.15rem;line-height:1.05;color:var(--deep);margin:0}
+.attention-category-meta{color:var(--muted);font-size:.74rem;line-height:1.45;text-align:right}
+.attention-category-meta strong{color:var(--deep)}
+.attention-list{display:grid;gap:10px}
+.attention-list-item{position:relative;display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:16px;align-items:start;padding:17px 18px;border-radius:18px;background:#fff;border:1px solid #e2e7e9;box-shadow:0 10px 24px rgba(23,42,54,.035)}
+.attention-list-item:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:4px;border-radius:0 4px 4px 0;background:var(--gold)}
+.attention-list-item.overdue:before{background:var(--bad)}.attention-list-item.soon:before{background:var(--warn)}.attention-list-item.resolved:before{background:var(--ok)}
+.attention-date-block{padding-left:5px}.attention-date-day{font-family:"Libre Caslon Display",serif;font-size:1.55rem;line-height:1;color:var(--deep)}
+.attention-date-label{margin-top:5px;font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.attention-date-label.overdue{color:var(--bad)}.attention-date-label.soon{color:var(--warn)}.attention-date-label.track{color:#7a663d}.attention-date-label.resolved{color:var(--ok)}
+.attention-list-main h4{font-family:"Libre Caslon Display",serif;font-size:1.45rem;line-height:1.08;color:var(--deep);margin:0 0 7px}
+.attention-list-sub{display:flex;gap:7px;align-items:center;flex-wrap:wrap;color:#687a84;font-size:.72rem}.attention-list-sub strong{color:#415966}.attention-mini-dot{width:3px;height:3px;border-radius:50%;background:#9caab0}
+.attention-list-actions{display:flex;align-items:flex-start;gap:7px;flex-wrap:wrap;justify-content:flex-end}.attention-badge-small{display:inline-flex;padding:6px 8px;border-radius:999px;font-size:.63rem;font-weight:900;white-space:nowrap}.attention-badge-small.decision{background:#fff0d8;color:#875611}.attention-badge-small.impact{background:#eef4f7;color:#516d7d}
+.attention-list-details{grid-column:2/-1;margin-top:3px}.attention-list-details .mitigation-dropdown{margin-top:10px}.attention-list-details .attention-decision{margin-top:10px}.attention-list-details .attention-evidence{margin-top:10px}
+
 .attention-decision{margin:12px 0 0}
 .mitigation-dropdown{margin-top:14px}
 .mitigation-dropdown summary{border:1px solid #cfdde4;background:#f5f9fb}
@@ -140,7 +181,7 @@
 .empty{padding:30px;border-radius:24px;border:1px dashed #cbd3d7;background:rgba(255,255,255,.7);color:var(--muted)}
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease} .reveal.show{opacity:1;transform:none} @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 @media(max-width:1020px){.cover-grid,.vision-grid,.editorial-break .wrap,.program-top,.partners-hero,.final-note .wrap{grid-template-columns:1fr} .cover-numbers{grid-template-columns:repeat(2,1fr)} .award-wall,.partners-list{grid-template-columns:repeat(2,1fr)} .action-row{grid-template-columns:1fr}.executive-grid,.executive-lower{grid-template-columns:1fr}}
-@media(max-width:760px){.attention-decision-queue-head{grid-template-columns:1fr}.attention-decision-item{grid-template-columns:36px 1fr}.attention-decision-badge{grid-column:2;justify-self:start}.wrap{padding:0 20px} .issue-cover{min-height:auto} .cover-grid{margin-top:48px} .cover-title{font-size:3.9rem} .cover-numbers,.edition-map,.award-wall,.partners-list{grid-template-columns:1fr} .section{padding:66px 0} .section-head{grid-template-columns:1fr;gap:12px} .chapter{font-size:2.8rem} .grid12 .s4,.grid12 .s5,.grid12 .s6,.grid12 .s7,.grid12 .s12{grid-column:1/-1} .pull-quote{font-size:1.8rem}.executive-section{padding:58px 0 64px}.executive-stats{grid-template-columns:1fr 1fr}.attention-exec-summary{grid-template-columns:1fr 1fr}.executive-agenda-item{grid-template-columns:auto 1fr}.executive-agenda-type{grid-column:2}}
+@media(max-width:760px){.executive-highlights-head{grid-template-columns:1fr}.executive-highlights-list{grid-template-columns:1fr}.attention-category-head{grid-template-columns:1fr}.attention-category-meta{text-align:left}.attention-list-item{grid-template-columns:86px 1fr}.attention-list-actions{grid-column:2;justify-content:flex-start}.attention-list-details{grid-column:1/-1}.attention-decision-queue-head{grid-template-columns:1fr}.attention-decision-item{grid-template-columns:36px 1fr}.attention-decision-badge{grid-column:2;justify-self:start}.wrap{padding:0 20px} .issue-cover{min-height:auto} .cover-grid{margin-top:48px} .cover-title{font-size:3.9rem} .cover-numbers,.edition-map,.award-wall,.partners-list{grid-template-columns:1fr} .section{padding:66px 0} .section-head{grid-template-columns:1fr;gap:12px} .chapter{font-size:2.8rem} .grid12 .s4,.grid12 .s5,.grid12 .s6,.grid12 .s7,.grid12 .s12{grid-column:1/-1} .pull-quote{font-size:1.8rem}.executive-section{padding:58px 0 64px}.executive-stats{grid-template-columns:1fr 1fr}.attention-exec-summary{grid-template-columns:1fr 1fr}.executive-agenda-item{grid-template-columns:auto 1fr}.executive-agenda-type{grid-column:2}}
 
 /* Refinamento editorial final */
 :root{--paper:#f3eee4;--paper2:#fcfaf6;--line:#ddd7cc}
@@ -273,6 +314,97 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   .indicator-controls{padding:15px}
 }
 
+
+/* v24 · Portfólio executivo */
+.portfolio-summary{display:grid;grid-template-columns:1.25fr repeat(4,.75fr);gap:10px;margin:-2px 0 22px}
+.portfolio-summary-main,.portfolio-summary-stat{border-radius:19px;border:1px solid #dfe6e9;background:#fff;padding:15px 16px;min-height:88px}
+.portfolio-summary-main strong{display:block;font-family:"Libre Caslon Display",serif;font-size:1.85rem;line-height:1;color:var(--deep)}
+.portfolio-summary-main span,.portfolio-summary-stat span{display:block;margin-top:6px;color:var(--muted);font-size:.7rem;line-height:1.35}
+.portfolio-summary-stat strong{display:block;font-family:"Libre Caslon Display",serif;font-size:1.8rem;line-height:1;color:var(--deep)}
+.portfolio-summary-stat.good strong{color:var(--ok)}.portfolio-summary-stat.alert strong{color:var(--bad)}.portfolio-summary-stat.warn strong{color:var(--warn)}
+.innovation-section .portfolio-summary-main,.innovation-section .portfolio-summary-stat{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15)}
+.innovation-section .portfolio-summary-main strong,.innovation-section .portfolio-summary-stat strong{color:#fff}
+.innovation-section .portfolio-summary-main span,.innovation-section .portfolio-summary-stat span{color:#cfe0e9}
+
+.portfolio-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 18px}
+.portfolio-filter{border:1px solid #d5e0e4;background:#fff;color:#526a77;border-radius:999px;padding:8px 12px;font:800 .7rem "DM Sans",system-ui;cursor:pointer}
+.portfolio-filter.active{background:var(--deep);border-color:var(--deep);color:#fff}
+.portfolio-filters-dark .portfolio-filter{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);color:#dcebf3}
+.portfolio-filters-dark .portfolio-filter.active{background:#fff;color:var(--deep);border-color:#fff}
+
+.portfolio-program{position:relative;background:#fff;border:1px solid #dfe7ea;border-radius:26px;padding:22px 24px;margin-bottom:14px;box-shadow:0 12px 32px rgba(23,42,54,.04)}
+.portfolio-program:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:5px;border-radius:0 5px 5px 0;background:var(--blue)}
+.portfolio-program.risk:before{background:var(--bad)}.portfolio-program.attention:before{background:var(--warn)}.portfolio-program.completed:before{background:var(--ok)}
+.portfolio-card-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start}
+.portfolio-card-head h3{font-family:"Libre Caslon Display",serif;color:var(--deep);font-size:1.65rem;line-height:1.08;margin:5px 0 0}
+.portfolio-situation{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.portfolio-state{display:inline-flex;padding:6px 9px;border-radius:999px;font-size:.66rem;font-weight:900}
+.portfolio-state.risk{background:#fdebea;color:#a9342c}.portfolio-state.attention{background:#fff4d8;color:#8a6200}.portfolio-state.good{background:#e6f4eb;color:#2e7d4f}.portfolio-state.neutral{background:#eef3f5;color:#5b707b}
+.portfolio-metrics{display:grid;grid-template-columns:minmax(180px,1.3fr) repeat(3,.7fr);gap:10px;margin-top:14px}
+.portfolio-metric{padding:11px 12px;border-radius:14px;background:#f7f9fa;border:1px solid #edf1f2}
+.portfolio-metric strong{display:block;color:#2b4656;font-size:.88rem}.portfolio-metric span{display:block;color:#71828b;font-size:.65rem;margin-top:3px}
+.portfolio-progress{margin-top:13px}
+.portfolio-progress-head{display:flex;justify-content:space-between;gap:12px;color:#5f747f;font-size:.69rem;font-weight:800;margin-bottom:6px}
+.portfolio-progress-track{height:9px;border-radius:999px;background:#e7edef;overflow:hidden}
+.portfolio-progress-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),#3291c7)}
+.portfolio-program.completed .portfolio-progress-track span,.project-portfolio-card.completed .portfolio-progress-track span{background:var(--ok)}
+.portfolio-related{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.portfolio-related .pill{padding:6px 9px;font-size:.66rem}
+.portfolio-detail{margin-top:12px;border-top:1px solid #edf1f2;padding-top:10px}
+.portfolio-detail summary{cursor:pointer;list-style:none;color:#4b6878;font-size:.72rem;font-weight:800}
+.portfolio-detail summary::-webkit-details-marker{display:none}.portfolio-detail summary:after{content:" +"}.portfolio-detail[open] summary:after{content:" −"}
+.portfolio-detail .copy{margin:9px 0 0}
+
+.project-portfolio-card{min-height:100%;position:relative}
+.project-portfolio-card.risk{border-color:#efc8c2}.project-portfolio-card.attention{border-color:#ead9aa}
+.project-portfolio-card .portfolio-card-head{grid-template-columns:1fr}
+.project-portfolio-card .portfolio-situation{justify-content:flex-start}
+.project-portfolio-card .portfolio-metrics{grid-template-columns:repeat(3,1fr)}
+.project-portfolio-card .portfolio-progress{margin-top:12px}
+.innovation-section .project-portfolio-card .portfolio-metric{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+.innovation-section .project-portfolio-card .portfolio-metric strong{color:#fff}.innovation-section .project-portfolio-card .portfolio-metric span{color:#c7dae5}
+.innovation-section .portfolio-progress-head{color:#d4e4ec}.innovation-section .portfolio-progress-track{background:rgba(255,255,255,.14)}
+.innovation-section .portfolio-detail{border-color:rgba(255,255,255,.12)}.innovation-section .portfolio-detail summary{color:#d9e8ef}
+
+@media(max-width:980px){.portfolio-summary{grid-template-columns:repeat(2,1fr)}.portfolio-summary-main{grid-column:1/-1}.portfolio-metrics{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.portfolio-summary{grid-template-columns:1fr}.portfolio-summary-main{grid-column:auto}.portfolio-card-head{grid-template-columns:1fr}.portfolio-situation{justify-content:flex-start}.portfolio-metrics,.project-portfolio-card .portfolio-metrics{grid-template-columns:1fr 1fr}}
+
+
+/* v26 · Reconhecimentos e Parcerias */
+.recognition-summary,.partners-summary{display:grid;grid-template-columns:1.2fr repeat(2,.8fr);gap:10px;margin:-2px 0 22px}
+.recognition-summary-card,.partners-summary-card{background:#fff;border:1px solid #e4ddcf;border-radius:19px;padding:15px 16px;min-height:84px}
+.recognition-summary-card strong,.partners-summary-card strong{display:block;font-family:"Libre Caslon Display",serif;font-size:1.9rem;line-height:1;color:var(--deep)}
+.recognition-summary-card span,.partners-summary-card span{display:block;margin-top:6px;color:var(--muted);font-size:.7rem;line-height:1.35}
+
+.award-category-block{margin-bottom:26px}
+.award-category-head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid #dfd2ba}
+.award-category-head h3{font-family:"Libre Caslon Display",serif;font-size:2rem;color:var(--deep);margin:0}
+.award-category-head span{color:var(--muted);font-size:.72rem}
+.award-compact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.award-compact-card{position:relative;padding:19px;border-radius:21px;background:linear-gradient(180deg,#fffdf8,#fff);border:1px solid #ead7ac;min-height:155px}
+.award-compact-card:before{content:"✦";position:absolute;right:16px;top:13px;color:#d4ae61;font-size:1rem}
+.award-compact-card h4{font-family:"Libre Caslon Display",serif;color:var(--deep);font-size:1.35rem;line-height:1.08;margin:4px 28px 9px 0}
+.award-result{display:inline-flex;padding:7px 10px;border-radius:999px;background:#f5ead1;color:#805f28;font-size:.7rem;font-weight:900}
+.award-note-details{margin-top:10px}
+.award-note-details summary{cursor:pointer;list-style:none;color:#75613c;font-size:.68rem;font-weight:800}
+.award-note-details summary::-webkit-details-marker{display:none}.award-note-details summary:after{content:" +"}.award-note-details[open] summary:after{content:" −"}
+.award-note-details p{margin:7px 0 0}
+
+.partner-featured-title,.partner-network-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:0 0 11px}
+.partner-featured-title h3,.partner-network-title h3{font-family:"Libre Caslon Display",serif;font-size:1.8rem;color:var(--deep);margin:0}
+.partner-featured-title span,.partner-network-title span{color:var(--muted);font-size:.72rem}
+.partner-featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.partner-featured-card{padding:19px;border-radius:21px;background:linear-gradient(145deg,#073758,#0b5d89);color:#fff;min-height:135px}
+.partner-featured-card .kicker{color:#ffc875}.partner-featured-card h4{font-family:"Libre Caslon Display",serif;font-size:1.45rem;line-height:1.08;margin:6px 0 0;color:#fff}
+.partner-featured-card p{color:#d6e6ee;font-size:.76rem;line-height:1.55;margin:9px 0 0}
+.partner-network-list{display:flex;flex-wrap:wrap;gap:9px}
+.partner-network-item{display:inline-flex;align-items:center;gap:7px;padding:10px 12px;border-radius:999px;background:#fff;border:1px solid #dfe5e7;color:#405968;font-size:.76rem;font-weight:800}
+.partner-network-item.has-note{cursor:help}
+.partner-empty-network{padding:16px;border-radius:16px;background:#fff;border:1px dashed #d5dddf;color:var(--muted);font-size:.8rem}
+
+@media(max-width:900px){.award-compact-grid,.partner-featured-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.recognition-summary,.partners-summary,.award-compact-grid,.partner-featured-grid{grid-template-columns:1fr}}
+
 @media print{
   .nav,.cover-actions,.indicator-filters,.indicator-controls{display:none!important}.actions-dropdown summary,.mitigation-dropdown summary{background:#f4f7f8!important}
   .issue-cover{min-height:auto!important;page-break-after:always}
@@ -291,7 +423,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       <div>
         <div class="cover-rule"></div>
         <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
-        <p class="cover-deck" id="coverIntro">Síntese anual dos resultados, programas, projetos e prioridades do Núcleo de Qualidade e Inovação.</p>
+        <p class="cover-deck" id="coverIntro">Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
         <div class="cover-meta"><span class="meta-chip" id="coverYear">Versão: —</span><span class="meta-chip" id="publishedAt">Data de atualização: —</span><span class="meta-chip" id="coverEdition">Edição: em preparação</span></div><div class="cover-actions">
 <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
 <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
@@ -302,16 +434,26 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="cover-numbers" id="coverNumbers"></div>
   </div>
 </header>
-<nav class="nav"><div class="wrap nav-inner"><a href="#visao">Visão do ano</a><a href="#executivo">Leitura executiva</a><a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Qualidade</a><a href="#inovacao">04 Inovação</a><a href="#premios">05 Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a></div></nav>
-<section class="vision" id="visao"><div class="wrap vision-grid reveal"><div><div class="vision-kicker">Visão do ano</div><h2>Estrutura da edição.</h2><p class="vision-lead" id="visionLead">A edição organiza o conteúdo em resultados, execução, reconhecimento institucional e pontos de atenção.</p><p class="vision-copy" id="visionCopy">A visão abaixo resume os capítulos e a distribuição dos principais conteúdos do período.</p></div><div class="edition-map" id="editionMap"></div></div></section>
-<section class="editorial-break"><div class="wrap"><div class="pull-quote" id="pullQuote">Leitura estruturada para acompanhamento executivo.</div><div class="pull-copy" id="pullCopy">Os capítulos combinam resultados, execução, reconhecimento institucional e pontos de atenção em uma única publicação.</div></div></section>
+<nav class="nav"><div class="wrap nav-inner"><a href="#executivo">Leitura executiva</a><a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Qualidade</a><a href="#inovacao">04 Inovação</a><a href="#premios">05 Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a></div></nav>
 <section class="executive-section" id="executivo">
   <div class="wrap">
     <div class="executive-head reveal">
       <div class="vision-kicker">Leitura executiva automática</div>
-      <h2>O que merece atenção nesta edição.</h2>
+      <h2>Resultados, execução e prioridades desta edição.</h2>
       <p id="executiveNarrative">A análise será construída automaticamente a partir dos dados publicados.</p>
+      <div id="executiveScope" class="executive-scope" aria-label="Base de dados desta edição"></div>
     </div>
+
+    <article class="executive-highlights-panel">
+      <div class="executive-highlights-head">
+        <div>
+          <div class="executive-label">Destaques do ano</div>
+          <h3>Resultados que evidenciam valor entregue.</h3>
+        </div>
+        <p>Seleção automática de até três evidências positivas já existentes no relatório.</p>
+      </div>
+      <div id="executiveHighlights"></div>
+    </article>
 
     <div class="executive-grid">
       <article class="executive-panel executive-performance">
@@ -409,18 +551,52 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div id="indicatorsGrid"></div>
   </div>
 </section>
-<section class="section" id="programas"><div class="wrap"><div class="section-head reveal"><div class="chapter">02</div><div><h2>Programas</h2><p class="section-lead">Os programas estruturantes apresentam objetivo, relação com indicadores e o conjunto de ações cadastradas com seu respectivo status.</p></div></div><div id="programsList"></div></div></section>
-<section class="section quality-section" id="qualidade"><div class="wrap"><div class="section-head reveal"><div class="chapter">03</div><div><h2>Projetos de qualidade</h2><p class="section-lead">Projetos de qualidade apresentados com status, período, síntese, indicadores relacionados e ações cadastradas.</p></div></div><div class="grid12" id="qualityGrid"></div></div></section>
-<section class="section innovation-section" id="inovacao"><div class="wrap"><div class="section-head reveal"><div class="chapter">04</div><div><h2>Projetos de inovação</h2><p class="section-lead">Projetos de inovação apresentados com status, período, síntese, indicadores relacionados e ações cadastradas.</p></div></div><div class="grid12" id="innovationGrid"></div></div></section>
-<section class="section awards-section" id="premios"><div class="wrap"><div class="section-head reveal"><div class="chapter">05</div><div><h2>Prêmios e reconhecimentos</h2><p class="section-lead">Registros de prêmios, reconhecimentos e submissões relacionados ao período.</p></div></div><div class="award-wall" id="awardsGrid"></div></div></section>
-<section class="section partners-section" id="parcerias"><div class="wrap"><div class="section-head reveal"><div class="chapter">06</div><div><h2>Parcerias</h2><p class="section-lead">Parcerias registradas na edição, com identificação dos destaques definidos no cadastro administrativo.</p></div></div><div id="partnersGrid"></div></div></section>
+<section class="section portfolio-section" id="programas"><div class="wrap">
+<div class="section-head reveal"><div class="chapter">02</div><div><h2>Programas</h2><p class="section-lead">Visão de execução dos programas: avanço das ações, exceções de risco e indicadores relacionados.</p></div></div>
+<div id="programPortfolioSummary"></div>
+<div id="programsList"></div>
+</div></section>
+<section class="section quality-section portfolio-section" id="qualidade"><div class="wrap">
+<div class="section-head reveal"><div class="chapter">03</div><div><h2>Projetos de qualidade</h2><p class="section-lead">Portfólio de qualidade priorizado por risco, atenção e estágio de execução.</p></div></div>
+<div id="qualityPortfolioSummary"></div>
+<div class="portfolio-filters" data-project-filter-group="quality">
+<button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
+<button type="button" class="portfolio-filter" data-project-filter="em_andamento">Em andamento</button>
+<button type="button" class="portfolio-filter" data-project-filter="attention">Em atenção</button>
+<button type="button" class="portfolio-filter" data-project-filter="concluido">Concluídos</button>
+<button type="button" class="portfolio-filter" data-project-filter="planejado">Planejados</button>
+</div>
+<div class="grid12" id="qualityGrid"></div>
+</div></section>
+<section class="section innovation-section portfolio-section" id="inovacao"><div class="wrap">
+<div class="section-head reveal"><div class="chapter">04</div><div><h2>Projetos de inovação</h2><p class="section-lead">Portfólio de inovação com leitura rápida de execução, risco e próximos marcos.</p></div></div>
+<div id="innovationPortfolioSummary"></div>
+<div class="portfolio-filters portfolio-filters-dark" data-project-filter-group="innovation">
+<button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
+<button type="button" class="portfolio-filter" data-project-filter="em_andamento">Em andamento</button>
+<button type="button" class="portfolio-filter" data-project-filter="attention">Em atenção</button>
+<button type="button" class="portfolio-filter" data-project-filter="concluido">Concluídos</button>
+<button type="button" class="portfolio-filter" data-project-filter="planejado">Planejados</button>
+</div>
+<div class="grid12" id="innovationGrid"></div>
+</div></section>
+<section class="section awards-section" id="premios"><div class="wrap">
+<div class="section-head reveal"><div class="chapter">05</div><div><h2>Prêmios e reconhecimentos</h2><p class="section-lead">Evidências de reconhecimento institucional organizadas por categoria, com destaque para resultados e colocações.</p></div></div>
+<div id="awardsSummary"></div>
+<div id="awardsGrid"></div>
+</div></section>
+<section class="section partners-section" id="parcerias"><div class="wrap">
+<div class="section-head reveal"><div class="chapter">06</div><div><h2>Parcerias</h2><p class="section-lead">Rede de articulação institucional com destaque para parceiros estratégicos, sem repetição entre destaques e rede ampliada.</p></div></div>
+<div id="partnersSummary"></div>
+<div id="partnersGrid"></div>
+</div></section>
 <section class="section attention-section" id="atencao">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="chapter">07</div>
       <div>
         <h2>Pontos de atenção</h2>
-        <p class="section-lead">Leitura orientada à decisão: primeiro o que requer posicionamento da liderança; depois os temas priorizados por impacto, urgência e status.</p>
+        <p class="section-lead">Leitura por categoria e urgência: as categorias são ordenadas pelo prazo mais próximo e, dentro de cada grupo, os itens aparecem do mais urgente para o menos urgente.</p>
       </div>
     </div>
     <div id="attentionDecisionQueue"></div>
@@ -453,6 +629,111 @@ const actionStatusRank={em_andamento:1,aguardando:2,finalizada:3};
 const projectStatusRank={em_andamento:1,planejado:2,pausado:3,concluido:4,cancelado:5};
 const sortActions=rows=>[...rows].sort((a,b)=>(actionStatusRank[a.status]||9)-(actionStatusRank[b.status]||9)||(a.sort_order||0)-(b.sort_order||0));
 const sortProjects=rows=>[...rows].sort((a,b)=>(projectStatusRank[a.status]||9)-(projectStatusRank[b.status]||9)||(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
+let projectPortfolioFilter={quality:"all",innovation:"all"};
+let portfolioData={quality:[],innovation:[],qualityActions:[],innovationActions:[],indicatorsById:{}};
+function actionStats(rows){
+  const total=rows.length,finalized=rows.filter(a=>a.status==="finalizada").length,inProgress=rows.filter(a=>a.status==="em_andamento").length,waiting=rows.filter(a=>a.status==="aguardando").length;
+  const risk=rows.filter(a=>a.status!=="finalizada"&&a.health_status==="risco").length;
+  const attention=rows.filter(a=>a.status!=="finalizada"&&a.health_status==="atencao").length;
+  const overdue=rows.filter(a=>a.status!=="finalizada"&&a.end_date&&new Date(a.end_date+"T12:00:00")<new Date(new Date().setHours(0,0,0,0))).length;
+  return {total,finalized,inProgress,waiting,risk,attention,overdue,rate:total?Math.round(finalized/total*100):0};
+}
+function portfolioState(rows,completed=false){
+  const s=actionStats(rows);
+  if(completed)return {cls:"completed",badge:"good",label:"Concluído",score:4};
+  if(s.risk||s.overdue)return {cls:"risk",badge:"risk",label:s.risk?"Em risco":"Prazo vencido",score:1};
+  if(s.attention)return {cls:"attention",badge:"attention",label:"Em atenção",score:2};
+  return {cls:"",badge:"good",label:"Adequada",score:3};
+}
+function portfolioSort(items,getRows,isProject=false){
+  return [...items].sort((a,b)=>{
+    const sa=portfolioState(getRows(a),isProject&&a.status==="concluido"),sb=portfolioState(getRows(b),isProject&&b.status==="concluido");
+    if(sa.score!==sb.score)return sa.score-sb.score;
+    if(isProject){
+      const pr=(projectStatusRank[a.status]||9)-(projectStatusRank[b.status]||9);
+      if(pr)return pr;
+      const da=a.end_date?Date.parse(a.end_date+"T12:00:00"):Number.MAX_SAFE_INTEGER;
+      const db=b.end_date?Date.parse(b.end_date+"T12:00:00"):Number.MAX_SAFE_INTEGER;
+      if(da!==db)return da-db;
+    }
+    return (a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR");
+  });
+}
+function portfolioSummaryHtml(items,actionRows,idField,label){
+  const stats=actionStats(actionRows);
+  const withRisk=items.filter(i=>actionStats(actionRows.filter(a=>a[idField]===i.id)).risk>0).length;
+  const withAttention=items.filter(i=>{const s=actionStats(actionRows.filter(a=>a[idField]===i.id));return !s.risk&&s.attention>0}).length;
+  return `<div class="portfolio-summary">
+    <div class="portfolio-summary-main"><strong>${items.length} ${label}</strong><span>${stats.total} ações cadastradas · ${stats.rate}% concluídas</span></div>
+    <div class="portfolio-summary-stat good"><strong>${stats.finalized}</strong><span>ações finalizadas</span></div>
+    <div class="portfolio-summary-stat"><strong>${stats.inProgress}</strong><span>em andamento</span></div>
+    <div class="portfolio-summary-stat warn"><strong>${withAttention}</strong><span>${label} em atenção</span></div>
+    <div class="portfolio-summary-stat alert"><strong>${withRisk}</strong><span>${label} em risco</span></div>
+  </div>`;
+}
+function relatedPills(item,byId){
+  const links=(item.indicator_ids||[]).map(id=>byId[id]).filter(Boolean);
+  return links.length?`<div class="portfolio-related">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join("")}</div>`:"";
+}
+function renderProgramsPortfolio(programs,actions,byId){
+  $("#programPortfolioSummary").innerHTML=portfolioSummaryHtml(programs,actions,"program_id","programas");
+  const sorted=portfolioSort(programs,p=>actions.filter(a=>a.program_id===p.id),false);
+  $("#programsList").innerHTML=sorted.length?sorted.map((p,idx)=>{
+    const rows=actions.filter(a=>a.program_id===p.id),s=actionStats(rows),completed=rows.length>0&&rows.every(a=>a.status==="finalizada"),state=portfolioState(rows,completed);
+    return `<article id="${execAnchor("program",p.id)}" class="portfolio-program ${state.cls}">
+      <div class="portfolio-card-head">
+        <div><div class="kicker">Programa ${String(idx+1).padStart(2,"0")}</div><h3>${esc(p.name)}</h3></div>
+        <div class="portfolio-situation"><span class="portfolio-state ${state.badge}">${state.label}</span>${s.risk?`<span class="portfolio-state risk">${s.risk} ação(ões) em risco</span>`:""}${s.attention?`<span class="portfolio-state attention">${s.attention} em atenção</span>`:""}</div>
+      </div>
+      <div class="portfolio-progress"><div class="portfolio-progress-head"><span>Execução das ações</span><span>${s.rate}%</span></div><div class="portfolio-progress-track"><span style="width:${s.rate}%"></span></div></div>
+      <div class="portfolio-metrics">
+        <div class="portfolio-metric"><strong>${s.finalized} / ${s.total}</strong><span>ações finalizadas</span></div>
+        <div class="portfolio-metric"><strong>${s.inProgress}</strong><span>em andamento</span></div>
+        <div class="portfolio-metric"><strong>${s.waiting}</strong><span>aguardando</span></div>
+        <div class="portfolio-metric"><strong>${s.overdue}</strong><span>prazo vencido</span></div>
+      </div>
+      ${relatedPills(p,byId)}
+      ${(p.summary||p.link_url)?`<details class="portfolio-detail"><summary>Ver contexto do programa</summary>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:""}${p.link_url?`<p class="copy"><strong>Link:</strong> ${esc(p.link_url)}</p>`:""}</details>`:""}
+      ${renderActionDropdown(rows)}
+    </article>`;
+  }).join(""):empty("Nenhum programa publicado.");
+}
+function projectPassesFilter(project,rows,filter){
+  if(filter==="all")return true;
+  if(filter==="attention"){const s=actionStats(rows);return s.risk>0||s.attention>0||s.overdue>0}
+  return project.status===filter;
+}
+function renderProjectPortfolio(kind){
+  const isQuality=kind==="quality";
+  const projects=isQuality?portfolioData.quality:portfolioData.innovation;
+  const actions=isQuality?portfolioData.qualityActions:portfolioData.innovationActions;
+  const target=isQuality?"#qualityGrid":"#innovationGrid";
+  const summaryTarget=isQuality?"#qualityPortfolioSummary":"#innovationPortfolioSummary";
+  const idField="project_id";
+  $(summaryTarget).innerHTML=portfolioSummaryHtml(projects,actions,idField,isQuality?"projetos":"projetos");
+  const filter=projectPortfolioFilter[kind]||"all";
+  const filtered=portfolioSort(projects.filter(p=>projectPassesFilter(p,actions.filter(a=>a.project_id===p.id),filter)),p=>actions.filter(a=>a.project_id===p.id),true);
+  $(target).innerHTML=filtered.length?filtered.map(p=>{
+    const rows=actions.filter(a=>a.project_id===p.id),s=actionStats(rows),done=p.status==="concluido",state=portfolioState(rows,done);
+    const links=relatedPills(p,portfolioData.indicatorsById);
+    return `<article id="${execAnchor(kind,p.id)}" class="card ${isQuality?"project-card":"innovation-card"} project-portfolio-card s6 ${done?"completed-item completed":""} ${state.cls}">
+      <div class="portfolio-card-head">
+        <div><div class="kicker">${isQuality?"Projeto de qualidade":"Projeto de inovação"}</div><h3>${esc(p.name)}</h3></div>
+        <div class="portfolio-situation"><span class="tag">${statusLabel(p.status)}</span><span class="portfolio-state ${state.badge}">${state.label}</span></div>
+      </div>
+      <div class="portfolio-progress"><div class="portfolio-progress-head"><span>Execução das ações</span><span>${s.rate}%</span></div><div class="portfolio-progress-track"><span style="width:${s.rate}%"></span></div></div>
+      <div class="portfolio-metrics">
+        <div class="portfolio-metric"><strong>${s.finalized}/${s.total}</strong><span>ações concluídas</span></div>
+        <div class="portfolio-metric"><strong>${s.risk+s.attention}</strong><span>ações com sinalização</span></div>
+        <div class="portfolio-metric"><strong>${p.end_date?dt(p.end_date):"—"}</strong><span>fim previsto</span></div>
+      </div>
+      ${links}
+      ${p.summary?`<details class="portfolio-detail"><summary>Ver síntese do projeto</summary><p class="copy">${esc(p.summary)}</p></details>`:""}
+      ${renderActionDropdown(rows)}
+    </article>`;
+  }).join(""):empty("Nenhum projeto encontrado para este filtro.");
+  document.querySelectorAll(`[data-project-filter-group="${kind}"] .portfolio-filter`).forEach(btn=>btn.classList.toggle("active",btn.dataset.projectFilter===filter));
+}
 const isProgramCompleted=(program,allActions)=>{const rows=allActions.filter(a=>a.program_id===program.id);return rows.length>0&&rows.every(a=>a.status==="finalizada")};
 const programRank=(program,allActions)=>{const rows=allActions.filter(a=>a.program_id===program.id);if(rows.some(a=>a.status==="em_andamento"))return 1;if(rows.some(a=>a.status!=="finalizada"))return 2;if(rows.length&&rows.every(a=>a.status==="finalizada"))return 3;return 2};
 const renderActionDropdown=rows=>rows.length?`<details class="actions-dropdown"><summary><span>Ações</span><span>${rows.length} cadastrada(s)</span></summary><div class="actions">${sortActions(rows).map(a=>`<div class="action-row ${a.status==="finalizada"?"completed-action":""}"><div><strong>${esc(a.action)}</strong></div><div>${dt(a.start_date)} — ${dt(a.end_date)}</div><div><span class="action-status ${a.status||"aguardando"}">${actionStatusLabel(a.status)}</span></div><div><span class="health-flag health-${a.health_status||"adequada"}">${healthStatusLabel(a.health_status)}</span></div></div>`).join("")}</div></details>`:"";
@@ -462,6 +743,7 @@ const categoryLabel=s=>({premio_reconhecimento:'Prêmio / reconhecimento',edital
 const cleanUnit=u=>{const t=String(u||'').trim().toLowerCase();return ['número','numero','números','numeros','unidade','unidades'].includes(t)?'':String(u||'').trim();};
 const formatMetric=(v,u)=>v==null||v===''?'—':`${v}${cleanUnit(u)?` ${esc(cleanUnit(u))}`:''}`;
 const empty=t=>`<div class="empty">${esc(t)}</div>`;
+const execAnchor=(kind,id)=>`${kind}-${String(id||"").replace(/[^a-zA-Z0-9_-]/g,"-")}`;
 function metricState(x){if(x.latest_value==null||x.target_value==null)return{cls:'neutral',label:'Sem comparação'};const a=Number(x.latest_value),b=Number(x.target_value);if(Number.isNaN(a)||Number.isNaN(b))return{cls:'neutral',label:'Sem comparação'};let ok=x.target_direction==='lte'?a<=b:x.target_direction==='exact'?a===b:a>=b;return ok?{cls:'good',label:'Meta atendida'}:{cls:'alert',label:'Atenção à meta'};}
 const ptNumber=(v,d=1)=>new Intl.NumberFormat("pt-BR",{maximumFractionDigits:d,minimumFractionDigits:0}).format(v);
 function metricGap(x){
@@ -497,6 +779,27 @@ function attentionStatus(row){return row?.attention_status||"aberto"}
 function attentionStatusLabel(s){return ({aberto:"Aberto",em_tratamento:"Em tratamento",resolvido:"Resolvido"}[s]||"Aberto")}
 function attentionImpact(row){return row?.impact||"medio"}
 function attentionImpactLabel(s){return ({baixo:"Baixo",medio:"Médio",alto:"Alto",critico:"Crítico"}[s]||"Médio")}
+function deadlineSortValue(deadline,status){
+  if(status==="resolvido")return Number.MAX_SAFE_INTEGER;
+  if(!deadline)return Number.MAX_SAFE_INTEGER-1;
+  const d=new Date(deadline+"T12:00:00");
+  return Number.isNaN(d.getTime())?Number.MAX_SAFE_INTEGER-1:d.getTime();
+}
+function deadlineUrgencyLabel(row){
+  if(attentionStatus(row)==="resolvido")return {cls:"resolved",label:"Resolvido"};
+  if(!row.deadline)return {cls:"track",label:"Sem prazo"};
+  const today=new Date();today.setHours(0,0,0,0);
+  const d=new Date(row.deadline+"T12:00:00");
+  const days=Math.ceil((d-today)/86400000);
+  if(days<0)return {cls:"overdue",label:"Vencido"};
+  if(days<=7)return {cls:"soon",label:"Até 7 dias"};
+  if(days<=30)return {cls:"soon",label:"Até 30 dias"};
+  return {cls:"track",label:"Prazo posterior"};
+}
+function shortDeadline(deadline){
+  if(!deadline)return "—";
+  return new Intl.DateTimeFormat("pt-BR",{day:"2-digit",month:"short"}).format(new Date(deadline+"T12:00:00")).replace(".","");
+}
 function attentionPriority(row){
   const status=attentionStatus(row);
   if(status==="resolvido")return {rank:4,code:"RES",label:"Resolvido",cls:"resolved"};
@@ -521,7 +824,7 @@ function attentionPriority(row){
 
   return {rank:3,code:"P3",label:"Acompanhamento",cls:"p3"};
 }
-function renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,attention}){
+function renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention}){
   const states=indicators.map(x=>({item:x,state:metricState(x),gap:metricGap(x)}));
   const good=states.filter(x=>x.state.cls==="good").length;
   const alert=states.filter(x=>x.state.cls==="alert").length;
@@ -574,6 +877,69 @@ function renderExecutiveAnalytics({indicators,programs,actions,quality,innovatio
   if(active.length)narrativeParts.push(`${p1} ponto(s) estão em prioridade 1 e ${decisions} requer(em) decisão da liderança.`);
   $("#executiveNarrative").textContent=narrativeParts.join(" ");
 
+  // Destaques do ano: máximo de três evidências, sem criar novos campos.
+  const highlights=[];
+
+  const bestIndicator=states
+    .filter(x=>x.state.cls==="good")
+    .sort((a,b)=>b.gap.severity-a.gap.severity||String(a.item.name||"").localeCompare(String(b.item.name||""),"pt-BR"))[0];
+  if(bestIndicator){
+    highlights.push({
+      type:"Resultado",
+      title:bestIndicator.item.name,
+      detail:`Meta atendida · ${bestIndicator.gap.text}.`,
+      kind:"indicator",
+      target:execAnchor("indicator",bestIndicator.item.id),
+      fallback:"#indicadores"
+    });
+  }
+
+  const completedExecutions=[];
+  programs.forEach(p=>{
+    const rows=actions.filter(a=>a.program_id===p.id);
+    if(rows.length&&rows.every(a=>a.status==="finalizada"))completedExecutions.push({score:rows.length,type:"Programa",title:p.name,detail:`${rows.length} ação(ões) finalizadas.`,kind:"program",target:execAnchor("program",p.id),fallback:"#programas"});
+  });
+  quality.forEach(p=>{
+    const rows=qualityActions.filter(a=>a.project_id===p.id);
+    if(p.status==="concluido"&&rows.length&&rows.every(a=>a.status==="finalizada"))completedExecutions.push({score:rows.length,type:"Qualidade",title:p.name,detail:`Projeto concluído · ${rows.length} ação(ões) finalizadas.`,kind:"quality",target:execAnchor("quality",p.id),fallback:"#qualidade"});
+  });
+  innovation.forEach(p=>{
+    const rows=innovationActions.filter(a=>a.project_id===p.id);
+    if(p.status==="concluido"&&rows.length&&rows.every(a=>a.status==="finalizada"))completedExecutions.push({score:rows.length,type:"Inovação",title:p.name,detail:`Projeto concluído · ${rows.length} ação(ões) finalizadas.`,kind:"innovation",target:execAnchor("innovation",p.id),fallback:"#inovacao"});
+  });
+  const bestExecution=completedExecutions.sort((a,b)=>b.score-a.score||String(a.title||"").localeCompare(String(b.title||""),"pt-BR"))[0];
+  if(bestExecution)highlights.push(bestExecution);
+
+  const awardHighlight=[...awards]
+    .filter(a=>String(a.placement||"").trim())
+    .sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"))[0];
+  if(awardHighlight){
+    highlights.push({
+      type:"Reconhecimento",
+      title:awardHighlight.name||categoryLabel(awardHighlight.category),
+      detail:awardHighlight.placement,
+      kind:"award",
+      target:execAnchor("award",awardHighlight.id),
+      fallback:"#premios"
+    });
+  }else{
+    const featuredPartner=partners.find(p=>p.is_top5);
+    if(featuredPartner){
+      highlights.push({
+        type:"Parceria",
+        title:featuredPartner.name,
+        detail:"Parceria sinalizada como destaque institucional nesta edição.",
+        kind:"partner",
+        target:execAnchor("partner",featuredPartner.id),
+        fallback:"#parcerias"
+      });
+    }
+  }
+
+  $("#executiveHighlights").innerHTML=highlights.length
+    ?`<div class="executive-highlights-list">${highlights.slice(0,3).map(h=>`<a class="executive-highlight-item" href="${h.fallback}" data-exec-target="${esc(h.target)}" data-exec-kind="${esc(h.kind)}" data-exec-fallback="${esc(h.fallback)}"><span class="executive-highlight-type">${esc(h.type)}</span><strong>${esc(h.title)}</strong><small>${esc(h.detail)}</small><span class="executive-highlight-link">Ver evidência →</span></a>`).join("")}</div>`
+    :`<div class="executive-highlights-empty">Ainda não há evidências positivas suficientes para compor destaques automáticos nesta edição.</div>`;
+
   $("#executionHeadline").textContent=allActions.length?`${finalized} de ${allActions.length} ações finalizadas`:"Sem ações cadastradas";
   $("#executionCopy").textContent=allActions.length
     ?`${inProgress} em andamento · ${waiting} aguardando · ${risk} em risco · ${attnActions} em atenção.`
@@ -604,130 +970,67 @@ function renderExecutiveAnalytics({indicators,programs,actions,quality,innovatio
   const agenda=[];
   const usedAttention=new Set();
   priorities.filter(x=>x.p.cls!=="resolved"&&x.row.requires_decision===true).forEach(x=>{
-    agenda.push({score:120-x.p.rank*5,type:"Decisão",title:x.row.name,detail:x.row.decision_needed||"Decisão da liderança requerida.",href:"#atencao"});
+    agenda.push({score:120-x.p.rank*5,type:"Decisão",title:x.row.name,detail:x.row.decision_needed||"Decisão da liderança requerida.",href:"#atencao",kind:"attention",target:execAnchor("attention",x.row.id)});
     usedAttention.add(x.row.id);
   });
   priorities.filter(x=>x.p.rank===1&&!usedAttention.has(x.row.id)).forEach(x=>{
-    agenda.push({score:100,type:"Ponto crítico",title:x.row.name,detail:`${attentionImpactLabel(attentionImpact(x.row))} · ${attentionStatusLabel(attentionStatus(x.row))}${x.row.deadline?` · prazo ${dt(x.row.deadline)}`:""}.`,href:"#atencao"});
+    agenda.push({score:100,type:"Ponto crítico",title:x.row.name,detail:`${attentionImpactLabel(attentionImpact(x.row))} · ${attentionStatusLabel(attentionStatus(x.row))}${x.row.deadline?` · prazo ${dt(x.row.deadline)}`:""}.`,href:"#atencao",kind:"attention",target:execAnchor("attention",x.row.id)});
   });
 
   actions.filter(a=>a.health_status==="risco").forEach(a=>{
     const p=programs.find(x=>x.id===a.program_id);
-    agenda.push({score:92,type:"Ação em risco",title:a.action,detail:`Programa ${p?.name||"—"}${a.end_date?` · prazo ${dt(a.end_date)}`:""}.`,href:"#programas"});
+    agenda.push({score:92,type:"Ação em risco",title:a.action,detail:`Programa ${p?.name||"—"}${a.end_date?` · prazo ${dt(a.end_date)}`:""}.`,href:"#programas",kind:"program",target:p?execAnchor("program",p.id):""});
   });
   qualityActions.filter(a=>a.health_status==="risco").forEach(a=>{
     const p=quality.find(x=>x.id===a.project_id);
-    agenda.push({score:91,type:"Ação em risco",title:a.action,detail:`Projeto de qualidade ${p?.name||"—"}${a.end_date?` · prazo ${dt(a.end_date)}`:""}.`,href:"#qualidade"});
+    agenda.push({score:91,type:"Ação em risco",title:a.action,detail:`Projeto de qualidade ${p?.name||"—"}${a.end_date?` · prazo ${dt(a.end_date)}`:""}.`,href:"#qualidade",kind:"quality",target:p?execAnchor("quality",p.id):""});
   });
   innovationActions.filter(a=>a.health_status==="risco").forEach(a=>{
     const p=innovation.find(x=>x.id===a.project_id);
-    agenda.push({score:90,type:"Ação em risco",title:a.action,detail:`Projeto de inovação ${p?.name||"—"}${a.end_date?` · prazo ${dt(a.end_date)}`:""}.`,href:"#inovacao"});
+    agenda.push({score:90,type:"Ação em risco",title:a.action,detail:`Projeto de inovação ${p?.name||"—"}${a.end_date?` · prazo ${dt(a.end_date)}`:""}.`,href:"#inovacao",kind:"innovation",target:p?execAnchor("innovation",p.id):""});
   });
 
   critical.sort((a,b)=>b.gap.severity-a.gap.severity).slice(0,4).forEach(x=>{
-    agenda.push({score:80+Math.min(x.gap.severity*10,9),type:"Indicador",title:x.item.name,detail:`Atual ${formatMetric(x.item.latest_value,x.item.unit)} · meta ${formatMetric(x.item.target_value,x.item.unit)} · ${x.gap.text}.`,href:"#indicadores"});
+    agenda.push({score:80+Math.min(x.gap.severity*10,9),type:"Indicador",title:x.item.name,detail:`Atual ${formatMetric(x.item.latest_value,x.item.unit)} · meta ${formatMetric(x.item.target_value,x.item.unit)} · ${x.gap.text}.`,href:"#indicadores",kind:"indicator",target:execAnchor("indicator",x.item.id)});
   });
 
   const chosen=agenda.sort((a,b)=>b.score-a.score).slice(0,5);
   $("#executiveAgenda").innerHTML=chosen.length
-    ?`<div class="executive-agenda-list">${chosen.map((a,i)=>`<a class="executive-agenda-item" href="${a.href}"><span class="executive-agenda-rank">${i+1}</span><span><strong>${esc(a.title)}</strong><small>${esc(a.detail)}</small></span><span class="executive-agenda-type">${esc(a.type)}</span></a>`).join("")}</div>`
+    ?`<div class="executive-agenda-list">${chosen.map((a,i)=>`<a class="executive-agenda-item" href="${a.href}" data-exec-target="${esc(a.target||"")}" data-exec-kind="${esc(a.kind||"")}" data-exec-fallback="${esc(a.href)}"><span class="executive-agenda-rank">${i+1}</span><span><strong>${esc(a.title)}</strong><small>${esc(a.detail)}</small><span class="agenda-evidence">Ver evidência →</span></span><span class="executive-agenda-type">${esc(a.type)}</span></a>`).join("")}</div>`
     :`<p class="executive-copy">Nenhuma exceção crítica foi identificada com os dados disponíveis nesta edição.</p>`;
 }
 function renderAttentionExecutive(attention){
-  const enriched=attention.map(row=>({row,p:attentionPriority(row),state:attentionDeadlineState(row.deadline)}));
-  const active=enriched.filter(x=>x.p.cls!=="resolved");
-  const resolved=enriched.filter(x=>x.p.cls==="resolved").length;
-  const p1=active.filter(x=>x.p.rank===1).length;
-  const overdue=active.filter(x=>x.state.cls==="overdue").length;
-  const treatment=active.filter(x=>attentionStatus(x.row)==="em_tratamento").length;
+  const enriched=attention.map(row=>({row,category:attentionCategory(row),urgency:deadlineUrgencyLabel(row),deadlineRank:deadlineSortValue(row.deadline,attentionStatus(row))}));
+  const active=enriched.filter(x=>attentionStatus(x.row)!=="resolvido");
+  const resolved=enriched.filter(x=>attentionStatus(x.row)==="resolvido").length;
+  const overdue=active.filter(x=>x.urgency.cls==="overdue").length;
+  const next30=active.filter(x=>{if(!x.row.deadline)return false;const today=new Date();today.setHours(0,0,0,0);const d=new Date(x.row.deadline+"T12:00:00");const days=Math.ceil((d-today)/86400000);return days>=0&&days<=30}).length;
   const decisions=active.filter(x=>x.row.requires_decision===true);
+  const categories=[...new Set(active.map(x=>x.category))];
 
-  // 1) O que a liderança precisa decidir vem primeiro.
-  const decisionItems=[...decisions].sort((a,b)=>
-    a.p.rank-b.p.rank ||
-    (a.row.deadline||"9999").localeCompare(b.row.deadline||"9999") ||
-    String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR")
-  );
-  $("#attentionDecisionQueue").innerHTML=`
-    <section class="attention-decision-queue">
-      <div class="attention-decision-queue-head">
-        <div><div class="kicker">Tomada de decisão</div><h3>Decisões requeridas</h3></div>
-        <p>Temas que dependem de posicionamento, validação ou escolha da liderança para avançar.</p>
-      </div>
-      ${decisionItems.length?`<div class="attention-decision-list">${decisionItems.slice(0,5).map(({row,p},i)=>{
-        const impact=attentionImpactLabel(attentionImpact(row));
-        const status=attentionStatusLabel(attentionStatus(row));
-        const deadline=row.deadline?`Prazo ${dt(row.deadline)}`:"Sem prazo informado";
-        return `<article class="attention-decision-item">
-          <span class="attention-decision-num">${String(i+1).padStart(2,"0")}</span>
-          <div>
-            <strong>${esc(row.name)}</strong>
-            <small>Impacto ${esc(impact)} · ${esc(status)} · ${deadline}</small>
-            <div class="attention-decision-text">Decisão: ${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>
-          </div>
-          <span class="attention-decision-badge">${p.code}</span>
-        </article>`;
-      }).join("")}</div>`:`<div class="attention-decision-empty"><strong>Nenhuma decisão pendente.</strong> Os pontos ativos podem seguir em acompanhamento pela resposta já definida.</div>`}
-    </section>`;
+  const decisionItems=[...decisions].sort((a,b)=>a.deadlineRank-b.deadlineRank||String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR"));
+  $("#attentionDecisionQueue").innerHTML=decisionItems.length?`<section class="attention-decision-queue"><div class="attention-decision-queue-head"><div><div class="kicker">Tomada de decisão</div><h3>Decisões requeridas</h3></div><p>Itens excepcionalmente marcados para posicionamento da liderança.</p></div><div class="attention-decision-list">${decisionItems.slice(0,5).map(({row},i)=>`<article class="attention-decision-item"><span class="attention-decision-num">${String(i+1).padStart(2,"0")}</span><div><strong>${esc(row.name)}</strong><small>${esc(attentionCategory(row))} · ${row.deadline?`Prazo ${dt(row.deadline)}`:"Sem prazo informado"}</small><div class="attention-decision-text">Decisão: ${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div></div><span class="attention-decision-badge">Decisão</span></article>`).join("")}</div></section>`:"";
 
-  // 2) Síntese curta para leitura de portfólio.
-  $("#attentionExecutiveSummary").innerHTML=`
-    <div class="attention-exec-summary">
-      <div class="attention-exec-item decision"><strong>${decisions.length}</strong><span>decisões requeridas</span></div>
-      <div class="attention-exec-item"><strong>${p1}</strong><span>prioridade 1</span></div>
-      <div class="attention-exec-item"><strong>${overdue}</strong><span>prazos vencidos</span></div>
-      <div class="attention-exec-item resolved"><strong>${resolved}</strong><span>resolvidos</span></div>
-    </div>`;
+  $("#attentionExecutiveSummary").innerHTML=`<div class="attention-exec-summary"><div class="attention-exec-item"><strong>${active.length}</strong><span>pontos ativos</span></div><div class="attention-exec-item"><strong>${overdue}</strong><span>vencidos</span></div><div class="attention-exec-item"><strong>${next30}</strong><span>vencem em até 30 dias</span></div><div class="attention-exec-item"><strong>${categories.length}</strong><span>categorias ativas</span></div></div>`;
 
-  // 3) Fila executiva por prioridade.
-  const groups=[
-    {rank:1,title:"Prioridade 1",subtitle:"Temas de maior impacto e urgência gerencial."},
-    {rank:2,title:"Prioridade 2",subtitle:"Temas relevantes que exigem resposta ou acompanhamento próximo."},
-    {rank:3,title:"Acompanhamento",subtitle:"Itens ativos com resposta em curso e menor urgência."},
-    {rank:4,title:"Resolvidos",subtitle:`${resolved} item(ns) encerrado(s), mantidos como evidência de resposta.`}
-  ];
+  const grouped=enriched.reduce((acc,x)=>{(acc[x.category]??=[]).push(x);return acc},{});
+  const categoryRows=Object.entries(grouped).map(([category,items])=>{
+    const sorted=[...items].sort((a,b)=>a.deadlineRank-b.deadlineRank||String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR"));
+    const activeItems=sorted.filter(x=>attentionStatus(x.row)!=="resolvido");
+    const nextDeadline=activeItems.find(x=>x.row.deadline)?.row.deadline||null;
+    const categoryRank=activeItems.length?(nextDeadline?new Date(nextDeadline+"T12:00:00").getTime():Number.MAX_SAFE_INTEGER-1):Number.MAX_SAFE_INTEGER;
+    return {category,items:sorted,nextDeadline,categoryRank};
+  }).sort((a,b)=>a.categoryRank-b.categoryRank||a.category.localeCompare(b.category,"pt-BR"));
 
-  $("#attentionGrid").innerHTML=attention.length?groups.map(g=>{
-    const items=enriched.filter(x=>x.p.rank===g.rank).sort((a,b)=>
-      (a.row.requires_decision===true?0:1)-(b.row.requires_decision===true?0:1) ||
-      (a.row.deadline||"9999").localeCompare(b.row.deadline||"9999") ||
-      String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR")
-    );
-    if(!items.length)return "";
-    return `<div class="attention-priority-block">
-      <div class="attention-priority-head"><h3>${g.title}</h3><div class="copy">${g.subtitle}</div></div>
-      <div class="grid12">${items.map(({row,p,state})=>{
-        const note=attentionNotes(row);
-        const category=attentionCategory(row);
-        const impact=attentionImpactLabel(attentionImpact(row));
-        const status=attentionStatusLabel(attentionStatus(row));
-        const deadline=row.deadline?dt(row.deadline):"Sem prazo";
-        const decision=row.requires_decision===true
-          ?`<div class="attention-decision"><strong>Decisão necessária</strong><br>${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>`
-          :"";
-        const evidence=note?`<div class="attention-evidence"><strong>Evidência / contexto</strong><br>${esc(note)}</div>`:"";
-
-        return `<article class="card attention-card s6 ${p.cls}">
-          <div class="attention-card-head">
-            <div>
-              <div class="kicker">${esc(category)}</div>
-              <h3>${esc(row.name)}</h3>
-            </div>
-            <span class="attention-priority-badge ${p.cls}">${p.code} · ${esc(impact)}</span>
-          </div>
-          <div class="attention-context-line">
-            <span><b>${esc(status)}</b></span>
-            <span class="attention-context-dot"></span>
-            <span>${deadline}</span>
-            ${state.cls==="overdue"?`<span class="attention-context-dot"></span><span style="color:var(--bad);font-weight:800">Prazo vencido</span>`:state.cls==="soon"?`<span class="attention-context-dot"></span><span style="color:var(--warn);font-weight:800">Prazo próximo</span>`:""}
-          </div>
-          ${decision}
-          ${evidence}
-          ${renderMitigationDropdown(row)}
-        </article>`;
-      }).join("")}</div>
-    </div>`;
-  }).join(""):empty("Nenhum ponto de atenção publicado.");
+  $("#attentionGrid").innerHTML=attention.length?categoryRows.map(group=>`<section class="attention-category-block"><div class="attention-category-head"><h3>${esc(group.category)}</h3><div class="attention-category-meta"><strong>${group.items.length}</strong> ponto(s)${group.nextDeadline?` · próximo prazo <strong>${dt(group.nextDeadline)}</strong>`:" · sem prazo ativo"}</div></div><div class="attention-list">${group.items.map(({row,urgency})=>{
+    const status=attentionStatusLabel(attentionStatus(row));
+    const impact=attentionImpactLabel(attentionImpact(row));
+    const note=attentionNotes(row);
+    const resolvedItem=attentionStatus(row)==="resolvido";
+    const decision=row.requires_decision===true?`<div class="attention-decision"><strong>Decisão necessária</strong><br>${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>`:"";
+    const evidence=note?`<div class="attention-evidence"><strong>Evidência / contexto</strong><br>${esc(note)}</div>`:"";
+    return `<article id="${execAnchor("attention",row.id)}" class="attention-list-item ${resolvedItem?"resolved":urgency.cls}"><div class="attention-date-block"><div class="attention-date-day">${shortDeadline(row.deadline)}</div><div class="attention-date-label ${resolvedItem?"resolved":urgency.cls}">${urgency.label}</div></div><div class="attention-list-main"><h4>${esc(row.name)}</h4><div class="attention-list-sub"><span><strong>${esc(status)}</strong></span>${row.deadline?`<span class="attention-mini-dot"></span><span>${dt(row.deadline)}</span>`:""}</div></div><div class="attention-list-actions">${row.requires_decision===true?'<span class="attention-badge-small decision">Decisão requerida</span>':""}${row.impact?`<span class="attention-badge-small impact">Impacto ${esc(impact)}</span>`:""}</div><div class="attention-list-details">${decision}${evidence}${renderMitigationDropdown(row)}</div></article>`;
+  }).join("")}</div></section>`).join(""):empty("Nenhum ponto de atenção publicado.");
 }
 function attentionCategory(row){const raw=String(row?.notes||'');const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category||(m?m[1].trim():''))||'Sem categoria';}
 function attentionNotes(row){return String(row?.notes||'').replace(/^\[\[CAT\]\].*?\[\[\/CAT\]\]\s*/s,'').trim();}
@@ -884,7 +1187,7 @@ function renderIndicators(items){
     ${items.map(x=>{
       const st=metricState(x),gap=metricGap(x);
       const detail=(x.measurement_date||x.notes)?`<details class="indicator-detail"><summary>Ver detalhe</summary><div class="indicator-detail-body">${x.measurement_date?`<div><strong>Medição:</strong> ${dt(x.measurement_date)}</div>`:""}${x.notes?`<div style="margin-top:${x.measurement_date?"5px":"0"}">${esc(x.notes)}</div>`:""}</div></details>`:"";
-      return `<article class="indicator-executive-row ${st.cls}">
+      return `<article id="${execAnchor("indicator",x.id)}" class="indicator-executive-row ${st.cls}">
         <div class="indicator-name-cell">
           <h3>${esc(x.name)}</h3>
           <div class="indicator-row-tags"><span class="indicator-row-tag">${esc(indicatorTypeLabel(x.segment))}</span>${x.is_management_contract?'<span class="indicator-row-tag contract">Contrato de Gestão</span>':""}</div>
@@ -900,13 +1203,57 @@ function renderIndicators(items){
   </div>`;
 }
 
-function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>Resultados e metas.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>Programas, projetos de qualidade e projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>Reconhecimentos e rede de parceiros.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>Prioridades agrupadas.</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
+
+function renderAwardsExecutive(awards){
+  const groups=awards.reduce((acc,a)=>{const k=a.category||"premio_reconhecimento";(acc[k]??=[]).push(a);return acc},{});
+  const categoryOrder=["premio_reconhecimento","edital_educacao_inovadora","meee",...Object.keys(groups).filter(k=>!["premio_reconhecimento","edital_educacao_inovadora","meee"].includes(k))];
+  const withPlacement=awards.filter(a=>String(a.placement||"").trim()).length;
+  $("#awardsSummary").innerHTML=`<div class="recognition-summary">
+    <div class="recognition-summary-card"><strong>${awards.length}</strong><span>registros de reconhecimento institucional</span></div>
+    <div class="recognition-summary-card"><strong>${Object.keys(groups).length}</strong><span>categorias representadas</span></div>
+    <div class="recognition-summary-card"><strong>${withPlacement}</strong><span>registros com resultado / colocação</span></div>
+  </div>`;
+  $("#awardsGrid").innerHTML=awards.length?categoryOrder.filter(k=>groups[k]?.length).map(cat=>{
+    const items=[...groups[cat]].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
+    return `<section class="award-category-block">
+      <div class="award-category-head"><h3>${esc(categoryLabel(cat))}</h3><span>${items.length} registro(s)</span></div>
+      <div class="award-compact-grid">${items.map(a=>`<article id="${execAnchor("award",a.id)}" class="award-compact-card">
+        <div class="kicker">Reconhecimento</div>
+        <h4>${esc(a.name||categoryLabel(a.category))}</h4>
+        ${a.placement?`<span class="award-result">${esc(a.placement)}</span>`:""}
+        ${a.notes?`<details class="award-note-details"><summary>Ver observação</summary><p class="copy">${esc(a.notes)}</p></details>`:""}
+      </article>`).join("")}</div>
+    </section>`;
+  }).join(""):empty("Nenhum prêmio ou reconhecimento publicado.");
+}
+function renderPartnersExecutive(partners){
+  const featured=partners.filter(p=>p.is_top5);
+  const network=partners.filter(p=>!p.is_top5);
+  $("#partnersSummary").innerHTML=`<div class="partners-summary">
+    <div class="partners-summary-card"><strong>${partners.length}</strong><span>parcerias registradas nesta edição</span></div>
+    <div class="partners-summary-card"><strong>${featured.length}</strong><span>parcerias em destaque</span></div>
+    <div class="partners-summary-card"><strong>${network.length}</strong><span>demais parceiros da rede</span></div>
+  </div>`;
+  if(!partners.length){$("#partnersGrid").innerHTML=empty("Nenhuma parceria publicada.");return}
+  const featuredHtml=featured.length?`<section>
+    <div class="partner-featured-title"><h3>Parcerias em destaque</h3><span>relações estratégicas sinalizadas no cadastro</span></div>
+    <div class="partner-featured-grid">${featured.map(p=>`<article id="${execAnchor("partner",p.id)}" class="partner-featured-card"><div class="kicker">Destaque</div><h4>${esc(p.name)}</h4>${p.notes?`<p>${esc(p.notes)}</p>`:""}</article>`).join("")}</div>
+  </section>`:"";
+  const networkItems=(network.length?network:featured.length?[]:partners);
+  const networkHtml=`<section>
+    <div class="partner-network-title"><h3>Rede de parceiros</h3><span>${networkItems.length} parceiro(s) além dos destaques</span></div>
+    ${networkItems.length?`<div class="partner-network-list">${networkItems.map(p=>`<span class="partner-network-item ${p.notes?"has-note":""}" ${p.notes?`title="${esc(p.notes)}"`:""}>${esc(p.name)}</span>`).join("")}</div>`:`<div class="partner-empty-network">Todos os parceiros cadastrados nesta edição estão marcados como destaque.</div>`}
+  </section>`;
+  $("#partnersGrid").innerHTML=featuredHtml+networkHtml;
+}
+
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveScope').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
 const reportParams=new URLSearchParams(location.search);
 const requestedYear=Number(reportParams.get("year"))||null;
 const autoPdf=reportParams.get("pdf")==="1";
 let printDetailsState=[];
-window.addEventListener("beforeprint",()=>{const all=[...document.querySelectorAll(".actions-dropdown,.mitigation-dropdown,.indicator-detail")];printDetailsState=all.map(d=>d.open);all.forEach(d=>d.open=true)});
-window.addEventListener("afterprint",()=>{document.querySelectorAll(".actions-dropdown,.mitigation-dropdown,.indicator-detail").forEach((d,i)=>d.open=!!printDetailsState[i])});
+window.addEventListener("beforeprint",()=>{const all=[...document.querySelectorAll(".actions-dropdown,.mitigation-dropdown,.indicator-detail,.portfolio-detail,.award-note-details")];printDetailsState=all.map(d=>d.open);all.forEach(d=>d.open=true)});
+window.addEventListener("afterprint",()=>{document.querySelectorAll(".actions-dropdown,.mitigation-dropdown,.indicator-detail,.portfolio-detail,.award-note-details").forEach((d,i)=>d.open=!!printDetailsState[i])});
 $("#printPdfBtn")?.addEventListener("click",()=>window.print());
 
 
@@ -930,7 +1277,7 @@ async function load(){
   if(!ed)return showPreparing();
   const edRef=db.collection("edicoes").doc(String(ed.id||ed.year));
   $('#coverTitle').textContent=ed.title||'Relatório Executivo Anual';
-  $('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese anual dos resultados, programas, projetos e prioridades do Núcleo de Qualidade e Inovação.';
+  $('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.';
   $('#coverYear').textContent=`Versão: v${ed.version||1}`;
   $('#publishedAt').textContent=ed.published_at?`Data de atualização: ${dtt(ed.published_at)}`:'Data de atualização: —';
   $('#coverEdition').textContent=`Edição: ${ed.year}`;
@@ -952,12 +1299,15 @@ async function load(){
   const rel=item=>(item.indicator_ids||[]).map(id=>byId[id]).filter(Boolean);
   const projects=quality.length+innovation.length;
 
-  $('#coverNumbers').innerHTML=`<div class="cover-number"><strong>${indicators.length}</strong><span>indicadores acompanhados</span></div><div class="cover-number"><strong>${programs.length}</strong><span>programas cadastrados</span></div><div class="cover-number"><strong>${projects}</strong><span>projetos cadastrados</span></div><div class="cover-number"><strong>${attention.length}</strong><span>pontos de atenção</span></div>`;
-  $('#visionLead').textContent=`Esta edição reúne ${indicators.length} indicadores, ${programs.length} programas, ${projects} projetos, ${awards.length} registros de prêmios e ${partners.length} parcerias.`;
-  $('#visionCopy').textContent='A estrutura abaixo resume como o conteúdo está distribuído nos capítulos do relatório.';
-  $('#pullQuote').textContent='Da evidência à decisão.';
-  $('#pullCopy').textContent='A leitura executiva prioriza desvios, execução, cobertura estratégica e pontos que requerem decisão.';
-  $('#editionMap').innerHTML=`<div class="map-item"><em>01</em><b>Indicadores</b><span>${indicators.length} indicadores organizados por segmento.</span></div><div class="map-item"><em>02, 03 e 04</em><b>Execução: programas e projetos</b><span>${programs.length} programas, ${quality.length} projetos de qualidade e ${innovation.length} projetos de inovação.</span></div><div class="map-item"><em>05 e 06</em><b>Prêmios e parcerias</b><span>${awards.length} registros de prêmios/reconhecimentos e ${partners.length} parcerias.</span></div><div class="map-item"><em>07</em><b>Pontos de atenção</b><span>${attention.length} pontos agrupados por categoria.</span></div>`;
+  $('#coverNumbers').innerHTML=`<div class="cover-number"><strong>${indicators.length}</strong><span>indicadores acompanhados</span></div><div class="cover-number"><strong>${programs.length}</strong><span>programas em portfólio</span></div><div class="cover-number"><strong>${projects}</strong><span>projetos em portfólio</span></div><div class="cover-number"><strong>${attention.length}</strong><span>pontos de atenção</span></div>`;
+  $('#executiveScope').innerHTML=`
+    <span class="executive-scope-item"><strong>${indicators.length}</strong> indicadores</span>
+    <span class="executive-scope-item"><strong>${programs.length}</strong> programas</span>
+    <span class="executive-scope-item"><strong>${quality.length}</strong> projetos de qualidade</span>
+    <span class="executive-scope-item"><strong>${innovation.length}</strong> projetos de inovação</span>
+    <span class="executive-scope-item"><strong>${awards.length}</strong> reconhecimentos</span>
+    <span class="executive-scope-item"><strong>${partners.length}</strong> parcerias</span>
+    <span class="executive-scope-item"><strong>${attention.length}</strong> pontos de atenção</span>`;
 
   publishedIndicators=indicators;
   currentIndicatorStatusFilter="all";
@@ -966,27 +1316,16 @@ async function load(){
   renderIndicatorDecisionLayer();
   applyIndicatorFilter();
 
-  $('#programsList').innerHTML=programs.length?[...programs].sort((a,b)=>programRank(a,actions)-programRank(b,actions)||(a.sort_order||0)-(b.sort_order||0)).map((p,idx)=>{
-    const ac=actions.filter(a=>a.program_id===p.id),links=rel(p),done=isProgramCompleted(p,actions);
-    return `<article class="program-feature ${done?"completed-item":""}"><div class="program-content"><div class="program-index">${String(idx+1).padStart(2,'0')}</div><div class="program-top"><div><div class="kicker">Programa</div><h3>${esc(p.name)}</h3>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${p.link_url?`<p class="copy"><strong>Link:</strong> ${esc(p.link_url)}</p>`:''}</div><div><div class="kicker">Indicadores relacionados</div>${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:'<p class="copy">Sem indicadores relacionados.</p>'}</div></div>${renderActionDropdown(ac)}</div></article>`;
-  }).join(''):empty('Nenhum programa publicado.');
+  renderProgramsPortfolio(programs,actions,byId);
+  portfolioData={quality,innovation,qualityActions,innovationActions,indicatorsById:byId};
+  projectPortfolioFilter={quality:"all",innovation:"all"};
+  renderProjectPortfolio("quality");
+  renderProjectPortfolio("innovation");
 
-  $('#qualityGrid').innerHTML=quality.length?sortProjects(quality).map(p=>{
-    const pa=qualityActions.filter(a=>a.project_id===p.id),done=p.status==="concluido",links=rel(p);
-    return `<article class="card project-card s6 ${done?"completed-item":""}"><div class="kicker">Projeto de qualidade</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${done?'<span class="completion-badge">✓ Finalizado</span>':''}${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}${renderActionDropdown(pa)}</article>`;
-  }).join(''):empty('Nenhum projeto de qualidade publicado.');
+  renderAwardsExecutive(awards);
+  renderPartnersExecutive(partners);
 
-  $('#innovationGrid').innerHTML=innovation.length?sortProjects(innovation).map(p=>{
-    const pa=innovationActions.filter(a=>a.project_id===p.id),done=p.status==="concluido",links=rel(p);
-    return `<article class="card innovation-card s6 ${done?"completed-item":""}"><div class="kicker">Projeto de inovação</div><h3>${esc(p.name)}</h3><div class="meta-row"><span class="tag">${statusLabel(p.status)}</span>${p.start_date?`<span class="tag">Início ${dt(p.start_date)}</span>`:''}${p.end_date?`<span class="tag">Fim ${dt(p.end_date)}</span>`:''}</div>${p.summary?`<p class="copy">${esc(p.summary)}</p>`:''}${links.length?`<div class="pill-list">${links.map(i=>`<span class="pill">${esc(i.name)}</span>`).join('')}</div>`:''}${renderActionDropdown(pa)}</article>`;
-  }).join(''):empty('Nenhum projeto de inovação publicado.');
-
-  $('#awardsGrid').innerHTML=awards.length?awards.sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)).map(a=>`<article class="award-card"><div class="kicker">${categoryLabel(a.category)}</div><h3>${esc(a.name||categoryLabel(a.category))}</h3>${a.placement?`<div class="award-placement">${esc(a.placement)}</div>`:''}${a.notes?`<p class="copy">${esc(a.notes)}</p>`:''}</article>`).join(''):empty('Nenhum prêmio ou reconhecimento publicado.');
-
-  const top=partners.filter(p=>p.is_top5);
-  $('#partnersGrid').innerHTML=partners.length?`<div class="partners-hero"><div class="partners-count"><div class="big">${partners.length}</div><p>parcerias registradas nesta edição.</p></div><div class="partners-top"><div class="kicker">Destaques da rede</div><h3>Top 5 parceiros</h3><div class="pill-list">${(top.length?top:partners.slice(0,5)).map(p=>`<span class="pill">${esc(p.name)}</span>`).join('')}</div></div></div><div class="partners-list">${partners.map(p=>`<article class="card"><div class="kicker">${p.is_top5?'Top 5':'Parceria'}</div><h3>${esc(p.name)}</h3>${p.notes?`<p class="copy">${esc(p.notes)}</p>`:''}</article>`).join('')}</div>`:empty('Nenhuma parceria publicada.');
-
-  renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,attention});
+  renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention});
   renderAttentionExecutive(attention);
 
   $('#loading').classList.add('hidden');
@@ -998,6 +1337,46 @@ async function load(){
 document.querySelectorAll("[data-ind-status]").forEach(btn=>btn.addEventListener("click",()=>{currentIndicatorStatusFilter=btn.dataset.indStatus||"all";applyIndicatorFilter()}));
 document.querySelectorAll("[data-ind-segment]").forEach(btn=>btn.addEventListener("click",()=>{currentIndicatorSegmentFilter=btn.dataset.indSegment||"all";applyIndicatorFilter()}));
 $("#indicatorSort")?.addEventListener("change",e=>{currentIndicatorSort=e.target.value||"priority";applyIndicatorFilter()});
+document.addEventListener("click",e=>{
+  const link=e.target.closest("[data-exec-target]");
+  if(!link)return;
+  e.preventDefault();
+
+  const kind=link.dataset.execKind||"";
+  const targetId=link.dataset.execTarget||"";
+  const fallback=link.dataset.execFallback||link.getAttribute("href")||"#executivo";
+
+  if(kind==="indicator"){
+    currentIndicatorStatusFilter="all";
+    currentIndicatorSegmentFilter="all";
+    applyIndicatorFilter();
+  }
+  if(kind==="quality"||kind==="innovation"){
+    projectPortfolioFilter[kind]="all";
+    renderProjectPortfolio(kind);
+  }
+
+  requestAnimationFrame(()=>{
+    const target=targetId?document.getElementById(targetId):null;
+    const fallbackEl=document.querySelector(fallback);
+    const el=target||fallbackEl;
+    if(!el)return;
+    el.scrollIntoView({behavior:"smooth",block:"center"});
+    if(target){
+      target.classList.remove("exec-target-flash");
+      void target.offsetWidth;
+      target.classList.add("exec-target-flash");
+      setTimeout(()=>target.classList.remove("exec-target-flash"),2100);
+    }
+  });
+});
+document.querySelectorAll("[data-project-filter-group]").forEach(group=>{
+  group.querySelectorAll(".portfolio-filter").forEach(btn=>btn.addEventListener("click",()=>{
+    const kind=group.dataset.projectFilterGroup;
+    projectPortfolioFilter[kind]=btn.dataset.projectFilter||"all";
+    renderProjectPortfolio(kind);
+  }));
+});
 if(typeof firebase==="undefined"){
   $('#loading').textContent='Não foi possível carregar o serviço de dados.';
 }else{
