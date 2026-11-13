@@ -157,6 +157,12 @@
 .partner-quick-row input,
 .attention-quick-row input{min-width:0}
 
+
+/* v32 · Gestão Mediotec Admin */
+.mediotec-admin-tabs{display:flex;gap:7px;overflow-x:auto;padding:4px 0 12px;margin:14px 0 8px;-webkit-overflow-scrolling:touch}.mediotec-admin-tab{flex:0 0 auto;border:1px solid #d7e1e5;background:#fff;color:#58717f;border-radius:999px;padding:8px 11px;font:800 .68rem "DM Sans",system-ui;cursor:pointer}.mediotec-admin-tab.active{background:#0a5c8c;border-color:#0a5c8c;color:#fff}
+.mediotec-admin-context{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:4px 0 10px;padding:12px 14px;border-radius:15px;background:#f6f9fa;border:1px solid #e1e7e9}.mediotec-admin-context strong{display:block;color:#234a62}.mediotec-admin-context span{display:block;margin-top:3px;color:#72828b;font-size:.71rem}
+.mediotec-admin-table-wrap{border:1px solid #dce4e7;border-radius:17px;overflow-x:auto;overflow-y:hidden;background:#fff;-webkit-overflow-scrolling:touch}.mediotec-admin-grid{display:grid;min-width:max-content}.mediotec-admin-header,.mediotec-admin-row{display:grid;grid-template-columns:var(--mediotec-cols);gap:8px;align-items:center;min-width:max-content}.mediotec-admin-header{padding:9px 10px;background:#f1f5f6;color:#72818a;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;font-weight:800}.mediotec-admin-row{padding:8px 10px;border-top:1px solid #edf0f1}.mediotec-admin-row.is-new{background:#fffdf7}.mediotec-admin-row input,.mediotec-admin-row select{width:100%;min-width:0;padding:8px 9px;border:1px solid #d6e0e4;border-radius:9px;background:#fff;color:#294554;font:inherit;font-size:.75rem}.mediotec-admin-row input[readonly]{background:#f3f6f7;color:#687c86}.mediotec-admin-actions{display:flex;align-items:center;gap:5px;justify-content:flex-end}.mediotec-admin-actions button{border:0;background:transparent;color:#476576;font-weight:800;cursor:pointer;padding:5px}.mediotec-admin-actions .danger-link:hover{color:#b4493c}.mediotec-save-state{font-size:.6rem;color:#2e8656;min-width:30px}.readonly-mode #addMediotecRowBtn,.readonly-mode [data-med-delete]{display:none!important}@media(max-width:760px){.mediotec-admin-context{align-items:flex-start;flex-direction:column}}
+
 </style>
 
 <style>
@@ -191,6 +197,7 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
     <button class="navbtn" data-panel="awards">Prêmios e Reconhecimentos</button>
     <button class="navbtn" data-panel="partners">Parcerias</button>
     <button class="navbtn" data-panel="attention">Pontos de Atenção</button>
+    <button class="navbtn" data-panel="mediotec">Gestão Mediotec</button>
   </aside>
   <main class="main">
     <section class="panel active" id="panel-overview">
@@ -246,6 +253,17 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 <div class="partner-quick-table"><div class="partner-quick-header"><span>Parceiro</span><span>Destaque</span><span></span></div><div id="partnersList"></div></div>
 </div></section>
     <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2><div class="small">Cadastro rápido: ponto, categoria e prazo. Os detalhes gerenciais são opcionais.</div></div><button class="btn primary" id="addAttentionQuickRow" type="button">+ Adicionar ponto</button></div><div class="attention-quick-card"><div class="attention-quick-note"><strong>Lista dinâmica</strong><span>Edite diretamente na linha. As alterações são salvas ao sair do campo ou pressionar Enter.</span></div><div class="attention-quick-table"><div class="attention-quick-header"><span>Ponto de atenção</span><span>Categoria</span><span>Prazo</span><span>Ações</span></div><div id="attentionQuickRows"></div></div><div class="small" style="margin-top:10px">Categorias existentes aparecem como sugestões; você também pode digitar uma nova categoria.</div></div><div id="attentionList" class="hidden"></div></div></section>
+
+    <section class="panel" id="panel-mediotec">
+      <div class="hero">
+        <div class="toolbar"><div><div class="eyebrow">08</div><h2>Gestão Mediotec</h2><div class="small">Cadastre os dados do Ensino Médio em 12 blocos equivalentes às abas da planilha. O ano é preenchido automaticamente pela edição atual.</div></div><button class="btn primary" id="addMediotecRowBtn" type="button">+ Adicionar registro</button></div>
+        <div class="mediotec-admin-tabs" id="mediotecAdminTabs"></div>
+        <div class="mediotec-admin-context"><div><strong id="mediotecAdminTitle">Clubes</strong><span id="mediotecAdminDescription">Acompanhamento de engajamento e satisfação dos clubes.</span></div><div class="small">Edição <strong id="mediotecAdminYear">—</strong></div></div>
+        <div class="mediotec-admin-table-wrap"><div class="mediotec-admin-table" id="mediotecAdminTable"></div></div>
+        <p class="small" style="margin-top:10px">Campos percentuais derivados de totais são calculados automaticamente para reduzir trabalho e inconsistências.</p>
+      </div>
+    </section>
+
   </main>
 </div>
 </div>
@@ -295,7 +313,7 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
       <div class="new-edition-reset-note">
         <strong>O que será zerado automaticamente</strong>
         <span>Realizado, meta e data dos indicadores; status e datas de projetos; status, situação e datas das ações; destaque de parceiros.</span>
-        <span><strong>Não serão copiados:</strong> prêmios e reconhecimentos, pontos de atenção e histórico de publicação.</span>
+        <span><strong>Não serão copiados:</strong> prêmios e reconhecimentos, pontos de atenção, dados de Gestão Mediotec e histórico de publicação.</span>
       </div>
     </div>
 
@@ -323,7 +341,7 @@ const FIREBASE_CONFIG={
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
-let session=null, edition=null, editions=[], data={indicators:[],programs:[],actions:[],quality:[],innovation:[],qualityActions:[],innovationActions:[],awards:[],partners:[],attention:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
+let session=null, edition=null, editions=[], data={indicators:[],programs:[],actions:[],quality:[],innovation:[],qualityActions:[],innovationActions:[],awards:[],partners:[],attention:[],mediotec:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
 let modalState={type:null,id:null};
 
 function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kind}
@@ -537,6 +555,25 @@ function renderHistory(){
   $$("[data-history-open]").forEach(b=>b.onclick=()=>loadAll(Number(b.dataset.historyOpen)));
   $$("[data-history-pdf]").forEach(b=>b.onclick=()=>openPdfForYear(Number(b.dataset.historyPdf)));
 }
+
+let mediotecAdminDataset="clubes";
+const MEDIOTEC_OPTIONS={unidade:["Zona Norte","Mossoró"],serie_turma:["1ª Série A","1ª Série B","2ª Série A","2ª Série B","3ª Série A","3ª Série B"],turno:["Matutino","Vespertino","Integral","Contraturno manhã","Contraturno tarde"],trimestre:["1º Trimestre","2º Trimestre","3º Trimestre"],status:["Não iniciado","Em andamento","Concluído","Cancelado","Pendente"],programa_clube:["Clube da Matemática","Clube da Redação"],componente_noa:["NOA Matemática","NOA Português","NOA Física","NOA Química"],geekie_dimensao:["Desafiar","Orientar","Intervir"],tipo_ocorrencia:["Pedagógica","Comportamental","Administrativa","Frequência","Inclusão/Acessibilidade","Infraestrutura","Outra"],publico:["Estudante","Família/Responsável","Docente","Equipe pedagógica","Turma","Instituição","Outro"],premiacao:["Ouro","Prata","Bronze","Menção honrosa","Participação","Finalista","Outra"]};
+const MEDIOTEC_SCHEMAS={clubes:{label:"Clubes",description:"Engajamento e satisfação dos Clubes de Matemática e Redação.",fields:[["programa","Programa","select","programa_clube"],["unidade","Unidade","select","unidade"],["turno","Turno","select","turno"],["trimestre","Trimestre","select","trimestre"],["taxa_engajamento","Engajamento (%)","number"],["satisfacao","Satisfação (0–10)","number"],["ano","Ano","year"],["observacoes","Observações","text"]]},noa:{label:"NOA",description:"Engajamento e satisfação dos componentes NOA por unidade, turma e trimestre.",fields:[["componente_noa","Componente / NOA","select","componente_noa"],["unidade","Unidade","select","unidade"],["serie_turma","Série / Turma","select","serie_turma"],["trimestre","Trimestre","select","trimestre"],["taxa_engajamento","Engajamento (%)","number"],["satisfacao","Satisfação (0–10)","number"],["ano","Ano","year"],["observacoes","Observações","text"]]},nps:{label:"NPS / Satisfação",description:"Satisfação média, respondentes e data de aplicação por unidade.",fields:[["unidade","Unidade","select","unidade"],["satisfacao_media","Satisfação média (0–10)","number"],["respondentes","Respondentes","number"],["ano","Ano","year"],["data_aplicacao","Data da aplicação","date"],["observacoes","Observações","text"]]},evasao:{label:"Evasão",description:"Matrículas iniciais, evasões e taxa calculada por unidade e turma.",fields:[["unidade","Unidade","select","unidade"],["serie_turma","Série / Turma","select","serie_turma"],["periodo_referencia","Período de referência","text"],["matriculas_iniciais","Matrículas iniciais","number"],["evasoes","Evasões","number"],["taxa_evasao","Taxa de evasão (%)","calc"],["ano","Ano","year"],["observacoes","Observações","text"]]},atendimentos:{label:"Atendimentos",description:"Atendimentos realizados e pessoas únicas atendidas.",fields:[["unidade","Unidade","select","unidade"],["tipo_atendimento","Tipo de atendimento","text"],["publico_atendido","Público atendido","text"],["quantidade_atendimentos","Quantidade","number"],["pessoas_unicas","Pessoas únicas","number"],["periodo_referencia","Data / período","text"],["ano","Ano","year"],["observacoes","Observações","text"]]},geekie:{label:"Geekie",description:"Ações e dimensões da plataforma Geekie por unidade e turma.",fields:[["unidade","Unidade","select","unidade"],["serie_turma","Série / Turma","select","serie_turma"],["acao_dimensao","Ação / Dimensão","select","geekie_dimensao"],["quantidade","Quantidade","number"],["periodo_referencia","Período de referência","text"],["ano","Ano","year"],["observacoes","Observações","text"]]},docentes_geekie:{label:"Docentes Geekie",description:"Atividades enviadas e corrigidas por docente.",fields:[["unidade","Unidade","select","unidade"],["docente_id","Docente (código / identificador)","text"],["atividades_enviadas","Atividades enviadas","number"],["atividades_corrigidas","Atividades corrigidas","number"],["periodo_referencia","Período de referência","text"],["ano","Ano","year"],["observacoes","Observações","text"]]},ocorrencias:{label:"Ocorrências",description:"Ocorrências acadêmicas e institucionais, público, status e conclusão.",fields:[["unidade","Unidade","select","unidade"],["tipo_ocorrencia","Tipo de ocorrência","select","tipo_ocorrencia"],["descricao","Descrição resumida","text"],["publico","Público","select","publico"],["status","Status","select","status"],["data_ocorrencia","Data da ocorrência","date"],["data_conclusao","Data de conclusão","date"],["quantidade","Quantidade","number"],["ano","Ano","year"],["observacoes","Observações","text"]]},inclusao:{label:"Inclusão",description:"Acompanhamento de estudantes e taxa calculada de inclusão / acompanhamento.",fields:[["unidade","Unidade","select","unidade"],["serie_turma","Série / Turma","select","serie_turma"],["estudantes_acompanhados","Estudantes acompanhados","number"],["total_estudantes","Total de estudantes","number"],["taxa_inclusao","Taxa de acompanhamento (%)","calc"],["ano","Ano","year"],["data_referencia","Data de referência","date"],["observacoes","Observações","text"]]},formacoes:{label:"Formações",description:"Participação em formações, público-alvo e status.",fields:[["unidade","Unidade","select","unidade"],["formacao","Formação","text"],["publico_alvo","Público-alvo","text"],["participantes_previstos","Previstos","number"],["participantes_presentes","Presentes","number"],["taxa_participacao","Participação (%)","calc"],["data_formacao","Data da formação","date"],["ano","Ano","year"],["status","Status","select","status"],["observacoes","Observações","text"]]},olimpiadas:{label:"Olimpíadas",description:"Participação e resultados em olimpíadas e competições.",fields:[["unidade","Unidade","select","unidade"],["olimpiada","Olimpíada / competição","text"],["numero_participantes","Participantes","number"],["premiacao","Premiação / classificação","select","premiacao"],["ano","Ano","year"],["data","Data","date"],["serie_turma","Série / Turma","select","serie_turma"],["observacoes","Observações","text"]]},ptd:{label:"PTD",description:"Acompanhamento dos Planos de Trabalho Docente por trimestre.",fields:[["unidade","Unidade","select","unidade"],["uc","Unidade curricular (UC)","text"],["docente_id","Docente (código / identificador)","text"],["ano","Ano","year"],["serie_turma","Série / Turma","select","serie_turma"],["turno","Turno","select","turno"],["trimestre1_status","Trimestre I","select","status"],["trimestre2_status","Trimestre II","select","status"],["trimestre3_status","Trimestre III","select","status"],["data_atualizacao","Data de atualização","date"],["observacoes","Observações","text"]]}};
+function mediotecCalc(dataset,row,key){if(key==="taxa_evasao"){const d=Number(row.matriculas_iniciais),n=Number(row.evasoes);return d>0?n/d*100:null}if(key==="taxa_inclusao"){const d=Number(row.total_estudantes),n=Number(row.estudantes_acompanhados);return d>0?n/d*100:null}if(key==="taxa_participacao"){const d=Number(row.participantes_previstos),n=Number(row.participantes_presentes);return d>0?n/d*100:null}return row[key]??null}
+function mediotecFieldValue(dataset,row,key){return key==="ano"?(edition?.year||row.ano||""):key.startsWith("taxa_")&&["evasao","inclusao","formacoes"].includes(dataset)?mediotecCalc(dataset,row,key):(row[key]??"")}
+function mediotecInputHtml(dataset,row,field){const [key,label,type,optKey]=field,value=mediotecFieldValue(dataset,row,key),disabled=edition?.status==="archived";if(type==="year")return `<input data-med-field="${key}" value="${esc(value)}" readonly>`;if(type==="calc")return `<input data-med-field="${key}" value="${value==null?"":Number(value).toFixed(1)}" readonly>`;if(type==="select"){const opts=MEDIOTEC_OPTIONS[optKey]||[];return `<select data-med-field="${key}" ${disabled?"disabled":""}><option value="">—</option>${opts.map(o=>`<option value="${esc(o)}" ${String(value)===String(o)?"selected":""}>${esc(o)}</option>`).join("")}</select>`}if(type==="number")return `<input data-med-field="${key}" type="number" step="any" value="${esc(value)}" ${disabled?"disabled":""}>`;if(type==="date")return `<input data-med-field="${key}" type="date" value="${esc(value)}" ${disabled?"disabled":""}>`;return `<input data-med-field="${key}" type="text" value="${esc(value)}" ${disabled?"disabled":""}>`}
+function mediotecPrimaryKey(dataset){return MEDIOTEC_SCHEMAS[dataset].fields.find(f=>!["year","calc"].includes(f[2]))?.[0]}
+function renderMediotecAdminTabs(){$("#mediotecAdminTabs").innerHTML=Object.entries(MEDIOTEC_SCHEMAS).map(([key,s])=>`<button type="button" class="mediotec-admin-tab ${key===mediotecAdminDataset?"active":""}" data-med-tab="${key}">${esc(s.label)}</button>`).join("");$$("[data-med-tab]").forEach(btn=>btn.onclick=()=>{mediotecAdminDataset=btn.dataset.medTab;renderMediotecAdmin()})}
+function mediotecRowHtml(dataset,row={}){const schema=MEDIOTEC_SCHEMAS[dataset],id=row.id||`new_${Date.now()}_${Math.random().toString(16).slice(2)}`;return `<div class="mediotec-admin-row ${row.id?"":"is-new"}" data-med-row="${id}" data-existing-id="${row.id||""}">${schema.fields.map(f=>mediotecInputHtml(dataset,row,f)).join("")}<div class="mediotec-admin-actions"><span class="mediotec-save-state" data-med-state></span><button type="button" data-med-delete class="danger-link">Excluir</button></div></div>`}
+function mediotecColumnTemplate(dataset){return MEDIOTEC_SCHEMAS[dataset].fields.map(f=>{const type=f[2],key=f[0];if(type==="date")return "145px";if(type==="number"||type==="calc"||type==="year")return "120px";if(type==="select")return key==="serie_turma"||key==="tipo_ocorrencia"||key==="premiacao"?"170px":"150px";if(key==="observacoes"||key==="descricao"||key==="formacao"||key==="uc")return "220px";return "190px"}).concat(["105px"]).join(" ")}
+function renderMediotecAdmin(){const schema=MEDIOTEC_SCHEMAS[mediotecAdminDataset];if(!schema)return;renderMediotecAdminTabs();$("#mediotecAdminTitle").textContent=schema.label;$("#mediotecAdminDescription").textContent=schema.description;$("#mediotecAdminYear").textContent=edition?.year||"—";const rows=(data.mediotec||[]).filter(r=>r.dataset===mediotecAdminDataset).sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));$("#mediotecAdminTable").innerHTML=`<div class="mediotec-admin-grid" style="--mediotec-cols:${mediotecColumnTemplate(mediotecAdminDataset)}"><div class="mediotec-admin-header">${schema.fields.map(f=>`<span>${esc(f[1])}</span>`).join("")}<span></span></div><div id="mediotecAdminRows">${rows.length?rows.map(r=>mediotecRowHtml(mediotecAdminDataset,r)).join(""):`<div class="empty" style="margin:12px">Nenhum registro nesta aba. Use “+ Adicionar registro”.</div>`}</div></div>`;bindMediotecRows()}
+function medRowMessage(row,text,kind="ok"){const el=row.querySelector("[data-med-state]");if(!el)return;el.textContent=text;el.style.color=kind==="error"?"#b4493c":"#2e8656";if(text)setTimeout(()=>{if(el.textContent===text)el.textContent=""},1600)}
+function collectMediotecRow(dataset,rowEl){const schema=MEDIOTEC_SCHEMAS[dataset],body={dataset,ano:edition?.year||null};schema.fields.forEach(([key,label,type])=>{if(type==="year"||type==="calc")return;const el=rowEl.querySelector(`[data-med-field="${key}"]`);if(!el)return;let value=el.value;if(type==="number")value=value===""?null:Number(value);else value=value===""?null:value;body[key]=value});if(dataset==="evasao")body.taxa_evasao=mediotecCalc(dataset,body,"taxa_evasao");if(dataset==="inclusao")body.taxa_inclusao=mediotecCalc(dataset,body,"taxa_inclusao");if(dataset==="formacoes")body.taxa_participacao=mediotecCalc(dataset,body,"taxa_participacao");return body}
+function refreshMediotecCalculatedFields(dataset,rowEl,body){["taxa_evasao","taxa_inclusao","taxa_participacao"].forEach(key=>{const el=rowEl.querySelector(`[data-med-field="${key}"]`);if(el)el.value=body[key]==null?"":Number(body[key]).toFixed(1)})}
+async function saveMediotecRow(rowEl){if(edition?.status==="archived")return;const dataset=mediotecAdminDataset,body=collectMediotecRow(dataset,rowEl),primary=mediotecPrimaryKey(dataset);if(!body[primary]){medRowMessage(rowEl,"Preencha o primeiro campo","error");return}medRowMessage(rowEl,"Salvando…");const existingId=rowEl.dataset.existingId||"",now=new Date().toISOString();if(existingId){await editionCollection("mediotec_records").doc(existingId).set({...body,updated_at:now},{merge:true});const idx=data.mediotec.findIndex(x=>x.id===existingId);if(idx>=0)data.mediotec[idx]={...data.mediotec[idx],...body,updated_at:now}}else{const ref=editionCollection("mediotec_records").doc(),record={...body,sort_order:Date.now(),created_at:now,updated_at:now};await ref.set(record);rowEl.dataset.existingId=ref.id;rowEl.classList.remove("is-new");data.mediotec.push({id:ref.id,...record})}refreshMediotecCalculatedFields(dataset,rowEl,body);medRowMessage(rowEl,"Salvo")}
+function bindMediotecRows(){$$("[data-med-row]").forEach(row=>{row.querySelectorAll("[data-med-field]").forEach(el=>{if(el.readOnly||el.disabled)return;el.onchange=()=>saveMediotecRow(row).catch(e=>{console.error(e);medRowMessage(row,"Erro","error")});el.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();saveMediotecRow(row).catch(err=>{console.error(err);medRowMessage(row,"Erro","error")})}}});row.querySelector("[data-med-delete]")?.addEventListener("click",async()=>{if(edition?.status==="archived")return;const id=row.dataset.existingId;if(!id){row.remove();return}if(!confirm("Excluir este registro de Gestão Mediotec?"))return;await editionCollection("mediotec_records").doc(id).delete();data.mediotec=data.mediotec.filter(x=>x.id!==id);renderMediotecAdmin()})})}
+function addMediotecRow(){if(edition?.status==="archived")return;const root=$("#mediotecAdminRows");if(!root)return;if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",mediotecRowHtml(mediotecAdminDataset,{}));bindMediotecRows();root.querySelector(".mediotec-admin-row.is-new [data-med-field]")?.focus()}
+
 async function loadEditionData(){
   $("#editionYear").value=edition.year;
   $("#editionVersion").value=edition.version||1;
@@ -557,7 +594,7 @@ async function loadEditionData(){
   $("#editionMsg").innerHTML=isArchived?'<span class="readonly-note">Ano arquivado: consulta somente leitura. Para alterar dados, utilize o ano atual.</span>':"";
   if($("#adminYearFilter"))$("#adminYearFilter").value=String(edition.year);
 
-  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention]=await Promise.all([
+  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,mediotec]=await Promise.all([
     readCollection("indicators"),
     readCollection("programs"),
     readCollection("program_actions"),
@@ -567,10 +604,11 @@ async function loadEditionData(){
     readCollection("innovation_project_actions"),
     readCollection("awards_recognitions"),
     readCollection("partners"),
-    readCollection("attention_points")
+    readCollection("attention_points"),
+    readCollection("mediotec_records")
   ]);
   Object.assign(data,{
-    indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,
+    indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,mediotec,
     programLinks:deriveLinks(programs,"program_id"),
     qualityLinks:deriveLinks(quality,"project_id"),
     innovationLinks:deriveLinks(innovation,"project_id")
@@ -747,6 +785,7 @@ function renderAll(){
   renderPartnerQuickRows();
   $("#attentionList").innerHTML="";
   renderAttentionQuickRows();
+  renderMediotecAdmin();
   $$("[data-edit]").forEach(b=>b.onclick=()=>openModal(b.dataset.type,b.dataset.edit));
   applyAllSectionFilters();
 }
@@ -759,6 +798,7 @@ $("#addInnovationQuickRow")?.addEventListener("click",()=>addProjectQuickRow("in
 $("#addAwardQuickRow")?.addEventListener("click",addAwardQuickRow);
 $("#addPartnerQuickRow")?.addEventListener("click",addPartnerQuickRow);
 $("#addAttentionQuickRow")?.addEventListener("click",addAttentionQuickRow);
+$("#addMediotecRowBtn")?.addEventListener("click",addMediotecRow);
 $("#closeModal").onclick=()=>$("#modal").classList.add("hidden");
 
 function indChecks(selectedIds=[]){return `<div class="field"><label>Indicadores relacionados</label><div class="checks">${data.indicators.map(i=>`<label class="check"><input type="checkbox" name="indicator_link" value="${i.id}" ${selectedIds.includes(i.id)?"checked":""}><span>${esc(i.name)}</span></label>`).join("")||'<span class="small">Cadastre indicadores primeiro.</span>'}</div></div>`}

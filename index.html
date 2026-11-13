@@ -428,6 +428,22 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 @media(max-width:900px){.award-compact-grid,.partner-featured-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.recognition-summary,.partners-summary,.award-compact-grid,.partner-featured-grid{grid-template-columns:1fr}}
 
+
+/* v32 · Gestão Mediotec */
+.mediotec-section{background:linear-gradient(180deg,#f3f7f9,#fff);border-top:1px solid #dfe7ea}
+.mediotec-toolbar{display:flex;justify-content:space-between;gap:18px;align-items:center;margin:-4px 0 18px;padding:15px 17px;border-radius:18px;background:#fff;border:1px solid #dfe7ea}
+.mediotec-toolbar strong{display:block;color:var(--deep);margin-top:3px}.mediotec-unit-filters{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.mediotec-filter{border:1px solid #d5e1e6;background:#fff;color:#526c7a;border-radius:999px;padding:8px 11px;font:800 .68rem "DM Sans",system-ui;cursor:pointer}.mediotec-filter.active{background:var(--deep);border-color:var(--deep);color:#fff}
+.mediotec-kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:22px}.mediotec-kpi{min-height:118px;padding:16px;border-radius:19px;background:#fff;border:1px solid #dfe7ea;box-shadow:0 10px 24px rgba(22,48,64,.035)}
+.mediotec-kpi .kicker{font-size:.57rem}.mediotec-kpi strong{display:block;margin-top:8px;font-family:"Libre Caslon Display",serif;font-size:1.78rem;line-height:1;color:var(--deep)}.mediotec-kpi span{display:block;margin-top:6px;color:var(--muted);font-size:.67rem;line-height:1.4}.mediotec-kpi.alert strong{color:var(--bad)}.mediotec-kpi.good strong{color:var(--ok)}
+.mediotec-compare-panel{padding:22px;border-radius:24px;background:#073758;color:#fff;margin-bottom:22px}.mediotec-panel-head{display:grid;grid-template-columns:1fr minmax(250px,.55fr);gap:18px;align-items:end;margin-bottom:15px}.mediotec-panel-head h3{font-family:"Libre Caslon Display",serif;font-size:1.9rem;line-height:1.05;color:#fff;margin:4px 0 0}.mediotec-panel-head p{margin:0;color:#d3e3eb;font-size:.74rem;line-height:1.55}
+.mediotec-unit-compare{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.mediotec-unit-card{padding:15px;border-radius:17px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13)}.mediotec-unit-card h4{font-family:"Libre Caslon Display",serif;font-size:1.35rem;color:#fff;margin:0 0 11px}.mediotec-unit-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mediotec-unit-metric{padding:9px;border-radius:12px;background:rgba(255,255,255,.07)}.mediotec-unit-metric strong{display:block;color:#fff;font-size:.9rem}.mediotec-unit-metric span{display:block;color:#cfe0e9;font-size:.61rem;margin-top:3px}
+.mediotec-modules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.mediotec-module{padding:20px;border-radius:22px;background:#fff;border:1px solid #dfe7ea;box-shadow:0 11px 28px rgba(22,48,64,.035);min-height:190px}.mediotec-module-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:13px}.mediotec-module-head h3{font-family:"Libre Caslon Display",serif;font-size:1.5rem;color:var(--deep);margin:4px 0 0}.mediotec-module-count{padding:6px 8px;border-radius:999px;background:#eef4f7;color:#557080;font-size:.62rem;font-weight:900;white-space:nowrap}
+.mediotec-module-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mediotec-module-stat{padding:10px;border-radius:13px;background:#f7f9fa}.mediotec-module-stat strong{display:block;color:#284c61;font-size:.92rem}.mediotec-module-stat span{display:block;margin-top:3px;color:#788891;font-size:.61rem;line-height:1.35}.mediotec-mini-list{display:grid;gap:6px;margin-top:12px}.mediotec-mini-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:8px 0;border-top:1px solid #edf1f2;color:#5a707c;font-size:.69rem}.mediotec-mini-row:first-child{border-top:0}.mediotec-mini-row strong{color:#2d5065}
+.mediotec-empty{padding:16px;border-radius:15px;background:#f6f8f9;color:var(--muted);font-size:.77rem;line-height:1.5}.mediotec-module.wide{grid-column:1/-1}.mediotec-status-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.mediotec-status-chip{display:inline-flex;padding:6px 8px;border-radius:999px;background:#eef4f7;color:#506c7b;font-size:.62rem;font-weight:800}
+@media(max-width:1050px){.mediotec-kpi-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.mediotec-toolbar,.mediotec-panel-head{grid-template-columns:1fr;display:grid}.mediotec-unit-filters{justify-content:flex-start}.mediotec-kpi-grid{grid-template-columns:1fr 1fr}.mediotec-unit-compare,.mediotec-modules{grid-template-columns:1fr}.mediotec-module.wide{grid-column:auto}.mediotec-module-stats{grid-template-columns:1fr 1fr}}
+
 @media print{
   .nav,.cover-actions,.indicator-filters,.indicator-controls{display:none!important}.actions-dropdown summary,.mitigation-dropdown summary{background:#f4f7f8!important}
   .issue-cover{min-height:auto!important;page-break-after:always}
@@ -457,7 +473,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="cover-numbers" id="coverNumbers"></div>
   </div>
 </header>
-<nav class="nav"><div class="wrap nav-inner"><a href="#executivo">Leitura executiva</a><a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Qualidade</a><a href="#inovacao">04 Inovação</a><a href="#premios">05 Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a></div></nav>
+<nav class="nav"><div class="wrap nav-inner"><a href="#executivo">Leitura executiva</a><a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Qualidade</a><a href="#inovacao">04 Inovação</a><a href="#premios">05 Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a><a href="#mediotec">08 Gestão Mediotec</a></div></nav>
 <section class="executive-section" id="executivo">
   <div class="wrap">
     <div class="executive-head reveal">
@@ -625,6 +641,28 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div id="attentionDecisionQueue"></div>
     <div id="attentionExecutiveSummary"></div>
     <div id="attentionGrid"></div>
+  </div>
+</section>
+<section class="section mediotec-section" id="mediotec">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="chapter">08</div>
+      <div><h2>Gestão Mediotec</h2><p class="section-lead">Dashboard de acompanhamento do Ensino Médio: engajamento, permanência, suporte pedagógico, plataforma Geekie, inclusão, formação, ocorrências, competições e planejamento docente.</p></div>
+    </div>
+    <div class="mediotec-toolbar">
+      <div><div class="kicker">Recorte do dashboard</div><strong id="mediotecFilterLabel">Todas as unidades</strong></div>
+      <div class="mediotec-unit-filters" id="mediotecUnitFilters">
+        <button type="button" class="mediotec-filter active" data-mediotec-unit="all">Todas</button>
+        <button type="button" class="mediotec-filter" data-mediotec-unit="Zona Norte">Zona Norte</button>
+        <button type="button" class="mediotec-filter" data-mediotec-unit="Mossoró">Mossoró</button>
+      </div>
+    </div>
+    <div id="mediotecKpis"></div>
+    <div class="mediotec-compare-panel">
+      <div class="mediotec-panel-head"><div><div class="kicker">Comparativo</div><h3>Leitura por unidade</h3></div><p>Indicadores calculados automaticamente a partir dos registros administrativos da edição.</p></div>
+      <div id="mediotecUnitCompare"></div>
+    </div>
+    <div class="mediotec-modules" id="mediotecModules"></div>
   </div>
 </section>
 </main>
@@ -1406,7 +1444,25 @@ function renderPartnersExecutive(partners){
   $("#partnersGrid").innerHTML=featuredHtml+networkHtml;
 }
 
-function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveScope').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
+
+let mediotecRecordsPublic=[];let mediotecUnitFilter="all";
+const medNum=v=>{const n=Number(v);return Number.isFinite(n)?n:0};const medFilled=v=>v!==null&&v!==undefined&&String(v).trim()!=="";const medPct=v=>medFilled(v)?`${new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1}).format(Number(v))}%`:"—";
+const medAvg=(rows,key)=>{const vals=rows.map(r=>Number(r[key])).filter(Number.isFinite);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:null};const medSum=(rows,key)=>rows.reduce((s,r)=>s+medNum(r[key]),0);
+function medRate(num,den,fallbackRows=null,fallbackKey=null){if(den>0)return num/den*100;if(fallbackRows&&fallbackKey)return medAvg(fallbackRows,fallbackKey);return null}
+function mediotecRows(dataset,unit=mediotecUnitFilter){return mediotecRecordsPublic.filter(r=>r.dataset===dataset&&(unit==="all"||r.unidade===unit))}
+function mediotecAllRows(unit=mediotecUnitFilter){return mediotecRecordsPublic.filter(r=>unit==="all"||r.unidade===unit)}
+function mediotecMetricsForUnit(unit){const clubs=mediotecRows("clubes",unit),noa=mediotecRows("noa",unit),nps=mediotecRows("nps",unit),evasao=mediotecRows("evasao",unit),atend=mediotecRows("atendimentos",unit),incl=mediotecRows("inclusao",unit),forms=mediotecRows("formacoes",unit);const satisfaction=[...clubs.filter(r=>medFilled(r.satisfacao)).map(r=>Number(r.satisfacao)),...noa.filter(r=>medFilled(r.satisfacao)).map(r=>Number(r.satisfacao)),...nps.filter(r=>medFilled(r.satisfacao_media)).map(r=>Number(r.satisfacao_media))];const matriculas=medSum(evasao,"matriculas_iniciais"),evasoes=medSum(evasao,"evasoes"),acomp=medSum(incl,"estudantes_acompanhados"),total=medSum(incl,"total_estudantes"),prev=medSum(forms,"participantes_previstos"),pres=medSum(forms,"participantes_presentes");return {engagement:medAvg([...clubs,...noa],"taxa_engajamento"),satisfaction:satisfaction.length?satisfaction.reduce((a,b)=>a+b,0)/satisfaction.length:null,dropout:medRate(evasoes,matriculas,evasao,"taxa_evasao"),atendimentos:medSum(atend,"quantidade_atendimentos"),inclusao:medRate(acomp,total,incl,"taxa_inclusao"),formacao:medRate(pres,prev,forms,"taxa_participacao")}}
+function medStat(value,label){return `<div class="mediotec-module-stat"><strong>${value}</strong><span>${label}</span></div>`}
+function mediotecModule(dataset,title,statsHtml,extraHtml=""){const rows=mediotecRows(dataset);return `<article class="mediotec-module ${dataset==="ptd"?"wide":""}"><div class="mediotec-module-head"><div><div class="kicker">Gestão Mediotec</div><h3>${esc(title)}</h3></div><span class="mediotec-module-count">${rows.length} registro(s)</span></div>${rows.length?`<div class="mediotec-module-stats">${statsHtml}</div>${extraHtml}`:`<div class="mediotec-empty">Nenhum dado cadastrado para este recorte.</div>`}</article>`}
+function renderMediotecDashboard(){const m=mediotecMetricsForUnit(mediotecUnitFilter),evasao=mediotecRows("evasao"),atend=mediotecRows("atendimentos"),incl=mediotecRows("inclusao"),forms=mediotecRows("formacoes");const matriculas=medSum(evasao,"matriculas_iniciais"),evasoes=medSum(evasao,"evasoes"),acomp=medSum(incl,"estudantes_acompanhados"),totalEst=medSum(incl,"total_estudantes"),previstos=medSum(forms,"participantes_previstos"),presentes=medSum(forms,"participantes_presentes");$("#mediotecFilterLabel").textContent=mediotecUnitFilter==="all"?"Todas as unidades":mediotecUnitFilter;document.querySelectorAll("[data-mediotec-unit]").forEach(b=>b.classList.toggle("active",b.dataset.mediotecUnit===mediotecUnitFilter));
+  $("#mediotecKpis").innerHTML=`<div class="mediotec-kpi-grid"><article class="mediotec-kpi"><div class="kicker">Engajamento</div><strong>${medPct(m.engagement)}</strong><span>Média de Clubes + NOA</span></article><article class="mediotec-kpi"><div class="kicker">Satisfação</div><strong>${m.satisfaction==null?"—":new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1}).format(m.satisfaction)}</strong><span>Média em escala 0–10</span></article><article class="mediotec-kpi ${m.dropout!=null&&m.dropout>10?"alert":""}"><div class="kicker">Evasão</div><strong>${medPct(m.dropout)}</strong><span>${evasoes} evasão(ões) · ${matriculas} matrículas iniciais</span></article><article class="mediotec-kpi"><div class="kicker">Atendimentos</div><strong>${new Intl.NumberFormat("pt-BR").format(m.atendimentos)}</strong><span>Atendimentos registrados</span></article><article class="mediotec-kpi good"><div class="kicker">Inclusão</div><strong>${medPct(m.inclusao)}</strong><span>${acomp} acompanhados · ${totalEst} estudantes</span></article><article class="mediotec-kpi"><div class="kicker">Formações</div><strong>${medPct(m.formacao)}</strong><span>${presentes} presentes · ${previstos} previstos</span></article></div>`;
+  const units=["Zona Norte","Mossoró"];$("#mediotecUnitCompare").innerHTML=`<div class="mediotec-unit-compare">${units.map(unit=>{const u=mediotecMetricsForUnit(unit);return `<article class="mediotec-unit-card"><h4>${unit}</h4><div class="mediotec-unit-metrics">${medStat(medPct(u.engagement),"Engajamento")}${medStat(u.satisfaction==null?"—":new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1}).format(u.satisfaction),"Satisfação")}${medStat(medPct(u.dropout),"Evasão")}${medStat(new Intl.NumberFormat("pt-BR").format(u.atendimentos),"Atendimentos")}${medStat(medPct(u.inclusao),"Inclusão")}${medStat(medPct(u.formacao),"Formações")}</div></article>`}).join("")}</div>`;
+  const clubs=mediotecRows("clubes"),noa=mediotecRows("noa"),nps=mediotecRows("nps"),geekie=mediotecRows("geekie"),doc=mediotecRows("docentes_geekie"),occ=mediotecRows("ocorrencias"),olymp=mediotecRows("olimpiadas"),ptd=mediotecRows("ptd");const clubPrograms=[...new Set(clubs.map(r=>r.programa).filter(Boolean))],noaComps=[...new Set(noa.map(r=>r.componente_noa).filter(Boolean))];const clubExtra=clubPrograms.length?`<div class="mediotec-mini-list">${clubPrograms.slice(0,4).map(p=>`<div class="mediotec-mini-row"><strong>${esc(p)}</strong><span>${clubs.filter(r=>r.programa===p).length} registro(s)</span></div>`).join("")}</div>`:"";const noaExtra=noaComps.length?`<div class="mediotec-mini-list">${noaComps.slice(0,4).map(p=>`<div class="mediotec-mini-row"><strong>${esc(p)}</strong><span>${noa.filter(r=>r.componente_noa===p).length} registro(s)</span></div>`).join("")}</div>`:"";
+  const occQty=medSum(occ,"quantidade"),occOpen=occ.filter(r=>!["concluído","concluido","cancelado"].includes(String(r.status||"").toLowerCase())).length,occTypes=[...new Set(occ.map(r=>r.tipo_ocorrencia).filter(Boolean))],geekQty=medSum(geekie,"quantidade"),sent=medSum(doc,"atividades_enviadas"),corrected=medSum(doc,"atividades_corrigidas"),corrRate=sent?corrected/sent*100:null,olympParticipants=medSum(olymp,"numero_participantes"),olympAwards=olymp.filter(r=>medFilled(r.premiacao)&&!["participação","participacao"].includes(String(r.premiacao).toLowerCase())).length,ptdStatuses=["trimestre1_status","trimestre2_status","trimestre3_status"].flatMap(k=>ptd.map(r=>r[k]).filter(Boolean)),ptdConcluded=ptdStatuses.filter(s=>String(s).toLowerCase().includes("conclu")).length,ptdRate=ptdStatuses.length?ptdConcluded/ptdStatuses.length*100:null,ptdCounts={};ptdStatuses.forEach(s=>ptdCounts[s]=(ptdCounts[s]||0)+1);
+  $("#mediotecModules").innerHTML=[mediotecModule("clubes","Clubes",medStat(medPct(medAvg(clubs,"taxa_engajamento")),"Engajamento médio")+medStat(medAvg(clubs,"satisfacao")==null?"—":new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1}).format(medAvg(clubs,"satisfacao")),"Satisfação média")+medStat(clubPrograms.length,"Programas"),clubExtra),mediotecModule("noa","NOA",medStat(medPct(medAvg(noa,"taxa_engajamento")),"Engajamento médio")+medStat(medAvg(noa,"satisfacao")==null?"—":new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1}).format(medAvg(noa,"satisfacao")),"Satisfação média")+medStat(noaComps.length,"Componentes"),noaExtra),mediotecModule("nps","NPS / Satisfação",medStat(medAvg(nps,"satisfacao_media")==null?"—":new Intl.NumberFormat("pt-BR",{maximumFractionDigits:1}).format(medAvg(nps,"satisfacao_media")),"Satisfação média")+medStat(new Intl.NumberFormat("pt-BR").format(medSum(nps,"respondentes")),"Respondentes")+medStat(nps.filter(r=>r.data_aplicacao).length,"Aplicações com data")),mediotecModule("evasao","Evasão",medStat(new Intl.NumberFormat("pt-BR").format(matriculas),"Matrículas iniciais")+medStat(new Intl.NumberFormat("pt-BR").format(evasoes),"Evasões")+medStat(medPct(m.dropout),"Taxa global")),mediotecModule("atendimentos","Atendimentos",medStat(new Intl.NumberFormat("pt-BR").format(medSum(atend,"quantidade_atendimentos")),"Atendimentos")+medStat(new Intl.NumberFormat("pt-BR").format(medSum(atend,"pessoas_unicas")),"Pessoas únicas")+medStat(new Set(atend.map(r=>r.publico_atendido).filter(Boolean)).size,"Públicos")),mediotecModule("geekie","Geekie",medStat(new Intl.NumberFormat("pt-BR").format(geekQty),"Ações / ocorrências")+medStat(new Set(geekie.map(r=>r.acao_dimensao).filter(Boolean)).size,"Dimensões")+medStat(new Set(geekie.map(r=>r.serie_turma).filter(Boolean)).size,"Turmas")),mediotecModule("docentes_geekie","Docentes Geekie",medStat(new Intl.NumberFormat("pt-BR").format(sent),"Atividades enviadas")+medStat(new Intl.NumberFormat("pt-BR").format(corrected),"Atividades corrigidas")+medStat(medPct(corrRate),"Taxa de correção")),mediotecModule("ocorrencias","Ocorrências",medStat(new Intl.NumberFormat("pt-BR").format(occQty||occ.length),"Ocorrências / quantidade")+medStat(occOpen,"Registros não concluídos")+medStat(occTypes.length,"Tipos registrados"),occTypes.length?`<div class="mediotec-status-list">${occTypes.slice(0,6).map(x=>`<span class="mediotec-status-chip">${esc(x)}</span>`).join("")}</div>`:""),mediotecModule("inclusao","Inclusão e acompanhamento",medStat(new Intl.NumberFormat("pt-BR").format(acomp),"Estudantes acompanhados")+medStat(new Intl.NumberFormat("pt-BR").format(totalEst),"Total de estudantes")+medStat(medPct(m.inclusao),"Taxa de acompanhamento")),mediotecModule("formacoes","Formações",medStat(forms.length,"Formações registradas")+medStat(new Intl.NumberFormat("pt-BR").format(presentes),"Participantes presentes")+medStat(medPct(m.formacao),"Taxa de participação")),mediotecModule("olimpiadas","Olimpíadas e competições",medStat(olymp.length,"Competições / registros")+medStat(new Intl.NumberFormat("pt-BR").format(olympParticipants),"Participantes")+medStat(olympAwards,"Registros com premiação")),mediotecModule("ptd","PTD",medStat(ptd.length,"Registros de PTD")+medStat(ptdStatuses.length,"Status trimestrais")+medStat(medPct(ptdRate),"Status concluídos"),Object.keys(ptdCounts).length?`<div class="mediotec-status-list">${Object.entries(ptdCounts).map(([k,v])=>`<span class="mediotec-status-chip">${esc(k)} · ${v}</span>`).join("")}</div>`:"")].join("");
+}
+
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#mediotecKpis').innerHTML='<div class="mediotec-empty">Os dados de Gestão Mediotec aparecerão após o cadastro e a publicação da edição.</div>';$('#mediotecUnitCompare').innerHTML='';$('#mediotecModules').innerHTML='';$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveScope').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
 const reportParams=new URLSearchParams(location.search);
 const requestedYear=Number(reportParams.get("year"))||null;
 const autoPdf=reportParams.get("pdf")==="1";
@@ -1441,7 +1497,7 @@ async function load(){
   $('#publishedAt').textContent=ed.published_at?`Data de atualização: ${dtt(ed.published_at)}`:'Data de atualização: —';
   $('#coverEdition').textContent=`Edição: ${ed.year}`;
 
-  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention]=await Promise.all([
+  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,mediotec]=await Promise.all([
     readEditionCollection(edRef,'indicators'),
     readEditionCollection(edRef,'programs'),
     readEditionCollection(edRef,'program_actions'),
@@ -1451,7 +1507,8 @@ async function load(){
     readEditionCollection(edRef,'innovation_project_actions'),
     readEditionCollection(edRef,'awards_recognitions'),
     readEditionCollection(edRef,'partners'),
-    readEditionCollection(edRef,'attention_points')
+    readEditionCollection(edRef,'attention_points'),
+    readEditionCollection(edRef,'mediotec_records')
   ]);
 
   const byId=Object.fromEntries(indicators.map(x=>[x.id,x]));
@@ -1466,7 +1523,8 @@ async function load(){
     <span class="executive-scope-item"><strong>${innovation.length}</strong> projetos de inovação</span>
     <span class="executive-scope-item"><strong>${awards.length}</strong> reconhecimentos</span>
     <span class="executive-scope-item"><strong>${partners.length}</strong> parcerias</span>
-    <span class="executive-scope-item"><strong>${attention.length}</strong> pontos de atenção</span>`;
+    <span class="executive-scope-item"><strong>${attention.length}</strong> pontos de atenção</span>
+    <span class="executive-scope-item"><strong>${mediotec.length}</strong> registros Mediotec</span>`;
 
   publishedIndicators=indicators;
   currentIndicatorStatusFilter="all";
@@ -1486,6 +1544,7 @@ async function load(){
 
   renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention});
   renderAttentionExecutive(attention);
+  mediotecRecordsPublic=mediotec;mediotecUnitFilter="all";renderMediotecDashboard();
 
   $('#loading').classList.add('hidden');
   setupReveal();
@@ -1529,6 +1588,7 @@ document.addEventListener("click",e=>{
     }
   });
 });
+document.querySelectorAll("[data-mediotec-unit]").forEach(btn=>btn.addEventListener("click",()=>{mediotecUnitFilter=btn.dataset.mediotecUnit||"all";renderMediotecDashboard()}));
 document.querySelectorAll("[data-project-filter-group]").forEach(group=>{
   group.querySelectorAll(".portfolio-filter").forEach(btn=>btn.addEventListener("click",()=>{
     const kind=group.dataset.projectFilterGroup;
