@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- Build v41 | 2026-11-16T13:26:31-03:00 | Qualidade unificada -->
+<!-- Build v40 | 2026-11-16T13:24:17-03:00 | Qualidade/Inovação: narrativa executiva -->
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -701,6 +703,104 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   .results-coverage{padding:16px 0 0;border-left:0;border-top:1px solid #dbe4e7}
 }
 
+
+/* v39 · indicadores: positivos primeiro, atenção depois */
+.indicator-focus-stack{display:grid;gap:14px;margin:18px 0 24px}
+.indicator-focus-group{
+  padding:20px 21px;
+  border-radius:22px;
+  background:#fff;
+  border:1px solid #dfe7ea
+}
+.indicator-focus-group.positive{border-color:#cfe4d7;background:linear-gradient(180deg,#fbfefc,#f6fbf8)}
+.indicator-focus-group.attention{border-color:#ecd5cf;background:linear-gradient(180deg,#fffdfc,#fff8f6)}
+.indicator-focus-head{
+  display:grid;
+  grid-template-columns:1fr minmax(260px,.55fr);
+  gap:18px;
+  align-items:end;
+  margin-bottom:13px
+}
+.indicator-focus-head h3{
+  margin:5px 0 0;
+  color:var(--deep);
+  font-family:"Libre Caslon Display",serif;
+  font-size:1.85rem;
+  line-height:1.08
+}
+.indicator-focus-head p{margin:0;color:var(--muted);font-size:.73rem;line-height:1.55}
+.indicator-focus-group.positive .kicker{color:var(--ok)}
+.indicator-focus-group.attention .kicker{color:var(--bad)}
+.indicator-focus-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.indicator-focus-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:14px;
+  align-items:center;
+  padding:12px 13px;
+  border-radius:15px;
+  background:#fff;
+  border:1px solid #e5ebed;
+  text-decoration:none;
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease
+}
+.indicator-focus-card:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(20,46,61,.055)}
+.indicator-focus-card.positive:hover{border-color:#bcd9c6}
+.indicator-focus-card.attention:hover{border-color:#e3c1ba}
+.indicator-focus-card .type{
+  display:block;
+  font-size:.57rem;
+  font-weight:900;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:#7b8b93
+}
+.indicator-focus-card strong{
+  display:block;
+  margin-top:4px;
+  color:var(--deep);
+  font-size:.82rem;
+  line-height:1.35
+}
+.indicator-focus-card small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:.66rem;
+  line-height:1.45
+}
+.indicator-focus-result{text-align:right;white-space:nowrap}
+.indicator-focus-result b{display:block;font-family:"Libre Caslon Display",serif;font-size:1.18rem;color:var(--deep)}
+.indicator-focus-result em{display:block;margin-top:4px;font-style:normal;font-size:.61rem;font-weight:900}
+.indicator-focus-card.positive .indicator-focus-result em{color:var(--ok)}
+.indicator-focus-card.attention .indicator-focus-result em{color:var(--bad)}
+.indicator-focus-empty{padding:13px;border-radius:14px;background:rgba(255,255,255,.72);color:var(--muted);font-size:.76rem;line-height:1.5}
+.build-chip{background:rgba(255,255,255,.13)!important;color:#fff!important}
+.footer-version{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:760px){
+  .indicator-focus-head{grid-template-columns:1fr}
+  .indicator-focus-grid{grid-template-columns:1fr}
+}
+
+
+/* v41 · Qualidade unificada */
+.quality-unified-section{background:linear-gradient(180deg,#f7fafb,#fff)}
+.quality-combined-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:-4px 0 24px}
+.quality-combined-item{padding:15px 16px;border-radius:17px;background:#fff;border:1px solid #dfe7ea}
+.quality-combined-item strong{display:block;color:var(--deep);font-family:"Libre Caslon Display",serif;font-size:1.75rem;line-height:1}
+.quality-combined-item span{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;line-height:1.4}
+.quality-subsection{position:relative;margin-top:18px;padding:24px;border-radius:26px;background:#fff;border:1px solid #dfe7ea;box-shadow:0 14px 34px rgba(22,48,64,.035)}
+.quality-subsection+.quality-subsection{margin-top:20px}
+.quality-subsection-head{margin-bottom:17px;padding-bottom:15px;border-bottom:1px solid #e7edef}
+.quality-subsection-head h3{margin:7px 0 5px;color:var(--deep);font-family:"Libre Caslon Display",serif;font-size:2rem;line-height:1.06}
+.quality-subsection-head p{margin:0;max-width:760px;color:var(--muted);font-size:.78rem;line-height:1.55}
+.quality-type-flag{display:inline-flex;padding:6px 9px;border-radius:999px;background:#e7f1f5;color:#315f78;font-size:.58rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+.quality-type-flag.project{background:#f3ecdd;color:#735e37}
+.quality-programs .portfolio-program .kicker{color:#315f78}
+.quality-projects .project-card .kicker{color:#735e37}
+@media(max-width:900px){.quality-combined-overview{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.quality-combined-overview{grid-template-columns:1fr}.quality-subsection{padding:18px}}
+
 </style>
 </head>
 <body>
@@ -714,7 +814,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
         <div class="cover-storyline">Um ano de execução, aprendizagem e transformação.</div>
         <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
         <p class="cover-deck" id="coverIntro">Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
-        <div class="cover-meta"><span class="meta-chip" id="coverYear">Versão: —</span><span class="meta-chip" id="publishedAt">Data de atualização: —</span><span class="meta-chip" id="coverEdition">Edição: em preparação</span></div><div class="cover-actions">
+        <div class="cover-meta"><span class="meta-chip" id="coverYear">Versão da edição: —</span><span class="meta-chip" id="publishedAt">Publicação dos dados: —</span><span class="meta-chip" id="coverEdition">Edição: em preparação</span><span class="meta-chip build-chip">Relatório v41 · 16/11/2026 · 13:26</span></div><div class="cover-actions">
 <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
 <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
 <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
@@ -723,11 +823,11 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       <aside class="cover-note story-map-card">
         <small>Narrativa do ciclo</small>
         <h3>Do resultado à decisão.</h3>
-        <p>Uma leitura única do trabalho do NQI, organizada para mostrar valor entregue, capacidade de execução, transformação e prioridades.</p>
+        <p>Uma leitura única do trabalho do NQI, organizada para mostrar resultados, qualidade, inovação, impacto e prioridades.</p>
         <div class="cover-story-path" aria-label="Etapas da narrativa">
           <span><b>01</b> Resultados</span>
-          <span><b>02</b> Execução</span>
-          <span><b>03</b> Transformação</span>
+          <span><b>02</b> Qualidade</span>
+          <span><b>03</b> Inovação</span>
           <span><b>04</b> Impacto</span>
           <span><b>05</b> Prioridades</span>
         </div>
@@ -738,8 +838,8 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 </header>
 <nav class="nav story-nav"><div class="wrap nav-inner">
   <a href="#ato-resultados" data-story-nav="ato-resultados"><span>01</span> Resultados</a>
-  <a href="#ato-execucao" data-story-nav="ato-execucao"><span>02</span> Execução</a>
-  <a href="#ato-transformacao" data-story-nav="ato-transformacao"><span>03</span> Transformação</a>
+  <a href="#ato-qualidade" data-story-nav="ato-qualidade"><span>02</span> Qualidade</a>
+  <a href="#ato-inovacao" data-story-nav="ato-inovacao"><span>03</span> Inovação</a>
   <a href="#ato-impacto" data-story-nav="ato-impacto"><span>04</span> Impacto</a>
   <a href="#ato-prioridades" data-story-nav="ato-prioridades"><span>05</span> Prioridades</a>
   <span class="story-nav-divider" aria-hidden="true"></span>
@@ -764,46 +864,34 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       <div>
         <div class="section-domain">Indicadores</div>
         <h2>Indicadores que sustentam essa leitura</h2>
-        <p class="section-lead">Primeiro, destacamos as evidências e as exceções relevantes. Depois, abrimos o conjunto completo para responder: <strong>onde a meta foi atendida e onde ainda existe distância a percorrer?</strong></p>
+        <p class="section-lead">A leitura começa pelos <strong>indicadores positivos</strong>, segue pelos que <strong>merecem atenção</strong> e, na sequência, mantém todos os filtros existentes para consulta do conjunto completo.</p>
       </div>
     </div>
 
-    <section class="results-story-block" aria-label="Destaques e leitura gerencial dos resultados">
-      <article class="executive-highlights-panel results-highlights-panel">
-        <div class="executive-highlights-head">
-          <div>
-            <div class="executive-label">Destaques do ciclo</div>
-            <h3>Evidências que merecem ser lembradas.</h3>
-          </div>
-          <p>Até três evidências positivas já existentes no relatório, sem criar novos dados.</p>
-        </div>
-        <div id="executiveHighlights"></div>
-      </article>
-
-      <article class="results-managerial-read">
-        <div>
-          <div class="executive-label">Leitura gerencial</div>
-          <p id="executiveNarrative" class="results-managerial-narrative">A análise será construída automaticamente a partir dos dados publicados.</p>
-        </div>
-        <div class="results-coverage">
-          <strong id="coverageHeadline">—</strong>
-          <p id="coverageCopy">Aguardando dados.</p>
-          <div id="coverageGaps"></div>
-        </div>
-      </article>
-    </section>
-
     <div id="indicatorOverview" class="indicator-overview"></div>
 
-    <section class="indicator-priority-panel" aria-labelledby="indicatorPriorityTitle">
-      <div class="indicator-priority-head">
-        <div>
-          <div class="kicker">Gestão por exceção</div>
-          <h3 id="indicatorPriorityTitle">Indicadores que requerem atenção</h3>
+    <section class="indicator-focus-stack" aria-label="Destaques dos indicadores">
+      <article class="indicator-focus-group positive">
+        <div class="indicator-focus-head">
+          <div>
+            <div class="kicker">Primeiro, os avanços</div>
+            <h3>Indicadores positivos</h3>
+          </div>
+          <p>Indicadores com resultado comparável que atingiram ou superaram a meta.</p>
         </div>
-        <p>Os maiores desvios são priorizados automaticamente pela distância em relação à meta.</p>
-      </div>
-      <div id="indicatorPriority"></div>
+        <div id="indicatorPositiveHighlights"></div>
+      </article>
+
+      <article class="indicator-focus-group attention">
+        <div class="indicator-focus-head">
+          <div>
+            <div class="kicker">Em seguida, as exceções</div>
+            <h3>Indicadores que merecem atenção</h3>
+          </div>
+          <p>Indicadores fora da meta, ordenados pelo maior desvio relativo.</p>
+        </div>
+        <div id="indicatorAttentionHighlights"></div>
+      </article>
     </section>
 
     <div class="indicator-controls" aria-label="Controles dos indicadores">
@@ -846,59 +934,77 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div id="indicatorsGrid"></div>
   </div>
 </section>
-<section class="story-break story-break-dark" id="ato-execucao" data-story-section="ato-execucao">
+<section class="story-break story-break-blue" id="ato-qualidade" data-story-section="ato-qualidade">
   <div class="wrap story-break-inner">
     <div class="story-break-number">02</div>
     <div>
-      <div class="story-break-kicker">Execução</div>
-      <h2>Resultado é consequência de execução.</h2>
-      <p>Os indicadores mostram onde chegamos. Agora, mostramos o que foi mobilizado para transformar intenção estratégica em entrega.</p>
-      <span class="story-handoff">Da evidência para a ação ↓</span>
+      <div class="story-break-kicker">Qualidade</div>
+      <h2>Qualidade para sustentar o crescimento.</h2>
+      <p>Os programas de qualidade foram estruturados para sustentar o crescimento da organização.</p>
+      <span class="story-handoff">Dos resultados para a estrutura que sustenta a evolução ↓</span>
     </div>
   </div>
 </section>
-<section class="section portfolio-section" id="programas"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">02</div><div><div class="section-domain">Programas e portfólio</div><h2>Como transformamos estratégia em entrega</h2><p class="section-lead">A execução é apresentada como portfólio: primeiro o panorama consolidado; depois, os programas, ações e exceções que explicam o resultado.</p></div></div>
-<article class="execution-story-pulse">
-  <div class="execution-story-copy">
-    <div class="executive-label">Execução consolidada</div>
-    <strong id="executionHeadline">—</strong>
-    <p id="executionCopy">Aguardando dados.</p>
+
+<section class="section quality-section quality-unified-section" id="qualidade">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="chapter">02</div>
+      <div>
+        <div class="section-domain">Qualidade</div>
+        <h2>Programas e projetos em uma mesma agenda</h2>
+        <p class="section-lead">Uma visão única da agenda de qualidade, mantendo <strong>programas</strong> e <strong>projetos</strong> separados para facilitar a leitura executiva.</p>
+      </div>
+    </div>
+
+    <div id="qualityCombinedOverview"></div>
+
+    <section class="quality-subsection quality-programs" id="programas">
+      <div class="quality-subsection-head">
+        <div>
+          <span class="quality-type-flag">Programa</span>
+          <h3>Programas de Qualidade</h3>
+          <p>Frentes contínuas que organizam, estruturam e sustentam a evolução da operação.</p>
+        </div>
+      </div>
+      <div id="programPortfolioSummary"></div>
+      <div id="programsList"></div>
+    </section>
+
+    <section class="quality-subsection quality-projects" id="projetos-qualidade">
+      <div class="quality-subsection-head">
+        <div>
+          <span class="quality-type-flag project">Projeto</span>
+          <h3>Projetos de Qualidade</h3>
+          <p>Iniciativas com escopo definido, prazo e entregas específicas dentro da agenda de qualidade.</p>
+        </div>
+      </div>
+      <div id="qualityPortfolioSummary"></div>
+      <div class="portfolio-filters" data-project-filter-group="quality">
+        <button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
+        <button type="button" class="portfolio-filter" data-project-filter="em_andamento">Em andamento</button>
+        <button type="button" class="portfolio-filter" data-project-filter="attention">Em atenção</button>
+        <button type="button" class="portfolio-filter" data-project-filter="concluido">Concluídos</button>
+        <button type="button" class="portfolio-filter" data-project-filter="planejado">Planejados</button>
+      </div>
+      <div class="grid12" id="qualityGrid"></div>
+    </section>
   </div>
-  <div class="execution-story-visual">
-    <div class="execution-track" id="executionTrack"></div>
-    <div class="execution-legend" id="executionLegend"></div>
-  </div>
-</article>
-<div id="storyPortfolioOverview"></div>
-<div id="programPortfolioSummary"></div>
-<div id="programsList"></div>
-</div></section>
-<section class="story-break story-break-blue" id="ato-transformacao" data-story-section="ato-transformacao">
+</section>
+
+<section class="story-break story-break-dark" id="ato-inovacao" data-story-section="ato-inovacao">
   <div class="wrap story-break-inner">
     <div class="story-break-number">03</div>
     <div>
-      <div class="story-break-kicker">Transformação</div>
-      <h2>Executar é importante. Evoluir a forma de fazer é decisivo.</h2>
-      <p>Qualidade e inovação mostram duas dimensões complementares: elevar o padrão do que já fazemos e criar novas formas de gerar valor.</p>
-      <span class="story-handoff">Da execução para a transformação ↓</span>
+      <div class="story-break-kicker">Inovação</div>
+      <h2>Construindo hoje o futuro que queremos.</h2>
+      <p>Mesmo em crescimento, protagonizamos projetos de inovação que constroem hoje o futuro que queremos.</p>
+      <span class="story-handoff">Da estrutura para novas possibilidades ↓</span>
     </div>
   </div>
 </section>
-<section class="section quality-section portfolio-section" id="qualidade"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">03A</div><div><div class="section-domain">Projetos de qualidade</div><h2>Onde elevamos o padrão</h2><p class="section-lead">Iniciativas que fortalecem consistência, desempenho e melhoria contínua, priorizadas por risco e estágio de execução.</p></div></div>
-<div id="qualityPortfolioSummary"></div>
-<div class="portfolio-filters" data-project-filter-group="quality">
-<button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
-<button type="button" class="portfolio-filter" data-project-filter="em_andamento">Em andamento</button>
-<button type="button" class="portfolio-filter" data-project-filter="attention">Em atenção</button>
-<button type="button" class="portfolio-filter" data-project-filter="concluido">Concluídos</button>
-<button type="button" class="portfolio-filter" data-project-filter="planejado">Planejados</button>
-</div>
-<div class="grid12" id="qualityGrid"></div>
-</div></section>
 <section class="section innovation-section portfolio-section" id="inovacao"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">03B</div><div><div class="section-domain">Projetos de inovação</div><h2>Onde mudamos a forma de fazer</h2><p class="section-lead">Projetos que testam novas abordagens, ampliam possibilidades e transformam a maneira como o NQI entrega valor.</p></div></div>
+<div class="section-head reveal"><div class="chapter">03</div><div><div class="section-domain">Projetos de inovação</div><h2>Projetos que ampliam possibilidades</h2><p class="section-lead">A inovação aparece aqui como escolha estratégica: iniciativas que testam caminhos, criam soluções e ajudam a preparar a organização para o futuro.</p></div></div>
 <div id="innovationPortfolioSummary"></div>
 <div class="portfolio-filters portfolio-filters-dark" data-project-filter-group="innovation">
 <button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
@@ -983,7 +1089,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <blockquote>O próximo ciclo não começa do zero. Começa a partir do que aprendemos, consolidamos e decidimos aqui.</blockquote>
   </div>
 </section>
-<footer><div class="wrap">Relatório Executivo Anual · Núcleo de Qualidade e Inovação</div></footer>
+<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v41 · atualizado em 16/11/2026 · 13:26</span></div></footer>
 <script>
 let db,auth;
 const FIREBASE_CONFIG={
@@ -1059,7 +1165,7 @@ function renderProgramsPortfolio(programs,actions,byId){
     const rows=actions.filter(a=>a.program_id===p.id),s=actionStats(rows),completed=rows.length>0&&rows.every(a=>a.status==="finalizada"),state=portfolioState(rows,completed);
     return `<article id="${execAnchor("program",p.id)}" class="portfolio-program ${state.cls}">
       <div class="portfolio-card-head">
-        <div><div class="kicker">Programa ${String(idx+1).padStart(2,"0")}</div><h3>${esc(p.name)}</h3></div>
+        <div><div class="kicker">Programa de Qualidade · ${String(idx+1).padStart(2,"0")}</div><h3>${esc(p.name)}</h3></div>
         <div class="portfolio-situation"><span class="portfolio-state ${state.badge}">${state.label}</span>${s.risk?`<span class="portfolio-state risk">${s.risk} ação(ões) em risco</span>`:""}${s.attention?`<span class="portfolio-state attention">${s.attention} em atenção</span>`:""}</div>
       </div>
       <div class="portfolio-progress"><div class="portfolio-progress-head"><span>Execução das ações</span><span>${s.rate}%</span></div><div class="portfolio-progress-track"><span style="width:${s.rate}%"></span></div></div>
@@ -1233,98 +1339,6 @@ function renderExecutiveAnalytics({indicators,programs,actions,quality,innovatio
   const active=priorities.filter(x=>x.p.cls!=="resolved");
   const p1=active.filter(x=>x.p.rank===1).length;
   const decisions=active.filter(x=>x.row.requires_decision===true).length;
-
-  const narrativeParts=[];
-  narrativeParts.push(comparable?`${successRate}% dos indicadores com resultado comparável atingem a meta.`:"Ainda não há base comparável suficiente para consolidar o desempenho.");
-  if(allActions.length)narrativeParts.push(`${completionRate}% das ${allActions.length} ações cadastradas estão finalizadas; ${risk} em risco e ${attnActions} em atenção.`);
-  if(critical.length)narrativeParts.push(`${covered.length} de ${critical.length} indicadores fora da meta possuem iniciativa relacionada.`);
-  if(active.length)narrativeParts.push(`${p1} ponto(s) estão em prioridade 1 e ${decisions} requer(em) decisão da liderança.`);
-  $("#executiveNarrative").textContent=narrativeParts.join(" ");
-
-  // Destaques do ano: máximo de três evidências, sem criar novos campos.
-  const highlights=[];
-
-  const bestIndicator=states
-    .filter(x=>x.state.cls==="good")
-    .sort((a,b)=>b.gap.severity-a.gap.severity||String(a.item.name||"").localeCompare(String(b.item.name||""),"pt-BR"))[0];
-  if(bestIndicator){
-    highlights.push({
-      type:"Resultado",
-      title:bestIndicator.item.name,
-      detail:`Meta atendida · ${bestIndicator.gap.text}.`,
-      kind:"indicator",
-      target:execAnchor("indicator",bestIndicator.item.id),
-      fallback:"#indicadores"
-    });
-  }
-
-  const completedExecutions=[];
-  programs.forEach(p=>{
-    const rows=actions.filter(a=>a.program_id===p.id);
-    if(rows.length&&rows.every(a=>a.status==="finalizada"))completedExecutions.push({score:rows.length,type:"Programa",title:p.name,detail:`${rows.length} ação(ões) finalizadas.`,kind:"program",target:execAnchor("program",p.id),fallback:"#programas"});
-  });
-  quality.forEach(p=>{
-    const rows=qualityActions.filter(a=>a.project_id===p.id);
-    if(p.status==="concluido"&&rows.length&&rows.every(a=>a.status==="finalizada"))completedExecutions.push({score:rows.length,type:"Qualidade",title:p.name,detail:`Projeto concluído · ${rows.length} ação(ões) finalizadas.`,kind:"quality",target:execAnchor("quality",p.id),fallback:"#qualidade"});
-  });
-  innovation.forEach(p=>{
-    const rows=innovationActions.filter(a=>a.project_id===p.id);
-    if(p.status==="concluido"&&rows.length&&rows.every(a=>a.status==="finalizada"))completedExecutions.push({score:rows.length,type:"Inovação",title:p.name,detail:`Projeto concluído · ${rows.length} ação(ões) finalizadas.`,kind:"innovation",target:execAnchor("innovation",p.id),fallback:"#inovacao"});
-  });
-  const bestExecution=completedExecutions.sort((a,b)=>b.score-a.score||String(a.title||"").localeCompare(String(b.title||""),"pt-BR"))[0];
-  if(bestExecution)highlights.push(bestExecution);
-
-  const awardHighlight=[...awards]
-    .filter(a=>String(a.placement||"").trim())
-    .sort((a,b)=>(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"))[0];
-  if(awardHighlight){
-    highlights.push({
-      type:"Reconhecimento",
-      title:awardHighlight.name||categoryLabel(awardHighlight.category),
-      detail:awardHighlight.placement,
-      kind:"award",
-      target:execAnchor("award",awardHighlight.id),
-      fallback:"#premios"
-    });
-  }else{
-    const featuredPartner=partners.find(p=>p.is_top5);
-    if(featuredPartner){
-      highlights.push({
-        type:"Parceria",
-        title:featuredPartner.name,
-        detail:"Parceria sinalizada como destaque institucional nesta edição.",
-        kind:"partner",
-        target:execAnchor("partner",featuredPartner.id),
-        fallback:"#parcerias"
-      });
-    }
-  }
-
-  $("#executiveHighlights").innerHTML=highlights.length
-    ?`<div class="executive-highlights-list">${highlights.slice(0,3).map(h=>`<a class="executive-highlight-item" href="${h.fallback}" data-exec-target="${esc(h.target)}" data-exec-kind="${esc(h.kind)}" data-exec-fallback="${esc(h.fallback)}"><span class="executive-highlight-type">${esc(h.type)}</span><strong>${esc(h.title)}</strong><small>${esc(h.detail)}</small><span class="executive-highlight-link">Ver evidência →</span></a>`).join("")}</div>`
-    :`<div class="executive-highlights-empty">Ainda não há evidências positivas suficientes para compor destaques automáticos nesta edição.</div>`;
-
-  $("#executionHeadline").textContent=allActions.length?`${finalized} de ${allActions.length} ações finalizadas`:"Sem ações cadastradas";
-  $("#executionCopy").textContent=allActions.length
-    ?`${inProgress} em andamento · ${waiting} aguardando · ${risk} em risco · ${attnActions} em atenção.`
-    :"A execução consolidada aparecerá quando houver ações cadastradas.";
-  const actTotal=Math.max(allActions.length,1);
-  $("#executionTrack").innerHTML=`
-    <span class="track-finalized" style="width:${finalized/actTotal*100}%"></span>
-    <span class="track-progress" style="width:${inProgress/actTotal*100}%"></span>
-    <span class="track-waiting" style="width:${waiting/actTotal*100}%"></span>`;
-  $("#executionLegend").innerHTML=`
-    <span><i style="background:var(--ok)"></i>Finalizadas ${finalized}</span>
-    <span><i style="background:var(--blue)"></i>Em andamento ${inProgress}</span>
-    <span><i style="background:#d6b26c"></i>Aguardando ${waiting}</span>`;
-
-  $("#coverageHeadline").textContent=critical.length?`${coverageRate}% de cobertura dos desvios`:"Sem desvios comparáveis";
-  $("#coverageCopy").textContent=critical.length
-    ?`${covered.length} de ${critical.length} indicadores fora da meta estão vinculados a programas ou projetos.`
-    :"Não há indicadores fora da meta com dados comparáveis nesta edição.";
-  $("#coverageGaps").innerHTML=uncovered.length
-    ?`<div class="coverage-list">${uncovered.slice(0,3).map(x=>`<div class="coverage-gap"><strong>Sem resposta estruturada:</strong> ${esc(x.item.name)}</div>`).join("")}</div>`
-    :critical.length?`<div class="coverage-list"><div class="coverage-gap" style="background:#f0f8f3;border-color:#cfe4d7;color:#35694a"><strong>Cobertura completa:</strong> todos os indicadores fora da meta possuem iniciativa relacionada.</div></div>`:"";
 
   const parentMap=new Map();
   programs.forEach(p=>parentMap.set("program:"+p.id,{name:p.name,href:"#programas",kind:"Programa"}));
@@ -1628,9 +1642,14 @@ function sortIndicatorRows(items){
 }
 function renderIndicatorDecisionLayer(){
   const states=publishedIndicators.map(x=>({item:x,state:metricState(x),gap:metricGap(x)}));
-  const good=states.filter(x=>x.state.cls==="good").length;
-  const alert=states.filter(x=>x.state.cls==="alert").length;
+  const goodRows=states
+    .filter(x=>x.state.cls==="good")
+    .sort((a,b)=>(b.gap.severity||0)-(a.gap.severity||0)||String(a.item.name||"").localeCompare(String(b.item.name||""),"pt-BR"));
+  const attentionRows=states
+    .filter(x=>x.state.cls==="alert")
+    .sort((a,b)=>(b.gap.severity||0)-(a.gap.severity||0)||String(a.item.name||"").localeCompare(String(b.item.name||""),"pt-BR"));
   const neutral=states.filter(x=>x.state.cls==="neutral").length;
+
   const contract=states.filter(x=>x.item.is_management_contract);
   const contractGood=contract.filter(x=>x.state.cls==="good").length;
   const contractAlert=contract.filter(x=>x.state.cls==="alert").length;
@@ -1638,21 +1657,33 @@ function renderIndicatorDecisionLayer(){
 
   $("#indicatorOverview").innerHTML=`
     <div class="indicator-overview-item"><strong>${publishedIndicators.length}</strong><span>indicadores acompanhados</span></div>
-    <div class="indicator-overview-item good"><strong>${good}</strong><span>na meta</span></div>
-    <div class="indicator-overview-item alert"><strong>${alert}</strong><span>requerem atenção</span></div>
+    <div class="indicator-overview-item good"><strong>${goodRows.length}</strong><span>na meta</span></div>
+    <div class="indicator-overview-item alert"><strong>${attentionRows.length}</strong><span>requerem atenção</span></div>
     <div class="indicator-overview-item neutral"><strong>${neutral}</strong><span>sem comparação</span></div>
     <div class="indicator-overview-contract"><strong>Contrato de Gestão:</strong> ${contractComparable?`${contractGood} de ${contractComparable} indicadores comparáveis estão na meta${contractAlert?`; ${contractAlert} requer(em) atenção.`:"."}`:"ainda não há base comparável suficiente."}</div>`;
 
-  const deviations=states.filter(x=>x.state.cls==="alert").sort((a,b)=>(b.gap.severity||0)-(a.gap.severity||0)).slice(0,3);
-  $("#indicatorPriority").innerHTML=deviations.length
-    ?`<div class="indicator-priority-grid">${deviations.map((x,i)=>`<article class="indicator-priority-card">
-        <div class="indicator-priority-rank">Desvio ${String(i+1).padStart(2,"0")} · ${esc(indicatorTypeLabel(x.item.segment))}</div>
-        <h4>${esc(x.item.name)}</h4>
-        <div class="indicator-priority-values"><strong>${formatMetric(x.item.latest_value,x.item.unit)}</strong><span>${conciseTarget(x.item)}</span></div>
-        <span class="indicator-priority-gap">${esc(x.gap.text)}</span>
-        <div style="margin-top:14px">${indicatorBullet(x.item)}</div>
-      </article>`).join("")}</div>`
-    :`<div class="indicator-empty-success"><strong>Nenhum desvio identificado.</strong> Todos os indicadores com dados comparáveis estão na meta.</div>`;
+  const focusCard=(x,cls)=>`<a class="indicator-focus-card ${cls}" href="#indicadores"
+      data-exec-target="${esc(execAnchor("indicator",x.item.id))}"
+      data-exec-kind="indicator"
+      data-exec-fallback="#indicadores">
+      <span>
+        <span class="type">${esc(indicatorTypeLabel(x.item.segment))}${x.item.is_management_contract?" · Contrato de Gestão":""}</span>
+        <strong>${esc(x.item.name)}</strong>
+        <small>Realizado ${formatMetric(x.item.latest_value,x.item.unit)} · Meta ${formatMetric(x.item.target_value,x.item.unit)}</small>
+      </span>
+      <span class="indicator-focus-result">
+        <b>${formatMetric(x.item.latest_value,x.item.unit)}</b>
+        <em>${esc(x.gap.text)}</em>
+      </span>
+    </a>`;
+
+  $("#indicatorPositiveHighlights").innerHTML=goodRows.length
+    ?`<div class="indicator-focus-grid">${goodRows.map(x=>focusCard(x,"positive")).join("")}</div>`
+    :`<div class="indicator-focus-empty">Nenhum indicador com resultado comparável atingiu a meta nesta edição.</div>`;
+
+  $("#indicatorAttentionHighlights").innerHTML=attentionRows.length
+    ?`<div class="indicator-focus-grid">${attentionRows.map(x=>focusCard(x,"attention")).join("")}</div>`
+    :`<div class="indicator-focus-empty">Nenhum indicador comparável está fora da meta nesta edição.</div>`;
 }
 function applyIndicatorFilter(){
   let filtered=publishedIndicators.filter(x=>{
@@ -1749,22 +1780,17 @@ function renderPartnersExecutive(partners){
 
 
 
-function renderStoryPortfolioOverview({programs,actions,quality,qualityActions,innovation,innovationActions}){
-  const groups=[
-    {label:"Programas",items:programs,rows:actions},
-    {label:"Qualidade",items:quality,rows:qualityActions},
-    {label:"Inovação",items:innovation,rows:innovationActions}
-  ];
-  $("#storyPortfolioOverview").innerHTML=`<div class="story-portfolio-overview">${groups.map(g=>{
-    const s=actionStats(g.rows);
-    const rate=s.total?Math.round((s.finalized/s.total)*100):0;
-    const exceptions=s.risk+s.attention+s.overdue;
-    return `<article class="story-portfolio-card ${exceptions?"alert":""}">
-      <div class="story-portfolio-label">${esc(g.label)}</div>
-      <strong>${g.items.length} iniciativa${g.items.length===1?"":"s"}</strong>
-      <p>${s.total?`${rate}% das ações finalizadas · ${exceptions} sinal${exceptions===1?"":"is"} de atenção/risco/prazo`:"Sem ações cadastradas"}</p>
-    </article>`;
-  }).join("")}</div>`;
+function renderQualityCombinedOverview({programs,actions,quality,qualityActions}){
+  const allActions=[...actions,...qualityActions];
+  const stats=actionStats(allActions);
+  const rate=stats.total?Math.round((stats.finalized/stats.total)*100):0;
+  const exceptions=stats.risk+stats.attention+stats.overdue;
+  $("#qualityCombinedOverview").innerHTML=`<div class="quality-combined-overview">
+    <div class="quality-combined-item"><strong>${programs.length}</strong><span>programas de qualidade</span></div>
+    <div class="quality-combined-item"><strong>${quality.length}</strong><span>projetos de qualidade</span></div>
+    <div class="quality-combined-item"><strong>${stats.total}</strong><span>ações cadastradas</span></div>
+    <div class="quality-combined-item"><strong>${rate}%</strong><span>ações finalizadas${exceptions?` · ${exceptions} sinal(is) de atenção/risco/prazo`:""}</span></div>
+  </div>`;
 }
 function renderStoryClosing({indicators,actions,qualityActions,innovationActions,attention}){
   const states=indicators.map(metricState);
@@ -1811,7 +1837,7 @@ function setupStoryNavigation(){
   links.forEach(link=>link.addEventListener("click",()=>setActive(link.dataset.storyNav)));
 }
 
-function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionExecutiveSummary').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#storyPortfolioOverview').innerHTML='';$('#storyConsolidated').textContent='—';$('#storyConsolidatedCopy').textContent='Aguardando dados.';$('#storyLearned').textContent='—';$('#storyLearnedCopy').textContent='Aguardando dados.';$('#storyPriorities').textContent='—';$('#storyPrioritiesCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();setupStoryNavigation();}
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPositiveHighlights').innerHTML='<div class="indicator-focus-empty">Os indicadores positivos aparecerão após a publicação.</div>';$('#indicatorAttentionHighlights').innerHTML='<div class="indicator-focus-empty">Os indicadores que merecem atenção aparecerão após a publicação.</div>';$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionExecutiveSummary').innerHTML='';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#qualityCombinedOverview').innerHTML='';$('#storyConsolidated').textContent='—';$('#storyConsolidatedCopy').textContent='Aguardando dados.';$('#storyLearned').textContent='—';$('#storyLearnedCopy').textContent='Aguardando dados.';$('#storyPriorities').textContent='—';$('#storyPrioritiesCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();setupStoryNavigation();}
 const reportParams=new URLSearchParams(location.search);
 const requestedYear=Number(reportParams.get("year"))||null;
 const autoPdf=reportParams.get("pdf")==="1";
@@ -1842,8 +1868,8 @@ async function load(){
   const edRef=db.collection("edicoes").doc(String(ed.id||ed.year));
   $('#coverTitle').textContent=ed.title||'Relatório Executivo Anual';
   $('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.';
-  $('#coverYear').textContent=`Versão: v${ed.version||1}`;
-  $('#publishedAt').textContent=ed.published_at?`Data de atualização: ${dtt(ed.published_at)}`:'Data de atualização: —';
+  $('#coverYear').textContent=`Versão da edição: v${ed.version||1}`;
+  $('#publishedAt').textContent=ed.published_at?`Publicação dos dados: ${dtt(ed.published_at)}`:'Publicação dos dados: —';
   $('#coverEdition').textContent=`Edição: ${ed.year}`;
 
   const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention]=await Promise.all([
@@ -1873,7 +1899,7 @@ async function load(){
   applyIndicatorFilter();
 
   renderProgramsPortfolio(programs,actions,byId);
-  renderStoryPortfolioOverview({programs,actions,quality,qualityActions,innovation,innovationActions});
+  renderQualityCombinedOverview({programs,actions,quality,qualityActions});
   portfolioData={quality,innovation,qualityActions,innovationActions,indicatorsById:byId};
   projectPortfolioFilter={quality:"all",innovation:"all"};
   renderProjectPortfolio("quality");

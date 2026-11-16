@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- Build v41 | 2026-11-16T13:26:31-03:00 | Qualidade unificada -->
+<!-- Build v40 | 2026-11-16T13:24:17-03:00 -->
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -163,6 +165,13 @@
 .mediotec-admin-context{display:flex;justify-content:space-between;gap:16px;align-items:end;margin:4px 0 10px;padding:12px 14px;border-radius:15px;background:#f6f9fa;border:1px solid #e1e7e9}.mediotec-admin-context strong{display:block;color:#234a62}.mediotec-admin-context span{display:block;margin-top:3px;color:#72828b;font-size:.71rem}
 .mediotec-admin-table-wrap{border:1px solid #dce4e7;border-radius:17px;overflow-x:auto;overflow-y:hidden;background:#fff;-webkit-overflow-scrolling:touch}.mediotec-admin-grid{display:grid;min-width:max-content}.mediotec-admin-header,.mediotec-admin-row{display:grid;grid-template-columns:var(--mediotec-cols);gap:8px;align-items:center;min-width:max-content}.mediotec-admin-header{padding:9px 10px;background:#f1f5f6;color:#72818a;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;font-weight:800}.mediotec-admin-row{padding:8px 10px;border-top:1px solid #edf0f1}.mediotec-admin-row.is-new{background:#fffdf7}.mediotec-admin-row input,.mediotec-admin-row select{width:100%;min-width:0;padding:8px 9px;border:1px solid #d6e0e4;border-radius:9px;background:#fff;color:#294554;font:inherit;font-size:.75rem}.mediotec-admin-row input[readonly]{background:#f3f6f7;color:#687c86}.mediotec-admin-actions{display:flex;align-items:center;gap:5px;justify-content:flex-end}.mediotec-admin-actions button{border:0;background:transparent;color:#476576;font-weight:800;cursor:pointer;padding:5px}.mediotec-admin-actions .danger-link:hover{color:#b4493c}.mediotec-save-state{font-size:.6rem;color:#2e8656;min-width:30px}.readonly-mode #addMediotecRowBtn,.readonly-mode [data-med-delete]{display:none!important}@media(max-width:760px){.mediotec-admin-context{align-items:flex-start;flex-direction:column}}
 
+
+/* v41 · Qualidade unificada no Admin */
+.quality-admin-tabs{display:flex;gap:7px;margin:16px 0 18px;padding:5px;width:max-content;max-width:100%;border-radius:999px;background:#edf3f6;border:1px solid #dce7eb}
+.quality-admin-tab{border:0;background:transparent;color:#5d7380;border-radius:999px;padding:9px 15px;font-weight:800;font-size:.72rem;cursor:pointer}
+.quality-admin-tab.active{background:#063d65;color:#fff;box-shadow:0 5px 14px rgba(6,61,101,.14)}
+.quality-admin-pane{display:none}.quality-admin-pane.active{display:block}
+
 </style>
 
 <style>
@@ -186,13 +195,12 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 </section>
 
 <div class="app hidden" id="app">
-<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><a class="btn ghost mini" href="./" target="_blank" rel="noopener">Acessar Relatório NQI ↗</a><a class="btn ghost mini" href="./mediotec.html" target="_blank" rel="noopener">Gestão Mediotec ↗</a><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
+<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação · v41 · 16/11/2026 · 13:26</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><a class="btn ghost mini" href="./" target="_blank" rel="noopener">Acessar Relatório NQI ↗</a><a class="btn ghost mini" href="./mediotec.html" target="_blank" rel="noopener">Gestão Mediotec ↗</a><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
 <div class="shell">
   <aside class="sidebar">
     <button class="navbtn active" data-panel="overview">Visão geral</button>
     <button class="navbtn" data-panel="indicators">Indicadores</button>
-    <button class="navbtn" data-panel="programs">Programas</button>
-    <button class="navbtn" data-panel="quality">Projetos de Qualidade</button>
+    <button class="navbtn" data-panel="quality">Qualidade</button>
     <button class="navbtn" data-panel="innovation">Projetos de Inovação</button>
     <button class="navbtn" data-panel="awards">Prêmios e Reconhecimentos</button>
     <button class="navbtn" data-panel="partners">Parcerias</button>
@@ -227,17 +235,22 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 </div>
 <div class="indicator-quick-table"><div class="indicator-quick-header"><span>Indicador</span><span>Tipo</span><span>Realizado</span><span>Meta</span><span>Data</span><span>Situação</span><span></span></div><div id="indicatorsList"></div></div>
 </div></section>
-    <section class="panel" id="panel-programs"><div class="hero">
-<div class="toolbar"><div><div class="eyebrow">02</div><h2>Programas</h2><div class="small">Cadastro rápido pelo nome. Execução e situação são calculadas automaticamente pelas ações.</div></div><button class="btn primary" id="addProgramQuickRow" type="button">+ Adicionar programa</button></div>
+    <section class="panel" id="panel-quality">
+  <div class="hero">
+    <div class="toolbar"><div><div class="eyebrow">Qualidade</div><h2>Programas e Projetos de Qualidade</h2><div class="small">Uma única área de gestão, mantendo os dois tipos separados para facilitar o cadastro e a leitura.</div></div></div>
+    <div class="quality-admin-tabs" role="tablist" aria-label="Tipos da área de qualidade">
+      <button type="button" class="quality-admin-tab active" data-quality-admin-tab="programs">Programas</button>
+      <button type="button" class="quality-admin-tab" data-quality-admin-tab="projects">Projetos</button>
+    </div>
+    <div class="quality-admin-pane active" data-quality-admin-pane="programs"><div class="toolbar"><div><div class="eyebrow">Programa</div><h2>Programas de Qualidade</h2><div class="small">Frentes contínuas da agenda de qualidade. Execução e situação são calculadas automaticamente pelas ações.</div></div><button class="btn primary" id="addProgramQuickRow" type="button">+ Adicionar programa de qualidade</button></div>
 <div class="admin-filters"><input type="search" placeholder="Buscar programa…" data-section-search="programs"><select data-section-sort="programs"><option value="original">Prioridade de execução</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
-<div class="portfolio-quick-table"><div class="portfolio-quick-header program"><span>Programa</span><span>Execução</span><span>Ações</span><span>Situação</span><span></span></div><div id="programsList"></div></div>
-</div></section>
-    <section class="panel" id="panel-quality"><div class="hero">
-<div class="toolbar"><div><div class="eyebrow">03</div><h2>Projetos de Qualidade</h2><div class="small">Nome, status e fim podem ser atualizados diretamente na lista.</div></div><button class="btn primary" id="addQualityQuickRow" type="button">+ Adicionar projeto</button></div>
+<div class="portfolio-quick-table"><div class="portfolio-quick-header program"><span>Programa</span><span>Execução</span><span>Ações</span><span>Situação</span><span></span></div><div id="programsList"></div></div></div>
+    <div class="quality-admin-pane" data-quality-admin-pane="projects"><div class="toolbar"><div><div class="eyebrow">Projeto</div><h2>Projetos de Qualidade</h2><div class="small">Iniciativas com escopo definido. Nome, status e fim podem ser atualizados diretamente na lista.</div></div><button class="btn primary" id="addQualityQuickRow" type="button">+ Adicionar projeto</button></div>
 <div class="admin-filters"><input type="search" placeholder="Buscar projeto…" data-section-search="quality"><select data-section-sort="quality"><option value="original">Prioridade de execução</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
-<div class="portfolio-quick-table"><div class="portfolio-quick-header project"><span>Projeto</span><span>Status</span><span>Fim</span><span>Ações</span><span></span></div><div id="qualityList"></div></div>
-</div></section>
-    <section class="panel" id="panel-innovation"><div class="hero">
+<div class="portfolio-quick-table"><div class="portfolio-quick-header project"><span>Projeto</span><span>Status</span><span>Fim</span><span>Ações</span><span></span></div><div id="qualityList"></div></div></div>
+  </div>
+</section>
+<section class="panel" id="panel-innovation"><div class="hero">
 <div class="toolbar"><div><div class="eyebrow">04</div><h2>Projetos de Inovação</h2><div class="small">Nome, status e fim podem ser atualizados diretamente na lista.</div></div><button class="btn primary" id="addInnovationQuickRow" type="button">+ Adicionar projeto</button></div>
 <div class="admin-filters"><input type="search" placeholder="Buscar projeto…" data-section-search="innovation"><select data-section-sort="innovation"><option value="original">Prioridade de execução</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
 <div class="portfolio-quick-table"><div class="portfolio-quick-header project"><span>Projeto</span><span>Status</span><span>Fim</span><span>Ações</span><span></span></div><div id="innovationList"></div></div>
@@ -474,6 +487,11 @@ $("#logoutBtn").onclick=async()=>{await auth.signOut();location.reload()};
 $$(".navbtn").forEach(b=>b.onclick=()=>{$$(".navbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");$$(".panel").forEach(x=>x.classList.remove("active"));$("#panel-"+b.dataset.panel).classList.add("active")});
 
 
+
+$$(".quality-admin-tab").forEach(btn=>btn.onclick=()=>{
+  $$(".quality-admin-tab").forEach(x=>x.classList.toggle("active",x===btn));
+  $$(".quality-admin-pane").forEach(p=>p.classList.toggle("active",p.dataset.qualityAdminPane===btn.dataset.qualityAdminTab));
+});
 
 function editionRef(year=edition?.year){return db.collection("edicoes").doc(String(year))}
 function editionCollection(name,year=edition?.year){return editionRef(year).collection(name)}
