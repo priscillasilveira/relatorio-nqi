@@ -616,6 +616,91 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   .story-handoff{display:none!important}
 }
 
+
+/* v38 · storytelling sem seção-resumo repetitiva */
+.results-story-block{margin:0 0 22px}
+.results-highlights-panel{margin-bottom:12px}
+.results-managerial-read{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px;
+  padding:20px 22px;
+  border-radius:22px;
+  background:#f7f9fa;
+  border:1px solid #e0e7ea
+}
+.results-managerial-narrative{
+  margin:0;
+  color:#536a77;
+  font-family:"Libre Caslon Display",serif;
+  font-size:1.45rem;
+  line-height:1.35
+}
+.results-coverage{
+  padding-left:18px;
+  border-left:1px solid #dbe4e7
+}
+.results-coverage>strong{
+  display:block;
+  color:var(--deep);
+  font-family:"Libre Caslon Display",serif;
+  font-size:1.55rem;
+  line-height:1.1
+}
+.results-coverage>p{margin:7px 0 0;color:var(--muted);font-size:.76rem;line-height:1.55}
+.results-coverage .coverage-list{margin-top:10px}
+
+.execution-story-pulse{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:24px;
+  align-items:center;
+  margin:-4px 0 14px;
+  padding:20px 22px;
+  border-radius:22px;
+  background:#073758;
+  color:#fff
+}
+.execution-story-copy strong{
+  display:block;
+  font-family:"Libre Caslon Display",serif;
+  font-size:2rem;
+  line-height:1.05
+}
+.execution-story-copy p{margin:7px 0 0;color:#d4e3ea;font-size:.76rem;line-height:1.5}
+.execution-story-pulse .executive-label{color:#ffbd60}
+.execution-story-pulse .execution-track{background:rgba(255,255,255,.13)}
+.execution-story-pulse .execution-legend span{color:#dce9ef}
+
+.priorities-agenda-panel{
+  margin:-4px 0 18px;
+  padding:22px 23px;
+  border-radius:24px;
+  background:#fff;
+  border:1px solid #e2d7d3;
+  box-shadow:0 12px 28px rgba(38,29,28,.035)
+}
+.priorities-agenda-head{
+  display:grid;
+  grid-template-columns:1fr minmax(250px,.55fr);
+  gap:18px;
+  align-items:end;
+  margin-bottom:12px
+}
+.priorities-agenda-head h3{
+  margin:5px 0 0;
+  color:var(--deep);
+  font-family:"Libre Caslon Display",serif;
+  font-size:1.75rem;
+  line-height:1.08
+}
+.priorities-agenda-head p{margin:0;color:var(--muted);font-size:.74rem;line-height:1.55}
+
+@media(max-width:800px){
+  .results-managerial-read,.execution-story-pulse,.priorities-agenda-head{grid-template-columns:1fr}
+  .results-coverage{padding:16px 0 0;border-left:0;border-top:1px solid #dbe4e7}
+}
+
 </style>
 </head>
 <body>
@@ -652,7 +737,6 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   </div>
 </header>
 <nav class="nav story-nav"><div class="wrap nav-inner">
-  <a href="#executivo" data-story-nav="executivo">Visão geral</a>
   <a href="#ato-resultados" data-story-nav="ato-resultados"><span>01</span> Resultados</a>
   <a href="#ato-execucao" data-story-nav="ato-execucao"><span>02</span> Execução</a>
   <a href="#ato-transformacao" data-story-nav="ato-transformacao"><span>03</span> Transformação</a>
@@ -661,66 +745,14 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   <span class="story-nav-divider" aria-hidden="true"></span>
   <a class="mediotec-nav-btn" href="./mediotec.html">Gestão Mediotec ↗</a>
 </div></nav>
-<section class="executive-section" id="executivo">
-  <div class="wrap">
-    <div class="executive-head reveal">
-      <div class="vision-kicker">O ano em uma leitura</div>
-      <h2>O que avançou, o que aprendemos e o que pede decisão.</h2>
-      <p id="executiveNarrative">A análise será construída automaticamente a partir dos dados publicados.</p>
-      <div id="executiveScope" class="executive-scope" aria-label="Base de dados desta edição"></div>
-    </div>
-
-    <article class="executive-highlights-panel">
-      <div class="executive-highlights-head">
-        <div>
-          <div class="executive-label">O que avançou</div>
-          <h3>Resultados que evidenciam valor entregue.</h3>
-        </div>
-        <p>Seleção automática de até três evidências positivas já existentes no relatório.</p>
-      </div>
-      <div id="executiveHighlights"></div>
-    </article>
-
-    <div class="executive-grid">
-      <article class="executive-panel executive-performance">
-        <div class="executive-label">Desempenho dos indicadores</div>
-        <div class="executive-stats" id="executiveStats"></div>
-        <div class="executive-track" id="indicatorPerformanceTrack" aria-label="Distribuição do desempenho dos indicadores"></div>
-        <p class="executive-footnote" id="contractExecutiveSummary"></p>
-      </article>
-
-      <article class="executive-panel executive-agenda">
-        <div class="executive-label">O que merece atenção</div>
-        <div id="executiveAgenda"></div>
-      </article>
-    </div>
-
-    <div class="executive-lower">
-      <article class="executive-panel">
-        <div class="executive-label">Execução consolidada</div>
-        <div class="executive-callout" id="executionHeadline">—</div>
-        <p class="executive-copy" id="executionCopy"></p>
-        <div class="execution-track" id="executionTrack"></div>
-        <div class="execution-legend" id="executionLegend"></div>
-      </article>
-
-      <article class="executive-panel">
-        <div class="executive-label">O que isso significa</div>
-        <div class="executive-callout" id="coverageHeadline">—</div>
-        <p class="executive-copy" id="coverageCopy"></p>
-        <div id="coverageGaps"></div>
-      </article>
-    </div>
-  </div>
-</section>
 <main>
 <section class="story-break story-break-paper" id="ato-resultados" data-story-section="ato-resultados">
   <div class="wrap story-break-inner">
     <div class="story-break-number">01</div>
     <div>
       <div class="story-break-kicker">Resultados</div>
-      <h2>Primeiro, olhamos para aquilo que mudou.</h2>
-      <p>Os indicadores mostram onde avançamos, onde a meta foi alcançada e quais sinais ainda exigem leitura gerencial.</p>
+      <h2>Os resultados mostram onde avançamos e onde ainda há atenção.</h2>
+      <p>Começamos pelas evidências: metas alcançadas, desvios relevantes e os sinais que ajudam a orientar a leitura da gestão.</p>
       <span class="story-handoff">Da estratégia para a evidência ↓</span>
     </div>
   </div>
@@ -731,10 +763,35 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       <div class="chapter">01</div>
       <div>
         <div class="section-domain">Indicadores</div>
-        <h2>O que os resultados nos mostram</h2>
-        <p class="section-lead">Começamos pela síntese, destacamos as exceções e depois abrimos a evidência completa. A pergunta central é simples: <strong>onde avançamos e onde ainda há distância da meta?</strong></p>
+        <h2>Indicadores que sustentam essa leitura</h2>
+        <p class="section-lead">Primeiro, destacamos as evidências e as exceções relevantes. Depois, abrimos o conjunto completo para responder: <strong>onde a meta foi atendida e onde ainda existe distância a percorrer?</strong></p>
       </div>
     </div>
+
+    <section class="results-story-block" aria-label="Destaques e leitura gerencial dos resultados">
+      <article class="executive-highlights-panel results-highlights-panel">
+        <div class="executive-highlights-head">
+          <div>
+            <div class="executive-label">Destaques do ciclo</div>
+            <h3>Evidências que merecem ser lembradas.</h3>
+          </div>
+          <p>Até três evidências positivas já existentes no relatório, sem criar novos dados.</p>
+        </div>
+        <div id="executiveHighlights"></div>
+      </article>
+
+      <article class="results-managerial-read">
+        <div>
+          <div class="executive-label">Leitura gerencial</div>
+          <p id="executiveNarrative" class="results-managerial-narrative">A análise será construída automaticamente a partir dos dados publicados.</p>
+        </div>
+        <div class="results-coverage">
+          <strong id="coverageHeadline">—</strong>
+          <p id="coverageCopy">Aguardando dados.</p>
+          <div id="coverageGaps"></div>
+        </div>
+      </article>
+    </section>
 
     <div id="indicatorOverview" class="indicator-overview"></div>
 
@@ -802,6 +859,17 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 </section>
 <section class="section portfolio-section" id="programas"><div class="wrap">
 <div class="section-head reveal"><div class="chapter">02</div><div><div class="section-domain">Programas e portfólio</div><h2>Como transformamos estratégia em entrega</h2><p class="section-lead">A execução é apresentada como portfólio: primeiro o panorama consolidado; depois, os programas, ações e exceções que explicam o resultado.</p></div></div>
+<article class="execution-story-pulse">
+  <div class="execution-story-copy">
+    <div class="executive-label">Execução consolidada</div>
+    <strong id="executionHeadline">—</strong>
+    <p id="executionCopy">Aguardando dados.</p>
+  </div>
+  <div class="execution-story-visual">
+    <div class="execution-track" id="executionTrack"></div>
+    <div class="execution-legend" id="executionLegend"></div>
+  </div>
+</article>
 <div id="storyPortfolioOverview"></div>
 <div id="programPortfolioSummary"></div>
 <div id="programsList"></div>
@@ -883,7 +951,18 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
         <p class="section-lead">Primeiro, aquilo que exige decisão. Depois, os pontos ativos organizados por categoria e urgência. O foco deixa de ser registrar o problema e passa a ser <strong>orientar o próximo movimento.</strong></p>
       </div>
     </div>
-    <div id="attentionDecisionQueue"></div>
+
+    <article class="priorities-agenda-panel">
+      <div class="priorities-agenda-head">
+        <div>
+          <div class="executive-label">Agenda executiva</div>
+          <h3>O que pede posicionamento ou acompanhamento</h3>
+        </div>
+        <p>As exceções mais relevantes são priorizadas automaticamente e levam diretamente à evidência correspondente.</p>
+      </div>
+      <div id="executiveAgenda"></div>
+    </article>
+
     <div id="attentionExecutiveSummary"></div>
     <div id="attentionGrid"></div>
   </div>
@@ -1155,19 +1234,6 @@ function renderExecutiveAnalytics({indicators,programs,actions,quality,innovatio
   const p1=active.filter(x=>x.p.rank===1).length;
   const decisions=active.filter(x=>x.row.requires_decision===true).length;
 
-  $("#executiveStats").innerHTML=`
-    <div class="executive-stat good"><strong>${good}</strong><span>indicadores na meta</span></div>
-    <div class="executive-stat alert"><strong>${alert}</strong><span>indicadores em atenção</span></div>
-    <div class="executive-stat neutral"><strong>${neutral}</strong><span>sem comparação disponível</span></div>`;
-  const totalForTrack=Math.max(indicators.length,1);
-  $("#indicatorPerformanceTrack").innerHTML=`
-    <span class="track-good" style="width:${good/totalForTrack*100}%"></span>
-    <span class="track-alert" style="width:${alert/totalForTrack*100}%"></span>
-    <span class="track-neutral" style="width:${neutral/totalForTrack*100}%"></span>`;
-  $("#contractExecutiveSummary").textContent=contractComparable
-    ?`Contrato de Gestão: ${contractGood} de ${contractComparable} indicadores comparáveis estão na meta.`
-    :"Contrato de Gestão: ainda não há indicadores comparáveis suficientes.";
-
   const narrativeParts=[];
   narrativeParts.push(comparable?`${successRate}% dos indicadores com resultado comparável atingem a meta.`:"Ainda não há base comparável suficiente para consolidar o desempenho.");
   if(allActions.length)narrativeParts.push(`${completionRate}% das ${allActions.length} ações cadastradas estão finalizadas; ${risk} em risco e ${attnActions} em atenção.`);
@@ -1327,7 +1393,7 @@ function renderAttentionExecutive(attention){
     String(a.row.name||"").localeCompare(String(b.row.name||""),"pt-BR")
   );
 
-  $("#attentionDecisionQueue").innerHTML=decisionItems.length
+  const attentionDecisionQueueHtml=decisionItems.length
     ?`<section class="attention-decision-queue">
       <div class="attention-decision-queue-head">
         <div><div class="kicker">Tomada de decisão</div><h3>Decisões requeridas</h3></div>
@@ -1745,7 +1811,7 @@ function setupStoryNavigation(){
   links.forEach(link=>link.addEventListener("click",()=>setActive(link.dataset.storyNav)));
 }
 
-function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveScope').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#storyPortfolioOverview').innerHTML='';$('#storyConsolidated').textContent='—';$('#storyConsolidatedCopy').textContent='Aguardando dados.';$('#storyLearned').textContent='—';$('#storyLearnedCopy').textContent='Aguardando dados.';$('#storyPriorities').textContent='—';$('#storyPrioritiesCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();setupStoryNavigation();}
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionExecutiveSummary').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#storyPortfolioOverview').innerHTML='';$('#storyConsolidated').textContent='—';$('#storyConsolidatedCopy').textContent='Aguardando dados.';$('#storyLearned').textContent='—';$('#storyLearnedCopy').textContent='Aguardando dados.';$('#storyPriorities').textContent='—';$('#storyPrioritiesCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();setupStoryNavigation();}
 const reportParams=new URLSearchParams(location.search);
 const requestedYear=Number(reportParams.get("year"))||null;
 const autoPdf=reportParams.get("pdf")==="1";
@@ -1798,14 +1864,6 @@ async function load(){
   const projects=quality.length+innovation.length;
 
   $('#coverNumbers').innerHTML=`<div class="cover-number"><strong>${indicators.length}</strong><span>indicadores acompanhados</span></div><div class="cover-number"><strong>${programs.length}</strong><span>programas em portfólio</span></div><div class="cover-number"><strong>${projects}</strong><span>projetos em portfólio</span></div><div class="cover-number"><strong>${attention.length}</strong><span>pontos de atenção</span></div>`;
-  $('#executiveScope').innerHTML=`
-    <span class="executive-scope-item"><strong>${indicators.length}</strong> indicadores</span>
-    <span class="executive-scope-item"><strong>${programs.length}</strong> programas</span>
-    <span class="executive-scope-item"><strong>${quality.length}</strong> projetos de qualidade</span>
-    <span class="executive-scope-item"><strong>${innovation.length}</strong> projetos de inovação</span>
-    <span class="executive-scope-item"><strong>${awards.length}</strong> reconhecimentos</span>
-    <span class="executive-scope-item"><strong>${partners.length}</strong> parcerias</span>
-    <span class="executive-scope-item"><strong>${attention.length}</strong> pontos de atenção</span>`;
 
   publishedIndicators=indicators;
   currentIndicatorStatusFilter="all";
