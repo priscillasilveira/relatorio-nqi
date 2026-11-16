@@ -514,6 +514,108 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   .card,.program-feature,.award-card,.attention-card{break-inside:avoid}
   body{background:#fff}
 }
+
+/* v37 · Storytelling executivo */
+.cover-storyline{
+  max-width:720px;
+  margin:0 0 14px;
+  color:#ffd08a;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(1.35rem,2.2vw,2rem);
+  line-height:1.15
+}
+.story-map-card{padding-bottom:24px}
+.cover-story-path{display:grid;grid-template-columns:1fr;gap:6px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15)}
+.cover-story-path span{display:flex;align-items:center;gap:9px;color:#e8f2f6;font-size:.72rem;font-weight:700}
+.cover-story-path b{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:999px;background:rgba(255,255,255,.11);color:#ffd08a;font-size:.61rem}
+.supplementary-link{background:transparent!important;color:#e5f0f5!important;border-color:rgba(255,255,255,.24)!important;box-shadow:none!important}
+.supplementary-link:hover{background:rgba(255,255,255,.08)!important;color:#fff!important}
+
+.story-nav .nav-inner{align-items:center}
+.story-nav a{display:inline-flex;align-items:center;gap:6px}
+.story-nav a>span{font-size:.58rem;color:#8c9ca4}
+.story-nav a.active{color:var(--deep)}
+.story-nav a.active:not(.mediotec-nav-btn){position:relative}
+.story-nav a.active:not(.mediotec-nav-btn):after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:3px;border-radius:999px;background:var(--orange)}
+.story-nav-divider{flex:0 0 1px;width:1px;height:24px;background:#d2dadd}
+.nav a.mediotec-nav-btn{padding:6px 10px;margin:-6px 0;background:transparent;color:#6a7c86;border:1px solid #d8e0e3}
+.nav a.mediotec-nav-btn:hover{background:#eef4f7;color:#315e78}
+
+.section-domain{
+  display:inline-flex;
+  margin-bottom:8px;
+  color:var(--orange);
+  font-size:.64rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase
+}
+.section-lead strong{color:#425967}
+
+.story-break{position:relative;overflow:hidden;scroll-margin-top:56px}
+.story-break-inner{min-height:52vh;display:grid;grid-template-columns:170px minmax(0,780px);gap:44px;align-items:center;padding-top:74px;padding-bottom:74px}
+.story-break-number{font-family:"Libre Caslon Display",serif;font-size:clamp(5.5rem,10vw,9rem);line-height:.8;letter-spacing:-.05em;opacity:.22}
+.story-break-kicker{font-size:.69rem;text-transform:uppercase;letter-spacing:.18em;font-weight:900;margin-bottom:12px}
+.story-break h2{font-family:"Libre Caslon Display",serif;font-size:clamp(3rem,6vw,5.5rem);line-height:.91;letter-spacing:-.045em;margin:0}
+.story-break p{max-width:720px;font-size:1rem;line-height:1.75;margin:20px 0 0}
+.story-handoff{display:inline-flex;margin-top:24px;padding:7px 10px;border-radius:999px;font-size:.67rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
+
+.story-break-paper{background:linear-gradient(135deg,#f5eee2,#fbf8f2);color:var(--deep)}
+.story-break-paper .story-break-kicker{color:var(--orange)}
+.story-break-paper p{color:#657681}.story-break-paper .story-handoff{background:#fff;color:#61737e;border:1px solid #e4ded4}
+
+.story-break-dark{background:linear-gradient(135deg,#062c4a,#074a73);color:#fff}
+.story-break-dark .story-break-kicker{color:#ffbd60}.story-break-dark p{color:#d4e3ea}.story-break-dark .story-handoff{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.13)}
+
+.story-break-blue{background:linear-gradient(135deg,#eaf3f7,#f8fbfc);color:var(--deep)}
+.story-break-blue .story-break-kicker{color:#1576aa}.story-break-blue p{color:#627782}.story-break-blue .story-handoff{background:#fff;color:#4f6d7c;border:1px solid #d6e5eb}
+
+.story-break-impact{background:linear-gradient(135deg,#fff8ec,#fbf2df);color:#624b28}
+.story-break-impact .story-break-kicker{color:#be7415}.story-break-impact p{color:#74644b}.story-break-impact .story-handoff{background:#fff;color:#735b36;border:1px solid #ead8b9}
+
+.story-break-priority{background:linear-gradient(135deg,#351f22,#6a332e);color:#fff}
+.story-break-priority .story-break-kicker{color:#ffc47a}.story-break-priority p{color:#eddcda}.story-break-priority .story-handoff{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.14)}
+
+.story-portfolio-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:-4px 0 20px}
+.story-portfolio-card{padding:16px 17px;border-radius:18px;background:#fff;border:1px solid #dfe7ea}
+.story-portfolio-card .story-portfolio-label{font-size:.61rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#6e818b}
+.story-portfolio-card strong{display:block;margin-top:8px;font-family:"Libre Caslon Display",serif;font-size:2rem;line-height:1;color:var(--deep)}
+.story-portfolio-card p{margin:6px 0 0;color:#74858e;font-size:.69rem;line-height:1.45}
+.story-portfolio-card.alert{border-color:#ead4cf;background:#fffafa}
+.story-portfolio-card.alert strong{color:var(--bad)}
+
+.story-closing{padding:86px 0 94px;background:linear-gradient(135deg,#052b4a,#083e64);color:#fff}
+.story-closing-head{max-width:850px}
+.story-closing-head .story-break-kicker{color:#ffbd60}
+.story-closing-head h2{font-family:"Libre Caslon Display",serif;font-size:clamp(3.2rem,6vw,5.4rem);line-height:.93;letter-spacing:-.045em;margin:10px 0 16px}
+.story-closing-head>p{color:#d2e1e8;line-height:1.7}
+.story-closing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.story-closing-grid article{position:relative;min-height:205px;padding:20px;border-radius:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13)}
+.story-closing-grid article>span{font-size:.61rem;font-weight:900;color:#ffbd60}
+.story-closing-label{margin-top:18px;text-transform:uppercase;letter-spacing:.1em;font-size:.64rem;color:#bdd1dc;font-weight:900}
+.story-closing-grid strong{display:block;margin-top:8px;font-family:"Libre Caslon Display",serif;font-size:2.1rem;line-height:1.05;color:#fff}
+.story-closing-grid p{margin:9px 0 0;color:#d2e1e8;font-size:.76rem;line-height:1.55}
+.story-closing blockquote{max-width:980px;margin:54px 0 0;padding:0;border:0;font-family:"Libre Caslon Display",serif;font-size:clamp(2rem,4vw,3.5rem);line-height:1.08;color:#fff}
+.story-closing blockquote:before{content:"";display:block;width:72px;height:4px;border-radius:999px;background:var(--orange);margin-bottom:24px}
+
+@media(max-width:900px){
+  .story-break-inner{grid-template-columns:110px 1fr;gap:24px}
+  .story-portfolio-overview,.story-closing-grid{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .story-break-inner{min-height:auto;grid-template-columns:1fr;gap:14px;padding-top:58px;padding-bottom:58px}
+  .story-break-number{font-size:4rem}
+  .story-break h2{font-size:3rem}
+  .story-nav-divider{display:none}
+  .story-closing{padding:66px 0}
+}
+@media print{
+  .story-break{break-before:page;min-height:auto!important}
+  .story-break-inner{min-height:auto!important;padding-top:34px!important;padding-bottom:34px!important}
+  .story-closing{break-before:page;padding:46px 0!important}
+  .story-handoff{display:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -524,25 +626,46 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="cover-grid">
       <div>
         <div class="cover-rule"></div>
+        <div class="cover-storyline">Um ano de execução, aprendizagem e transformação.</div>
         <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
         <p class="cover-deck" id="coverIntro">Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
         <div class="cover-meta"><span class="meta-chip" id="coverYear">Versão: —</span><span class="meta-chip" id="publishedAt">Data de atualização: —</span><span class="meta-chip" id="coverEdition">Edição: em preparação</span></div><div class="cover-actions">
-<a class="pdf-btn mediotec-cover-btn" href="./mediotec.html"><span class="mediotec-cover-icon">08</span><span>Acessar Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
+<a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
 <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
 <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
 </div>
       </div>
-      <aside class="cover-note"><small>Apresentação</small><h3>Relatório executivo anual</h3><p>Consolidação anual dos resultados, da execução dos programas e projetos, dos reconhecimentos, das parcerias e dos pontos de atenção.</p></aside>
+      <aside class="cover-note story-map-card">
+        <small>Narrativa do ciclo</small>
+        <h3>Do resultado à decisão.</h3>
+        <p>Uma leitura única do trabalho do NQI, organizada para mostrar valor entregue, capacidade de execução, transformação e prioridades.</p>
+        <div class="cover-story-path" aria-label="Etapas da narrativa">
+          <span><b>01</b> Resultados</span>
+          <span><b>02</b> Execução</span>
+          <span><b>03</b> Transformação</span>
+          <span><b>04</b> Impacto</span>
+          <span><b>05</b> Prioridades</span>
+        </div>
+      </aside>
     </div>
     <div class="cover-numbers" id="coverNumbers"></div>
   </div>
 </header>
-<nav class="nav"><div class="wrap nav-inner"><a href="#executivo">Leitura executiva</a><a href="#indicadores">01 Indicadores</a><a href="#programas">02 Programas</a><a href="#qualidade">03 Qualidade</a><a href="#inovacao">04 Inovação</a><a href="#premios">05 Reconhecimentos</a><a href="#parcerias">06 Parcerias</a><a href="#atencao">07 Pontos de Atenção</a><a class="mediotec-nav-btn" href="./mediotec.html"><span>08</span> Gestão Mediotec ↗</a></div></nav>
+<nav class="nav story-nav"><div class="wrap nav-inner">
+  <a href="#executivo" data-story-nav="executivo">Visão geral</a>
+  <a href="#ato-resultados" data-story-nav="ato-resultados"><span>01</span> Resultados</a>
+  <a href="#ato-execucao" data-story-nav="ato-execucao"><span>02</span> Execução</a>
+  <a href="#ato-transformacao" data-story-nav="ato-transformacao"><span>03</span> Transformação</a>
+  <a href="#ato-impacto" data-story-nav="ato-impacto"><span>04</span> Impacto</a>
+  <a href="#ato-prioridades" data-story-nav="ato-prioridades"><span>05</span> Prioridades</a>
+  <span class="story-nav-divider" aria-hidden="true"></span>
+  <a class="mediotec-nav-btn" href="./mediotec.html">Gestão Mediotec ↗</a>
+</div></nav>
 <section class="executive-section" id="executivo">
   <div class="wrap">
     <div class="executive-head reveal">
-      <div class="vision-kicker">Leitura executiva automática</div>
-      <h2>Resultados, execução e prioridades desta edição.</h2>
+      <div class="vision-kicker">O ano em uma leitura</div>
+      <h2>O que avançou, o que aprendemos e o que pede decisão.</h2>
       <p id="executiveNarrative">A análise será construída automaticamente a partir dos dados publicados.</p>
       <div id="executiveScope" class="executive-scope" aria-label="Base de dados desta edição"></div>
     </div>
@@ -550,7 +673,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <article class="executive-highlights-panel">
       <div class="executive-highlights-head">
         <div>
-          <div class="executive-label">Destaques do ano</div>
+          <div class="executive-label">O que avançou</div>
           <h3>Resultados que evidenciam valor entregue.</h3>
         </div>
         <p>Seleção automática de até três evidências positivas já existentes no relatório.</p>
@@ -567,7 +690,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       </article>
 
       <article class="executive-panel executive-agenda">
-        <div class="executive-label">Agenda executiva</div>
+        <div class="executive-label">O que merece atenção</div>
         <div id="executiveAgenda"></div>
       </article>
     </div>
@@ -582,7 +705,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       </article>
 
       <article class="executive-panel">
-        <div class="executive-label">Cobertura estratégica</div>
+        <div class="executive-label">O que isso significa</div>
         <div class="executive-callout" id="coverageHeadline">—</div>
         <p class="executive-copy" id="coverageCopy"></p>
         <div id="coverageGaps"></div>
@@ -591,13 +714,25 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   </div>
 </section>
 <main>
+<section class="story-break story-break-paper" id="ato-resultados" data-story-section="ato-resultados">
+  <div class="wrap story-break-inner">
+    <div class="story-break-number">01</div>
+    <div>
+      <div class="story-break-kicker">Resultados</div>
+      <h2>Primeiro, olhamos para aquilo que mudou.</h2>
+      <p>Os indicadores mostram onde avançamos, onde a meta foi alcançada e quais sinais ainda exigem leitura gerencial.</p>
+      <span class="story-handoff">Da estratégia para a evidência ↓</span>
+    </div>
+  </div>
+</section>
 <section class="section indicators-section" id="indicadores">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="chapter">01</div>
       <div>
-        <h2>Indicadores de resultado</h2>
-        <p class="section-lead">Leitura comparativa orientada à decisão: primeiro os maiores desvios, depois o conjunto completo de indicadores com realizado, meta, gap e situação.</p>
+        <div class="section-domain">Indicadores</div>
+        <h2>O que os resultados nos mostram</h2>
+        <p class="section-lead">Começamos pela síntese, destacamos as exceções e depois abrimos a evidência completa. A pergunta central é simples: <strong>onde avançamos e onde ainda há distância da meta?</strong></p>
       </div>
     </div>
 
@@ -654,13 +789,36 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div id="indicatorsGrid"></div>
   </div>
 </section>
+<section class="story-break story-break-dark" id="ato-execucao" data-story-section="ato-execucao">
+  <div class="wrap story-break-inner">
+    <div class="story-break-number">02</div>
+    <div>
+      <div class="story-break-kicker">Execução</div>
+      <h2>Resultado é consequência de execução.</h2>
+      <p>Os indicadores mostram onde chegamos. Agora, mostramos o que foi mobilizado para transformar intenção estratégica em entrega.</p>
+      <span class="story-handoff">Da evidência para a ação ↓</span>
+    </div>
+  </div>
+</section>
 <section class="section portfolio-section" id="programas"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">02</div><div><h2>Programas</h2><p class="section-lead">Visão de execução dos programas: avanço das ações, exceções de risco e indicadores relacionados.</p></div></div>
+<div class="section-head reveal"><div class="chapter">02</div><div><div class="section-domain">Programas e portfólio</div><h2>Como transformamos estratégia em entrega</h2><p class="section-lead">A execução é apresentada como portfólio: primeiro o panorama consolidado; depois, os programas, ações e exceções que explicam o resultado.</p></div></div>
+<div id="storyPortfolioOverview"></div>
 <div id="programPortfolioSummary"></div>
 <div id="programsList"></div>
 </div></section>
+<section class="story-break story-break-blue" id="ato-transformacao" data-story-section="ato-transformacao">
+  <div class="wrap story-break-inner">
+    <div class="story-break-number">03</div>
+    <div>
+      <div class="story-break-kicker">Transformação</div>
+      <h2>Executar é importante. Evoluir a forma de fazer é decisivo.</h2>
+      <p>Qualidade e inovação mostram duas dimensões complementares: elevar o padrão do que já fazemos e criar novas formas de gerar valor.</p>
+      <span class="story-handoff">Da execução para a transformação ↓</span>
+    </div>
+  </div>
+</section>
 <section class="section quality-section portfolio-section" id="qualidade"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">03</div><div><h2>Projetos de qualidade</h2><p class="section-lead">Portfólio de qualidade priorizado por risco, atenção e estágio de execução.</p></div></div>
+<div class="section-head reveal"><div class="chapter">03A</div><div><div class="section-domain">Projetos de qualidade</div><h2>Onde elevamos o padrão</h2><p class="section-lead">Iniciativas que fortalecem consistência, desempenho e melhoria contínua, priorizadas por risco e estágio de execução.</p></div></div>
 <div id="qualityPortfolioSummary"></div>
 <div class="portfolio-filters" data-project-filter-group="quality">
 <button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
@@ -672,7 +830,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 <div class="grid12" id="qualityGrid"></div>
 </div></section>
 <section class="section innovation-section portfolio-section" id="inovacao"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">04</div><div><h2>Projetos de inovação</h2><p class="section-lead">Portfólio de inovação com leitura rápida de execução, risco e próximos marcos.</p></div></div>
+<div class="section-head reveal"><div class="chapter">03B</div><div><div class="section-domain">Projetos de inovação</div><h2>Onde mudamos a forma de fazer</h2><p class="section-lead">Projetos que testam novas abordagens, ampliam possibilidades e transformam a maneira como o NQI entrega valor.</p></div></div>
 <div id="innovationPortfolioSummary"></div>
 <div class="portfolio-filters portfolio-filters-dark" data-project-filter-group="innovation">
 <button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button>
@@ -683,23 +841,46 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 </div>
 <div class="grid12" id="innovationGrid"></div>
 </div></section>
+<section class="story-break story-break-impact" id="ato-impacto" data-story-section="ato-impacto">
+  <div class="wrap story-break-inner">
+    <div class="story-break-number">04</div>
+    <div>
+      <div class="story-break-kicker">Impacto</div>
+      <h2>Parte do valor aparece no resultado. Parte aparece no alcance.</h2>
+      <p>Reconhecimentos e parcerias mostram como o trabalho do NQI ganha legitimidade, visibilidade e capacidade de articulação além da execução interna.</p>
+      <span class="story-handoff">Da transformação para o alcance ↓</span>
+    </div>
+  </div>
+</section>
 <section class="section awards-section" id="premios"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">05</div><div><h2>Prêmios e reconhecimentos</h2><p class="section-lead">Evidências de reconhecimento institucional organizadas por categoria, com destaque para resultados e colocações.</p></div></div>
+<div class="section-head reveal"><div class="chapter">04A</div><div><div class="section-domain">Prêmios e reconhecimentos</div><h2>Onde nosso trabalho foi reconhecido</h2><p class="section-lead">Evidências externas e institucionais que ajudam a demonstrar relevância, qualidade e consistência das entregas.</p></div></div>
 <div id="awardsSummary"></div>
 <div id="awardsGrid"></div>
 </div></section>
 <section class="section partners-section" id="parcerias"><div class="wrap">
-<div class="section-head reveal"><div class="chapter">06</div><div><h2>Parcerias</h2><p class="section-lead">Rede de articulação institucional com destaque para parceiros estratégicos, sem repetição entre destaques e rede ampliada.</p></div></div>
+<div class="section-head reveal"><div class="chapter">04B</div><div><div class="section-domain">Parcerias</div><h2>Com quem ampliamos nosso alcance</h2><p class="section-lead">A rede de articulação que expandiu capacidade, conexão e alcance institucional ao longo do ciclo.</p></div></div>
 <div id="partnersSummary"></div>
 <div id="partnersGrid"></div>
 </div></section>
+<section class="story-break story-break-priority" id="ato-prioridades" data-story-section="ato-prioridades">
+  <div class="wrap story-break-inner">
+    <div class="story-break-number">05</div>
+    <div>
+      <div class="story-break-kicker">Prioridades</div>
+      <h2>Uma boa leitura executiva não termina no que aconteceu.</h2>
+      <p>Ela termina no que precisa ser acompanhado, tratado ou decidido para que o próximo ciclo avance com mais clareza.</p>
+      <span class="story-handoff">Da leitura para a decisão ↓</span>
+    </div>
+  </div>
+</section>
 <section class="section attention-section" id="atencao">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="chapter">07</div>
+      <div class="chapter">05</div>
       <div>
-        <h2>Pontos de atenção</h2>
-        <p class="section-lead">Leitura por categoria e urgência: as categorias são ordenadas pelo prazo mais próximo e, dentro de cada grupo, os itens aparecem do mais urgente para o menos urgente.</p>
+        <div class="section-domain">Decisões e pontos de atenção</div>
+        <h2>O que exige nossa atenção agora</h2>
+        <p class="section-lead">Primeiro, aquilo que exige decisão. Depois, os pontos ativos organizados por categoria e urgência. O foco deixa de ser registrar o problema e passa a ser <strong>orientar o próximo movimento.</strong></p>
       </div>
     </div>
     <div id="attentionDecisionQueue"></div>
@@ -708,7 +889,21 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   </div>
 </section>
 </main>
-<section class="final-note"><div class="wrap"><h3>Encerramento da edição</h3><p>Esta publicação consolida a versão vigente do relatório, identificando resultados, execução, reconhecimento institucional e pontos de atenção para acompanhamento.</p></div></section>
+<section class="story-closing" id="proximo-ciclo">
+  <div class="wrap">
+    <div class="story-closing-head">
+      <div class="story-break-kicker">Próximo ciclo</div>
+      <h2>O que levamos deste ciclo</h2>
+      <p>O fechamento transforma a retrospectiva em direção: o que consolidamos, o que os dados nos ensinaram e o que precisa orientar a próxima etapa.</p>
+    </div>
+    <div class="story-closing-grid">
+      <article><span>01</span><div class="story-closing-label">Consolidamos</div><strong id="storyConsolidated">—</strong><p id="storyConsolidatedCopy">Aguardando dados.</p></article>
+      <article><span>02</span><div class="story-closing-label">Aprendemos</div><strong id="storyLearned">—</strong><p id="storyLearnedCopy">Aguardando dados.</p></article>
+      <article><span>03</span><div class="story-closing-label">Priorizamos</div><strong id="storyPriorities">—</strong><p id="storyPrioritiesCopy">Aguardando dados.</p></article>
+    </div>
+    <blockquote>O próximo ciclo não começa do zero. Começa a partir do que aprendemos, consolidamos e decidimos aqui.</blockquote>
+  </div>
+</section>
 <footer><div class="wrap">Relatório Executivo Anual · Núcleo de Qualidade e Inovação</div></footer>
 <script>
 let db,auth;
@@ -1487,7 +1682,70 @@ function renderPartnersExecutive(partners){
 }
 
 
-function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveScope').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();}
+
+function renderStoryPortfolioOverview({programs,actions,quality,qualityActions,innovation,innovationActions}){
+  const groups=[
+    {label:"Programas",items:programs,rows:actions},
+    {label:"Qualidade",items:quality,rows:qualityActions},
+    {label:"Inovação",items:innovation,rows:innovationActions}
+  ];
+  $("#storyPortfolioOverview").innerHTML=`<div class="story-portfolio-overview">${groups.map(g=>{
+    const s=actionStats(g.rows);
+    const rate=s.total?Math.round((s.finalized/s.total)*100):0;
+    const exceptions=s.risk+s.attention+s.overdue;
+    return `<article class="story-portfolio-card ${exceptions?"alert":""}">
+      <div class="story-portfolio-label">${esc(g.label)}</div>
+      <strong>${g.items.length} iniciativa${g.items.length===1?"":"s"}</strong>
+      <p>${s.total?`${rate}% das ações finalizadas · ${exceptions} sinal${exceptions===1?"":"is"} de atenção/risco/prazo`:"Sem ações cadastradas"}</p>
+    </article>`;
+  }).join("")}</div>`;
+}
+function renderStoryClosing({indicators,actions,qualityActions,innovationActions,attention}){
+  const states=indicators.map(metricState);
+  const good=states.filter(x=>x.cls==="good").length;
+  const comparable=states.filter(x=>x.cls!=="neutral").length;
+  const allActions=[...actions,...qualityActions,...innovationActions];
+  const finalized=allActions.filter(a=>a.status==="finalizada").length;
+  const completion=allActions.length?Math.round(finalized/allActions.length*100):0;
+
+  const active=attention.filter(x=>attentionStatus(x)!=="resolvido");
+  const decisions=active.filter(x=>x.requires_decision===true).length;
+  const p1=active.filter(x=>attentionPriority(x).cls==="p1").length;
+  const indicatorAlerts=states.filter(x=>x.cls==="alert").length;
+
+  $("#storyConsolidated").textContent=comparable?`${good} de ${comparable} indicadores na meta`:`${completion}% da execução concluída`;
+  $("#storyConsolidatedCopy").textContent=allActions.length
+    ?`${finalized} de ${allActions.length} ações cadastradas estão finalizadas. O ciclo deixa uma base concreta de execução e evidências.`
+    :"O ciclo consolida os resultados e entregas registrados nesta edição.";
+
+  $("#storyLearned").textContent=indicatorAlerts?`${indicatorAlerts} indicador${indicatorAlerts===1?"":"es"} em atenção`:`${active.length} ponto${active.length===1?"":"s"} ativo${active.length===1?"":"s"}`;
+  $("#storyLearnedCopy").textContent=indicatorAlerts||active.length
+    ?`Os dados mostram com clareza onde ainda existe distância da meta ou necessidade de acompanhamento.`
+    :"Os dados disponíveis não apontam exceções relevantes neste fechamento.";
+
+  $("#storyPriorities").textContent=decisions?`${decisions} decisão${decisions===1?"":"ões"} requerida${decisions===1?"":"s"}`:p1?`${p1} prioridade${p1===1?"":"s"} P1`:`${active.length} ponto${active.length===1?"":"s"} para acompanhar`;
+  $("#storyPrioritiesCopy").textContent=decisions
+    ?`O próximo movimento depende de posicionamentos explícitos da liderança já identificados na Agenda Executiva.`
+    :p1
+      ?`As prioridades críticas orientam o foco imediato do próximo ciclo.`
+      :`Os pontos ativos orientam o acompanhamento e o próximo ciclo de gestão.`;
+}
+function setupStoryNavigation(){
+  const links=[...document.querySelectorAll("[data-story-nav]")];
+  if(!links.length)return;
+  const targets=links.map(link=>({link,target:document.getElementById(link.dataset.storyNav)})).filter(x=>x.target);
+  const setActive=id=>links.forEach(link=>link.classList.toggle("active",link.dataset.storyNav===id));
+  if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(visible)setActive(visible.target.id);
+    },{rootMargin:"-30% 0px -58% 0px",threshold:[0,.2,.5,.8]});
+    targets.forEach(x=>observer.observe(x.target));
+  }
+  links.forEach(link=>link.addEventListener("click",()=>setActive(link.dataset.storyNav)));
+}
+
+function showPreparing(){$('#coverNumbers').innerHTML=`<div class="cover-number"><strong>—</strong><span>indicadores</span></div><div class="cover-number"><strong>—</strong><span>programas</span></div><div class="cover-number"><strong>—</strong><span>projetos</span></div><div class="cover-number"><strong>—</strong><span>pontos de atenção</span></div>`;$('#indicatorOverview').innerHTML='';$('#indicatorPriority').innerHTML=empty('Os maiores desvios aparecerão após a publicação.');$('#indicatorResultCount').textContent='0';$('#indicatorsGrid').innerHTML=empty('Os indicadores aparecerão após a primeira publicação.');$('#programPortfolioSummary').innerHTML='';$('#programsList').innerHTML=empty('Os programas aparecerão após a primeira publicação.');$('#qualityPortfolioSummary').innerHTML='';$('#qualityGrid').innerHTML=empty('Os projetos de qualidade aparecerão após a primeira publicação.');$('#innovationPortfolioSummary').innerHTML='';$('#innovationGrid').innerHTML=empty('Os projetos de inovação aparecerão após a primeira publicação.');$('#awardsSummary').innerHTML='';$('#awardsGrid').innerHTML=empty('Os prêmios e reconhecimentos aparecerão após a primeira publicação.');$('#partnersSummary').innerHTML='';$('#partnersGrid').innerHTML=empty('As parcerias aparecerão após a primeira publicação.');$('#attentionGrid').innerHTML=empty('Os pontos de atenção aparecerão após a primeira publicação.');$('#attentionDecisionQueue').innerHTML='';$('#attentionExecutiveSummary').innerHTML='';$('#executiveScope').innerHTML='';$('#executiveHighlights').innerHTML='<div class="executive-highlights-empty">Os destaques aparecerão após a publicação dos dados.</div>';$('#executiveStats').innerHTML='<div class="executive-stat neutral"><strong>—</strong><span>aguardando publicação</span></div>';$('#executiveAgenda').innerHTML='<p class="executive-copy">A agenda executiva aparecerá após a publicação dos dados.</p>';$('#executionHeadline').textContent='—';$('#executionCopy').textContent='Aguardando dados.';$('#coverageHeadline').textContent='—';$('#coverageCopy').textContent='Aguardando dados.';$('#storyPortfolioOverview').innerHTML='';$('#storyConsolidated').textContent='—';$('#storyConsolidatedCopy').textContent='Aguardando dados.';$('#storyLearned').textContent='—';$('#storyLearnedCopy').textContent='Aguardando dados.';$('#storyPriorities').textContent='—';$('#storyPrioritiesCopy').textContent='Aguardando dados.';$('#loading').classList.add('hidden');setupReveal();setupStoryNavigation();}
 const reportParams=new URLSearchParams(location.search);
 const requestedYear=Number(reportParams.get("year"))||null;
 const autoPdf=reportParams.get("pdf")==="1";
@@ -1557,6 +1815,7 @@ async function load(){
   applyIndicatorFilter();
 
   renderProgramsPortfolio(programs,actions,byId);
+  renderStoryPortfolioOverview({programs,actions,quality,qualityActions,innovation,innovationActions});
   portfolioData={quality,innovation,qualityActions,innovationActions,indicatorsById:byId};
   projectPortfolioFilter={quality:"all",innovation:"all"};
   renderProjectPortfolio("quality");
@@ -1567,9 +1826,11 @@ async function load(){
 
   renderExecutiveAnalytics({indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention});
   renderAttentionExecutive(attention);
+  renderStoryClosing({indicators,actions,qualityActions,innovationActions,attention});
 
   $('#loading').classList.add('hidden');
   setupReveal();
+  setupStoryNavigation();
   if(autoPdf)setTimeout(()=>window.print(),350);
 }
 
