@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Build v44 | 2026-11-17T11:12:21-03:00 | indicadores Admin -->
 <!-- Build v43 | 2026-11-17T10:46:37-03:00 | revisão estrutural Admin -->
 <!-- Build v42 | 2026-11-16T13:37:08-03:00 -->
 <!-- Build v41 | 2026-11-16T13:26:31-03:00 | Qualidade unificada -->
@@ -36,7 +37,7 @@
 .indicator-quick-table,.portfolio-quick-table{border:1px solid #dce4e7;border-radius:17px;overflow-x:auto;overflow-y:hidden;background:#fff;-webkit-overflow-scrolling:touch}
 .indicator-quick-header,.indicator-quick-row,.portfolio-quick-header,.portfolio-quick-row{display:grid;gap:9px;align-items:center}
 .indicator-quick-header,.portfolio-quick-header{padding:9px 11px;background:#f1f5f6;color:#72818a;font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800}
-.indicator-quick-header,.indicator-quick-row{grid-template-columns:minmax(240px,1.55fr) 110px 125px 125px 145px 135px 175px}
+.indicator-quick-header,.indicator-quick-row{grid-template-columns:minmax(250px,1.45fr) minmax(280px,1.25fr) 110px 120px 120px 140px 135px 190px;min-width:1450px}
 .portfolio-quick-header.program,.portfolio-quick-row.program{grid-template-columns:minmax(250px,1.55fr) 110px 80px 140px 190px}
 .portfolio-quick-header.project,.portfolio-quick-row.project{grid-template-columns:minmax(240px,1.4fr) 155px 150px 80px 190px}
 .indicator-quick-row,.portfolio-quick-row{padding:9px 11px;border-top:1px solid #edf0f1}
@@ -184,6 +185,41 @@
 .planning-admin-table{border:1px solid #dce4e7;border-radius:17px;overflow:auto;background:#fff}.planning-admin-header,.planning-admin-row{display:grid;grid-template-columns:220px minmax(320px,1.5fr) minmax(280px,1.2fr) 160px;gap:9px;align-items:start;min-width:1040px}.planning-admin-header{padding:9px 11px;background:#f1f5f6;color:#61737e;font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;font-weight:800}.planning-admin-row{padding:10px 11px;border-top:1px solid #edf0f1}.planning-admin-row.is-new{background:#fffdf7}.planning-admin-row input,.planning-admin-row textarea{width:100%;padding:9px;border:1px solid #d6e0e4;border-radius:10px;background:#fff;color:#2a4351;font:inherit}.planning-admin-row textarea{min-height:68px;resize:vertical;line-height:1.4}.planning-admin-actions{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.planning-admin-state{font-size:.65rem;color:#2e8656}.readonly-mode #addPlanningRow,.readonly-mode [data-planning-delete]{display:none!important}
 [data-iq-delete],[data-med-delete]{font-weight:900!important}
 
+
+/* v44 · Indicadores: informação visível + ação Excluir sempre localizável */
+.indicator-info-quick{
+  min-height:58px!important;
+  line-height:1.42!important;
+  font-size:.76rem!important;
+  background:#fbfdfe!important;
+}
+.indicator-quick-header>span:last-child{
+  position:sticky;
+  right:0;
+  z-index:4;
+  background:#f1f5f6;
+  padding:7px 6px;
+  box-shadow:-10px 0 15px rgba(31,57,70,.06)
+}
+.indicator-quick-row .quick-row-actions{
+  position:sticky;
+  right:0;
+  z-index:3;
+  align-self:stretch;
+  background:#fff;
+  padding:5px 0 5px 8px;
+  box-shadow:-10px 0 15px rgba(31,57,70,.06)
+}
+.indicator-quick-row.is-new .quick-row-actions{background:#fffdf7}
+.indicator-quick-row [data-iq-delete]{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  min-width:66px;
+  font-weight:900!important
+}
+.readonly-mode .indicator-quick-row [data-iq-delete]{display:none!important}
+
 </style>
 
 <style>
@@ -207,7 +243,7 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 </section>
 
 <div class="app hidden" id="app">
-<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação · v43 · 17/11/2026 · 10:46</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><a class="btn ghost mini" href="./" target="_blank" rel="noopener">Acessar Relatório NQI ↗</a><a class="btn ghost mini" href="./mediotec.html" target="_blank" rel="noopener">Gestão Mediotec ↗</a><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
+<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação · v44 · 17/11/2026 · 11:12</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><a class="btn ghost mini" href="./" target="_blank" rel="noopener">Acessar Relatório NQI ↗</a><a class="btn ghost mini" href="./mediotec.html" target="_blank" rel="noopener">Gestão Mediotec ↗</a><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
 <div class="shell">
   <aside class="sidebar">
     <button class="navbtn active" data-panel="overview">Visão geral</button>
@@ -246,7 +282,7 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 <select data-indicator-status-filter><option value="all">Situação: Todos</option><option value="good">Meta atendida</option><option value="progress">Em andamento</option><option value="attention">Atenção</option><option value="neutral">Sem comparação</option></select>
 <select data-section-sort="indicators"><option value="original">Prioridade executiva</option><option value="az">A–Z</option><option value="za">Z–A</option></select>
 </div>
-<div class="indicator-quick-table"><div class="indicator-quick-header"><span>Indicador</span><span>Tipo</span><span>Realizado</span><span>Meta</span><span>Prazo</span><span>Situação</span><span></span></div><div id="indicatorsList"></div></div>
+<div class="indicator-quick-table"><div class="indicator-quick-header"><span>Indicador</span><span>Informação do ícone i</span><span>Tipo</span><span>Realizado</span><span>Meta</span><span>Prazo</span><span>Situação</span><span>Ações</span></div><div id="indicatorsList"></div></div>
 </div></section>
     <section class="panel" id="panel-quality">
   <div class="hero">
@@ -707,22 +743,70 @@ function indicatorQuickRowHtml(x={}){
   const archived=edition?.status==="archived",state=indicatorQuickState(x);
   return `<div class="indicator-quick-row ${x.id?"":"is-new"}" data-indicator-quick data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}" data-indicator-type="${esc(x.segment||"PLP")}" data-indicator-contract="${x.is_management_contract?"yes":"no"}" data-indicator-status="${state.cls}">
   <div><textarea rows="2" class="admin-long-text" data-iq-name placeholder="Nome do indicador" ${archived?"disabled":""}>${esc(x.name||"")}</textarea>${x.is_management_contract?'<span class="indicator-contract-mini">Contrato de Gestão</span>':""}</div>
+  <textarea rows="2" class="admin-long-text indicator-info-quick" data-iq-information placeholder="Texto exibido ao passar sobre o ícone i. Deixe vazio para não mostrar o ícone." ${archived?"disabled":""}>${esc(x.information||"")}</textarea>
   <select data-iq-segment ${archived?"disabled":""}><option value="PLP" ${(x.segment||"PLP")==="PLP"?"selected":""}>PLP</option><option value="DN" ${x.segment==="DN"?"selected":""}>DN</option><option value="OKR" ${x.segment==="OKR"?"selected":""}>OKR</option><option value="GERENCIAL" ${x.segment==="GERENCIAL"?"selected":""}>Gerencial</option></select>
-  <input data-iq-latest type="number" step="any" value="${esc(x.latest_value??"")}" ${archived?"disabled":""}><input data-iq-target type="number" step="any" value="${esc(x.target_value??"")}" ${archived?"disabled":""}><input data-iq-deadline type="date" value="${esc(x.deadline||"")}" ${archived?"disabled":""}>
-  <div><span class="quick-state-badge ${state.cls}">${state.label}</span></div><div class="quick-row-actions"><span class="quick-save-state" data-quick-state></span><button type="button" data-iq-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-iq-delete class="danger-link">Excluir</button></div></div>`;
+  <input data-iq-latest type="number" step="any" value="${esc(x.latest_value??"")}" ${archived?"disabled":""}>
+  <input data-iq-target type="number" step="any" value="${esc(x.target_value??"")}" ${archived?"disabled":""}>
+  <input data-iq-deadline type="date" value="${esc(x.deadline||"")}" ${archived?"disabled":""}>
+  <div><span class="quick-state-badge ${state.cls}">${state.label}</span></div>
+  <div class="quick-row-actions"><span class="quick-save-state" data-quick-state></span><button type="button" data-iq-details>${archived?"Consultar":"Detalhes"}</button>${archived?"":'<button type="button" data-iq-delete class="danger-link" title="Excluir indicador">Excluir</button>'}</div>
+  </div>`;
 }
 function renderIndicatorQuickRows(){const rows=[...data.indicators].sort(indicatorQuickSort);$("#indicatorsList").innerHTML=rows.length?rows.map(indicatorQuickRowHtml).join(""):empty("Nenhum indicador cadastrado. Use “+ Adicionar indicador”.");bindIndicatorQuickRows();applySectionFilter("indicators")}
 async function saveIndicatorQuickRow(row){
   if(edition?.status==="archived")return;
-  const id=row.dataset.existingId||"",name=row.querySelector("[data-iq-name]")?.value.trim()||"";if(!name){rowSaveMessage(row,"Informe o nome","error");return}
-  const segment=row.querySelector("[data-iq-segment]")?.value||"PLP",lr=row.querySelector("[data-iq-latest]")?.value??"",tr=row.querySelector("[data-iq-target]")?.value??"",latest_value=lr===""?null:Number(lr),target_value=tr===""?null:Number(tr),deadline=row.querySelector("[data-iq-deadline]")?.value||null;
+  const id=row.dataset.existingId||"",name=row.querySelector("[data-iq-name]")?.value.trim()||"";
+  if(!name){rowSaveMessage(row,"Informe o nome","error");return}
+  const segment=row.querySelector("[data-iq-segment]")?.value||"PLP";
+  const lr=row.querySelector("[data-iq-latest]")?.value??"",tr=row.querySelector("[data-iq-target]")?.value??"";
+  const latest_value=lr===""?null:Number(lr),target_value=tr===""?null:Number(tr);
+  const deadline=row.querySelector("[data-iq-deadline]")?.value||null;
+  const information=row.querySelector("[data-iq-information]")?.value.trim()||null;
   rowSaveMessage(row,"Salvando…");
-  if(id)await editionCollection("indicators").doc(id).set({name,segment,latest_value,target_value,deadline,updated_at:new Date().toISOString()},{merge:true});
-  else{const ref=editionCollection("indicators").doc();await ref.set({name,segment,latest_value,target_value,deadline,is_management_contract:false,unit:null,target_direction:"gte",measurement_date:null,measure_group:null,information:null,notes:null,sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}
-  rowSaveMessage(row,"Salvo");await loadEditionData();
+  if(id){
+    await editionCollection("indicators").doc(id).set({name,segment,latest_value,target_value,deadline,information,updated_at:new Date().toISOString()},{merge:true});
+  }else{
+    const ref=editionCollection("indicators").doc();
+    await ref.set({name,segment,latest_value,target_value,deadline,information,is_management_contract:false,unit:null,target_direction:"gte",measurement_date:null,measure_group:null,notes:null,sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+    row.dataset.existingId=ref.id;
+    row.classList.remove("is-new");
+  }
+  rowSaveMessage(row,"Salvo");
+  await loadEditionData();
 }
-async function deleteIndicatorQuick(id){if(!id||edition?.status==="archived")return;if(!confirm("Excluir este indicador? Ele também será removido das relações com programas e projetos."))return;const batch=db.batch();await removeIndicatorFromRelations(id,batch);batch.delete(editionCollection("indicators").doc(id));await batch.commit();await loadEditionData()}
-function bindIndicatorQuickRows(){document.querySelectorAll("[data-indicator-quick]").forEach(row=>{row.querySelectorAll("[data-iq-name],[data-iq-segment],[data-iq-latest],[data-iq-target],[data-iq-deadline]").forEach(el=>{el.onchange=()=>saveIndicatorQuickRow(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error")});el.onkeydown=e=>{if(e.key==="Enter"&&el.tagName!=="TEXTAREA"){e.preventDefault();saveIndicatorQuickRow(row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error")})}}});row.querySelector("[data-iq-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await saveIndicatorQuickRow(row);if(row.dataset.existingId)openModal("indicator",row.dataset.existingId)});row.querySelector("[data-iq-delete]")?.addEventListener("click",()=>deleteIndicatorQuick(row.dataset.existingId))})}
+async function deleteIndicatorQuick(row){
+  if(!row||edition?.status==="archived")return;
+  const id=row.dataset.existingId||"";
+  if(!id){
+    row.remove();
+    return;
+  }
+  const name=row.querySelector("[data-iq-name]")?.value.trim()||"este indicador";
+  if(!confirm(`Excluir “${name}”? O indicador também será removido das relações com programas e projetos.`))return;
+  const batch=db.batch();
+  await removeIndicatorFromRelations(id,batch);
+  batch.delete(editionCollection("indicators").doc(id));
+  await batch.commit();
+  await loadEditionData();
+}
+function bindIndicatorQuickRows(){
+  document.querySelectorAll("[data-indicator-quick]").forEach(row=>{
+    row.querySelectorAll("[data-iq-name],[data-iq-information],[data-iq-segment],[data-iq-latest],[data-iq-target],[data-iq-deadline]").forEach(el=>{
+      el.onchange=()=>saveIndicatorQuickRow(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error")});
+      el.onkeydown=e=>{
+        if(e.key==="Enter"&&el.tagName!=="TEXTAREA"){
+          e.preventDefault();
+          saveIndicatorQuickRow(row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error")});
+        }
+      };
+    });
+    row.querySelector("[data-iq-details]")?.addEventListener("click",async()=>{
+      if(!row.dataset.existingId)await saveIndicatorQuickRow(row);
+      if(row.dataset.existingId)openModal("indicator",row.dataset.existingId);
+    });
+    row.querySelector("[data-iq-delete]")?.addEventListener("click",()=>deleteIndicatorQuick(row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro ao excluir","error")}));
+  });
+}
 function addIndicatorQuickRow(){if(edition?.status==="archived")return;const root=$("#indicatorsList");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",indicatorQuickRowHtml({}));bindIndicatorQuickRows();root.querySelector(".is-new [data-iq-name]")?.focus()}
 
 function programQuickRowHtml(x={}){const rows=x.id?data.actions.filter(a=>a.program_id===x.id):[],s=adminActionStats(rows),health=adminPortfolioHealth(rows),archived=edition?.status==="archived";return `<div class="portfolio-quick-row program ${x.id?"":"is-new"}" data-program-quick data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}"><textarea rows="2" class="admin-long-text" data-pq-name placeholder="Nome do programa" ${archived?"disabled":""}>${esc(x.name||"")}</textarea><div class="portfolio-quick-kpi">${x.id?s.rate+"%":"—"}<small>concluído</small></div><div class="portfolio-quick-kpi">${x.id?s.total:"—"}<small>ações</small></div><div>${x.id?`<span class="portfolio-health ${health.cls}">${health.label}</span>`:"—"}</div><div class="portfolio-quick-actions"><span class="portfolio-quick-state" data-pq-state></span><button type="button" data-pq-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-pq-delete class="danger-link">Excluir</button></div></div>`}
