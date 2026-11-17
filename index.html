@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- Build v50 | 2026-11-17T14:03:18-03:00 | atenção sem evidência/contexto -->
+<!-- Build v49 | 2026-11-17T14:01:59-03:00 | pontos de atenção sem resposta em curso -->
 <!-- Build v48 | 2026-11-17T12:05:06-03:00 -->
 <!-- Build v47 | 2026-11-17T11:49:10-03:00 | resultados com unidade -->
 <!-- Build v46 | 2026-11-17T11:26:30-03:00 | Pontos de atenção por categoria -->
@@ -880,7 +882,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
         <div class="cover-storyline">Um ano de execução, aprendizagem e transformação.</div>
         <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
         <p class="cover-deck" id="coverIntro">Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
-        <div class="cover-meta"><span class="meta-chip build-chip">Relatório v48 · 17/11/2026 · 12:05</span></div><div class="cover-actions">
+        <div class="cover-meta"><span class="meta-chip build-chip">Relatório v50 · 17/11/2026 · 14:03</span></div><div class="cover-actions">
 <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
 <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
 <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
@@ -1040,7 +1042,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       <div>
         <div class="section-domain">Pontos de atenção</div>
         <h2>Pontos de atenção por categoria</h2>
-        <p class="section-lead">Temas organizados por categoria, com situação, prazo e resposta em curso.</p>
+        <p class="section-lead">Temas organizados por categoria, com situação, prazo e impacto.</p>
       </div>
     </div>
 <div id="attentionGrid"></div>
@@ -1049,7 +1051,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 <section class="planning-section" id="planejamento-2027" data-story-section="planejamento-2027"><div class="wrap"><div class="planning-head"><div class="chapter">06</div><div><div class="section-domain">Planejamento 2027</div><h2>Desafios que orientam o próximo ciclo</h2><p>Prioridades organizadas por categoria para apoiar foco, alinhamento e preparação do próximo ano.</p></div></div><div id="planning2027Grid" class="planning-category-list"></div></div></section>
 </main>
 <section class="story-closing compact-closing" id="proximo-ciclo"><div class="wrap"><blockquote>O próximo ciclo começa com prioridades mais claras, aprendizados consolidados e escolhas a fazer.</blockquote></div></section>
-<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v48 · atualizado em 17/11/2026 · 12:05</span></div></footer>
+<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v50 · atualizado em 17/11/2026 · 14:03</span></div></footer>
 <div id="indicatorInfoPopover" class="indicator-info-popover" role="tooltip" aria-hidden="true"><button type="button" class="indicator-info-close" aria-label="Fechar">×</button><strong>Informação</strong><p></p></div>
 <script>
 let db,auth;
@@ -1235,13 +1237,9 @@ function renderAttentionExecutive(attention){
           ${group.items.map(({row,urgency})=>{
             const status=attentionStatusLabel(attentionStatus(row));
             const impact=attentionImpactLabel(attentionImpact(row));
-            const note=attentionNotes(row);
             const resolvedItem=attentionStatus(row)==="resolvido";
             const decision=row.requires_decision===true
               ?`<div class="attention-decision"><strong>Decisão necessária</strong><br>${esc(row.decision_needed||"Posicionamento da liderança requerido.")}</div>`
-              :"";
-            const evidence=note
-              ?`<div class="attention-evidence"><strong>Evidência / contexto</strong><br>${esc(note)}</div>`
               :"";
 
             return `<article id="${execAnchor("attention",row.id)}" class="attention-list-item ${resolvedItem?"resolved":urgency.cls}">
@@ -1260,11 +1258,7 @@ function renderAttentionExecutive(attention){
                 ${row.requires_decision===true?'<span class="attention-badge-small decision">Decisão requerida</span>':""}
                 ${row.impact?`<span class="attention-badge-small impact">Impacto ${esc(impact)}</span>`:""}
               </div>
-              <div class="attention-list-details">
-                ${decision}
-                ${evidence}
-                ${renderMitigationDropdown(row)}
-              </div>
+              ${decision?`<div class="attention-list-details">${decision}</div>`:""}
             </article>`;
           }).join("")}
         </div>
