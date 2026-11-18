@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Build v59 | 2026-11-18T03:53:00-03:00 | UX Qualidade + dash Inovação -->
 <!-- Build v58 | 2026-11-18T03:46:05-03:00 | capa NQI + narrativa 2026 -->
 <!-- Build v57 | 2026-11-18T03:41:20-03:00 | header estratégico com palavras-chave -->
 <!-- Build v56 | 2026-11-18T03:38:43-03:00 | títulos e subtítulos das seções -->
@@ -1379,6 +1380,146 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   }
 }
 
+
+/* v59 · UX da Seção 2 */
+.quality-content-switcher{
+  width:100%;
+  max-width:860px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 22px;
+  padding:7px;
+  border:1px solid #d8e3e7;
+  border-radius:21px;
+  background:#eaf1f4
+}
+.quality-content-switcher .quality-report-tab{
+  position:relative;
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  gap:12px;
+  align-items:center;
+  min-height:78px;
+  width:100%;
+  padding:12px 14px;
+  border:1px solid transparent;
+  border-radius:16px;
+  background:transparent;
+  color:#49616e;
+  text-align:left;
+  cursor:pointer;
+  transition:background .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease
+}
+.quality-content-switcher .quality-report-tab:hover{
+  background:rgba(255,255,255,.66);
+  border-color:#cedde3
+}
+.quality-content-switcher .quality-report-tab:focus-visible{
+  outline:3px solid rgba(0,92,169,.2);
+  outline-offset:2px
+}
+.quality-content-switcher .quality-report-tab.active{
+  background:#fff;
+  color:#173e59;
+  border-color:#bdd1db;
+  box-shadow:0 8px 22px rgba(31,68,88,.09);
+  transform:translateY(-1px)
+}
+.quality-tab-icon{
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:#dcecf4;
+  color:#17658e;
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.03em
+}
+.quality-tab-icon.project{
+  background:#fff0dc;
+  color:#a86518
+}
+.quality-report-tab.active .quality-tab-icon{
+  background:#0c5f8d;
+  color:#fff
+}
+.quality-report-tab.active .quality-tab-icon.project{
+  background:#d9892c;
+  color:#fff
+}
+.quality-tab-copy{
+  display:grid;
+  gap:3px
+}
+.quality-tab-copy strong{
+  font-size:.94rem;
+  color:inherit
+}
+.quality-tab-copy small{
+  color:#6b7f89;
+  font-size:.68rem;
+  font-weight:600;
+  line-height:1.35
+}
+.quality-tab-count{
+  display:grid;
+  place-items:center;
+  min-width:32px;
+  height:32px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#dfe8ec;
+  color:#49616e;
+  font-size:.72rem;
+  font-weight:900;
+  font-variant-numeric:tabular-nums
+}
+.quality-report-tab.active .quality-tab-count{
+  background:#173e59;
+  color:#fff
+}
+
+/* v59 · dash de Inovação orientado por status dos projetos */
+.innovation-project-summary{
+  grid-template-columns:minmax(220px,1.35fr) repeat(3,minmax(110px,.65fr))
+}
+.portfolio-summary-stat.progress{
+  border-color:#bcd8e7;
+  background:#f2f8fb
+}
+.portfolio-summary-stat.progress strong{
+  color:#2678a9
+}
+
+/* Seção 1 inicia diretamente pelos dados */
+.indicators-section>.wrap{
+  padding-top:2px
+}
+.indicators-section .indicator-overview{
+  margin-top:0
+}
+
+@media(max-width:760px){
+  .quality-content-switcher{
+    grid-template-columns:1fr;
+    max-width:none
+  }
+  .quality-content-switcher .quality-report-tab{
+    min-height:70px
+  }
+  .innovation-project-summary{
+    grid-template-columns:1fr 1fr
+  }
+}
+@media(max-width:520px){
+  .innovation-project-summary{
+    grid-template-columns:1fr
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1429,7 +1570,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   </div>
 
   <p class="cover-deck" id="coverIntro">Síntese executiva de indicadores, programas, projetos, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
-  <div class="cover-meta"><span class="meta-chip build-chip">Relatório v58 · 18/11/2026 · 03:46</span></div>
+  <div class="cover-meta"><span class="meta-chip build-chip">Relatório v59 · 18/11/2026 · 03:53</span></div>
   <div class="cover-actions">
     <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
     <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
@@ -1478,15 +1619,6 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 </section>
 <section class="section indicators-section" id="indicadores">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="chapter">01</div>
-      <div>
-        <div class="section-domain">Indicadores</div>
-        <h2>Indicadores que sustentam essa leitura</h2>
-        <p class="section-lead">Acompanhamento agrupado por medida, com tipo e situação destacados visualmente.</p>
-      </div>
-    </div>
-
     <div id="indicatorOverview" class="indicator-overview"></div>
 
     <div class="indicator-controls" aria-label="Controles dos indicadores">
@@ -1525,7 +1657,24 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 
 <section class="section quality-section quality-unified-section" id="qualidade">
   <div class="wrap">
-    <div class="quality-report-tabs" role="tablist" aria-label="Qualidade"><button type="button" class="quality-report-tab active" data-quality-report-tab="programs">Programas</button><button type="button" class="quality-report-tab" data-quality-report-tab="projects">Projetos</button></div>
+    <div class="quality-report-tabs quality-content-switcher" role="tablist" aria-label="Escolha a visão de Qualidade">
+      <button type="button" class="quality-report-tab active" data-quality-report-tab="programs" role="tab" aria-selected="true">
+        <span class="quality-tab-icon" aria-hidden="true">P</span>
+        <span class="quality-tab-copy">
+          <strong>Programas</strong>
+          <small>Iniciativas estruturantes e contínuas</small>
+        </span>
+        <span class="quality-tab-count" id="qualityProgramsTabCount">0</span>
+      </button>
+      <button type="button" class="quality-report-tab" data-quality-report-tab="projects" role="tab" aria-selected="false">
+        <span class="quality-tab-icon project" aria-hidden="true">PR</span>
+        <span class="quality-tab-copy">
+          <strong>Projetos</strong>
+          <small>Entregas com escopo e ciclo definidos</small>
+        </span>
+        <span class="quality-tab-count" id="qualityProjectsTabCount">0</span>
+      </button>
+    </div>
     <div id="qualityCombinedOverview"></div>
     <section class="quality-report-pane active" data-quality-report-pane="programs" id="programas"><div class="quality-pane-intro"><span class="quality-type-flag">Programa</span><div><h3>Programas de Qualidade</h3><p>Iniciativas estruturantes que fortalecem continuamente a operação.</p></div></div><div id="programPortfolioSummary"></div><div id="programsList" class="portfolio-line-list"></div></section>
     <section class="quality-report-pane" data-quality-report-pane="projects" id="projetos-qualidade"><div class="quality-pane-intro"><span class="quality-type-flag project">Projeto</span><div><h3>Projetos de Qualidade</h3><p>Entregas com escopo definido voltadas à melhoria de processos e resultados.</p></div></div><div id="qualityPortfolioSummary"></div><div class="portfolio-filters" data-project-filter-group="quality"><button type="button" class="portfolio-filter active" data-project-filter="all">Todos</button><button type="button" class="portfolio-filter" data-project-filter="concluido">Concluídos</button><button type="button" class="portfolio-filter" data-project-filter="em_andamento">Em andamento</button><button type="button" class="portfolio-filter" data-project-filter="attention">Atenção</button><button type="button" class="portfolio-filter" data-project-filter="planejado">Planejados</button></div><div id="qualityGrid" class="portfolio-line-list"></div></section>
@@ -1624,7 +1773,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 <section class="planning-section" id="planejamento-2027" data-story-section="planejamento-2027"><div class="wrap"><div class="planning-head"><div class="chapter">06</div><div><div class="section-domain">Planejamento 2027</div><h2>2027: Transformando aprendizados em novos avanços.</h2><p>Um novo ciclo de escolhas estratégicas, integração e fortalecimento institucional para consolidar o crescimento, valorizar pessoas e ampliar a qualidade e o impacto da educação.</p></div></div><div id="planning2027Grid" class="planning-category-list"></div><div id="learningPlanning" class="strategic-learning-slot"></div></div></section>
 </main>
 <section class="story-closing compact-closing" id="proximo-ciclo"><div class="wrap"><blockquote>O próximo ciclo começa com prioridades mais claras, aprendizados consolidados e escolhas a fazer.</blockquote></div></section>
-<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v58 · atualizado em 18/11/2026 · 03:46</span></div></footer>
+<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v59 · atualizado em 18/11/2026 · 03:53</span></div></footer>
 <div id="indicatorInfoPopover" class="indicator-info-popover" role="tooltip" aria-hidden="true"><button type="button" class="indicator-info-close" aria-label="Fechar">×</button><strong>Informação</strong><p></p></div>
 <script>
 let db,auth;
@@ -1696,6 +1845,7 @@ function renderProjectPortfolio(kind){
   }else{
     const totalDeliveries=actions.length;
     const doneProjects=projects.filter(p=>p.status==="concluido").length;
+    const inProgressProjects=projects.filter(p=>p.status!=="concluido").length;
     const attentionProjects=projects.filter(p=>{
       const rows=actions.filter(a=>a.project_id===p.id);
       const s=actionStats(rows);
@@ -1703,13 +1853,13 @@ function renderProjectPortfolio(kind){
     }).length;
     const deliveryStats=actionStats(actions);
 
-    $(summaryTarget).innerHTML=`<div class="portfolio-summary ${totalDeliveries?"":"innovation-summary-no-deliveries"}">
+    $(summaryTarget).innerHTML=`<div class="portfolio-summary innovation-project-summary">
       <div class="portfolio-summary-main">
         <strong>${projects.length} projetos</strong>
-        ${totalDeliveries?`<span>${totalDeliveries} principais entregas · ${deliveryStats.rate}% concluídas</span>`:""}
+        ${totalDeliveries?`<span>${totalDeliveries} principais entregas · ${deliveryStats.rate}% concluídas</span>`:"<span>Visão consolidada do portfólio de inovação</span>"}
       </div>
       <div class="portfolio-summary-stat good"><strong>${doneProjects}</strong><span>concluídos</span></div>
-      ${totalDeliveries?`<div class="portfolio-summary-stat"><strong>${deliveryStats.inProgress}</strong><span>entregas em andamento</span></div>`:""}
+      <div class="portfolio-summary-stat progress"><strong>${inProgressProjects}</strong><span>em andamento</span></div>
       <div class="portfolio-summary-stat warn"><strong>${attentionProjects}</strong><span>com atenção</span></div>
     </div>`;
   }
@@ -2191,7 +2341,18 @@ function renderPartnersExecutive(partners){
 
 
 
-function renderQualityCombinedOverview({programs,actions,quality,qualityActions}){$("#qualityCombinedOverview").innerHTML=`<div class="quality-combined-overview"><div class="quality-combined-item"><strong>${programs.length}</strong><span>programas</span></div><div class="quality-combined-item"><strong>${quality.length}</strong><span>projetos</span></div><div class="quality-combined-item"><strong>${actions.length}</strong><span>ações de programas</span></div><div class="quality-combined-item"><strong>${qualityActions.length}</strong><span>principais entregas de projetos</span></div></div>`;}
+function renderQualityCombinedOverview({programs,actions,quality,qualityActions}){
+  const programsCount=$("#qualityProgramsTabCount");
+  const projectsCount=$("#qualityProjectsTabCount");
+  if(programsCount)programsCount.textContent=programs.length;
+  if(projectsCount)projectsCount.textContent=quality.length;
+  $("#qualityCombinedOverview").innerHTML=`<div class="quality-combined-overview">
+    <div class="quality-combined-item"><strong>${programs.length}</strong><span>programas</span></div>
+    <div class="quality-combined-item"><strong>${quality.length}</strong><span>projetos</span></div>
+    <div class="quality-combined-item"><strong>${actions.length}</strong><span>ações de programas</span></div>
+    <div class="quality-combined-item"><strong>${qualityActions.length}</strong><span>principais entregas de projetos</span></div>
+  </div>`;
+}
 function setupStoryNavigation(){
   const links=[...document.querySelectorAll("[data-story-nav]")];
   if(!links.length)return;
@@ -2207,7 +2368,28 @@ function setupStoryNavigation(){
   links.forEach(link=>link.addEventListener("click",()=>setActive(link.dataset.storyNav)));
 }
 
-function setupQualityReportTabs(){document.querySelectorAll("[data-quality-report-tab]").forEach(btn=>btn.onclick=()=>{document.querySelectorAll("[data-quality-report-tab]").forEach(x=>x.classList.toggle("active",x===btn));document.querySelectorAll("[data-quality-report-pane]").forEach(x=>x.classList.toggle("active",x.dataset.qualityReportPane===btn.dataset.qualityReportTab))})}
+function setupQualityReportTabs(){
+  const tabs=[...document.querySelectorAll("[data-quality-report-tab]")];
+  const panes=[...document.querySelectorAll("[data-quality-report-pane]")];
+  const activate=btn=>{
+    tabs.forEach(x=>{
+      const active=x===btn;
+      x.classList.toggle("active",active);
+      x.setAttribute("aria-selected",active?"true":"false");
+    });
+    panes.forEach(x=>x.classList.toggle("active",x.dataset.qualityReportPane===btn.dataset.qualityReportTab));
+  };
+  tabs.forEach((btn,index)=>{
+    btn.onclick=()=>activate(btn);
+    btn.onkeydown=e=>{
+      if(!["ArrowLeft","ArrowRight"].includes(e.key))return;
+      e.preventDefault();
+      const next=e.key==="ArrowRight"?(index+1)%tabs.length:(index-1+tabs.length)%tabs.length;
+      tabs[next].focus();
+      activate(tabs[next]);
+    };
+  });
+}
 function renderStrategicLearning(targetId,text,sectionLabel){
   const target=$("#"+targetId);
   if(!target)return;
