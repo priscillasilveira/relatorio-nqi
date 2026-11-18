@@ -1,4 +1,8 @@
 <!doctype html>
+<!-- Build v54 | 2026-11-18T02:57:25-03:00 | Inovação editar/excluir -->
+<!-- Build v53 | 2026-11-18T02:56:49-03:00 -->
+<!-- Build v52 | 2026-11-18T02:53:16-03:00 | Prioridades dos pontos de atenção -->
+<!-- Build v51 | 2026-11-18T02:48:00-03:00 | Aprendizados Estratégicos -->
 <!-- Build v50 | 2026-11-17T14:03:18-03:00 -->
 <!-- Build v49 | 2026-11-17T14:01:59-03:00 -->
 <!-- Build v48 | 2026-11-17T12:05:06-03:00 | NPS Alunos x Responsáveis -->
@@ -452,6 +456,246 @@
   .mediotec-nps-audience-tab{justify-content:center}
 }
 
+
+/* v51 · Aprendizados Estratégicos */
+.strategic-learning-admin-hero{overflow:visible}
+.strategic-learning-admin-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  margin-top:18px
+}
+.strategic-learning-admin-card{
+  position:relative;
+  padding:17px;
+  border:1px solid #dbe4e7;
+  border-radius:17px;
+  background:linear-gradient(145deg,#fff,#fbfcfc);
+  box-shadow:0 8px 22px rgba(20,45,60,.035)
+}
+.strategic-learning-admin-card:before{
+  content:"“";
+  position:absolute;
+  right:14px;
+  top:-8px;
+  color:#d98b2d;
+  opacity:.12;
+  font-family:"Libre Caslon Display",serif;
+  font-size:4.4rem;
+  line-height:1
+}
+.strategic-learning-admin-card-head{
+  display:flex;
+  gap:9px;
+  align-items:center;
+  margin-bottom:10px
+}
+.strategic-learning-admin-card-head span{
+  display:grid;
+  place-items:center;
+  min-width:31px;
+  height:31px;
+  border-radius:10px;
+  background:#eaf2f5;
+  color:#1d6488;
+  font-size:.68rem;
+  font-weight:900
+}
+.strategic-learning-admin-card-head strong{
+  color:#173e59;
+  font-size:.84rem
+}
+.strategic-learning-admin-card textarea{
+  width:100%;
+  min-height:112px;
+  resize:vertical;
+  border:1px solid #d4e0e5;
+  border-radius:12px;
+  background:#fff;
+  color:#294654;
+  padding:12px 13px;
+  font:500 .8rem/1.55 "DM Sans",system-ui
+}
+.strategic-learning-admin-card textarea:focus{
+  outline:none;
+  border-color:#65a5c7;
+  box-shadow:0 0 0 3px rgba(0,92,169,.08)
+}
+.strategic-learning-admin-hint{
+  margin-top:7px;
+  color:#6f818a;
+  font-size:.66rem;
+  line-height:1.45
+}
+.strategic-learning-admin-footer{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  margin-top:14px;
+  padding-top:13px;
+  border-top:1px solid #e5ebed
+}
+.strategic-learning-admin-footer .statusline{margin:0;text-align:right}
+.readonly-mode #saveStrategicLearningsBtn{display:none!important}
+@media(max-width:900px){
+  .strategic-learning-admin-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .strategic-learning-admin-footer{align-items:flex-start;flex-direction:column}
+  .strategic-learning-admin-footer .statusline{text-align:left}
+}
+
+
+/* v52 · Prioridades dos Pontos de Atenção */
+.attention-priority-admin-section{
+  margin-top:18px;
+  padding:17px;
+  border:1px solid #dce5e8;
+  border-radius:18px;
+  background:linear-gradient(145deg,#f7fafb,#fff)
+}
+.attention-priority-admin-toolbar h3,
+.attention-points-admin-section h3{
+  margin:2px 0 3px;
+  color:#173e59;
+  font-family:"Libre Caslon Display",serif;
+  font-size:1.65rem
+}
+.attention-priority-admin-list{
+  display:grid;
+  gap:9px;
+  margin-top:14px
+}
+.attention-priority-admin-row{
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) 180px;
+  gap:10px;
+  align-items:start;
+  padding:11px;
+  border:1px solid #dce5e8;
+  border-radius:14px;
+  background:#fff
+}
+.attention-priority-admin-row.is-new{background:#fffaf0}
+.attention-priority-admin-index{
+  display:grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:#eaf2f5;
+  color:#1b668d;
+  font-size:.66rem;
+  font-weight:900
+}
+.attention-priority-admin-row textarea{
+  width:100%;
+  min-height:72px;
+  resize:vertical;
+  border:1px solid #d4e0e5;
+  border-radius:10px;
+  padding:10px 11px;
+  background:#fff;
+  color:#294654;
+  font:500 .78rem/1.5 "DM Sans",system-ui
+}
+.attention-priority-admin-row textarea:focus{
+  outline:none;
+  border-color:#65a5c7;
+  box-shadow:0 0 0 3px rgba(0,92,169,.08)
+}
+.attention-priority-admin-actions{
+  display:flex;
+  gap:7px;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap
+}
+.attention-priority-admin-state{
+  width:100%;
+  text-align:right;
+  color:#2e8656;
+  font-size:.63rem
+}
+.attention-priority-admin-actions .danger-link{
+  color:#9b3e35!important;
+  background:#fff5f4!important;
+  border:1px solid #edcbc7!important;
+  border-radius:9px!important;
+  padding:7px 10px!important;
+  font-weight:900!important
+}
+.attention-admin-divider{
+  height:1px;
+  margin:26px 0;
+  background:#dce5e8
+}
+.readonly-mode #addAttentionPriorityRow,
+.readonly-mode [data-attention-priority-delete]{display:none!important}
+@media(max-width:760px){
+  .attention-priority-admin-row{
+    grid-template-columns:40px minmax(0,1fr)
+  }
+  .attention-priority-admin-actions{
+    grid-column:2;
+    justify-content:flex-start
+  }
+  .attention-priority-admin-state{
+    width:auto;
+    text-align:left
+  }
+}
+
+
+/* v54 · Projetos de Inovação: Editar / Excluir explícitos */
+.innovation-row-actions{
+  display:grid!important;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  align-items:center;
+  min-width:178px
+}
+.innovation-row-actions [data-pq-state]{
+  grid-column:1/-1;
+  min-height:14px;
+  text-align:right
+}
+.innovation-edit-btn,
+.innovation-delete-btn{
+  width:100%;
+  min-height:34px;
+  border-radius:9px!important;
+  padding:7px 10px!important;
+  font-size:.68rem!important;
+  font-weight:900!important;
+  cursor:pointer
+}
+.innovation-edit-btn{
+  border:1px solid #bcd3df!important;
+  background:#f5fafc!important;
+  color:#125f88!important
+}
+.innovation-edit-btn:hover{
+  background:#e8f4f9!important;
+  border-color:#83b5cf!important
+}
+.innovation-delete-btn{
+  border:1px solid #edcbc7!important;
+  background:#fff5f4!important;
+  color:#963b31!important
+}
+.innovation-delete-btn:hover{
+  background:#fde9e7!important;
+  border-color:#d9a8a2!important
+}
+.readonly-mode .innovation-delete-btn{display:none!important}
+@media(max-width:900px){
+  .innovation-row-actions{
+    min-width:160px
+  }
+}
+
 </style>
 
 <style>
@@ -475,10 +719,11 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 </section>
 
 <div class="app hidden" id="app">
-<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação · v50 · 17/11/2026 · 14:03</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><a class="btn ghost mini" href="./" target="_blank" rel="noopener">Acessar Relatório NQI ↗</a><a class="btn ghost mini" href="./mediotec.html" target="_blank" rel="noopener">Gestão Mediotec ↗</a><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
+<header class="top"><div class="topin"><div><div class="brand">Admin NQI</div><div class="small" style="color:#bed3df">Formulários · rascunho · publicação · v54 · 18/11/2026 · 02:57</div></div><div class="row"><span id="sessionEmail" class="small" style="color:#d8e6ee"></span><a class="btn ghost mini" href="./" target="_blank" rel="noopener">Acessar Relatório NQI ↗</a><a class="btn ghost mini" href="./mediotec.html" target="_blank" rel="noopener">Gestão Mediotec ↗</a><button class="btn ghost mini" id="logoutBtn">Sair</button></div></div></header>
 <div class="shell">
   <aside class="sidebar">
     <button class="navbtn active" data-panel="overview">Visão geral</button>
+    <button class="navbtn" data-panel="learnings">Aprendizados Estratégicos</button>
     <button class="navbtn" data-panel="indicators">Indicadores</button>
     <button class="navbtn" data-panel="quality">Qualidade</button>
     <button class="navbtn" data-panel="innovation">Projetos de Inovação</button>
@@ -501,8 +746,63 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
       <div class="field"><label>Período / ano para consulta</label><select id="adminYearFilter"></select></div>
 <div class="row"><button class="btn primary" id="saveEditionBtn">Salvar edição</button><button class="btn orange" id="publishBtn">Publicar edição</button><button class="btn orange hidden" id="updateVersionBtn">Atualizar edição do ano</button><button class="btn ghost" id="newEditionBtn">Criar novo ano</button><button class="btn ghost" id="openYearReportBtn">Abrir relatório do ano ↗</button><button class="btn ghost" id="pdfYearBtn">Gerar PDF</button></div>
       <p class="statusline" id="editionMsg"></p></div>
-      <div class="card"><h3>Como funciona</h3><p class="small">Existe <strong>uma única edição por ano</strong>. Ao criar o próximo ciclo, você pode começar vazio ou reaproveitar a estrutura de uma edição anterior. Estrutura reaproveitada nunca leva resultados, prazos, status executivos, prêmios ou pontos de atenção antigos para o novo ano.</p></div>
+      <div class="card"><h3>Como funciona</h3><p class="small">Existe <strong>uma única edição por ano</strong>. Ao criar o próximo ciclo, você pode começar vazio ou reaproveitar a estrutura de uma edição anterior. Estrutura reaproveitada nunca leva resultados, prazos, status executivos, prêmios, prioridades ou pontos de atenção antigos para o novo ano.</p></div>
 <div class="card"><div class="toolbar"><div><div class="eyebrow">Histórico</div><h3>Edições anuais</h3></div></div><div id="historyList" class="history-list"></div></div>
+    </section>
+
+    <section class="panel" id="panel-learnings">
+      <div class="hero strategic-learning-admin-hero">
+        <div class="toolbar">
+          <div>
+            <div class="eyebrow">Narrativa executiva</div>
+            <h2>Aprendizados Estratégicos</h2>
+            <div class="small">Cadastre uma frase de fechamento para cada seção. O relatório exibe apenas as frases preenchidas, em formato de citação.</div>
+          </div>
+          <button class="btn primary" id="saveStrategicLearningsBtn" type="button">Salvar aprendizados</button>
+        </div>
+
+        <div class="strategic-learning-admin-grid">
+          <article class="strategic-learning-admin-card">
+            <div class="strategic-learning-admin-card-head"><span>01</span><strong>Resultados</strong></div>
+            <textarea id="learningResultsInput" maxlength="420" placeholder="Ex.: O avanço dos indicadores confirma que..."></textarea>
+            <div class="strategic-learning-admin-hint">Síntese do que os resultados ensinaram à gestão.</div>
+          </article>
+
+          <article class="strategic-learning-admin-card">
+            <div class="strategic-learning-admin-card-head"><span>02</span><strong>Qualidade</strong></div>
+            <textarea id="learningQualityInput" maxlength="420" placeholder="Ex.: A consolidação dos programas mostrou que..."></textarea>
+            <div class="strategic-learning-admin-hint">Aprendizado derivado de programas e projetos de qualidade.</div>
+          </article>
+
+          <article class="strategic-learning-admin-card">
+            <div class="strategic-learning-admin-card-head"><span>03</span><strong>Inovação</strong></div>
+            <textarea id="learningInnovationInput" maxlength="420" placeholder="Ex.: Os projetos demonstraram que inovar exige..."></textarea>
+            <div class="strategic-learning-admin-hint">Mensagem que sintetiza o que foi aprendido ao inovar.</div>
+          </article>
+
+          <article class="strategic-learning-admin-card">
+            <div class="strategic-learning-admin-card-head"><span>04</span><strong>Impacto</strong></div>
+            <textarea id="learningImpactInput" maxlength="420" placeholder="Ex.: O reconhecimento externo reforçou que..."></textarea>
+            <div class="strategic-learning-admin-hint">Leitura estratégica dos reconhecimentos e parcerias.</div>
+          </article>
+
+          <article class="strategic-learning-admin-card">
+            <div class="strategic-learning-admin-card-head"><span>05</span><strong>Prioridades</strong></div>
+            <textarea id="learningPrioritiesInput" maxlength="420" placeholder="Ex.: Os pontos de atenção indicam que o próximo avanço depende de..."></textarea>
+            <div class="strategic-learning-admin-hint">Aprendizado que conecta riscos, atenção e decisões.</div>
+          </article>
+
+          <article class="strategic-learning-admin-card">
+            <div class="strategic-learning-admin-card-head"><span>06</span><strong>Planejamento 2027</strong></div>
+            <textarea id="learningPlanningInput" maxlength="420" placeholder="Ex.: O próximo ciclo precisa transformar estes desafios em..."></textarea>
+            <div class="strategic-learning-admin-hint">Síntese que fecha o relatório e aponta para o próximo ciclo.</div>
+          </article>
+        </div>
+        <div class="strategic-learning-admin-footer">
+          <span class="small">Recomendação: uma frase curta, específica e baseada no que a seção demonstra.</span>
+          <p class="statusline" id="strategicLearningsMsg"></p>
+        </div>
+      </div>
     </section>
 
     <section class="panel" id="panel-indicators"><div class="hero">
@@ -546,7 +846,51 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
 <div class="admin-filters"><input type="search" placeholder="Buscar parceiro…" data-section-search="partners"><select data-section-sort="partners"><option value="original">Destaques primeiro</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div>
 <div class="partner-quick-table"><div class="partner-quick-header"><span>Parceiro</span><span>Destaque</span><span></span></div><div id="partnersList"></div></div>
 </div></section>
-    <section class="panel" id="panel-attention"><div class="hero"><div class="toolbar"><div><div class="eyebrow">07</div><h2>Pontos de Atenção</h2><div class="small">Cadastro rápido: ponto, categoria e prazo. Os detalhes gerenciais são opcionais.</div></div><button class="btn primary" id="addAttentionQuickRow" type="button">+ Adicionar ponto</button></div><div class="attention-quick-card"><div class="attention-quick-note"><strong>Lista dinâmica</strong><span>Edite diretamente na linha. As alterações são salvas ao sair do campo ou pressionar Enter.</span></div><div class="attention-quick-table"><div class="attention-quick-header"><span>Ponto de atenção</span><span>Categoria</span><span>Prazo</span><span>Ações</span></div><div id="attentionQuickRows"></div></div><div class="small" style="margin-top:10px">Categorias existentes aparecem como sugestões; você também pode digitar uma nova categoria.</div></div><div id="attentionList" class="hidden"></div></div></section>
+    <section class="panel" id="panel-attention">
+      <div class="hero">
+        <div class="toolbar">
+          <div>
+            <div class="eyebrow">Prioridades e acompanhamento</div>
+            <h2>Prioridades e Pontos de Atenção</h2>
+            <div class="small">As prioridades funcionam como premissas estratégicas que orientam a leitura e a condução dos pontos de atenção.</div>
+          </div>
+        </div>
+
+        <section class="attention-priority-admin-section">
+          <div class="toolbar attention-priority-admin-toolbar">
+            <div>
+              <div class="eyebrow">Premissas orientadoras</div>
+              <h3>Prioridades</h3>
+              <div class="small">Cadastre frases curtas que devem guiar a análise dos pontos de atenção no relatório.</div>
+            </div>
+            <button class="btn primary" id="addAttentionPriorityRow" type="button">+ Adicionar prioridade</button>
+          </div>
+          <div id="attentionPriorityRows" class="attention-priority-admin-list"></div>
+        </section>
+
+        <div class="attention-admin-divider"></div>
+
+        <section class="attention-points-admin-section">
+          <div class="toolbar">
+            <div>
+              <div class="eyebrow">Acompanhamento</div>
+              <h3>Pontos de Atenção</h3>
+              <div class="small">Cadastre os temas por categoria e prazo. As prioridades acima orientam a interpretação desses pontos.</div>
+            </div>
+            <button class="btn primary" id="addAttentionQuickRow" type="button">+ Adicionar ponto</button>
+          </div>
+          <div class="attention-quick-card">
+            <div class="attention-quick-note"><strong>Lista dinâmica</strong><span>Edite diretamente na linha. As alterações são salvas ao sair do campo ou pressionar Enter.</span></div>
+            <div class="attention-quick-table">
+              <div class="attention-quick-header"><span>Ponto de atenção</span><span>Categoria</span><span>Prazo</span><span>Ações</span></div>
+              <div id="attentionQuickRows"></div>
+            </div>
+            <div class="small" style="margin-top:10px">Categorias existentes aparecem como sugestões; você também pode digitar uma nova categoria.</div>
+          </div>
+          <div id="attentionList" class="hidden"></div>
+        </section>
+      </div>
+    </section>
 
     <section class="panel" id="panel-planning">
       <div class="hero">
@@ -615,7 +959,7 @@ body{background:#f5f2ec}.top{box-shadow:0 8px 24px rgba(0,45,80,.08)}.shell{gap:
       <div class="new-edition-reset-note">
         <strong>O que será zerado automaticamente</strong>
         <span>Realizado, meta e data dos indicadores; status e datas de projetos; status, situação e datas das ações; destaque de parceiros.</span>
-        <span><strong>Não serão copiados:</strong> prêmios e reconhecimentos, pontos de atenção, dados de Gestão Mediotec e histórico de publicação.</span>
+        <span><strong>Não serão copiados:</strong> prêmios e reconhecimentos, prioridades da seção 5, pontos de atenção, aprendizados estratégicos, dados de Gestão Mediotec e histórico de publicação.</span>
       </div>
     </div>
 
@@ -643,7 +987,7 @@ const FIREBASE_CONFIG={
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const dt=v=>v?new Intl.DateTimeFormat("pt-BR",{dateStyle:"medium"}).format(new Date(v+"T12:00:00")):"—";
-let session=null, edition=null, editions=[], data={indicators:[],programs:[],actions:[],quality:[],innovation:[],qualityActions:[],innovationActions:[],awards:[],partners:[],attention:[],planning:[],mediotec:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
+let session=null, edition=null, editions=[], data={indicators:[],programs:[],actions:[],quality:[],innovation:[],qualityActions:[],innovationActions:[],awards:[],partners:[],attentionPriorities:[],attention:[],planning:[],mediotec:[],programLinks:[],qualityLinks:[],innovationLinks:[]};
 let modalState={type:null,id:null};
 
 function msg(el,text,kind=""){el.textContent=text;el.className="statusline "+kind}
@@ -823,6 +1167,43 @@ $$(".quality-admin-tab").forEach(btn=>btn.onclick=()=>{
   $$(".quality-admin-pane").forEach(p=>p.classList.toggle("active",p.dataset.qualityAdminPane===btn.dataset.qualityAdminTab));
 });
 
+const STRATEGIC_LEARNING_FIELDS=[
+  ["results","learningResultsInput"],
+  ["quality","learningQualityInput"],
+  ["innovation","learningInnovationInput"],
+  ["impact","learningImpactInput"],
+  ["priorities","learningPrioritiesInput"],
+  ["planning_2027","learningPlanningInput"]
+];
+function collectStrategicLearnings(){
+  return Object.fromEntries(STRATEGIC_LEARNING_FIELDS.map(([key,id])=>{
+    const value=($("#"+id)?.value||"").trim();
+    return [key,value||null];
+  }));
+}
+function populateStrategicLearnings(){
+  const learn=edition?.strategic_learnings||{};
+  const archived=edition?.status==="archived";
+  STRATEGIC_LEARNING_FIELDS.forEach(([key,id])=>{
+    const el=$("#"+id);
+    if(!el)return;
+    el.value=learn[key]||"";
+    el.disabled=archived;
+  });
+  $("#saveStrategicLearningsBtn")?.classList.toggle("hidden",archived);
+  if($("#strategicLearningsMsg")){
+    $("#strategicLearningsMsg").textContent=archived?"Ano arquivado: consulta somente leitura.":"";
+    $("#strategicLearningsMsg").className=archived?"statusline":"statusline";
+  }
+}
+async function saveStrategicLearnings(){
+  if(edition?.status==="archived")throw new Error("Edição arquivada é somente leitura.");
+  const strategic_learnings=collectStrategicLearnings();
+  await editionRef().set({strategic_learnings,updated_at:new Date().toISOString()},{merge:true});
+  edition={...edition,strategic_learnings};
+  return strategic_learnings;
+}
+
 function editionRef(year=edition?.year){return db.collection("edicoes").doc(String(year))}
 function editionCollection(name,year=edition?.year){return editionRef(year).collection(name)}
 
@@ -1001,6 +1382,7 @@ async function loadEditionData(){
   $("#editionName").value=edition.title||"";
   $("#editionSubtitle").value=edition.subtitle||"";
   $("#editionIntro").value=edition.intro||"";
+  populateStrategicLearnings();
   $("#editionTitle").textContent=`${edition.title||"Relatório Executivo Anual"} · ${edition.year} · v${edition.version||1}`;
   const isArchived=edition.status==="archived";
   $("#app").classList.toggle("readonly-mode",isArchived);
@@ -1014,7 +1396,7 @@ async function loadEditionData(){
   $("#editionMsg").innerHTML=isArchived?'<span class="readonly-note">Ano arquivado: consulta somente leitura. Para alterar dados, utilize o ano atual.</span>':"";
   if($("#adminYearFilter"))$("#adminYearFilter").value=String(edition.year);
 
-  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,planning,mediotec]=await Promise.all([
+  const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attentionPriorities,attention,planning,mediotec]=await Promise.all([
     readCollection("indicators"),
     readCollection("programs"),
     readCollection("program_actions"),
@@ -1024,17 +1406,110 @@ async function loadEditionData(){
     readCollection("innovation_project_actions"),
     readCollection("awards_recognitions"),
     readCollection("partners"),
+    readCollection("attention_priorities"),
     readCollection("attention_points"),
     readCollection("planning_2027"),
     readCollection("mediotec_records")
   ]);
   Object.assign(data,{
-    indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attention,planning,mediotec,
+    indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attentionPriorities,attention,planning,mediotec,
     programLinks:deriveLinks(programs,"program_id"),
     qualityLinks:deriveLinks(quality,"project_id"),
     innovationLinks:deriveLinks(innovation,"project_id")
   });
   renderAll();
+}
+
+function attentionPriorityRowHtml(x={},index=0){
+  const id=x.id||`new_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  const archived=edition?.status==="archived";
+  return `<div class="attention-priority-admin-row ${x.id?"":"is-new"}" data-attention-priority-row="${id}" data-existing-id="${x.id||""}">
+    <span class="attention-priority-admin-index">${String(index+1).padStart(2,"0")}</span>
+    <textarea data-attention-priority-premise maxlength="360" placeholder="Ex.: Priorizar soluções que reduzam recorrência e fortaleçam a sustentabilidade da operação." ${archived?"disabled":""}>${esc(x.premise||"")}</textarea>
+    <div class="attention-priority-admin-actions">
+      <span class="attention-priority-admin-state" data-attention-priority-state></span>
+      ${archived?"":'<button type="button" class="danger-link" data-attention-priority-delete>Excluir</button>'}
+    </div>
+  </div>`;
+}
+function attentionPriorityMessage(row,text,kind="ok"){
+  const el=row.querySelector("[data-attention-priority-state]");
+  if(!el)return;
+  el.textContent=text;
+  el.style.color=kind==="error"?"#b4493c":"#2e8656";
+  if(text)setTimeout(()=>{if(el.textContent===text)el.textContent=""},1600);
+}
+async function saveAttentionPriorityRow(row){
+  if(edition?.status==="archived")return;
+  const premise=row.querySelector("[data-attention-priority-premise]")?.value.trim()||"";
+  if(!premise){
+    attentionPriorityMessage(row,"Informe a prioridade","error");
+    return;
+  }
+  const existingId=row.dataset.existingId||"";
+  const now=new Date().toISOString();
+  attentionPriorityMessage(row,"Salvando…");
+  if(existingId){
+    await editionCollection("attention_priorities").doc(existingId).set({premise,updated_at:now},{merge:true});
+  }else{
+    const ref=editionCollection("attention_priorities").doc();
+    const currentMax=Math.max(0,...(data.attentionPriorities||[]).map(x=>Number(x.sort_order)||0));
+    await ref.set({
+      premise,
+      sort_order:currentMax+1,
+      created_at:now,
+      updated_at:now
+    });
+    row.dataset.existingId=ref.id;
+    row.classList.remove("is-new");
+  }
+  attentionPriorityMessage(row,"Salvo");
+  await loadEditionData();
+}
+async function deleteAttentionPriorityRow(row){
+  if(edition?.status==="archived")return;
+  const id=row.dataset.existingId||"";
+  if(!id){
+    row.remove();
+    return;
+  }
+  if(!confirm("Excluir esta prioridade orientadora?"))return;
+  await editionCollection("attention_priorities").doc(id).delete();
+  await loadEditionData();
+}
+function bindAttentionPriorityRows(){
+  document.querySelectorAll("[data-attention-priority-row]").forEach(row=>{
+    const field=row.querySelector("[data-attention-priority-premise]");
+    if(field){
+      field.onchange=()=>saveAttentionPriorityRow(row).catch(e=>{
+        console.error(e);
+        attentionPriorityMessage(row,"Erro","error");
+      });
+    }
+    row.querySelector("[data-attention-priority-delete]")?.addEventListener("click",()=>deleteAttentionPriorityRow(row));
+  });
+}
+function renderAttentionPriorityRows(){
+  const root=$("#attentionPriorityRows");
+  if(!root)return;
+  const rows=[...(data.attentionPriorities||[])].sort((a,b)=>
+    (a.sort_order??Number.MAX_SAFE_INTEGER)-(b.sort_order??Number.MAX_SAFE_INTEGER)
+    ||String(a.premise||"").localeCompare(String(b.premise||""),"pt-BR")
+  );
+  root.innerHTML=rows.length
+    ?rows.map((x,index)=>attentionPriorityRowHtml(x,index)).join("")
+    :'<div class="empty">Nenhuma prioridade cadastrada. Use “+ Adicionar prioridade”.</div>';
+  bindAttentionPriorityRows();
+}
+function addAttentionPriorityRow(){
+  if(edition?.status==="archived")return;
+  const root=$("#attentionPriorityRows");
+  if(!root)return;
+  if(root.querySelector(".empty"))root.innerHTML="";
+  const index=root.querySelectorAll("[data-attention-priority-row]").length;
+  root.insertAdjacentHTML("beforeend",attentionPriorityRowHtml({},index));
+  bindAttentionPriorityRows();
+  root.querySelector(".attention-priority-admin-row.is-new:last-child [data-attention-priority-premise]")?.focus();
 }
 
 function attentionQuickRowHtml(x={}){
@@ -1230,8 +1705,32 @@ function bindProgramQuickRows(){document.querySelectorAll("[data-program-quick]"
 function addProgramQuickRow(){if(edition?.status==="archived")return;const root=$("#programsList");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",programQuickRowHtml({}));bindProgramQuickRows();root.querySelector(".is-new [data-pq-name]")?.focus()}
 
 function projectQuickRowHtml(type,x={}){
-  const rows=x.id?(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===x.id):[],archived=edition?.status==="archived",categoryField=type==="innovation"?`<input data-pq-category type="text" placeholder="Categoria" value="${esc(x.category||"")}" ${archived?"disabled":""}>`:"";
-  return `<div class="portfolio-quick-row project ${type==="innovation"?"innovation":""} ${x.id?"":"is-new"}" data-project-quick="${type}" data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}"><textarea rows="2" class="admin-long-text" data-pq-name placeholder="Nome do projeto" ${archived?"disabled":""}>${esc(x.name||"")}</textarea>${categoryField}<select data-pq-status ${archived?"disabled":""}><option value="planejado" ${(x.status||"planejado")==="planejado"?"selected":""}>Planejado</option><option value="em_andamento" ${x.status==="em_andamento"?"selected":""}>Em andamento</option><option value="concluido" ${x.status==="concluido"?"selected":""}>Concluído</option><option value="pausado" ${x.status==="pausado"?"selected":""}>Pausado</option><option value="cancelado" ${x.status==="cancelado"?"selected":""}>Cancelado</option></select><input data-pq-end type="date" value="${esc(x.end_date||"")}" ${archived?"disabled":""}><div class="portfolio-quick-kpi">${x.id?rows.length:"—"}<small>entregas</small></div><div class="portfolio-quick-actions"><span class="portfolio-quick-state" data-pq-state></span><button type="button" data-pq-details>${archived?"Consultar":"Detalhes"}</button><button type="button" data-pq-delete class="danger-link">Excluir</button></div></div>`;
+  const rows=x.id?(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===x.id):[];
+  const archived=edition?.status==="archived";
+  const isInnovation=type==="innovation";
+  const categoryField=isInnovation?`<input data-pq-category type="text" placeholder="Categoria" value="${esc(x.category||"")}" ${archived?"disabled":""}>`:"";
+  const editLabel=archived?"Consultar":(isInnovation?"Editar":"Detalhes");
+  const actionsClass=isInnovation?"portfolio-quick-actions innovation-row-actions":"portfolio-quick-actions";
+  const deleteTitle=isInnovation?"Excluir projeto de inovação":"Excluir projeto";
+
+  return `<div class="portfolio-quick-row project ${isInnovation?"innovation":""} ${x.id?"":"is-new"}" data-project-quick="${type}" data-existing-id="${x.id||""}" data-filter-card data-filter-title="${esc((x.name||"").toLowerCase())}">
+    <textarea rows="2" class="admin-long-text" data-pq-name placeholder="Nome do projeto" ${archived?"disabled":""}>${esc(x.name||"")}</textarea>
+    ${categoryField}
+    <select data-pq-status ${archived?"disabled":""}>
+      <option value="planejado" ${(x.status||"planejado")==="planejado"?"selected":""}>Planejado</option>
+      <option value="em_andamento" ${x.status==="em_andamento"?"selected":""}>Em andamento</option>
+      <option value="concluido" ${x.status==="concluido"?"selected":""}>Concluído</option>
+      <option value="pausado" ${x.status==="pausado"?"selected":""}>Pausado</option>
+      <option value="cancelado" ${x.status==="cancelado"?"selected":""}>Cancelado</option>
+    </select>
+    <input data-pq-end type="date" value="${esc(x.end_date||"")}" ${archived?"disabled":""}>
+    <div class="portfolio-quick-kpi">${x.id?rows.length:"—"}<small>entregas</small></div>
+    <div class="${actionsClass}">
+      <span class="portfolio-quick-state" data-pq-state></span>
+      <button type="button" data-pq-details class="${isInnovation?"innovation-edit-btn":""}">${editLabel}</button>
+      ${archived?"":`<button type="button" data-pq-delete class="danger-link ${isInnovation?"innovation-delete-btn":""}" title="${deleteTitle}">Excluir</button>`}
+    </div>
+  </div>`;
 }
 function renderProjectQuickRows(type){const arr=type==="quality"?data.quality:data.innovation,rows=[...arr].sort((a,b)=>projectQuickSort(type,a,b));$("#"+type+"List").innerHTML=rows.length?rows.map(x=>projectQuickRowHtml(type,x)).join(""):empty("Nenhum projeto cadastrado.");bindProjectQuickRows(type);applySectionFilter(type)}
 async function saveProjectQuickRow(type,row){
@@ -1243,10 +1742,85 @@ async function saveProjectQuickRow(type,row){
   if(id)await editionCollection(collectionName).doc(id).set(quickPayload,{merge:true});else{const ref=editionCollection(collectionName).doc();await ref.set({name,status,end_date,start_date:null,summary:null,category:type==="innovation"?category:null,indicator_ids:[],sort_order:Date.now(),created_at:new Date().toISOString(),updated_at:new Date().toISOString()});row.dataset.existingId=ref.id}
   rowSaveMessage(row,"Salvo","ok","[data-pq-state]");await loadEditionData();
 }
-function bindProjectQuickRows(type){document.querySelectorAll(`[data-project-quick="${type}"]`).forEach(row=>{row.querySelectorAll("[data-pq-name],[data-pq-category],[data-pq-status],[data-pq-end]").forEach(el=>{el.onchange=()=>saveProjectQuickRow(type,row).catch(e=>{console.error(e);rowSaveMessage(row,"Erro","error","[data-pq-state]")});el.onkeydown=e=>{if(e.key==="Enter"&&el.tagName!=="TEXTAREA"){e.preventDefault();saveProjectQuickRow(type,row).catch(err=>{console.error(err);rowSaveMessage(row,"Erro","error","[data-pq-state]")})}}});row.querySelector("[data-pq-details]")?.addEventListener("click",async()=>{if(!row.dataset.existingId)await saveProjectQuickRow(type,row);if(row.dataset.existingId)openModal(type,row.dataset.existingId)});row.querySelector("[data-pq-delete]")?.addEventListener("click",()=>deletePortfolioQuick(type,row.dataset.existingId))})}
-function addProjectQuickRow(type){if(edition?.status==="archived")return;const root=$("#"+type+"List");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",projectQuickRowHtml(type,{}));bindProjectQuickRows(type);root.querySelector(".is-new [data-pq-name]")?.focus()}
-async function deletePortfolioQuick(type,id){if(!id||edition?.status==="archived")return;if(!confirm(type==="program"?"Excluir este programa e suas ações?":"Excluir este projeto e suas principais entregas?"))return;const batch=db.batch();if(type==="program"){data.actions.filter(a=>a.program_id===id).forEach(a=>batch.delete(editionCollection("program_actions").doc(a.id)));batch.delete(editionCollection("programs").doc(id))}else{const coll=type==="quality"?"quality_projects":"innovation_projects",acoll=type==="quality"?"quality_project_actions":"innovation_project_actions",rows=type==="quality"?data.qualityActions:data.innovationActions;rows.filter(a=>a.project_id===id).forEach(a=>batch.delete(editionCollection(acoll).doc(a.id)));batch.delete(editionCollection(coll).doc(id))}await batch.commit();await loadEditionData()}
+function bindProjectQuickRows(type){
+  document.querySelectorAll(`[data-project-quick="${type}"]`).forEach(row=>{
+    row.querySelectorAll("[data-pq-name],[data-pq-category],[data-pq-status],[data-pq-end]").forEach(el=>{
+      el.onchange=()=>saveProjectQuickRow(type,row).catch(e=>{
+        console.error(e);
+        rowSaveMessage(row,"Erro","error","[data-pq-state]");
+      });
+      el.onkeydown=e=>{
+        if(e.key==="Enter"&&el.tagName!=="TEXTAREA"){
+          e.preventDefault();
+          saveProjectQuickRow(type,row).catch(err=>{
+            console.error(err);
+            rowSaveMessage(row,"Erro","error","[data-pq-state]");
+          });
+        }
+      };
+    });
 
+    row.querySelector("[data-pq-details]")?.addEventListener("click",async()=>{
+      try{
+        if(!row.dataset.existingId)await saveProjectQuickRow(type,row);
+        if(row.dataset.existingId)openModal(type,row.dataset.existingId);
+      }catch(e){
+        console.error(e);
+        rowSaveMessage(row,"Erro ao abrir edição","error","[data-pq-state]");
+      }
+    });
+
+    row.querySelector("[data-pq-delete]")?.addEventListener("click",()=>deleteProjectQuickRow(type,row).catch(e=>{
+      console.error(e);
+      rowSaveMessage(row,"Erro ao excluir","error","[data-pq-state]");
+    }));
+  });
+}
+function addProjectQuickRow(type){if(edition?.status==="archived")return;const root=$("#"+type+"List");if(root.querySelector(".empty"))root.innerHTML="";root.insertAdjacentHTML("afterbegin",projectQuickRowHtml(type,{}));bindProjectQuickRows(type);root.querySelector(".is-new [data-pq-name]")?.focus()}
+async function deleteProjectQuickRow(type,row){
+  if(!row||edition?.status==="archived")return;
+  const id=row.dataset.existingId||"";
+
+  if(!id){
+    row.remove();
+    return;
+  }
+
+  const isInnovation=type==="innovation";
+  const projectName=row.querySelector("[data-pq-name]")?.value.trim()||"este projeto";
+  const actionRows=isInnovation?data.innovationActions:data.qualityActions;
+  const deliveryCount=actionRows.filter(a=>a.project_id===id).length;
+
+  const message=isInnovation
+    ?`Excluir “${projectName}”?${deliveryCount?` As ${deliveryCount} principal${deliveryCount===1?" entrega será excluída":" entregas serão excluídas"} junto com o projeto.`:""}`
+    :`Excluir “${projectName}”?${deliveryCount?` As ${deliveryCount} principal${deliveryCount===1?" entrega será excluída":" entregas serão excluídas"} junto com o projeto.`:""}`;
+
+  if(!confirm(message))return;
+
+  const batch=db.batch();
+  const projectCollection=isInnovation?"innovation_projects":"quality_projects";
+  const actionCollection=isInnovation?"innovation_project_actions":"quality_project_actions";
+
+  actionRows
+    .filter(a=>a.project_id===id)
+    .forEach(a=>batch.delete(editionCollection(actionCollection).doc(a.id)));
+
+  batch.delete(editionCollection(projectCollection).doc(id));
+  await batch.commit();
+  await loadEditionData();
+}
+
+async function deletePortfolioQuick(type,id){
+  if(!id||edition?.status==="archived")return;
+  if(type==="program"){
+    if(!confirm("Excluir este programa e suas ações?"))return;
+    const batch=db.batch();
+    data.actions.filter(a=>a.program_id===id).forEach(a=>batch.delete(editionCollection("program_actions").doc(a.id)));
+    batch.delete(editionCollection("programs").doc(id));
+    await batch.commit();
+    await loadEditionData();
+  }
+}
 
 function awardCategoryLabelAdmin(s){return ({premio_reconhecimento:"Prêmio / reconhecimento",edital_educacao_inovadora:"Edital Educação Inovadora",meee:"MEEE"}[s]||s||"Prêmio / reconhecimento")}
 function awardQuickSort(a,b){
@@ -1334,6 +1908,7 @@ function renderAll(){
   renderProjectQuickRows("innovation");
   renderAwardQuickRows();
   renderPartnerQuickRows();
+  renderAttentionPriorityRows();
   $("#attentionList").innerHTML="";
   renderAttentionQuickRows();
   renderPlanningRows();
@@ -1349,6 +1924,7 @@ $("#addQualityQuickRow")?.addEventListener("click",()=>addProjectQuickRow("quali
 $("#addInnovationQuickRow")?.addEventListener("click",()=>addProjectQuickRow("innovation"));
 $("#addAwardQuickRow")?.addEventListener("click",addAwardQuickRow);
 $("#addPartnerQuickRow")?.addEventListener("click",addPartnerQuickRow);
+$("#addAttentionPriorityRow")?.addEventListener("click",addAttentionPriorityRow);
 $("#addAttentionQuickRow")?.addEventListener("click",addAttentionQuickRow);
 $("#addPlanningRow")?.addEventListener("click",addPlanningRow);
 $("#addMediotecRowBtn")?.addEventListener("click",addMediotecRow);
@@ -1407,7 +1983,7 @@ function openModal(type,id){
     `<div class="field"><label>Ações do programa</label><div class="action-editor-table"><div class="action-editor-header"><span>Ação</span><span>Status</span><span>Situação</span><span>Início</span><span>Fim</span><span></span></div><div id="actionsEditor">${ac.map(a=>actionEditorRowHtml(a,false)).join("")}</div></div><div class="action-editor-toolbar"><button type="button" class="btn ghost mini" id="addActionBtn">+ Ação</button></div></div>`;
   }
   if(type==="quality"||type==="innovation"){
-    const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?"Detalhes do projeto":"Novo projeto";
+    const arr=type==="quality"?data.quality:data.innovation;x=arr.find(v=>v.id===id)||{};title=id?(type==="innovation"?"Editar projeto de inovação":"Detalhes do projeto"):(type==="innovation"?"Novo projeto de inovação":"Novo projeto");
     const links=(type==="quality"?data.qualityLinks:data.innovationLinks).filter(l=>l.project_id===id).map(l=>l.indicator_id),projectActions=(type==="quality"?data.qualityActions:data.innovationActions).filter(a=>a.project_id===id),categoryField=type==="innovation"?field("category","Categoria do projeto",x.category||""):"";
     body=field("name","Nome",x.name||"")+categoryField+'<div class="grid2">'+select("status","Status",x.status||"planejado",[["planejado","Planejado"],["em_andamento","Em andamento"],["concluido","Concluído"],["pausado","Pausado"],["cancelado","Cancelado"]])+field("end_date","Fim previsto",x.end_date||"","date")+'</div>'+
     `<details class="form-optional" open><summary>Contexto e indicadores</summary><div style="margin-top:10px">`+field("start_date","Início",x.start_date||"","date")+area("summary","Resumo",x.summary||"")+indChecks(links)+`</div></details>`+
@@ -1621,11 +2197,25 @@ $("#pdfYearBtn").onclick=()=>openPdfForYear(edition.year);
 
 async function saveEditionHeader(){
   if(edition.status==="archived")throw new Error("Edição arquivada é somente leitura.");
-  const payload={year:edition.year,version:1,title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null,updated_at:new Date().toISOString()};
+  const payload={year:edition.year,version:1,title:$("#editionName").value,subtitle:$("#editionSubtitle").value||null,intro:$("#editionIntro").value||null,strategic_learnings:collectStrategicLearnings(),updated_at:new Date().toISOString()};
   await editionRef().set(payload,{merge:true});
   edition={...edition,...payload};
   return edition;
 }
+$("#saveStrategicLearningsBtn")?.addEventListener("click",async()=>{
+  const btn=$("#saveStrategicLearningsBtn");
+  try{
+    btn.disabled=true;
+    msg($("#strategicLearningsMsg"),"Salvando…");
+    await saveStrategicLearnings();
+    msg($("#strategicLearningsMsg"),"Aprendizados salvos.","success");
+  }catch(error){
+    msg($("#strategicLearningsMsg"),error.message||String(error),"error");
+  }finally{
+    btn.disabled=false;
+  }
+});
+
 $("#saveEditionBtn").onclick=async()=>{
   try{
     await saveEditionHeader();
@@ -1687,6 +2277,14 @@ async function createAnnualEdition(options=null){
     title:headerSource.title||"Relatório Executivo Anual",
     subtitle:headerSource.subtitle||"Núcleo de Qualidade e Inovação",
     intro:headerSource.intro||null,
+    strategic_learnings:{
+      results:null,
+      quality:null,
+      innovation:null,
+      impact:null,
+      priorities:null,
+      planning_2027:null
+    },
     status:"draft",
     created_at:now,
     updated_at:now,
@@ -1838,7 +2436,7 @@ $("#confirmNewEditionBtn").onclick=async()=>{
   if(mode==="clone"&&!editions.some(e=>Number(e.year)===sourceYear))return msg($("#newEditionMsg"),"Selecione uma edição de referência.","error");
 
   const sourceText=mode==="clone"?` usando a estrutura de ${sourceYear}`:" vazia";
-  if(!confirm(`Criar a edição ${year}${sourceText}? Resultados, prazos, status, prêmios e pontos de atenção antigos não serão levados para o novo ano.`))return;
+  if(!confirm(`Criar a edição ${year}${sourceText}? Resultados, prazos, status, prêmios, prioridades e pontos de atenção antigos não serão levados para o novo ano.`))return;
 
   btn.disabled=true;
   $("#cancelNewEditionBtn").disabled=true;
