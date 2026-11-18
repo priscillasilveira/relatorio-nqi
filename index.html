@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Build v60 | 2026-11-18T04:03:16-03:00 | capa editorial redesenhada -->
 <!-- Build v59 | 2026-11-18T03:53:00-03:00 | UX Qualidade + dash Inovação -->
 <!-- Build v58 | 2026-11-18T03:46:05-03:00 | capa NQI + narrativa 2026 -->
 <!-- Build v57 | 2026-11-18T03:41:20-03:00 | header estratégico com palavras-chave -->
@@ -1520,78 +1521,361 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   }
 }
 
+
+/* v60 · Capa editorial */
+.cover-inner{
+  padding:34px 0 46px
+}
+.cover-top{
+  align-items:center
+}
+.cover-hero-v60{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(330px,.65fr);
+  gap:28px;
+  align-items:stretch;
+  margin-top:62px
+}
+.cover-primary-v60{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:430px;
+  padding:42px 44px 36px;
+  border-radius:32px;
+  border:1px solid rgba(255,255,255,.15);
+  background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.045));
+  backdrop-filter:blur(10px);
+  box-shadow:0 28px 60px rgba(0,0,0,.15);
+  position:relative;
+  overflow:hidden
+}
+.cover-primary-v60:after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  right:-130px;
+  top:-130px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:
+    0 0 0 55px rgba(255,255,255,.025),
+    0 0 0 110px rgba(255,255,255,.018)
+}
+.cover-kicker-v60{
+  position:relative;
+  z-index:1;
+  color:#ffd08a;
+  font-size:.72rem;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:18px
+}
+.cover-nqi-title-v60{
+  position:relative;
+  z-index:1;
+  margin:0;
+  max-width:900px;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(3.6rem,6.7vw,6.9rem);
+  line-height:.88;
+  letter-spacing:-.045em;
+  color:#fff;
+  text-wrap:balance
+}
+.cover-nqi-title-v60 span{
+  display:block;
+  color:#fff
+}
+.cover-edition-v60{
+  position:relative;
+  z-index:1;
+  margin-top:30px;
+  padding-top:20px;
+  max-width:720px;
+  border-top:1px solid rgba(255,255,255,.16)
+}
+.cover-edition-v60 p{
+  margin:0;
+  color:#d7e7f0;
+  font-size:.94rem;
+  line-height:1.6
+}
+.cover-meta-actions-v60{
+  position:relative;
+  z-index:1;
+  margin-top:22px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:flex-start
+}
+.cover-actions-v60{
+  margin-top:0
+}
+
+.cover-focus-v60{
+  display:flex;
+  flex-direction:column;
+  min-height:430px;
+  padding:28px 24px 24px;
+  border-radius:32px;
+  background:#f7f3ea;
+  color:#16354a;
+  box-shadow:0 28px 60px rgba(0,0,0,.14);
+  border:1px solid rgba(255,255,255,.35)
+}
+.cover-focus-head-v60 span{
+  display:block;
+  color:#a9671c;
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase
+}
+.cover-focus-head-v60 p{
+  margin:10px 0 0;
+  color:#61747d;
+  font-size:.82rem;
+  line-height:1.55
+}
+.cover-focus-grid-v60{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:22px
+}
+.cover-focus-item-v60{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  min-height:0;
+  padding:14px;
+  border:1px solid #ddd7cb;
+  border-radius:16px;
+  background:#fffdf8
+}
+.cover-focus-item-v60 b{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:9px;
+  background:#fff1db;
+  color:#b96b13;
+  font-size:.7rem;
+  letter-spacing:.04em
+}
+.cover-focus-item-v60 span{
+  color:#173e59;
+  font-family:"Libre Caslon Display",serif;
+  font-size:1.08rem;
+  line-height:1.18
+}
+
+.cover-cycle-v60{
+  display:grid;
+  grid-template-columns:minmax(260px,.78fr) minmax(0,1.22fr);
+  gap:34px;
+  align-items:center;
+  margin-top:22px;
+  padding:25px 28px;
+  border-radius:26px;
+  background:rgba(3,31,52,.42);
+  border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(8px)
+}
+.cover-cycle-copy-v60 small{
+  color:#ffd08a;
+  font-size:.66rem;
+  font-weight:900;
+  letter-spacing:.13em
+}
+.cover-cycle-copy-v60 h2{
+  margin:7px 0 6px;
+  color:#fff;
+  font-family:"Libre Caslon Display",serif;
+  font-size:clamp(1.7rem,2.8vw,2.75rem);
+  line-height:1
+}
+.cover-cycle-copy-v60 p{
+  margin:0;
+  color:#d6e5ed;
+  font-size:.78rem;
+  line-height:1.55
+}
+.cover-cycle-steps-v60{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px
+}
+.cover-cycle-steps-v60 a{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:46px;
+  padding:9px 11px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.055);
+  text-decoration:none;
+  color:#fff;
+  transition:.15s ease
+}
+.cover-cycle-steps-v60 a:hover{
+  background:rgba(255,255,255,.1);
+  transform:translateY(-1px)
+}
+.cover-cycle-steps-v60 b{
+  color:#ffd08a;
+  font-size:.64rem
+}
+.cover-cycle-steps-v60 span{
+  font-size:.72rem;
+  font-weight:800
+}
+.cover-numbers{
+  margin-top:22px
+}
+
+@media(max-width:980px){
+  .cover-hero-v60{
+    grid-template-columns:1fr;
+    margin-top:44px
+  }
+  .cover-primary-v60,
+  .cover-focus-v60{
+    min-height:auto
+  }
+  .cover-focus-grid-v60{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:auto
+  }
+  .cover-focus-item-v60{
+    min-height:112px
+  }
+  .cover-cycle-v60{
+    grid-template-columns:1fr
+  }
+}
+@media(max-width:640px){
+  .cover-inner{
+    padding-top:24px
+  }
+  .cover-primary-v60{
+    padding:30px 22px 26px;
+    border-radius:24px
+  }
+  .cover-nqi-title-v60{
+    font-size:clamp(3.05rem,15vw,4.7rem)
+  }
+  .cover-focus-v60{
+    padding:24px 20px;
+    border-radius:24px
+  }
+  .cover-focus-grid-v60{
+    grid-template-columns:1fr
+  }
+  .cover-cycle-v60{
+    padding:22px 18px
+  }
+  .cover-cycle-steps-v60{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .cover-actions-v60{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%
+  }
+  .cover-actions-v60>*{
+    width:100%;
+    justify-content:center
+  }
+}
+@media print{
+  .cover-primary-v60,
+  .cover-focus-v60,
+  .cover-cycle-v60{
+    box-shadow:none
+  }
+}
+
 </style>
 </head>
 <body>
 <div class="loading" id="loading">Preparando a edição…</div>
 <header class="issue-cover">
   <div class="wrap cover-inner">
-    <div class="cover-top"><div class="senac-lockup"><div class="senac-logo" aria-label="Senac"><img src="https://www.rn.senac.br/assets/logo_senac.png" alt="Senac" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="senac-fallback">Senac</span></div><div class="senac-word">Núcleo de Qualidade e Inovação</div></div><div class="issue-mark">Edição anual<br>Relatório executivo</div></div>
-    <div class="cover-grid">
-      
-<div>
-  <div class="cover-rule"></div>
-  <div class="cover-storyline">Relatório Executivo Anual</div>
+    <div class="cover-top"><div class="senac-lockup"><div class="senac-logo" aria-label="Senac"><img src="https://www.rn.senac.br/assets/logo_senac.png" alt="Senac" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="senac-fallback">Senac</span></div></div><div class="issue-mark">Edição anual · <span id="coverIssueYear">2026</span><br>Relatório executivo</div></div>
+    <div class="cover-hero-v60">
+      <section class="cover-primary-v60">
+        <div class="cover-kicker-v60">Relatório Executivo Anual <span aria-hidden="true">·</span> <span id="coverYearTop">2026</span></div>
+        <h1 class="cover-nqi-title-v60">Núcleo de <span>Qualidade e Inovação</span></h1>
 
-  <div class="cover-identity-panel">
-    <div class="cover-identity-main">
-      <div class="cover-identity-top">
-        <div class="cover-nqi-badge">NQI</div>
-        <div>
-          <div class="cover-identity-label">Núcleo estratégico</div>
-          <h1 class="cover-identity-title" id="coverTitle">Núcleo de Qualidade e Inovação</h1>
-          
+        <div class="cover-edition-v60">
+          <p id="coverIntro">Síntese executiva dos resultados, programas, projetos, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
         </div>
-      </div>
-    </div>
 
-    <aside class="cover-focus-panel" aria-label="Foco de atuação da área">
-      <span class="cover-focus-kicker">Foco de atuação</span>
-      <h3 class="cover-focus-title">Frentes que representam a atuação do núcleo</h3>
-      <div class="cover-focus-list">
-        <div class="cover-focus-item">
-          <div class="cover-focus-num">01</div>
-          <div class="cover-focus-text">Experiência do estudante</div>
+        <div class="cover-meta-actions-v60">
+          <span class="meta-chip build-chip">Relatório v60 · 18/11/2026 · 04:03</span>
+          <div class="cover-actions cover-actions-v60">
+            <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
+            <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
+            <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
+          </div>
         </div>
-        <div class="cover-focus-item">
-          <div class="cover-focus-num">02</div>
-          <div class="cover-focus-text">Permanência do estudante</div>
-        </div>
-        <div class="cover-focus-item">
-          <div class="cover-focus-num">03</div>
-          <div class="cover-focus-text">Excelência educacional</div>
-        </div>
-        <div class="cover-focus-item">
-          <div class="cover-focus-num">04</div>
-          <div class="cover-focus-text">Inovação educacional</div>
-        </div>
-      </div>
-    </aside>
-  </div>
+      </section>
 
-  <p class="cover-deck" id="coverIntro">Síntese executiva de indicadores, programas, projetos, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
-  <div class="cover-meta"><span class="meta-chip build-chip">Relatório v59 · 18/11/2026 · 03:53</span></div>
-  <div class="cover-actions">
-    <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
-    <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
-    <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
-  </div>
-</div>
+      <aside class="cover-focus-v60" aria-label="Focos de atuação do Núcleo de Qualidade e Inovação">
+        <div class="cover-focus-head-v60">
+          <span>Foco de atuação</span>
+          <p>Quatro frentes que orientam a atuação da área.</p>
+        </div>
 
-      <aside class="cover-note story-map-card">
-        <small>NARRATIVA DO CICLO · 2026</small>
-        <h3>Do resultado à decisão.</h3>
-        <p>Um ciclo de crescimento, conquistas e aprendizados que orientam nossas escolhas e fortalecem o futuro da educação.</p>
-        <div class="cover-story-path" aria-label="Etapas da narrativa">
-          <span><b>01</b> Resultados</span>
-          <span><b>02</b> Qualidade</span>
-          <span><b>03</b> Inovação</span>
-          <span><b>04</b> Impacto</span>
-          <span><b>05</b> Prioridades</span>
-          <span><b>06</b> Planejamento 2027</span>
+        <div class="cover-focus-grid-v60">
+          <div class="cover-focus-item-v60">
+            <b>01</b>
+            <span>Experiência do estudante</span>
+          </div>
+          <div class="cover-focus-item-v60">
+            <b>02</b>
+            <span>Permanência do estudante</span>
+          </div>
+          <div class="cover-focus-item-v60">
+            <b>03</b>
+            <span>Excelência educacional</span>
+          </div>
+          <div class="cover-focus-item-v60">
+            <b>04</b>
+            <span>Inovação educacional</span>
+          </div>
         </div>
       </aside>
     </div>
+
+    <section class="cover-cycle-v60">
+      <div class="cover-cycle-copy-v60">
+        <small>NARRATIVA DO CICLO · <span id="coverYearCycle">2026</span></small>
+        <h2>Do resultado à decisão.</h2>
+        <p>Um ciclo de crescimento, conquistas e aprendizados que orientam nossas escolhas e fortalecem o futuro da educação.</p>
+      </div>
+
+      <div class="cover-cycle-steps-v60" aria-label="Etapas da narrativa">
+        <a href="#ato-resultados"><b>01</b><span>Resultados</span></a>
+        <a href="#ato-qualidade"><b>02</b><span>Qualidade</span></a>
+        <a href="#ato-inovacao"><b>03</b><span>Inovação</span></a>
+        <a href="#ato-impacto"><b>04</b><span>Impacto</span></a>
+        <a href="#ato-prioridades"><b>05</b><span>Prioridades</span></a>
+        <a href="#planejamento-2027"><b>06</b><span>Planejamento 2027</span></a>
+      </div>
+    </section>
     <div class="cover-numbers" id="coverNumbers"></div>
   </div>
 </header>
@@ -1773,7 +2057,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 <section class="planning-section" id="planejamento-2027" data-story-section="planejamento-2027"><div class="wrap"><div class="planning-head"><div class="chapter">06</div><div><div class="section-domain">Planejamento 2027</div><h2>2027: Transformando aprendizados em novos avanços.</h2><p>Um novo ciclo de escolhas estratégicas, integração e fortalecimento institucional para consolidar o crescimento, valorizar pessoas e ampliar a qualidade e o impacto da educação.</p></div></div><div id="planning2027Grid" class="planning-category-list"></div><div id="learningPlanning" class="strategic-learning-slot"></div></div></section>
 </main>
 <section class="story-closing compact-closing" id="proximo-ciclo"><div class="wrap"><blockquote>O próximo ciclo começa com prioridades mais claras, aprendizados consolidados e escolhas a fazer.</blockquote></div></section>
-<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v59 · atualizado em 18/11/2026 · 03:53</span></div></footer>
+<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v60 · atualizado em 18/11/2026 · 04:03</span></div></footer>
 <div id="indicatorInfoPopover" class="indicator-info-popover" role="tooltip" aria-hidden="true"><button type="button" class="indicator-info-close" aria-label="Fechar">×</button><strong>Informação</strong><p></p></div>
 <script>
 let db,auth;
@@ -2443,8 +2727,11 @@ async function load(){
   const ed=await resolveEdition();
   if(!ed)return showPreparing();
   const edRef=db.collection("edicoes").doc(String(ed.id||ed.year));
-  $('#coverTitle').textContent=ed.title||'Relatório Executivo Anual';
-  $('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.';
+  const coverYear=String(ed.year||'2026');
+  $('#coverYearTop').textContent=coverYear;
+  $('#coverYearCycle').textContent=coverYear;
+  $('#coverIssueYear').textContent=coverYear;
+  $('#coverIntro').textContent=ed.intro||ed.subtitle||'Síntese executiva dos resultados, programas, projetos, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.';
 
   const [indicators,programs,actions,quality,innovation,qualityActions,innovationActions,awards,partners,attentionPriorities,attention,planning2027]=await Promise.all([
     readEditionCollection(edRef,'indicators'),
