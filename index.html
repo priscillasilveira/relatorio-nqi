@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Build v55 | 2026-11-18T03:12:58-03:00 | filtro decisão necessária -->
 <!-- Build v54 | 2026-11-18T02:57:25-03:00 -->
 <!-- Build v53 | 2026-11-18T02:56:49-03:00 | entregas de inovação condicionais -->
 <!-- Build v52 | 2026-11-18T02:53:16-03:00 | Prioridades orientadoras dos pontos de atenção -->
@@ -1106,6 +1107,78 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   }
 }
 
+
+/* v55 · filtro Decisão necessária nos Pontos de Atenção */
+.attention-filter-bar{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+  margin:0 0 17px;
+  padding:7px;
+  width:max-content;
+  max-width:100%;
+  border:1px solid #dce5e8;
+  border-radius:14px;
+  background:#f7f9fa
+}
+.attention-filter-label{
+  margin:0 3px 0 5px;
+  color:#6b7d86;
+  font-size:.62rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase
+}
+.attention-filter-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:transparent;
+  color:#506873;
+  padding:8px 11px;
+  font:800 .7rem "DM Sans",system-ui;
+  cursor:pointer;
+  transition:.15s ease
+}
+.attention-filter-btn span{
+  font-size:.62rem;
+  opacity:.72;
+  font-variant-numeric:tabular-nums
+}
+.attention-filter-btn:hover{
+  background:#fff;
+  border-color:#d4e0e5
+}
+.attention-filter-btn.active{
+  background:#173f59;
+  border-color:#173f59;
+  color:#fff;
+  box-shadow:0 5px 13px rgba(23,63,89,.12)
+}
+.attention-filter-btn.decision.active{
+  background:#8d4b2f;
+  border-color:#8d4b2f
+}
+@media(max-width:560px){
+  .attention-filter-bar{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr
+  }
+  .attention-filter-label{
+    grid-column:1/-1
+  }
+  .attention-filter-btn{
+    justify-content:center
+  }
+}
+@media print{
+  .attention-filter-bar{display:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -1119,7 +1192,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
         <div class="cover-storyline">Um ano de execução, aprendizagem e transformação.</div>
         <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
         <p class="cover-deck" id="coverIntro">Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
-        <div class="cover-meta"><span class="meta-chip build-chip">Relatório v54 · 18/11/2026 · 02:57</span></div><div class="cover-actions">
+        <div class="cover-meta"><span class="meta-chip build-chip">Relatório v55 · 18/11/2026 · 03:12</span></div><div class="cover-actions">
 <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
 <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
 <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
@@ -1293,6 +1366,16 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
       <p>Temas organizados por categoria, com situação, prazo e impacto.</p>
     </div>
 
+    <div class="attention-filter-bar" id="attentionDecisionFilterBar" aria-label="Filtro dos pontos de atenção">
+      <span class="attention-filter-label">Filtrar</span>
+      <button type="button" class="attention-filter-btn active" data-attention-decision-filter="all">
+        Todos <span id="attentionAllCount"></span>
+      </button>
+      <button type="button" class="attention-filter-btn decision" data-attention-decision-filter="decision">
+        Decisão necessária <span id="attentionDecisionCount"></span>
+      </button>
+    </div>
+
     <div id="attentionGrid"></div>
     <div id="learningPriorities" class="strategic-learning-slot"></div>
   </div>
@@ -1300,7 +1383,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
 <section class="planning-section" id="planejamento-2027" data-story-section="planejamento-2027"><div class="wrap"><div class="planning-head"><div class="chapter">06</div><div><div class="section-domain">Planejamento 2027</div><h2>Desafios que orientam o próximo ciclo</h2><p>Prioridades organizadas por categoria para apoiar foco, alinhamento e preparação do próximo ano.</p></div></div><div id="planning2027Grid" class="planning-category-list"></div><div id="learningPlanning" class="strategic-learning-slot"></div></div></section>
 </main>
 <section class="story-closing compact-closing" id="proximo-ciclo"><div class="wrap"><blockquote>O próximo ciclo começa com prioridades mais claras, aprendizados consolidados e escolhas a fazer.</blockquote></div></section>
-<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v54 · atualizado em 18/11/2026 · 02:57</span></div></footer>
+<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v55 · atualizado em 18/11/2026 · 03:12</span></div></footer>
 <div id="indicatorInfoPopover" class="indicator-info-popover" role="tooltip" aria-hidden="true"><button type="button" class="indicator-info-close" aria-label="Fechar">×</button><strong>Informação</strong><p></p></div>
 <script>
 let db,auth;
@@ -1325,6 +1408,7 @@ const projectStatusRank={concluido:1,em_andamento:2,planejado:3,pausado:4,cancel
 const sortActions=rows=>[...rows].sort((a,b)=>(actionStatusRank[a.status]||9)-(actionStatusRank[b.status]||9)||(a.sort_order||0)-(b.sort_order||0));
 const sortProjects=rows=>[...rows].sort((a,b)=>(projectStatusRank[a.status]||9)-(projectStatusRank[b.status]||9)||(a.sort_order||0)-(b.sort_order||0)||String(a.name||"").localeCompare(String(b.name||""),"pt-BR"));
 let projectPortfolioFilter={quality:"all",innovation:"all"};
+let attentionDecisionFilter="all";
 let portfolioData={quality:[],innovation:[],qualityActions:[],innovationActions:[],indicatorsById:{}};
 function actionStats(rows){
   const total=rows.length,finalized=rows.filter(a=>a.status==="finalizada").length,inProgress=rows.filter(a=>a.status==="em_andamento").length,waiting=rows.filter(a=>a.status==="aguardando").length;
@@ -1542,7 +1626,26 @@ function renderAttentionPriorities(rows){
     </article>`).join("");
 }
 function renderAttentionExecutive(attention){
-  const enriched=attention.map(row=>{
+  const allRows=Array.isArray(attention)?attention:[];
+  const decisionRows=allRows.filter(row=>row.requires_decision===true);
+  const visibleRows=attentionDecisionFilter==="decision"?decisionRows:allRows;
+
+  const allCount=$("#attentionAllCount");
+  const decisionCount=$("#attentionDecisionCount");
+  if(allCount)allCount.textContent=`(${allRows.length})`;
+  if(decisionCount)decisionCount.textContent=`(${decisionRows.length})`;
+
+  document.querySelectorAll("[data-attention-decision-filter]").forEach(btn=>{
+    const value=btn.dataset.attentionDecisionFilter||"all";
+    btn.classList.toggle("active",value===attentionDecisionFilter);
+    btn.setAttribute("aria-pressed",value===attentionDecisionFilter?"true":"false");
+    btn.onclick=()=>{
+      attentionDecisionFilter=value;
+      renderAttentionExecutive(allRows);
+    };
+  });
+
+  const enriched=visibleRows.map(row=>{
     const category=attentionCategory(row);
     return {
       row,
@@ -1584,7 +1687,7 @@ function renderAttentionExecutive(attention){
     };
   }).sort((a,b)=>a.category.localeCompare(b.category,"pt-BR"));
 
-  $("#attentionGrid").innerHTML=attention.length
+  $("#attentionGrid").innerHTML=visibleRows.length
     ?categoryRows.map(group=>{
       const groupClass=group.activeCount===0?"is-resolved":group.overdueCount>0?"is-overdue":"";
       const countText=`${group.activeCount} ativo${group.activeCount===1?"":"s"}${group.resolvedCount?` · ${group.resolvedCount} resolvido${group.resolvedCount===1?"":"s"}`:""}`;
@@ -1633,7 +1736,9 @@ function renderAttentionExecutive(attention){
         </div>
       </section>`;
     }).join("")
-    :empty("Nenhum ponto de atenção publicado.");
+    :empty(attentionDecisionFilter==="decision"
+      ?"Nenhum ponto de atenção com decisão necessária."
+      :"Nenhum ponto de atenção publicado.");
 }
 function attentionCategory(row){const raw=String(row?.notes||'');const m=raw.match(/^\[\[CAT\]\](.*?)\[\[\/CAT\]\]\s*/s);return (row?.category||(m?m[1].trim():''))||'Sem categoria';}
 function attentionCategoryKey(value){
