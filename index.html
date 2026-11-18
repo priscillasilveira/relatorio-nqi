@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- Build v57 | 2026-11-18T03:41:20-03:00 | header estratégico com palavras-chave -->
+<!-- Build v56 | 2026-11-18T03:38:43-03:00 | títulos e subtítulos das seções -->
 <!-- Build v55 | 2026-11-18T03:12:58-03:00 | filtro decisão necessária -->
 <!-- Build v54 | 2026-11-18T02:57:25-03:00 -->
 <!-- Build v53 | 2026-11-18T02:56:49-03:00 | entregas de inovação condicionais -->
@@ -1179,6 +1181,156 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   .attention-filter-bar{display:none!important}
 }
 
+
+/* v56 · subtítulos narrativos das seis seções */
+.story-break-inner>div:last-child>p{
+  max-width:880px;
+  margin:12px 0 0;
+  color:var(--story-break-copy,#536873);
+  font-size:clamp(.82rem,1.2vw,.98rem);
+  line-height:1.65
+}
+.story-break-dark .story-break-inner>div:last-child>p{
+  color:#d7e7ef
+}
+.story-break-impact .story-break-inner>div:last-child>p{
+  max-width:920px
+}
+.story-break-priority .story-break-inner>div:last-child>p{
+  max-width:920px
+}
+
+
+/* v57 · abertura estratégica do NQI */
+.cover-identity-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(270px,.85fr);
+  gap:18px;
+  align-items:stretch;
+  margin:18px 0 20px
+}
+.cover-identity-main{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:26px;
+  padding:24px 24px 22px;
+  backdrop-filter:blur(6px);
+  box-shadow:0 14px 34px rgba(0,0,0,.12)
+}
+.cover-identity-top{
+  display:flex;
+  align-items:flex-start;
+  gap:16px
+}
+.cover-nqi-badge{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#fff 0%,#d8ebf5 100%);
+  color:#0c4f76;
+  font-weight:900;
+  font-size:1.05rem;
+  box-shadow:0 12px 28px rgba(0,0,0,.15)
+}
+.cover-identity-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  color:#d8eef8;
+  font-size:.72rem;
+  text-transform:uppercase;
+  font-weight:800;
+  letter-spacing:.1em;
+  margin-bottom:12px
+}
+.cover-identity-title{
+  margin:0;
+  font-family:"DM Sans",system-ui,sans-serif;
+  font-size:clamp(1.6rem,3vw,2.7rem);
+  line-height:1.05;
+  letter-spacing:-.03em;
+  color:#fff
+}
+.cover-identity-sub{
+  margin:12px 0 0;
+  max-width:720px;
+  color:rgba(237,246,251,.92);
+  line-height:1.65;
+  font-size:.98rem
+}
+.cover-focus-panel{
+  background:linear-gradient(145deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,.08) 100%);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:26px;
+  padding:22px 20px;
+  box-shadow:0 14px 34px rgba(0,0,0,.12);
+  backdrop-filter:blur(8px)
+}
+.cover-focus-kicker{
+  display:block;
+  font-size:.74rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:800;
+  color:#d9eff8;
+  margin-bottom:10px
+}
+.cover-focus-title{
+  margin:0 0 14px;
+  font-size:1rem;
+  line-height:1.45;
+  color:#fff
+}
+.cover-focus-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px
+}
+.cover-focus-item{
+  display:flex;
+  gap:11px;
+  align-items:flex-start;
+  padding:11px 12px;
+  border-radius:15px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.09)
+}
+.cover-focus-num{
+  width:26px;
+  height:26px;
+  border-radius:9px;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.16);
+  color:#fff;
+  font-size:.76rem;
+  font-weight:800
+}
+.cover-focus-text{
+  color:#fff;
+  font-size:.95rem;
+  line-height:1.35;
+  font-weight:700
+}
+@media (max-width:1040px){
+  .cover-identity-panel{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .cover-identity-main,.cover-focus-panel{padding:20px 18px}
+  .cover-identity-top{gap:14px}
+  .cover-nqi-badge{width:48px;height:48px;border-radius:14px;font-size:.92rem}
+  .cover-identity-title{font-size:clamp(1.45rem,7vw,2rem)}
+}
+
 </style>
 </head>
 <body>
@@ -1187,17 +1339,56 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
   <div class="wrap cover-inner">
     <div class="cover-top"><div class="senac-lockup"><div class="senac-logo" aria-label="Senac"><img src="https://www.rn.senac.br/assets/logo_senac.png" alt="Senac" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="senac-fallback">Senac</span></div><div class="senac-word">Núcleo de Qualidade e Inovação</div></div><div class="issue-mark">Edição anual<br>Relatório executivo</div></div>
     <div class="cover-grid">
-      <div>
-        <div class="cover-rule"></div>
-        <div class="cover-storyline">Um ano de execução, aprendizagem e transformação.</div>
-        <h1 class="cover-title" id="coverTitle">Relatório Executivo Anual</h1>
-        <p class="cover-deck" id="coverIntro">Síntese executiva dos resultados, execução, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
-        <div class="cover-meta"><span class="meta-chip build-chip">Relatório v55 · 18/11/2026 · 03:12</span></div><div class="cover-actions">
-<a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
-<button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
-<a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
-</div>
+      
+<div>
+  <div class="cover-rule"></div>
+  <div class="cover-storyline">Relatório Executivo Anual</div>
+
+  <div class="cover-identity-panel">
+    <div class="cover-identity-main">
+      <div class="cover-identity-top">
+        <div class="cover-nqi-badge">NQI</div>
+        <div>
+          <div class="cover-identity-label">Núcleo estratégico</div>
+          <h1 class="cover-identity-title" id="coverTitle">Núcleo de Qualidade e Inovação</h1>
+          <p class="cover-identity-sub">Atuação orientada por leitura de resultados, fortalecimento da qualidade, inovação educacional e decisões executivas que sustentam o crescimento institucional.</p>
+        </div>
       </div>
+    </div>
+
+    <aside class="cover-focus-panel" aria-label="Foco de atuação da área">
+      <span class="cover-focus-kicker">Foco de atuação</span>
+      <h3 class="cover-focus-title">Frentes que representam a atuação do núcleo</h3>
+      <div class="cover-focus-list">
+        <div class="cover-focus-item">
+          <div class="cover-focus-num">01</div>
+          <div class="cover-focus-text">Experiência do estudante</div>
+        </div>
+        <div class="cover-focus-item">
+          <div class="cover-focus-num">02</div>
+          <div class="cover-focus-text">Permanência do estudante</div>
+        </div>
+        <div class="cover-focus-item">
+          <div class="cover-focus-num">03</div>
+          <div class="cover-focus-text">Excelência educacional</div>
+        </div>
+        <div class="cover-focus-item">
+          <div class="cover-focus-num">04</div>
+          <div class="cover-focus-text">Inovação educacional</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <p class="cover-deck" id="coverIntro">Síntese executiva de indicadores, programas, projetos, reconhecimentos e prioridades do Núcleo de Qualidade e Inovação.</p>
+  <div class="cover-meta"><span class="meta-chip build-chip">Relatório v57 · 18/11/2026 · 03:41</span></div>
+  <div class="cover-actions">
+    <a class="pdf-btn supplementary-link" href="./mediotec.html"><span>Gestão Mediotec</span><span aria-hidden="true">↗</span></a>
+    <button class="pdf-btn" id="printPdfBtn" type="button">Salvar relatório em PDF</button>
+    <a class="pdf-btn admin-link-btn" href="./admin.html" rel="nofollow">Acesso administrativo</a>
+  </div>
+</div>
+
       <aside class="cover-note story-map-card">
         <small>Narrativa do ciclo</small>
         <h3>Do resultado à decisão.</h3>
@@ -1231,7 +1422,8 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="story-break-number">01</div>
     <div>
       <div class="story-break-kicker">Resultados</div>
-      <h2>Os resultados mostram onde avançamos e onde ainda há atenção.</h2>
+      <h2>Um ano de crescimento, conquistas e aprendizados.</h2>
+      <p>A expansão educacional trouxe avanços importantes e novas oportunidades para fortalecer a experiência, a permanência e a qualidade da aprendizagem.</p>
       <span class="story-handoff">Da estratégia para a evidência ↓</span>
     </div>
   </div>
@@ -1276,7 +1468,8 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="story-break-number">02</div>
     <div>
       <div class="story-break-kicker">Qualidade</div>
-      <h2>Qualidade que sustenta o crescimento.</h2>
+      <h2>Qualidade que acompanha e fortalece o crescimento.</h2>
+      <p>Programas e projetos que estruturam a operação educacional, fortalecem os processos e criam condições para aprimorar continuamente a experiência e a permanência dos estudantes.</p>
       <span class="story-handoff">Dos resultados para a estrutura que sustenta a evolução ↓</span>
     </div>
   </div>
@@ -1298,7 +1491,7 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div>
       <div class="story-break-kicker">Inovação</div>
       <h2>Construindo hoje o futuro que queremos.</h2>
-      <p>Mesmo em crescimento, protagonizamos projetos de inovação que constroem hoje o futuro que queremos.</p>
+      <p>Protagonismo na criação de soluções inovadoras que antecipam oportunidades, transformam desafios em possibilidades e impulsionam o futuro da educação e da gestão institucional.</p>
       <span class="story-handoff">Da estrutura para novas possibilidades ↓</span>
     </div>
   </div>
@@ -1321,8 +1514,8 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="story-break-number">04</div>
     <div>
       <div class="story-break-kicker">Impacto</div>
-      <h2>Parte do valor aparece no resultado. Parte aparece no alcance.</h2>
-      <p>Reconhecimentos e parcerias mostram como o trabalho do NQI ganha legitimidade, visibilidade e capacidade de articulação além da execução interna.</p>
+      <h2>Reconhecimento que valoriza pessoas e amplia nosso impacto.</h2>
+      <p>Conquistas, práticas inovadoras e parcerias que evidenciam o protagonismo das nossas equipes, fortalecem conexões estratégicas e inspiram uma cultura institucional de inovação.</p>
       <span class="story-handoff">Da transformação para o alcance ↓</span>
     </div>
   </div>
@@ -1343,8 +1536,8 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div class="story-break-number">05</div>
     <div>
       <div class="story-break-kicker">Prioridades</div>
-      <h2>O ciclo também deixa prioridades claras.</h2>
-      <p>Pontos que exigem acompanhamento, tratamento ou decisão para orientar o próximo movimento.</p>
+      <h2>Desafios que orientam nossas prioridades.</h2>
+      <p>Pontos de atenção que revelam oportunidades de melhoria e reforçam a importância de decisões integradas, corresponsabilidade e atuação institucional para sustentar o crescimento com qualidade.</p>
       <span class="story-handoff">Da leitura para a decisão ↓</span>
     </div>
   </div>
@@ -1380,10 +1573,10 @@ body{font-size:16px;line-height:1.5;text-rendering:optimizeLegibility}
     <div id="learningPriorities" class="strategic-learning-slot"></div>
   </div>
 </section>
-<section class="planning-section" id="planejamento-2027" data-story-section="planejamento-2027"><div class="wrap"><div class="planning-head"><div class="chapter">06</div><div><div class="section-domain">Planejamento 2027</div><h2>Desafios que orientam o próximo ciclo</h2><p>Prioridades organizadas por categoria para apoiar foco, alinhamento e preparação do próximo ano.</p></div></div><div id="planning2027Grid" class="planning-category-list"></div><div id="learningPlanning" class="strategic-learning-slot"></div></div></section>
+<section class="planning-section" id="planejamento-2027" data-story-section="planejamento-2027"><div class="wrap"><div class="planning-head"><div class="chapter">06</div><div><div class="section-domain">Planejamento 2027</div><h2>2027: Transformando aprendizados em novos avanços.</h2><p>Um novo ciclo de escolhas estratégicas, integração e fortalecimento institucional para consolidar o crescimento, valorizar pessoas e ampliar a qualidade e o impacto da educação.</p></div></div><div id="planning2027Grid" class="planning-category-list"></div><div id="learningPlanning" class="strategic-learning-slot"></div></div></section>
 </main>
 <section class="story-closing compact-closing" id="proximo-ciclo"><div class="wrap"><blockquote>O próximo ciclo começa com prioridades mais claras, aprendizados consolidados e escolhas a fazer.</blockquote></div></section>
-<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v55 · atualizado em 18/11/2026 · 03:12</span></div></footer>
+<footer><div class="wrap footer-version"><span>Relatório Executivo Anual · Núcleo de Qualidade e Inovação</span><span>v57 · atualizado em 18/11/2026 · 03:41</span></div></footer>
 <div id="indicatorInfoPopover" class="indicator-info-popover" role="tooltip" aria-hidden="true"><button type="button" class="indicator-info-close" aria-label="Fechar">×</button><strong>Informação</strong><p></p></div>
 <script>
 let db,auth;
